@@ -1,0 +1,20 @@
+{
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "markdown.extension.toc.levels": "1..2",
+  "cSpell.words": ["webcomponents"],
+  "jest.runMode": "on-demand",
+  "typescript.preferences.importModuleSpecifier": "relative"
+}

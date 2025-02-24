@@ -1,0 +1,8 @@
+dist/
+reports/
+node_modules/
+example.md
+website/.docusaurus
+website/build
+website/docs/examples
+package-lock.json

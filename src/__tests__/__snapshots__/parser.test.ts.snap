@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Parser Tests should throw some errors JSON file is invalid 1`] = `
+[Error: 
+[error]: The required property \`definitions\` is missing at \`#\` (required-property-error)]
+`;
+
+exports[`Parser Tests should throw some errors if corrupt file is provided 1`] = `
+[Error: 
+[error]: Expected \`asdasjklajs;;\` (string) in \`#\` to be of type \`object\` (type-error)]
+`;
