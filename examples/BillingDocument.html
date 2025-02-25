@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-examples/BillingDocument" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">BillingDocument | CSN Interop Document Renderer</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://sap.github.io/csn-interop-renderer/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://sap.github.io/csn-interop-renderer/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://sap.github.io/csn-interop-renderer/examples/BillingDocument"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="BillingDocument | CSN Interop Document Renderer"><meta data-rh="true" name="description" content="Entity Definitions"><meta data-rh="true" property="og:description" content="Entity Definitions"><link data-rh="true" rel="icon" href="/csn-interop-renderer/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://sap.github.io/csn-interop-renderer/examples/BillingDocument"><link data-rh="true" rel="alternate" href="https://sap.github.io/csn-interop-renderer/examples/BillingDocument" hreflang="en"><link data-rh="true" rel="alternate" href="https://sap.github.io/csn-interop-renderer/examples/BillingDocument" hreflang="x-default"><link rel="stylesheet" href="/csn-interop-renderer/assets/css/styles.17275f4c.css">
+<script src="/csn-interop-renderer/assets/js/runtime~main.07229705.js" defer="defer"></script>
+<script src="/csn-interop-renderer/assets/js/main.e3960d3c.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/csn-interop-renderer/"><div class="navbar__logo"><img src="/csn-interop-renderer/img/logo.svg" alt="SAP Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/csn-interop-renderer/img/logo.svg" alt="SAP Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/csn-interop-renderer/">CSN Interoperability Document Renderer</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/SAP/csn-interop-renderer" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/csn-interop-renderer/">Overview</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/csn-interop-renderer/Integrations/npm">Integrations</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/csn-interop-renderer/examples/Airline">examples</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/csn-interop-renderer/examples/Airline">Airline (Example)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/csn-interop-renderer/examples/BillingDocument">BillingDocument</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/csn-interop-renderer/examples/CostCenter">CostCenter</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/csn-interop-renderer/examples/CostCenterCombined">CostCenterCombined</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/csn-interop-renderer/examples/GeneralLedgerAccountLineItem">GeneralLedgerAccountLineItem</a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/csn-interop-renderer/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">examples</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">BillingDocument</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>BillingDocument</h1></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="entity-definitions">Entity Definitions<a href="#entity-definitions" class="hash-link" aria-label="Direct link to Entity Definitions" title="Direct link to Entity Definitions">​</a></h2>
+<div id="billingdocument"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="billingdocument">BillingDocument<a href="#billingdocument" class="hash-link" aria-label="Direct link to BillingDocument" title="Direct link to BillingDocument">​</a></h3>
+<table><tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr><tr><td><strong id="billingdocument-billingdocument">BillingDocument</strong></td><td><a href="#type-vbeln_vf" target="_self">VBELN_VF</a></td><td><strong>Key</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@EndUserText.heading</strong>: Bill. Doc.<br><strong>@EndUserText.label</strong>: Billing Document<br><strong>@EndUserText.quickInfo</strong>: Billing Document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-sddocumentcategory">SDDocumentCategory</strong></td><td><a href="#type-vbtypl" target="_self">VBTYPL</a></td><td><strong>@EndUserText.heading</strong>: Doc.Cat.<br><strong>@EndUserText.label</strong>: SD Document Category<br><strong>@EndUserText.quickInfo</strong>: SD Document Category<br><strong>@ObjectModel.foreignKey.association</strong>: _SDDocumentCategory</td></tr><tr><td><strong id="billingdocument-billingdocumentcategory">BillingDocumentCategory</strong></td><td><a href="#type-fktyp" target="_self">FKTYP</a></td><td><strong>@EndUserText.heading</strong>: BlCat<br><strong>@EndUserText.label</strong>: Billing Category<br><strong>@EndUserText.quickInfo</strong>: Billing Category<br><strong>@ObjectModel.foreignKey.association</strong>: _BillingDocumentCategory<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-billingdocumenttype">BillingDocumentType</strong></td><td><a href="#type-fkart" target="_self">FKART</a></td><td><strong>@EndUserText.heading</strong>: BillT<br><strong>@EndUserText.label</strong>: Billing Type<br><strong>@EndUserText.quickInfo</strong>: Billing Type<br><strong>@ObjectModel.foreignKey.association</strong>: _BillingDocumentType<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-createdbyuser">CreatedByUser</strong></td><td><a href="#type-ernam" target="_self">ERNAM</a></td><td><strong>@EndUserText.heading</strong>: Created By<br><strong>@EndUserText.label</strong>: Created By<br><strong>@EndUserText.quickInfo</strong>: Name of Person Responsible for Creating the Object<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.personalData.isPotentiallySensitive</strong>: true<br><strong>@Semantics.user.createdBy</strong>: true</td></tr><tr><td><strong id="billingdocument-creationdate">CreationDate</strong></td><td><a href="#type-erdat" target="_self">ERDAT</a></td><td><strong>@EndUserText.heading</strong>: Created On<br><strong>@EndUserText.label</strong>: Created On<br><strong>@EndUserText.quickInfo</strong>: Record Creation Date<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.systemDate.createdAt</strong>: true</td></tr><tr><td><strong id="billingdocument-creationtime">CreationTime</strong></td><td><a href="#type-erzet" target="_self">ERZET</a></td><td><strong>@EndUserText.heading</strong>: Time<br><strong>@EndUserText.label</strong>: Time<br><strong>@EndUserText.quickInfo</strong>: Entry time<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.systemTime.createdAt</strong>: true</td></tr><tr><td><strong id="billingdocument-lastchangedate">LastChangeDate</strong></td><td><a href="#type-aedat" target="_self">AEDAT</a></td><td><strong>@EndUserText.heading</strong>: Chngd On<br><strong>@EndUserText.label</strong>: Changed On<br><strong>@EndUserText.quickInfo</strong>: Last Changed On<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.systemDate.lastChangedAt</strong>: true</td></tr><tr><td><strong id="billingdocument-lastchangedatetime">LastChangeDateTime</strong></td><td><a href="#type-timestampl" target="_self">TIMESTAMPL</a></td><td><strong>@EndUserText.heading</strong>: Time Stamp<br><strong>@EndUserText.label</strong>: Time Stamp<br><strong>@EndUserText.quickInfo</strong>: UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.systemDateTime.lastChangedAt</strong>: true</td></tr><tr><td><strong id="billingdocument-logicalsystem">LogicalSystem</strong></td><td><a href="#type-logsys" target="_self">LOGSYS</a></td><td><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@EndUserText.heading</strong>: Log.System<br><strong>@EndUserText.label</strong>: Logical System<br><strong>@EndUserText.quickInfo</strong>: Logical System<br><strong>@ObjectModel.foreignKey.association</strong>: _LogicalSystem<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-salesorganization">SalesOrganization</strong></td><td><a href="#type-vkorg" target="_self">VKORG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: SOrg.<br><strong>@EndUserText.label</strong>: Sales Organization<br><strong>@EndUserText.quickInfo</strong>: Sales Organization<br><strong>@ObjectModel.foreignKey.association</strong>: _SalesOrganization<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-distributionchannel">DistributionChannel</strong></td><td><a href="#type-vtweg" target="_self">VTWEG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: DChl<br><strong>@EndUserText.label</strong>: Distribution Channel<br><strong>@EndUserText.quickInfo</strong>: Distribution Channel<br><strong>@ObjectModel.foreignKey.association</strong>: _DistributionChannel<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-division">Division</strong></td><td><a href="#type-spart" target="_self">SPART</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Dv<br><strong>@EndUserText.label</strong>: Division<br><strong>@EndUserText.quickInfo</strong>: Division<br><strong>@ObjectModel.foreignKey.association</strong>: _Division<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-billingdocumentdate">BillingDocumentDate</strong></td><td><a href="#type-fkdat" target="_self">FKDAT</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Billing Date<br><strong>@EndUserText.label</strong>: Billing Date<br><strong>@EndUserText.quickInfo</strong>: Billing Date<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-billingdocumentiscancelled">BillingDocumentIsCancelled</strong></td><td><a href="#type-fksto" target="_self">FKSTO</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Can<br><strong>@EndUserText.label</strong>: Canceled<br><strong>@EndUserText.quickInfo</strong>: Billing document is canceled<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-cancelledbillingdocument">CancelledBillingDocument</strong></td><td><a href="#type-sfakn" target="_self">SFAKN</a></td><td><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+{
+&quot;entity&quot;: {
+&quot;name&quot;: &quot;I_BillingDocumentStdVH&quot;,
+&quot;element&quot;: &quot;BillingDocument&quot;
+}
+}
+]</code><br><strong>@EndUserText.heading</strong>: CancBillDc<br><strong>@EndUserText.label</strong>: Canceled Bill. Doc.<br><strong>@EndUserText.quickInfo</strong>: Number of canceled billing document<br><strong>@ObjectModel.foreignKey.association</strong>: _CancelledBillingDocument<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-billingdoccombinationcriteria">BillingDocCombinationCriteria</strong></td><td><a href="#type-dzukri" target="_self">DZUKRI</a></td><td><strong>@EndUserText.heading</strong>: Combination Criteria in the Billing Doc.<br><strong>@EndUserText.label</strong>: Combination Criteria<br><strong>@EndUserText.quickInfo</strong>: Combination criteria in the billing document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-manualinvoicemaintisrelevant">ManualInvoiceMaintIsRelevant</strong></td><td><a href="#type-mrnkz" target="_self">MRNKZ</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: InM<br><strong>@EndUserText.label</strong>: Man. Invoice Maint.<br><strong>@EndUserText.quickInfo</strong>: Manual Invoice Maintenance<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-nmbrofpages">NmbrOfPages</strong></td><td><a href="#type-j_1anopg" target="_self">J_1ANOPG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Pages<br><strong>@EndUserText.label</strong>: Number of Pages<br><strong>@EndUserText.quickInfo</strong>: Number of pages of invoice<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-isintrastatreportingrelevant">IsIntrastatReportingRelevant</strong></td><td><a href="#type-intra_rel" target="_self">INTRA_REL</a></td><td><strong>@EndUserText.heading</strong>: relevant for Intrastat<br><strong>@EndUserText.label</strong>: Intrastat Relevance<br><strong>@EndUserText.quickInfo</strong>: Relevant for Intrastat Reporting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-isintrastatreportingexcluded">IsIntrastatReportingExcluded</strong></td><td><a href="#type-intra_excl" target="_self">INTRA_EXCL</a></td><td><strong>@EndUserText.heading</strong>: exclude from Intrastat<br><strong>@EndUserText.label</strong>: Intrastat Exclusion<br><strong>@EndUserText.quickInfo</strong>: Exclude from Intrastat Reporting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-billingdocumentistemporary">BillingDocumentIsTemporary</strong></td><td><a href="#type-vf_draft_indicator" target="_self">VF_DRAFT_INDICATOR</a></td><td><strong>@EndUserText.heading</strong>: Is Draft<br><strong>@EndUserText.label</strong>: Draft Indicator<br><strong>@EndUserText.quickInfo</strong>: IsDraft Indicator<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-totalnetamount">TotalNetAmount</strong></td><td><a href="#type-netwr" target="_self">NETWR</a></td><td><strong>@EndUserText.heading</strong>: Net Value<br><strong>@EndUserText.label</strong>: Net Value<br><strong>@EndUserText.quickInfo</strong>: Net Value in Document Currency<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.amount.currencyCode</strong>: TransactionCurrency</td></tr><tr><td><strong id="billingdocument-transactioncurrency">TransactionCurrency</strong></td><td><a href="#type-waerk" target="_self">WAERK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Crcy<br><strong>@EndUserText.label</strong>: Document Currency<br><strong>@EndUserText.quickInfo</strong>: SD Document Currency<br><strong>@ObjectModel.foreignKey.association</strong>: _TransactionCurrency<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.currencyCode</strong>: true</td></tr><tr><td><strong id="billingdocument-statisticscurrency">StatisticsCurrency</strong></td><td><a href="#type-stwae" target="_self">STWAE</a></td><td><strong>@EndUserText.heading</strong>: Curr.<br><strong>@EndUserText.label</strong>: Statistics Currency<br><strong>@EndUserText.quickInfo</strong>: Statistics Currency<br><strong>@ObjectModel.foreignKey.association</strong>: _StatisticsCurrency<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.currencyCode</strong>: true</td></tr><tr><td><strong id="billingdocument-totaltaxamount">TotalTaxAmount</strong></td><td><a href="#type-mwsbp" target="_self">MWSBP</a></td><td><strong>@EndUserText.heading</strong>: Tax Amount<br><strong>@EndUserText.label</strong>: Tax Amount<br><strong>@EndUserText.quickInfo</strong>: Tax Amount in Document Currency<br><strong>@ObjectModel.upperCase</strong>: true<br><strong>@Semantics.amount.currencyCode</strong>: TransactionCurrency</td></tr><tr><td><strong id="billingdocument-customerpricegroup">CustomerPriceGroup</strong></td><td><a href="#type-konda" target="_self">KONDA</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: CPG<br><strong>@EndUserText.label</strong>: Customer Price Group<br><strong>@EndUserText.quickInfo</strong>: Customer Price Group<br><strong>@ObjectModel.foreignKey.association</strong>: _CustomerPriceGroup<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-pricelisttype">PriceListType</strong></td><td><a href="#type-pltyp" target="_self">PLTYP</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: PL<br><strong>@EndUserText.label</strong>: Price List Type<br><strong>@EndUserText.quickInfo</strong>: Price List Type<br><strong>@ObjectModel.foreignKey.association</strong>: _PriceListType<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-taxdeparturecountry">TaxDepartureCountry</strong></td><td><a href="#type-landtx" target="_self">LANDTX</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: TDC<br><strong>@EndUserText.label</strong>: Tax Departure C/R<br><strong>@EndUserText.quickInfo</strong>: Tax Departure Country/Region<br><strong>@ObjectModel.foreignKey.association</strong>: _TaxDepartureCountry<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-vatregistration">VATRegistration</strong></td><td><a href="#type-stceg" target="_self">STCEG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: VAT Registration No.<br><strong>@EndUserText.label</strong>: VAT Registration No.<br><strong>@EndUserText.quickInfo</strong>: VAT Registration Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-vatregistrationorigin">VATRegistrationOrigin</strong></td><td><a href="#type-stceg_h" target="_self">STCEG_H</a></td><td><strong>@EndUserText.heading</strong>: OSI<br><strong>@EndUserText.label</strong>: Origin Sales Tax No.<br><strong>@EndUserText.quickInfo</strong>: Origin of Sales Tax Number<br><strong>@ObjectModel.foreignKey.association</strong>: _VATRegistrationOrigin<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-vatregistrationcountry">VATRegistrationCountry</strong></td><td><a href="#type-stceg_l" target="_self">STCEG_L</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: STC<br><strong>@EndUserText.label</strong>: Ctry/Rgn Sls Tax No.<br><strong>@EndUserText.quickInfo</strong>: Country/Region of Sales Tax ID Number<br><strong>@ObjectModel.foreignKey.association</strong>: _VATRegistrationCountry<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-hierarchytypepricing">HierarchyTypePricing</strong></td><td><a href="#type-hityp_pr" target="_self">HITYP_PR</a></td><td><strong>@EndUserText.heading</strong>: HPr<br><strong>@EndUserText.label</strong>: HierarchyTypePricing<br><strong>@EndUserText.quickInfo</strong>: Hierarchy type for pricing<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification1">CustomerTaxClassification1</strong></td><td><a href="#type-taxk1" target="_self">TAXK1</a></td><td><strong>@EndUserText.heading</strong>: Tx2Cs<br><strong>@EndUserText.label</strong>: Tax Class.1 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 1 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification2">CustomerTaxClassification2</strong></td><td><a href="#type-taxk2" target="_self">TAXK2</a></td><td><strong>@EndUserText.heading</strong>: Tx2Cs<br><strong>@EndUserText.label</strong>: Tax Class.2 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 2 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification3">CustomerTaxClassification3</strong></td><td><a href="#type-taxk3" target="_self">TAXK3</a></td><td><strong>@EndUserText.heading</strong>: Tx3Cs<br><strong>@EndUserText.label</strong>: Tax Class.3 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 3 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification4">CustomerTaxClassification4</strong></td><td><a href="#type-taxk4" target="_self">TAXK4</a></td><td><strong>@EndUserText.heading</strong>: Tx4Cs<br><strong>@EndUserText.label</strong>: Tax Class.4 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 4 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification5">CustomerTaxClassification5</strong></td><td><a href="#type-taxk5" target="_self">TAXK5</a></td><td><strong>@EndUserText.heading</strong>: Tx5Cs<br><strong>@EndUserText.label</strong>: Tax Class.5 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 5 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification6">CustomerTaxClassification6</strong></td><td><a href="#type-taxk6" target="_self">TAXK6</a></td><td><strong>@EndUserText.heading</strong>: Tx6Cs<br><strong>@EndUserText.label</strong>: Tax Class.6 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 6 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification7">CustomerTaxClassification7</strong></td><td><a href="#type-taxk7" target="_self">TAXK7</a></td><td><strong>@EndUserText.heading</strong>: Tx7Cs<br><strong>@EndUserText.label</strong>: Tax Class.7 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 7 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification8">CustomerTaxClassification8</strong></td><td><a href="#type-taxk8" target="_self">TAXK8</a></td><td><strong>@EndUserText.heading</strong>: Tx8Cs<br><strong>@EndUserText.label</strong>: Tax Class.8 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 8 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customertaxclassification9">CustomerTaxClassification9</strong></td><td><a href="#type-taxk9" target="_self">TAXK9</a></td><td><strong>@EndUserText.heading</strong>: Tx9Cs<br><strong>@EndUserText.label</strong>: Tax Class.9 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 9 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-iseutriangulardeal">IsEUTriangularDeal</strong></td><td><a href="#type-xegdr" target="_self">XEGDR</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:I_BILLINGDOCUMENT.ISEUTRIANGULARDEAL@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">I_BILLINGDOCUMENT.ISEUTRIANGULARDEAL@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: EU Triangular Deal<br><strong>@EndUserText.quickInfo</strong>: Indicator: Triangular Deal Within the EU<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-sdpricingprocedure">SDPricingProcedure</strong></td><td><a href="#type-kalsmasd" target="_self">KALSMASD</a></td><td><strong>@EndUserText.heading</strong>: PriPr.<br><strong>@EndUserText.label</strong>: Pricing Procedure<br><strong>@EndUserText.quickInfo</strong>: Pricing Procedure in Pricing<br><strong>@ObjectModel.foreignKey.association</strong>: _SDPricingProcedure<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-shippingcondition">ShippingCondition</strong></td><td><a href="#type-vsbed" target="_self">VSBED</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Shipping Conditions<br><strong>@EndUserText.label</strong>: Shipping Conditions<br><strong>@EndUserText.quickInfo</strong>: Shipping Conditions<br><strong>@ObjectModel.foreignKey.association</strong>: _ShippingCondition<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-plantsupplier">PlantSupplier</strong></td><td><a href="#type-lifnr_wk" target="_self">LIFNR_WK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@EndUserText.heading</strong>: Supplier Number Plant<br><strong>@EndUserText.label</strong>: Sppl. No. Plnt<br><strong>@EndUserText.quickInfo</strong>: Supplier Number of Plant<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-incotermsversion">IncotermsVersion</strong></td><td><a href="#type-incov" target="_self">INCOV</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: IncoV<br><strong>@EndUserText.label</strong>: Incoterms Version<br><strong>@EndUserText.quickInfo</strong>: Incoterms Version<br><strong>@ObjectModel.foreignKey.association</strong>: _IncotermsVersion<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-incotermsclassification">IncotermsClassification</strong></td><td><a href="#type-inco1" target="_self">INCO1</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: IncoT<br><strong>@EndUserText.label</strong>: Incoterms<br><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 1)<br><strong>@ObjectModel.foreignKey.association</strong>: _IncotermsClassification<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-incotermstransferlocation">IncotermsTransferLocation</strong></td><td><a href="#type-inco2" target="_self">INCO2</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Inco. 2<br><strong>@EndUserText.label</strong>: Incoterms (Part 2)<br><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 2)</td></tr><tr><td><strong id="billingdocument-incotermslocation1">IncotermsLocation1</strong></td><td><a href="#type-inco2_l" target="_self">INCO2_L</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:I_BILLINGDOCUMENT.INCOTERMSLOCATION1@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">I_BILLINGDOCUMENT.INCOTERMSLOCATION1@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: Incoterms Location 1<br><strong>@EndUserText.quickInfo</strong>: Incoterms Location 1</td></tr><tr><td><strong id="billingdocument-incotermslocation2">IncotermsLocation2</strong></td><td><a href="#type-inco3_l" target="_self">INCO3_L</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:I_BILLINGDOCUMENT.INCOTERMSLOCATION2@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">I_BILLINGDOCUMENT.INCOTERMSLOCATION2@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: Incoterms Location 2<br><strong>@EndUserText.quickInfo</strong>: Incoterms Location 2</td></tr><tr><td><strong id="billingdocument-payerparty">PayerParty</strong></td><td><a href="#type-kunrg" target="_self">KUNRG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+{
+&quot;entity&quot;: {
+&quot;name&quot;: &quot;I_Customer_VH&quot;,
+&quot;element&quot;: &quot;Customer&quot;
+}
+}
+]</code><br><strong>@EndUserText.heading</strong>: Payer<br><strong>@EndUserText.label</strong>: Payer<br><strong>@EndUserText.quickInfo</strong>: Payer<br><strong>@ObjectModel.foreignKey.association</strong>: _PayerParty<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-contractaccount">ContractAccount</strong></td><td><a href="#type-corr_vkont_kk" target="_self">CORR_VKONT_KK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@EndUserText.heading</strong>: Cont.Account<br><strong>@EndUserText.label</strong>: Contract Account<br><strong>@EndUserText.quickInfo</strong>: Contract Account Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customerpaymentterms">CustomerPaymentTerms</strong></td><td><a href="#type-dzterm" target="_self">DZTERM</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Terms of Payment<br><strong>@EndUserText.label</strong>: Terms of Payment<br><strong>@EndUserText.quickInfo</strong>: Key for Terms of Payment<br><strong>@ObjectModel.foreignKey.association</strong>: _CustomerPaymentTerms<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-paymentmethod">PaymentMethod</strong></td><td><a href="#type-schzw_bseg" target="_self">SCHZW_BSEG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: PM<br><strong>@EndUserText.label</strong>: Payment Method<br><strong>@EndUserText.quickInfo</strong>: Payment Method<br><strong>@ObjectModel.foreignKey.association</strong>: _PaymentMethod<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-paymentreference">PaymentReference</strong></td><td><a href="#type-kidno" target="_self">KIDNO</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Payment Reference<br><strong>@EndUserText.label</strong>: Payment Reference<br><strong>@EndUserText.quickInfo</strong>: Payment Reference<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-fixedvaluedate">FixedValueDate</strong></td><td><a href="#type-valdt" target="_self">VALDT</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: FixValDate<br><strong>@EndUserText.label</strong>: Fixed Value Date<br><strong>@EndUserText.quickInfo</strong>: Fixed Value Date<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-additionalvaluedays">AdditionalValueDays</strong></td><td><a href="#type-valtg" target="_self">VALTG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: AValD<br><strong>@EndUserText.label</strong>: Addit. Value Days<br><strong>@EndUserText.quickInfo</strong>: Additional Value Days<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-sepamandate">SEPAMandate</strong></td><td><a href="#type-sepa_mndid" target="_self">SEPA_MNDID</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Mandate Reference<br><strong>@EndUserText.label</strong>: Mandate Reference<br><strong>@EndUserText.quickInfo</strong>: Unique Reference to Mandate for each Payee<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-companycode">CompanyCode</strong></td><td><a href="#type-bukrs" target="_self">BUKRS</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+{
+&quot;entity&quot;: {
+&quot;name&quot;: &quot;I_CompanyCodeStdVH&quot;,
+&quot;element&quot;: &quot;CompanyCode&quot;
+}
+}
+]</code><br><strong>@EndUserText.heading</strong>: CoCd<br><strong>@EndUserText.label</strong>: Company Code<br><strong>@EndUserText.quickInfo</strong>: Company Code<br><strong>@ObjectModel.foreignKey.association</strong>: _CompanyCode<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-fiscalyear">FiscalYear</strong></td><td><a href="#type-gjahr" target="_self">GJAHR</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: GJAHR<br><strong>@EndUserText.heading</strong>: Year<br><strong>@EndUserText.label</strong>: Fiscal Year<br><strong>@EndUserText.quickInfo</strong>: Fiscal Year<br><strong>@ObjectModel.foreignKey.association</strong>: _FiscalYear<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-accountingdocument">AccountingDocument</strong></td><td><a href="#type-belnr_d" target="_self">BELNR_D</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+{
+&quot;entity&quot;: {
+&quot;name&quot;: &quot;I_AccountingDocumentStdVH&quot;,
+&quot;element&quot;: &quot;AccountingDocument&quot;
+},
+&quot;additionalBinding&quot;: [
+{
+&quot;localElement&quot;: &quot;CompanyCode&quot;,
+&quot;element&quot;: &quot;CompanyCode&quot;
+},
+{
+&quot;localElement&quot;: &quot;FiscalYear&quot;,
+&quot;element&quot;: &quot;FiscalYear&quot;
+}
+]
+}
+]</code><br><strong>@EndUserText.heading</strong>: Doc. No.<br><strong>@EndUserText.label</strong>: Document Number<br><strong>@EndUserText.quickInfo</strong>: Document Number of an Accounting Document<br><strong>@ObjectModel.foreignKey.association</strong>: _AccountingDocument<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-fiscalperiod">FiscalPeriod</strong></td><td><a href="#type-poper" target="_self">POPER</a></td><td><strong>@EndUserText.heading</strong>: Period<br><strong>@EndUserText.label</strong>: Posting Period<br><strong>@EndUserText.quickInfo</strong>: Posting Period<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customeraccountassignmentgroup">CustomerAccountAssignmentGroup</strong></td><td><a href="#type-ktgrd" target="_self">KTGRD</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: AAGC<br><strong>@EndUserText.label</strong>: Acct Assmt Grp Cust.<br><strong>@EndUserText.quickInfo</strong>: Account Assignment Group for Customer<br><strong>@ObjectModel.foreignKey.association</strong>: _CustomerAccountAssgmtGroup<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-accountingexchangerateisset">AccountingExchangeRateIsSet</strong></td><td><a href="#type-cpkur" target="_self">CPKUR</a></td><td><strong>@EndUserText.heading</strong>: SRate<br><strong>@EndUserText.label</strong>: Set Exchange Rate<br><strong>@EndUserText.quickInfo</strong>: Exchange Rate Setting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-accountingexchangerate">AccountingExchangeRate</strong></td><td><a href="#type-kurrf_not_converted" target="_self">KURRF_NOT_CONVERTED</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: Accounting Exchange Rate<br><strong>@EndUserText.quickInfo</strong>: Exchange Rate for FI Postings<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-exchangeratedate">ExchangeRateDate</strong></td><td><a href="#type-wwert_d" target="_self">WWERT_D</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: TranslDate<br><strong>@EndUserText.label</strong>: Translation Date<br><strong>@EndUserText.quickInfo</strong>: Translation Date<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-exchangeratetype">ExchangeRateType</strong></td><td><a href="#type-kurst" target="_self">KURST</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Exchange Rate Type<br><strong>@EndUserText.label</strong>: Exchange Rate Type<br><strong>@EndUserText.quickInfo</strong>: Exchange Rate Type<br><strong>@ObjectModel.foreignKey.association</strong>: _ExchangeRateType<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-documentreferenceid">DocumentReferenceID</strong></td><td><a href="#type-xblnr_v1" target="_self">XBLNR_V1</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Reference<br><strong>@EndUserText.label</strong>: Reference<br><strong>@EndUserText.quickInfo</strong>: Reference Document Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-assignmentreference">AssignmentReference</strong></td><td><a href="#type-ordnr_v" target="_self">ORDNR_V</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Assignment<br><strong>@EndUserText.label</strong>: Assignment<br><strong>@EndUserText.quickInfo</strong>: Assignment Number</td></tr><tr><td><strong id="billingdocument-reversalreason">ReversalReason</strong></td><td><a href="#type-stgrd" target="_self">STGRD</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Rev.Reas.<br><strong>@EndUserText.label</strong>: Reversal Reason<br><strong>@EndUserText.quickInfo</strong>: Reason for Reversal or Inverse Posting<br><strong>@ObjectModel.foreignKey.association</strong>: _ReversalReason<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-dunningarea">DunningArea</strong></td><td><a href="#type-maber" target="_self">MABER</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+{
+&quot;entity&quot;: {
+&quot;name&quot;: &quot;I_DunningAreaStdVH&quot;,
+&quot;element&quot;: &quot;DunningArea&quot;
+},
+&quot;additionalBinding&quot;: [
+{
+&quot;localElement&quot;: &quot;CompanyCode&quot;,
+&quot;element&quot;: &quot;CompanyCode&quot;
+}
+]
+}
+]</code><br><strong>@EndUserText.heading</strong>: Area<br><strong>@EndUserText.label</strong>: Dunning Area<br><strong>@EndUserText.quickInfo</strong>: Dunning Area<br><strong>@ObjectModel.foreignKey.association</strong>: _DunningArea<br><strong>@ObjectModel.text.association</strong>: _DunningAreaText<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-dunningblockingreason">DunningBlockingReason</strong></td><td><a href="#type-mansp" target="_self">MANSP</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Block<br><strong>@EndUserText.label</strong>: Dunning Block<br><strong>@EndUserText.quickInfo</strong>: Dunning Block<br><strong>@ObjectModel.foreignKey.association</strong>: _DunningBlockingReason<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-dunningkey">DunningKey</strong></td><td><a href="#type-mschl" target="_self">MSCHL</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Dunn.Key<br><strong>@EndUserText.label</strong>: Dunning Key<br><strong>@EndUserText.quickInfo</strong>: Dunning Key<br><strong>@ObjectModel.foreignKey.association</strong>: _DunningKey<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-internalfinancialdocument">InternalFinancialDocument</strong></td><td><a href="#type-lcnum" target="_self">LCNUM</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@EndUserText.heading</strong>: FD No.<br><strong>@EndUserText.label</strong>: Financial Doc. No.<br><strong>@EndUserText.quickInfo</strong>: Financial doc. processing: Internal financial doc. number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-isrelevantforaccrual">IsRelevantForAccrual</strong></td><td><a href="#type-isaccrualrelevant" target="_self">ISACCRUALRELEVANT</a></td><td><strong>@EndUserText.heading</strong>: Is Relevant for Accrual<br><strong>@EndUserText.label</strong>: Relevant for Accrual<br><strong>@EndUserText.quickInfo</strong>: Is relevant for accrual<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-soldtoparty">SoldToParty</strong></td><td><a href="#type-kunag" target="_self">KUNAG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+{
+&quot;entity&quot;: {
+&quot;name&quot;: &quot;I_Customer_VH&quot;,
+&quot;element&quot;: &quot;Customer&quot;
+}
+}
+]</code><br><strong>@EndUserText.heading</strong>: Sold-to<br><strong>@EndUserText.label</strong>: Sold-to Party<br><strong>@EndUserText.quickInfo</strong>: Sold-to Party<br><strong>@ObjectModel.foreignKey.association</strong>: _SoldToParty<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-partnercompany">PartnerCompany</strong></td><td><a href="#type-rassc" target="_self">RASSC</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@EndUserText.heading</strong>: Tr.Prt<br><strong>@EndUserText.label</strong>: Trading Partner No.<br><strong>@EndUserText.quickInfo</strong>: Company ID of Trading Partner<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-purchaseorderbycustomer">PurchaseOrderByCustomer</strong></td><td><a href="#type-bstkd" target="_self">BSTKD</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Customer Reference<br><strong>@EndUserText.label</strong>: Customer Reference<br><strong>@EndUserText.quickInfo</strong>: Customer Reference</td></tr><tr><td><strong id="billingdocument-customergroup">CustomerGroup</strong></td><td><a href="#type-kdgrp" target="_self">KDGRP</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: CGrp<br><strong>@EndUserText.label</strong>: Customer Group<br><strong>@EndUserText.quickInfo</strong>: Customer Group<br><strong>@ObjectModel.foreignKey.association</strong>: _CustomerGroup<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-country">Country</strong></td><td><a href="#type-lland" target="_self">LLAND</a></td><td><strong>@EndUserText.heading</strong>: Dest. Ctry/Reg<br><strong>@EndUserText.label</strong>: Dest. Country/Region<br><strong>@EndUserText.quickInfo</strong>: Destination Country/Region<br><strong>@ObjectModel.foreignKey.association</strong>: _Country<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-citycode">CityCode</strong></td><td><a href="#type-cityc" target="_self">CITYC</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Code<br><strong>@EndUserText.label</strong>: City Code<br><strong>@EndUserText.quickInfo</strong>: City Code<br><strong>@ObjectModel.foreignKey.association</strong>: _CityCode<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-salesdistrict">SalesDistrict</strong></td><td><a href="#type-bzirk" target="_self">BZIRK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: SDst<br><strong>@EndUserText.label</strong>: Sales District<br><strong>@EndUserText.quickInfo</strong>: Sales District<br><strong>@ObjectModel.foreignKey.association</strong>: _SalesDistrict<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-region">Region</strong></td><td><a href="#type-regio" target="_self">REGIO</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: Rg<br><strong>@EndUserText.label</strong>: Region<br><strong>@EndUserText.quickInfo</strong>: Region (State, Province, County)<br><strong>@ObjectModel.foreignKey.association</strong>: _Region<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-county">County</strong></td><td><a href="#type-counc" target="_self">COUNC</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: CCd<br><strong>@EndUserText.label</strong>: County Code<br><strong>@EndUserText.quickInfo</strong>: County Code<br><strong>@ObjectModel.foreignKey.association</strong>: _County_2<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-creditcontrolarea">CreditControlArea</strong></td><td><a href="#type-kkber" target="_self">KKBER</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+{
+&quot;entity&quot;: {
+&quot;name&quot;: &quot;I_CreditControlAreaStdVH&quot;,
+&quot;element&quot;: &quot;CreditControlArea&quot;
+}
+}
+]</code><br><strong>@EndUserText.heading</strong>: CCAr<br><strong>@EndUserText.label</strong>: Credit Control Area<br><strong>@EndUserText.quickInfo</strong>: Credit Control Area<br><strong>@ObjectModel.foreignKey.association</strong>: _CreditControlArea<br><strong>@ObjectModel.text.association</strong>: _CreditControlAreaText<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-customerrebateagreement">CustomerRebateAgreement</strong></td><td><a href="#type-knuma" target="_self">KNUMA</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br><strong>@EndUserText.heading</strong>: Agreement<br><strong>@EndUserText.label</strong>: Agreement<br><strong>@EndUserText.quickInfo</strong>: Agreement (various conditions grouped together)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-pricingdocument">PricingDocument</strong></td><td><a href="#type-knumv" target="_self">KNUMV</a></td><td><strong>@EndUserText.heading</strong>: Doc.Cond.<br><strong>@EndUserText.label</strong>: Doc. Condition No.<br><strong>@EndUserText.quickInfo</strong>: Number of the Document Condition<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-overallsdprocessstatus">OverallSDProcessStatus</strong></td><td><a href="#type-gbstk" target="_self">GBSTK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: OS<br><strong>@EndUserText.label</strong>: Overall Status<br><strong>@EndUserText.quickInfo</strong>: Overall Processing Status (Header/All Items)<br><strong>@ObjectModel.foreignKey.association</strong>: _OverallSDProcessStatus<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-overallbillingstatus">OverallBillingStatus</strong></td><td><a href="#type-vf_status" target="_self">VF_STATUS</a></td><td><strong>@EndUserText.heading</strong>: Status<br><strong>@EndUserText.label</strong>: Status<br><strong>@EndUserText.quickInfo</strong>: SD Billing Status<br><strong>@ObjectModel.foreignKey.association</strong>: _OverallBillingStatus<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-accountingpostingstatus">AccountingPostingStatus</strong></td><td><a href="#type-buchk" target="_self">BUCHK</a></td><td><strong>@EndUserText.heading</strong>: PS<br><strong>@EndUserText.label</strong>: Posting Status<br><strong>@EndUserText.quickInfo</strong>: Posting Status of Billing Document<br><strong>@ObjectModel.foreignKey.association</strong>: _AccountingPostingStatus<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-accountingtransferstatus">AccountingTransferStatus</strong></td><td><a href="#type-rfbsk" target="_self">RFBSK</a></td><td><strong>@EndUserText.heading</strong>: PsSt<br><strong>@EndUserText.label</strong>: Posting Status<br><strong>@EndUserText.quickInfo</strong>: Status for Transfer to Accounting<br><strong>@ObjectModel.foreignKey.association</strong>: _AccountingTransferStatus<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-billingissuetype">BillingIssueType</strong></td><td><a href="#type-vf_todo" target="_self">VF_TODO</a></td><td><strong>@EndUserText.heading</strong>: Issue Type<br><strong>@EndUserText.label</strong>: Issue Type<br><strong>@EndUserText.quickInfo</strong>: Billing Issue Type<br><strong>@ObjectModel.foreignKey.association</strong>: _BillingIssueType<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-invoiceliststatus">InvoiceListStatus</strong></td><td><a href="#type-relik" target="_self">RELIK</a></td><td><strong>@EndUserText.heading</strong>: ILSt<br><strong>@EndUserText.label</strong>: Invoice List Status<br><strong>@EndUserText.quickInfo</strong>: Invoice list status of billing document<br><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceListStatus<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-ovrlitmgeneralincompletionsts">OvrlItmGeneralIncompletionSts</strong></td><td><a href="#type-uvall_su" target="_self">UVALL_SU</a></td><td><strong>@EndUserText.heading</strong>: AI<br><strong>@EndUserText.label</strong>: All Items<br><strong>@EndUserText.quickInfo</strong>: Incompletion Status (All Items)<br><strong>@ObjectModel.foreignKey.association</strong>: _OvrlItmGeneralIncompletionSts<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-overallpricingincompletionsts">OverallPricingIncompletionSts</strong></td><td><a href="#type-uvprs_uk" target="_self">UVPRS_UK</a></td><td><strong>@EndUserText.heading</strong>: PI<br><strong>@EndUserText.label</strong>: Pricing – All Items<br><strong>@EndUserText.quickInfo</strong>: Pricing Incompletion Status (All Items)<br><strong>@ObjectModel.foreignKey.association</strong>: _OverallPricingIncompletionSts<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-invoiceclearingstatus">InvoiceClearingStatus</strong></td><td><a href="#type-clrst" target="_self">CLRST</a></td><td><strong>@EndUserText.heading</strong>: Clearing Status<br><strong>@EndUserText.label</strong>: Clearing Status<br><strong>@EndUserText.quickInfo</strong>: Clearing Status of Billing Document<br><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceClearingStatus<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-invoicelisttype">InvoiceListType</strong></td><td><a href="#type-fkart_rl" target="_self">FKART_RL</a></td><td><strong>@EndUserText.heading</strong>: ILTyp<br><strong>@EndUserText.label</strong>: Invoice List Type<br><strong>@EndUserText.quickInfo</strong>: Invoice List Type<br><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceListType<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-invoicelistbillingdate">InvoiceListBillingDate</strong></td><td><a href="#type-fkdat_rl" target="_self">FKDAT_RL</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br><strong>@EndUserText.heading</strong>: InvList BD<br><strong>@EndUserText.label</strong>: Inv. List Bill. Date<br><strong>@EndUserText.quickInfo</strong>: Billing date for the invoice list<br><strong>@ObjectModel.upperCase</strong>: true</td></tr><tr><td><strong id="billingdocument-_accountingdocument">_AccountingDocument</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingdocument" target="_self">I_AccountingDocument</a> () via <a href="#billingdocument-_accountingdocument" target="_self">_AccountingDocument</a></td></tr><tr><td><strong id="billingdocument-_accountingpostingstatus">_AccountingPostingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingpostingstatus" target="_self">I_AccountingPostingStatus</a> () via <a href="#billingdocument-_accountingpostingstatus" target="_self">_AccountingPostingStatus</a></td></tr><tr><td><strong id="billingdocument-_accountingtransferstatus">_AccountingTransferStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingtransferstatus" target="_self">I_AccountingTransferStatus</a> () via <a href="#billingdocument-_accountingtransferstatus" target="_self">_AccountingTransferStatus</a></td></tr><tr><td><strong id="billingdocument-_billingdocumentcategory">_BillingDocumentCategory</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumentcategory" target="_self">I_BillingDocumentCategory</a> () via <a href="#billingdocument-_billingdocumentcategory" target="_self">_BillingDocumentCategory</a></td></tr><tr><td><strong id="billingdocument-_billingdocumenttype">_BillingDocumentType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a> () via <a href="#billingdocument-_billingdocumenttype" target="_self">_BillingDocumentType</a></td></tr><tr><td><strong id="billingdocument-_billingissuetype">_BillingIssueType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingissuetype" target="_self">I_BillingIssueType</a> () via <a href="#billingdocument-_billingissuetype" target="_self">_BillingIssueType</a></td></tr><tr><td><strong id="billingdocument-_cancelledbillingdocument">_CancelledBillingDocument</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#billingdocument" target="_self">BillingDocument</a> () via <a href="#billingdocument-_cancelledbillingdocument" target="_self">_CancelledBillingDocument</a></td></tr><tr><td><strong id="billingdocument-_citycode">_CityCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_citycode" target="_self">I_CityCode</a> () via <a href="#billingdocument-_citycode" target="_self">_CityCode</a></td></tr><tr><td><strong id="billingdocument-_companycode">_CompanyCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_companycode" target="_self">I_CompanyCode</a> () via <a href="#billingdocument-_companycode" target="_self">_CompanyCode</a></td></tr><tr><td><strong id="billingdocument-_country">_Country</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> () via <a href="#billingdocument-_country" target="_self">_Country</a></td></tr><tr><td><strong id="billingdocument-_county">_County</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_countycode" target="_self">I_CountyCode</a> () via <a href="#billingdocument-_county" target="_self">_County</a><br><strong>@API.element.releaseState</strong>: <code>{
+&quot;#&quot;: &quot;DEPRECATED&quot;
+}</code><br><strong>@API.element.successor</strong>: _County_2</td></tr><tr><td><strong id="billingdocument-_county_2">_County_2</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_taxingcounty" target="_self">I_TaxingCounty</a> () via <a href="#billingdocument-_county_2" target="_self">_County_2</a></td></tr><tr><td><strong id="billingdocument-_createdbyuser">_CreatedByUser</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_user" target="_self">I_User</a> () via <a href="#billingdocument-_createdbyuser" target="_self">_CreatedByUser</a></td></tr><tr><td><strong id="billingdocument-_creditcontrolarea">_CreditControlArea</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_creditcontrolarea" target="_self">I_CreditControlArea</a> () via <a href="#billingdocument-_creditcontrolarea" target="_self">_CreditControlArea</a></td></tr><tr><td><strong id="billingdocument-_creditcontrolareatext">_CreditControlAreaText</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_creditcontrolareatext" target="_self">I_CreditControlAreaText</a> () via <a href="#billingdocument-_creditcontrolareatext" target="_self">_CreditControlAreaText</a><br><strong>@Consumption.hidden</strong>: true</td></tr><tr><td><strong id="billingdocument-_customeraccountassgmtgroup">_CustomerAccountAssgmtGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customeraccountassgmtgroup" target="_self">I_CustomerAccountAssgmtGroup</a> () via <a href="#billingdocument-_customeraccountassgmtgroup" target="_self">_CustomerAccountAssgmtGroup</a></td></tr><tr><td><strong id="billingdocument-_customergroup">_CustomerGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customergroup" target="_self">I_CustomerGroup</a> () via <a href="#billingdocument-_customergroup" target="_self">_CustomerGroup</a></td></tr><tr><td><strong id="billingdocument-_customerpaymentterms">_CustomerPaymentTerms</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customerpaymentterms" target="_self">I_CustomerPaymentTerms</a> () via <a href="#billingdocument-_customerpaymentterms" target="_self">_CustomerPaymentTerms</a></td></tr><tr><td><strong id="billingdocument-_customerpricegroup">_CustomerPriceGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customerpricegroup" target="_self">I_CustomerPriceGroup</a> () via <a href="#billingdocument-_customerpricegroup" target="_self">_CustomerPriceGroup</a></td></tr><tr><td><strong id="billingdocument-_distributionchannel">_DistributionChannel</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_distributionchannel" target="_self">I_DistributionChannel</a> () via <a href="#billingdocument-_distributionchannel" target="_self">_DistributionChannel</a></td></tr><tr><td><strong id="billingdocument-_division">_Division</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_division" target="_self">I_Division</a> () via <a href="#billingdocument-_division" target="_self">_Division</a></td></tr><tr><td><strong id="billingdocument-_dunningarea">_DunningArea</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningarea" target="_self">I_DunningArea</a> () via <a href="#billingdocument-_dunningarea" target="_self">_DunningArea</a></td></tr><tr><td><strong id="billingdocument-_dunningareatext">_DunningAreaText</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_dunningareatext" target="_self">I_DunningAreaText</a> () via <a href="#billingdocument-_dunningareatext" target="_self">_DunningAreaText</a><br><strong>@Consumption.hidden</strong>: true</td></tr><tr><td><strong id="billingdocument-_dunningblockingreason">_DunningBlockingReason</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningblockingreasoncode" target="_self">I_DunningBlockingReasonCode</a> () via <a href="#billingdocument-_dunningblockingreason" target="_self">_DunningBlockingReason</a></td></tr><tr><td><strong id="billingdocument-_dunningkey">_DunningKey</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningkey" target="_self">I_DunningKey</a> () via <a href="#billingdocument-_dunningkey" target="_self">_DunningKey</a></td></tr><tr><td><strong id="billingdocument-_enhancedfields">_EnhancedFields</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocenhancedfields" target="_self">I_BillingDocEnhancedFields</a> () via <a href="#billingdocument-_enhancedfields" target="_self">_EnhancedFields</a></td></tr><tr><td><strong id="billingdocument-_exchangeratetype">_ExchangeRateType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_exchangeratetype" target="_self">I_ExchangeRateType</a> () via <a href="#billingdocument-_exchangeratetype" target="_self">_ExchangeRateType</a></td></tr><tr><td><strong id="billingdocument-_fiscalyear">_FiscalYear</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_fiscalyearforcompanycode" target="_self">I_FiscalYearForCompanyCode</a> () via <a href="#billingdocument-_fiscalyear" target="_self">_FiscalYear</a></td></tr><tr><td><strong id="billingdocument-_incotermsclassification">_IncotermsClassification</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_incotermsclassification" target="_self">I_IncotermsClassification</a> () via <a href="#billingdocument-_incotermsclassification" target="_self">_IncotermsClassification</a></td></tr><tr><td><strong id="billingdocument-_incotermsversion">_IncotermsVersion</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_incotermsversion" target="_self">I_IncotermsVersion</a> () via <a href="#billingdocument-_incotermsversion" target="_self">_IncotermsVersion</a></td></tr><tr><td><strong id="billingdocument-_invoiceclearingstatus">_InvoiceClearingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_invoiceclearingstatus" target="_self">I_InvoiceClearingStatus</a> () via <a href="#billingdocument-_invoiceclearingstatus" target="_self">_InvoiceClearingStatus</a></td></tr><tr><td><strong id="billingdocument-_invoiceliststatus">_InvoiceListStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_invoiceliststatus" target="_self">I_InvoiceListStatus</a> () via <a href="#billingdocument-_invoiceliststatus" target="_self">_InvoiceListStatus</a></td></tr><tr><td><strong id="billingdocument-_invoicelisttype">_InvoiceListType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a> () via <a href="#billingdocument-_invoicelisttype" target="_self">_InvoiceListType</a></td></tr><tr><td><strong id="billingdocument-_item">_Item</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentitem" target="_self">I_BillingDocumentItem</a> () via <a href="#billingdocument-_item" target="_self">_Item</a><br><strong>@ObjectModel.association.type</strong>: <code>[
+{
+&quot;#&quot;: &quot;TO_COMPOSITION_CHILD&quot;
+}
+]</code></td></tr><tr><td><strong id="billingdocument-_logicalsystem">_LogicalSystem</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_logicalsystem" target="_self">I_LogicalSystem</a> () via <a href="#billingdocument-_logicalsystem" target="_self">_LogicalSystem</a></td></tr><tr><td><strong id="billingdocument-_overallbillingstatus">_OverallBillingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallbillingstatus" target="_self">I_OverallBillingStatus</a> () via <a href="#billingdocument-_overallbillingstatus" target="_self">_OverallBillingStatus</a></td></tr><tr><td><strong id="billingdocument-_overallpricingincompletionsts">_OverallPricingIncompletionSts</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallprcincompletionsts" target="_self">I_OverallPrcIncompletionSts</a> () via <a href="#billingdocument-_overallpricingincompletionsts" target="_self">_OverallPricingIncompletionSts</a></td></tr><tr><td><strong id="billingdocument-_overallsdprocessstatus">_OverallSDProcessStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallsdprocessstatus" target="_self">I_OverallSDProcessStatus</a> () via <a href="#billingdocument-_overallsdprocessstatus" target="_self">_OverallSDProcessStatus</a></td></tr><tr><td><strong id="billingdocument-_ovrlitmgeneralincompletionsts">_OvrlItmGeneralIncompletionSts</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_ovrlitmgenincompletionsts" target="_self">I_OvrlItmGenIncompletionSts</a> () via <a href="#billingdocument-_ovrlitmgeneralincompletionsts" target="_self">_OvrlItmGeneralIncompletionSts</a></td></tr><tr><td><strong id="billingdocument-_partner">_Partner</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentpartner" target="_self">I_BillingDocumentPartner</a> () via <a href="#billingdocument-_partner" target="_self">_Partner</a><br><strong>@ObjectModel.association.type</strong>: <code>[
+{
+&quot;#&quot;: &quot;TO_COMPOSITION_CHILD&quot;
+}
+]</code></td></tr><tr><td><strong id="billingdocument-_payerparty">_PayerParty</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customer" target="_self">I_Customer</a> () via <a href="#billingdocument-_payerparty" target="_self">_PayerParty</a></td></tr><tr><td><strong id="billingdocument-_paymentmethod">_PaymentMethod</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_paymentmethod" target="_self">I_PaymentMethod</a> () via <a href="#billingdocument-_paymentmethod" target="_self">_PaymentMethod</a></td></tr><tr><td><strong id="billingdocument-_pricelisttype">_PriceListType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_pricelisttype" target="_self">I_PriceListType</a> () via <a href="#billingdocument-_pricelisttype" target="_self">_PriceListType</a></td></tr><tr><td><strong id="billingdocument-_pricingelement">_PricingElement</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentprcgelmnt" target="_self">I_BillingDocumentPrcgElmnt</a> () via <a href="#billingdocument-_pricingelement" target="_self">_PricingElement</a><br><strong>@ObjectModel.association.type</strong>: <code>[
+{
+&quot;#&quot;: &quot;TO_COMPOSITION_CHILD&quot;
+}
+]</code></td></tr><tr><td><strong id="billingdocument-_region">_Region</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_region" target="_self">I_Region</a> () via <a href="#billingdocument-_region" target="_self">_Region</a></td></tr><tr><td><strong id="billingdocument-_reversalreason">_ReversalReason</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_reversalreason" target="_self">I_ReversalReason</a> () via <a href="#billingdocument-_reversalreason" target="_self">_ReversalReason</a></td></tr><tr><td><strong id="billingdocument-_salesdistrict">_SalesDistrict</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_salesdistrict" target="_self">I_SalesDistrict</a> () via <a href="#billingdocument-_salesdistrict" target="_self">_SalesDistrict</a></td></tr><tr><td><strong id="billingdocument-_salesorganization">_SalesOrganization</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_salesorganization" target="_self">I_SalesOrganization</a> () via <a href="#billingdocument-_salesorganization" target="_self">_SalesOrganization</a></td></tr><tr><td><strong id="billingdocument-_sddocumentcategory">_SDDocumentCategory</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_sddocumentcategory" target="_self">I_SDDocumentCategory</a> () via <a href="#billingdocument-_sddocumentcategory" target="_self">_SDDocumentCategory</a></td></tr><tr><td><strong id="billingdocument-_sdpricingprocedure">_SDPricingProcedure</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_slspricingprocedure" target="_self">I_SlsPricingProcedure</a> () via <a href="#billingdocument-_sdpricingprocedure" target="_self">_SDPricingProcedure</a></td></tr><tr><td><strong id="billingdocument-_shippingcondition">_ShippingCondition</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_shippingcondition" target="_self">I_ShippingCondition</a> () via <a href="#billingdocument-_shippingcondition" target="_self">_ShippingCondition</a></td></tr><tr><td><strong id="billingdocument-_soldtoparty">_SoldToParty</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customer" target="_self">I_Customer</a> () via <a href="#billingdocument-_soldtoparty" target="_self">_SoldToParty</a></td></tr><tr><td><strong id="billingdocument-_statisticscurrency">_StatisticsCurrency</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_currency" target="_self">I_Currency</a> () via <a href="#billingdocument-_statisticscurrency" target="_self">_StatisticsCurrency</a></td></tr><tr><td><strong id="billingdocument-_taxdeparturecountry">_TaxDepartureCountry</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> () via <a href="#billingdocument-_taxdeparturecountry" target="_self">_TaxDepartureCountry</a></td></tr><tr><td><strong id="billingdocument-_transactioncurrency">_TransactionCurrency</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_currency" target="_self">I_Currency</a> () via <a href="#billingdocument-_transactioncurrency" target="_self">_TransactionCurrency</a></td></tr><tr><td><strong id="billingdocument-_vatregistrationcountry">_VATRegistrationCountry</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> () via <a href="#billingdocument-_vatregistrationcountry" target="_self">_VATRegistrationCountry</a></td></tr><tr><td><strong id="billingdocument-_vatregistrationorigin">_VATRegistrationOrigin</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_vatregistrationorigin" target="_self">I_VATRegistrationOrigin</a> () via <a href="#billingdocument-_vatregistrationorigin" target="_self">_VATRegistrationOrigin</a></td></tr></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="type-definitions">Type Definitions<a href="#type-definitions" class="hash-link" aria-label="Direct link to Type Definitions" title="Direct link to Type Definitions">​</a></h2>
+<div id="type-aedat"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="aedat">AEDAT<a href="#aedat" class="hash-link" aria-label="Direct link to AEDAT" title="Direct link to AEDAT">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Date</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Chngd On<br><strong>@EndUserText.label</strong>: Changed On<br><strong>@EndUserText.quickInfo</strong>: Last Changed On<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-belnr_d"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="belnr_d">BELNR_D<a href="#belnr_d" class="hash-link" aria-label="Direct link to BELNR_D" title="Direct link to BELNR_D">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Doc. No.<br><strong>@EndUserText.label</strong>: Document Number<br><strong>@EndUserText.quickInfo</strong>: Document Number of an Accounting Document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-bstkd"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="bstkd">BSTKD<a href="#bstkd" class="hash-link" aria-label="Direct link to BSTKD" title="Direct link to BSTKD">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(35)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Customer Reference<br><strong>@EndUserText.label</strong>: Customer Reference<br><strong>@EndUserText.quickInfo</strong>: Customer Reference</td></tr></table>
+<div id="type-buchk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="buchk">BUCHK<a href="#buchk" class="hash-link" aria-label="Direct link to BUCHK" title="Direct link to BUCHK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: PS<br><strong>@EndUserText.label</strong>: Posting Status<br><strong>@EndUserText.quickInfo</strong>: Posting Status of Billing Document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-bukrs"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="bukrs">BUKRS<a href="#bukrs" class="hash-link" aria-label="Direct link to BUKRS" title="Direct link to BUKRS">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: CoCd<br><strong>@EndUserText.label</strong>: Company Code<br><strong>@EndUserText.quickInfo</strong>: Company Code<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-bzirk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="bzirk">BZIRK<a href="#bzirk" class="hash-link" aria-label="Direct link to BZIRK" title="Direct link to BZIRK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(6)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: SDst<br><strong>@EndUserText.label</strong>: Sales District<br><strong>@EndUserText.quickInfo</strong>: Sales District<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-cityc"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cityc">CITYC<a href="#cityc" class="hash-link" aria-label="Direct link to CITYC" title="Direct link to CITYC">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Code<br><strong>@EndUserText.label</strong>: City Code<br><strong>@EndUserText.quickInfo</strong>: City Code<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-clrst"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="clrst">CLRST<a href="#clrst" class="hash-link" aria-label="Direct link to CLRST" title="Direct link to CLRST">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Clearing Status<br><strong>@EndUserText.label</strong>: Clearing Status<br><strong>@EndUserText.quickInfo</strong>: Clearing Status of Billing Document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-corr_vkont_kk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="corr_vkont_kk">CORR_VKONT_KK<a href="#corr_vkont_kk" class="hash-link" aria-label="Direct link to CORR_VKONT_KK" title="Direct link to CORR_VKONT_KK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(12)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Cont.Account<br><strong>@EndUserText.label</strong>: Contract Account<br><strong>@EndUserText.quickInfo</strong>: Contract Account Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-counc"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="counc">COUNC<a href="#counc" class="hash-link" aria-label="Direct link to COUNC" title="Direct link to COUNC">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: CCd<br><strong>@EndUserText.label</strong>: County Code<br><strong>@EndUserText.quickInfo</strong>: County Code<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-cpkur"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cpkur">CPKUR<a href="#cpkur" class="hash-link" aria-label="Direct link to CPKUR" title="Direct link to CPKUR">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: SRate<br><strong>@EndUserText.label</strong>: Set Exchange Rate<br><strong>@EndUserText.quickInfo</strong>: Exchange Rate Setting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-dzterm"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dzterm">DZTERM<a href="#dzterm" class="hash-link" aria-label="Direct link to DZTERM" title="Direct link to DZTERM">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Terms of Payment<br><strong>@EndUserText.label</strong>: Terms of Payment<br><strong>@EndUserText.quickInfo</strong>: Key for Terms of Payment<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-dzukri"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dzukri">DZUKRI<a href="#dzukri" class="hash-link" aria-label="Direct link to DZUKRI" title="Direct link to DZUKRI">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(40)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Combination Criteria in the Billing Doc.<br><strong>@EndUserText.label</strong>: Combination Criteria<br><strong>@EndUserText.quickInfo</strong>: Combination criteria in the billing document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-erdat"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="erdat">ERDAT<a href="#erdat" class="hash-link" aria-label="Direct link to ERDAT" title="Direct link to ERDAT">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Date</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Created On<br><strong>@EndUserText.label</strong>: Created On<br><strong>@EndUserText.quickInfo</strong>: Record Creation Date<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-ernam"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ernam">ERNAM<a href="#ernam" class="hash-link" aria-label="Direct link to ERNAM" title="Direct link to ERNAM">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(12)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Created By<br><strong>@EndUserText.label</strong>: Created By<br><strong>@EndUserText.quickInfo</strong>: Name of Person Responsible for Creating the Object<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-erzet"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="erzet">ERZET<a href="#erzet" class="hash-link" aria-label="Direct link to ERZET" title="Direct link to ERZET">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Time</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Time<br><strong>@EndUserText.label</strong>: Time<br><strong>@EndUserText.quickInfo</strong>: Entry time<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-fkart"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fkart">FKART<a href="#fkart" class="hash-link" aria-label="Direct link to FKART" title="Direct link to FKART">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: BillT<br><strong>@EndUserText.label</strong>: Billing Type<br><strong>@EndUserText.quickInfo</strong>: Billing Type<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-fkart_rl"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fkart_rl">FKART_RL<a href="#fkart_rl" class="hash-link" aria-label="Direct link to FKART_RL" title="Direct link to FKART_RL">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: ILTyp<br><strong>@EndUserText.label</strong>: Invoice List Type<br><strong>@EndUserText.quickInfo</strong>: Invoice List Type<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-fkdat"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fkdat">FKDAT<a href="#fkdat" class="hash-link" aria-label="Direct link to FKDAT" title="Direct link to FKDAT">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Date</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Billing Date<br><strong>@EndUserText.label</strong>: Billing Date<br><strong>@EndUserText.quickInfo</strong>: Billing Date<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-fkdat_rl"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fkdat_rl">FKDAT_RL<a href="#fkdat_rl" class="hash-link" aria-label="Direct link to FKDAT_RL" title="Direct link to FKDAT_RL">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Date</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: InvList BD<br><strong>@EndUserText.label</strong>: Inv. List Bill. Date<br><strong>@EndUserText.quickInfo</strong>: Billing date for the invoice list<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-fksto"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fksto">FKSTO<a href="#fksto" class="hash-link" aria-label="Direct link to FKSTO" title="Direct link to FKSTO">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Can<br><strong>@EndUserText.label</strong>: Canceled<br><strong>@EndUserText.quickInfo</strong>: Billing document is canceled<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-fktyp"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fktyp">FKTYP<a href="#fktyp" class="hash-link" aria-label="Direct link to FKTYP" title="Direct link to FKTYP">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+},
+&quot;D&quot;: {
+&quot;val&quot;: &quot;D&quot;
+},
+&quot;E&quot;: {
+&quot;val&quot;: &quot;E&quot;
+},
+&quot;F&quot;: {
+&quot;val&quot;: &quot;F&quot;
+},
+&quot;I&quot;: {
+&quot;val&quot;: &quot;I&quot;
+},
+&quot;K&quot;: {
+&quot;val&quot;: &quot;K&quot;
+},
+&quot;L&quot;: {
+&quot;val&quot;: &quot;L&quot;
+},
+&quot;P&quot;: {
+&quot;val&quot;: &quot;P&quot;
+},
+&quot;R&quot;: {
+&quot;val&quot;: &quot;R&quot;
+},
+&quot;U&quot;: {
+&quot;val&quot;: &quot;U&quot;
+},
+&quot;W&quot;: {
+&quot;val&quot;: &quot;W&quot;
+},
+&quot;X&quot;: {
+&quot;val&quot;: &quot;X&quot;
+},
+&quot;S&quot;: {
+&quot;val&quot;: &quot;S&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: BlCat<br><strong>@EndUserText.label</strong>: Billing Category<br><strong>@EndUserText.quickInfo</strong>: Billing Category<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-gbstk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gbstk">GBSTK<a href="#gbstk" class="hash-link" aria-label="Direct link to GBSTK" title="Direct link to GBSTK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: OS<br><strong>@EndUserText.label</strong>: Overall Status<br><strong>@EndUserText.quickInfo</strong>: Overall Processing Status (Header/All Items)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-gjahr"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gjahr">GJAHR<a href="#gjahr" class="hash-link" aria-label="Direct link to GJAHR" title="Direct link to GJAHR">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Year<br><strong>@EndUserText.label</strong>: Fiscal Year<br><strong>@EndUserText.quickInfo</strong>: Fiscal Year<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-hityp_pr"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="hityp_pr">HITYP_PR<a href="#hityp_pr" class="hash-link" aria-label="Direct link to HITYP_PR" title="Direct link to HITYP_PR">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: HPr<br><strong>@EndUserText.label</strong>: HierarchyTypePricing<br><strong>@EndUserText.quickInfo</strong>: Hierarchy type for pricing<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-inco1"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inco1">INCO1<a href="#inco1" class="hash-link" aria-label="Direct link to INCO1" title="Direct link to INCO1">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: IncoT<br><strong>@EndUserText.label</strong>: Incoterms<br><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 1)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-inco2"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inco2">INCO2<a href="#inco2" class="hash-link" aria-label="Direct link to INCO2" title="Direct link to INCO2">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(28)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Inco. 2<br><strong>@EndUserText.label</strong>: Incoterms (Part 2)<br><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 2)</td></tr></table>
+<div id="type-inco2_l"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inco2_l">INCO2_L<a href="#inco2_l" class="hash-link" aria-label="Direct link to INCO2_L" title="Direct link to INCO2_L">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(70)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:INCO2_L@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">INCO2_L@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: Incoterms Location 1<br><strong>@EndUserText.quickInfo</strong>: Incoterms Location 1</td></tr></table>
+<div id="type-inco3_l"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inco3_l">INCO3_L<a href="#inco3_l" class="hash-link" aria-label="Direct link to INCO3_L" title="Direct link to INCO3_L">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(70)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:INCO3_L@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">INCO3_L@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: Incoterms Location 2<br><strong>@EndUserText.quickInfo</strong>: Incoterms Location 2</td></tr></table>
+<div id="type-incov"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="incov">INCOV<a href="#incov" class="hash-link" aria-label="Direct link to INCOV" title="Direct link to INCOV">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: IncoV<br><strong>@EndUserText.label</strong>: Incoterms Version<br><strong>@EndUserText.quickInfo</strong>: Incoterms Version<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-intra_excl"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="intra_excl">INTRA_EXCL<a href="#intra_excl" class="hash-link" aria-label="Direct link to INTRA_EXCL" title="Direct link to INTRA_EXCL">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: exclude from Intrastat<br><strong>@EndUserText.label</strong>: Intrastat Exclusion<br><strong>@EndUserText.quickInfo</strong>: Exclude from Intrastat Reporting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-intra_rel"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="intra_rel">INTRA_REL<a href="#intra_rel" class="hash-link" aria-label="Direct link to INTRA_REL" title="Direct link to INTRA_REL">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: relevant for Intrastat<br><strong>@EndUserText.label</strong>: Intrastat Relevance<br><strong>@EndUserText.quickInfo</strong>: Relevant for Intrastat Reporting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-isaccrualrelevant"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="isaccrualrelevant">ISACCRUALRELEVANT<a href="#isaccrualrelevant" class="hash-link" aria-label="Direct link to ISACCRUALRELEVANT" title="Direct link to ISACCRUALRELEVANT">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Is Relevant for Accrual<br><strong>@EndUserText.label</strong>: Relevant for Accrual<br><strong>@EndUserText.quickInfo</strong>: Is relevant for accrual<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-j_1anopg"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="j_1anopg">J_1ANOPG<a href="#j_1anopg" class="hash-link" aria-label="Direct link to J_1ANOPG" title="Direct link to J_1ANOPG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Pages<br><strong>@EndUserText.label</strong>: Number of Pages<br><strong>@EndUserText.quickInfo</strong>: Number of pages of invoice<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kalsmasd"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kalsmasd">KALSMASD<a href="#kalsmasd" class="hash-link" aria-label="Direct link to KALSMASD" title="Direct link to KALSMASD">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(6)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: PriPr.<br><strong>@EndUserText.label</strong>: Pricing Procedure<br><strong>@EndUserText.quickInfo</strong>: Pricing Procedure in Pricing<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kdgrp"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kdgrp">KDGRP<a href="#kdgrp" class="hash-link" aria-label="Direct link to KDGRP" title="Direct link to KDGRP">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: CGrp<br><strong>@EndUserText.label</strong>: Customer Group<br><strong>@EndUserText.quickInfo</strong>: Customer Group<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kidno"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kidno">KIDNO<a href="#kidno" class="hash-link" aria-label="Direct link to KIDNO" title="Direct link to KIDNO">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(30)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Payment Reference<br><strong>@EndUserText.label</strong>: Payment Reference<br><strong>@EndUserText.quickInfo</strong>: Payment Reference<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kkber"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kkber">KKBER<a href="#kkber" class="hash-link" aria-label="Direct link to KKBER" title="Direct link to KKBER">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: CCAr<br><strong>@EndUserText.label</strong>: Credit Control Area<br><strong>@EndUserText.quickInfo</strong>: Credit Control Area<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-knuma"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="knuma">KNUMA<a href="#knuma" class="hash-link" aria-label="Direct link to KNUMA" title="Direct link to KNUMA">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Agreement<br><strong>@EndUserText.label</strong>: Agreement<br><strong>@EndUserText.quickInfo</strong>: Agreement (various conditions grouped together)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-knumv"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="knumv">KNUMV<a href="#knumv" class="hash-link" aria-label="Direct link to KNUMV" title="Direct link to KNUMV">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Doc.Cond.<br><strong>@EndUserText.label</strong>: Doc. Condition No.<br><strong>@EndUserText.quickInfo</strong>: Number of the Document Condition<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-konda"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="konda">KONDA<a href="#konda" class="hash-link" aria-label="Direct link to KONDA" title="Direct link to KONDA">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: CPG<br><strong>@EndUserText.label</strong>: Customer Price Group<br><strong>@EndUserText.quickInfo</strong>: Customer Price Group<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-ktgrd"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ktgrd">KTGRD<a href="#ktgrd" class="hash-link" aria-label="Direct link to KTGRD" title="Direct link to KTGRD">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: AAGC<br><strong>@EndUserText.label</strong>: Acct Assmt Grp Cust.<br><strong>@EndUserText.quickInfo</strong>: Account Assignment Group for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kunag"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kunag">KUNAG<a href="#kunag" class="hash-link" aria-label="Direct link to KUNAG" title="Direct link to KUNAG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Sold-to<br><strong>@EndUserText.label</strong>: Sold-to Party<br><strong>@EndUserText.quickInfo</strong>: Sold-to Party<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kunrg"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kunrg">KUNRG<a href="#kunrg" class="hash-link" aria-label="Direct link to KUNRG" title="Direct link to KUNRG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Payer<br><strong>@EndUserText.label</strong>: Payer<br><strong>@EndUserText.quickInfo</strong>: Payer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kurrf_not_converted"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kurrf_not_converted">KURRF_NOT_CONVERTED<a href="#kurrf_not_converted" class="hash-link" aria-label="Direct link to KURRF_NOT_CONVERTED" title="Direct link to KURRF_NOT_CONVERTED">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Decimal</td><td><strong>precision</strong>: 9<br><strong>scale</strong>: 5<br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:KURRF_NOT_CONVERTED@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">KURRF_NOT_CONVERTED@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: Accounting Exchange Rate<br><strong>@EndUserText.quickInfo</strong>: Exchange Rate for FI Postings<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-kurst"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="kurst">KURST<a href="#kurst" class="hash-link" aria-label="Direct link to KURST" title="Direct link to KURST">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Exchange Rate Type<br><strong>@EndUserText.label</strong>: Exchange Rate Type<br><strong>@EndUserText.quickInfo</strong>: Exchange Rate Type<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-landtx"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="landtx">LANDTX<a href="#landtx" class="hash-link" aria-label="Direct link to LANDTX" title="Direct link to LANDTX">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: TDC<br><strong>@EndUserText.label</strong>: Tax Departure C/R<br><strong>@EndUserText.quickInfo</strong>: Tax Departure Country/Region<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-lcnum"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lcnum">LCNUM<a href="#lcnum" class="hash-link" aria-label="Direct link to LCNUM" title="Direct link to LCNUM">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: FD No.<br><strong>@EndUserText.label</strong>: Financial Doc. No.<br><strong>@EndUserText.quickInfo</strong>: Financial doc. processing: Internal financial doc. number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-lifnr_wk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lifnr_wk">LIFNR_WK<a href="#lifnr_wk" class="hash-link" aria-label="Direct link to LIFNR_WK" title="Direct link to LIFNR_WK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Supplier Number Plant<br><strong>@EndUserText.label</strong>: Sppl. No. Plnt<br><strong>@EndUserText.quickInfo</strong>: Supplier Number of Plant<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-lland"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lland">LLAND<a href="#lland" class="hash-link" aria-label="Direct link to LLAND" title="Direct link to LLAND">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Dest. Ctry/Reg<br><strong>@EndUserText.label</strong>: Dest. Country/Region<br><strong>@EndUserText.quickInfo</strong>: Destination Country/Region<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-logsys"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="logsys">LOGSYS<a href="#logsys" class="hash-link" aria-label="Direct link to LOGSYS" title="Direct link to LOGSYS">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Log.System<br><strong>@EndUserText.label</strong>: Logical System<br><strong>@EndUserText.quickInfo</strong>: Logical System<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-maber"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="maber">MABER<a href="#maber" class="hash-link" aria-label="Direct link to MABER" title="Direct link to MABER">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Area<br><strong>@EndUserText.label</strong>: Dunning Area<br><strong>@EndUserText.quickInfo</strong>: Dunning Area<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-mansp"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mansp">MANSP<a href="#mansp" class="hash-link" aria-label="Direct link to MANSP" title="Direct link to MANSP">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Block<br><strong>@EndUserText.label</strong>: Dunning Block<br><strong>@EndUserText.quickInfo</strong>: Dunning Block<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-mrnkz"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mrnkz">MRNKZ<a href="#mrnkz" class="hash-link" aria-label="Direct link to MRNKZ" title="Direct link to MRNKZ">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: InM<br><strong>@EndUserText.label</strong>: Man. Invoice Maint.<br><strong>@EndUserText.quickInfo</strong>: Manual Invoice Maintenance<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-mschl"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mschl">MSCHL<a href="#mschl" class="hash-link" aria-label="Direct link to MSCHL" title="Direct link to MSCHL">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Dunn.Key<br><strong>@EndUserText.label</strong>: Dunning Key<br><strong>@EndUserText.quickInfo</strong>: Dunning Key<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-mwsbp"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mwsbp">MWSBP<a href="#mwsbp" class="hash-link" aria-label="Direct link to MWSBP" title="Direct link to MWSBP">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Decimal</td><td><strong>precision</strong>: 34<br><strong>scale</strong>: floating<br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tax Amount<br><strong>@EndUserText.label</strong>: Tax Amount<br><strong>@EndUserText.quickInfo</strong>: Tax Amount in Document Currency<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-netwr"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="netwr">NETWR<a href="#netwr" class="hash-link" aria-label="Direct link to NETWR" title="Direct link to NETWR">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Decimal</td><td><strong>precision</strong>: 34<br><strong>scale</strong>: floating<br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Net Value<br><strong>@EndUserText.label</strong>: Net Value<br><strong>@EndUserText.quickInfo</strong>: Net Value in Document Currency<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-ordnr_v"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ordnr_v">ORDNR_V<a href="#ordnr_v" class="hash-link" aria-label="Direct link to ORDNR_V" title="Direct link to ORDNR_V">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(18)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Assignment<br><strong>@EndUserText.label</strong>: Assignment<br><strong>@EndUserText.quickInfo</strong>: Assignment Number</td></tr></table>
+<div id="type-pltyp"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pltyp">PLTYP<a href="#pltyp" class="hash-link" aria-label="Direct link to PLTYP" title="Direct link to PLTYP">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: PL<br><strong>@EndUserText.label</strong>: Price List Type<br><strong>@EndUserText.quickInfo</strong>: Price List Type<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-poper"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="poper">POPER<a href="#poper" class="hash-link" aria-label="Direct link to POPER" title="Direct link to POPER">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Period<br><strong>@EndUserText.label</strong>: Posting Period<br><strong>@EndUserText.quickInfo</strong>: Posting Period<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-rassc"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rassc">RASSC<a href="#rassc" class="hash-link" aria-label="Direct link to RASSC" title="Direct link to RASSC">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(6)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tr.Prt<br><strong>@EndUserText.label</strong>: Trading Partner No.<br><strong>@EndUserText.quickInfo</strong>: Company ID of Trading Partner<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-regio"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="regio">REGIO<a href="#regio" class="hash-link" aria-label="Direct link to REGIO" title="Direct link to REGIO">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Rg<br><strong>@EndUserText.label</strong>: Region<br><strong>@EndUserText.quickInfo</strong>: Region (State, Province, County)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-relik"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="relik">RELIK<a href="#relik" class="hash-link" aria-label="Direct link to RELIK" title="Direct link to RELIK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: ILSt<br><strong>@EndUserText.label</strong>: Invoice List Status<br><strong>@EndUserText.quickInfo</strong>: Invoice list status of billing document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-rfbsk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rfbsk">RFBSK<a href="#rfbsk" class="hash-link" aria-label="Direct link to RFBSK" title="Direct link to RFBSK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+},
+&quot;D&quot;: {
+&quot;val&quot;: &quot;D&quot;
+},
+&quot;E&quot;: {
+&quot;val&quot;: &quot;E&quot;
+},
+&quot;F&quot;: {
+&quot;val&quot;: &quot;F&quot;
+},
+&quot;G&quot;: {
+&quot;val&quot;: &quot;G&quot;
+},
+&quot;H&quot;: {
+&quot;val&quot;: &quot;H&quot;
+},
+&quot;I&quot;: {
+&quot;val&quot;: &quot;I&quot;
+},
+&quot;K&quot;: {
+&quot;val&quot;: &quot;K&quot;
+},
+&quot;L&quot;: {
+&quot;val&quot;: &quot;L&quot;
+},
+&quot;M&quot;: {
+&quot;val&quot;: &quot;M&quot;
+},
+&quot;N&quot;: {
+&quot;val&quot;: &quot;N&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: PsSt<br><strong>@EndUserText.label</strong>: Posting Status<br><strong>@EndUserText.quickInfo</strong>: Status for Transfer to Accounting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-schzw_bseg"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="schzw_bseg">SCHZW_BSEG<a href="#schzw_bseg" class="hash-link" aria-label="Direct link to SCHZW_BSEG" title="Direct link to SCHZW_BSEG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: PM<br><strong>@EndUserText.label</strong>: Payment Method<br><strong>@EndUserText.quickInfo</strong>: Payment Method<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-sepa_mndid"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sepa_mndid">SEPA_MNDID<a href="#sepa_mndid" class="hash-link" aria-label="Direct link to SEPA_MNDID" title="Direct link to SEPA_MNDID">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(35)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Mandate Reference<br><strong>@EndUserText.label</strong>: Mandate Reference<br><strong>@EndUserText.quickInfo</strong>: Unique Reference to Mandate for each Payee<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-sfakn"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sfakn">SFAKN<a href="#sfakn" class="hash-link" aria-label="Direct link to SFAKN" title="Direct link to SFAKN">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: CancBillDc<br><strong>@EndUserText.label</strong>: Canceled Bill. Doc.<br><strong>@EndUserText.quickInfo</strong>: Number of canceled billing document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-spart"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="spart">SPART<a href="#spart" class="hash-link" aria-label="Direct link to SPART" title="Direct link to SPART">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Dv<br><strong>@EndUserText.label</strong>: Division<br><strong>@EndUserText.quickInfo</strong>: Division<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-stceg"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="stceg">STCEG<a href="#stceg" class="hash-link" aria-label="Direct link to STCEG" title="Direct link to STCEG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(20)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: VAT Registration No.<br><strong>@EndUserText.label</strong>: VAT Registration No.<br><strong>@EndUserText.quickInfo</strong>: VAT Registration Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-stceg_h"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="stceg_h">STCEG_H<a href="#stceg_h" class="hash-link" aria-label="Direct link to STCEG_H" title="Direct link to STCEG_H">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+},
+&quot;D&quot;: {
+&quot;val&quot;: &quot;D&quot;
+},
+&quot;E&quot;: {
+&quot;val&quot;: &quot;E&quot;
+},
+&quot;F&quot;: {
+&quot;val&quot;: &quot;F&quot;
+},
+&quot;G&quot;: {
+&quot;val&quot;: &quot;G&quot;
+},
+&quot;H&quot;: {
+&quot;val&quot;: &quot;H&quot;
+},
+&quot;I&quot;: {
+&quot;val&quot;: &quot;I&quot;
+},
+&quot;J&quot;: {
+&quot;val&quot;: &quot;J&quot;
+},
+&quot;K&quot;: {
+&quot;val&quot;: &quot;K&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: OSI<br><strong>@EndUserText.label</strong>: Origin Sales Tax No.<br><strong>@EndUserText.quickInfo</strong>: Origin of Sales Tax Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-stceg_l"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="stceg_l">STCEG_L<a href="#stceg_l" class="hash-link" aria-label="Direct link to STCEG_L" title="Direct link to STCEG_L">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: STC<br><strong>@EndUserText.label</strong>: Ctry/Rgn Sls Tax No.<br><strong>@EndUserText.quickInfo</strong>: Country/Region of Sales Tax ID Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-stgrd"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="stgrd">STGRD<a href="#stgrd" class="hash-link" aria-label="Direct link to STGRD" title="Direct link to STGRD">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Rev.Reas.<br><strong>@EndUserText.label</strong>: Reversal Reason<br><strong>@EndUserText.quickInfo</strong>: Reason for Reversal or Inverse Posting<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-stwae"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="stwae">STWAE<a href="#stwae" class="hash-link" aria-label="Direct link to STWAE" title="Direct link to STWAE">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(5)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Curr.<br><strong>@EndUserText.label</strong>: Statistics Currency<br><strong>@EndUserText.quickInfo</strong>: Statistics Currency<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk1"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk1">TAXK1<a href="#taxk1" class="hash-link" aria-label="Direct link to TAXK1" title="Direct link to TAXK1">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx2Cs<br><strong>@EndUserText.label</strong>: Tax Class.1 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 1 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk2"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk2">TAXK2<a href="#taxk2" class="hash-link" aria-label="Direct link to TAXK2" title="Direct link to TAXK2">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx2Cs<br><strong>@EndUserText.label</strong>: Tax Class.2 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 2 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk3"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk3">TAXK3<a href="#taxk3" class="hash-link" aria-label="Direct link to TAXK3" title="Direct link to TAXK3">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx3Cs<br><strong>@EndUserText.label</strong>: Tax Class.3 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 3 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk4"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk4">TAXK4<a href="#taxk4" class="hash-link" aria-label="Direct link to TAXK4" title="Direct link to TAXK4">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx4Cs<br><strong>@EndUserText.label</strong>: Tax Class.4 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 4 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk5"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk5">TAXK5<a href="#taxk5" class="hash-link" aria-label="Direct link to TAXK5" title="Direct link to TAXK5">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx5Cs<br><strong>@EndUserText.label</strong>: Tax Class.5 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 5 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk6"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk6">TAXK6<a href="#taxk6" class="hash-link" aria-label="Direct link to TAXK6" title="Direct link to TAXK6">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx6Cs<br><strong>@EndUserText.label</strong>: Tax Class.6 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 6 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk7"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk7">TAXK7<a href="#taxk7" class="hash-link" aria-label="Direct link to TAXK7" title="Direct link to TAXK7">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx7Cs<br><strong>@EndUserText.label</strong>: Tax Class.7 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 7 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk8"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk8">TAXK8<a href="#taxk8" class="hash-link" aria-label="Direct link to TAXK8" title="Direct link to TAXK8">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx8Cs<br><strong>@EndUserText.label</strong>: Tax Class.8 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 8 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-taxk9"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taxk9">TAXK9<a href="#taxk9" class="hash-link" aria-label="Direct link to TAXK9" title="Direct link to TAXK9">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Tx9Cs<br><strong>@EndUserText.label</strong>: Tax Class.9 Customer<br><strong>@EndUserText.quickInfo</strong>: Tax Classification 9 for Customer<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-timestampl"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="timestampl">TIMESTAMPL<a href="#timestampl" class="hash-link" aria-label="Direct link to TIMESTAMPL" title="Direct link to TIMESTAMPL">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Timestamp</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Time Stamp<br><strong>@EndUserText.label</strong>: Time Stamp<br><strong>@EndUserText.quickInfo</strong>: UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-uvall_su"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="uvall_su">UVALL_SU<a href="#uvall_su" class="hash-link" aria-label="Direct link to UVALL_SU" title="Direct link to UVALL_SU">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: AI<br><strong>@EndUserText.label</strong>: All Items<br><strong>@EndUserText.quickInfo</strong>: Incompletion Status (All Items)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-uvprs_uk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="uvprs_uk">UVPRS_UK<a href="#uvprs_uk" class="hash-link" aria-label="Direct link to UVPRS_UK" title="Direct link to UVPRS_UK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: PI<br><strong>@EndUserText.label</strong>: Pricing – All Items<br><strong>@EndUserText.quickInfo</strong>: Pricing Incompletion Status (All Items)<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-valdt"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="valdt">VALDT<a href="#valdt" class="hash-link" aria-label="Direct link to VALDT" title="Direct link to VALDT">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Date</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: FixValDate<br><strong>@EndUserText.label</strong>: Fixed Value Date<br><strong>@EndUserText.quickInfo</strong>: Fixed Value Date<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-valtg"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="valtg">VALTG<a href="#valtg" class="hash-link" aria-label="Direct link to VALTG" title="Direct link to VALTG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: AValD<br><strong>@EndUserText.label</strong>: Addit. Value Days<br><strong>@EndUserText.quickInfo</strong>: Additional Value Days<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-vbeln_vf"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vbeln_vf">VBELN_VF<a href="#vbeln_vf" class="hash-link" aria-label="Direct link to VBELN_VF" title="Direct link to VBELN_VF">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(10)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Bill. Doc.<br><strong>@EndUserText.label</strong>: Billing Document<br><strong>@EndUserText.quickInfo</strong>: Billing Document<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-vbtypl"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vbtypl">VBTYPL<a href="#vbtypl" class="hash-link" aria-label="Direct link to VBTYPL" title="Direct link to VBTYPL">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>enum</strong>: <code>{
+&quot;0&quot;: {
+&quot;val&quot;: &quot;0&quot;
+},
+&quot;1&quot;: {
+&quot;val&quot;: &quot;1&quot;
+},
+&quot;2&quot;: {
+&quot;val&quot;: &quot;2&quot;
+},
+&quot;3&quot;: {
+&quot;val&quot;: &quot;3&quot;
+},
+&quot;4&quot;: {
+&quot;val&quot;: &quot;4&quot;
+},
+&quot;5&quot;: {
+&quot;val&quot;: &quot;5&quot;
+},
+&quot;6&quot;: {
+&quot;val&quot;: &quot;6&quot;
+},
+&quot;7&quot;: {
+&quot;val&quot;: &quot;7&quot;
+},
+&quot;8&quot;: {
+&quot;val&quot;: &quot;8&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+},
+&quot;D&quot;: {
+&quot;val&quot;: &quot;D&quot;
+},
+&quot;E&quot;: {
+&quot;val&quot;: &quot;E&quot;
+},
+&quot;F&quot;: {
+&quot;val&quot;: &quot;F&quot;
+},
+&quot;G&quot;: {
+&quot;val&quot;: &quot;G&quot;
+},
+&quot;H&quot;: {
+&quot;val&quot;: &quot;H&quot;
+},
+&quot;I&quot;: {
+&quot;val&quot;: &quot;I&quot;
+},
+&quot;J&quot;: {
+&quot;val&quot;: &quot;J&quot;
+},
+&quot;K&quot;: {
+&quot;val&quot;: &quot;K&quot;
+},
+&quot;L&quot;: {
+&quot;val&quot;: &quot;L&quot;
+},
+&quot;M&quot;: {
+&quot;val&quot;: &quot;M&quot;
+},
+&quot;N&quot;: {
+&quot;val&quot;: &quot;N&quot;
+},
+&quot;O&quot;: {
+&quot;val&quot;: &quot;O&quot;
+},
+&quot;P&quot;: {
+&quot;val&quot;: &quot;P&quot;
+},
+&quot;Q&quot;: {
+&quot;val&quot;: &quot;Q&quot;
+},
+&quot;R&quot;: {
+&quot;val&quot;: &quot;R&quot;
+},
+&quot;S&quot;: {
+&quot;val&quot;: &quot;S&quot;
+},
+&quot;T&quot;: {
+&quot;val&quot;: &quot;T&quot;
+},
+&quot;U&quot;: {
+&quot;val&quot;: &quot;U&quot;
+},
+&quot;V&quot;: {
+&quot;val&quot;: &quot;V&quot;
+},
+&quot;W&quot;: {
+&quot;val&quot;: &quot;W&quot;
+},
+&quot;X&quot;: {
+&quot;val&quot;: &quot;X&quot;
+},
+&quot;Y&quot;: {
+&quot;val&quot;: &quot;Y&quot;
+},
+&quot;a&quot;: {
+&quot;val&quot;: &quot;a&quot;
+},
+&quot;b&quot;: {
+&quot;val&quot;: &quot;b&quot;
+},
+&quot;c&quot;: {
+&quot;val&quot;: &quot;c&quot;
+},
+&quot;d&quot;: {
+&quot;val&quot;: &quot;d&quot;
+},
+&quot;e&quot;: {
+&quot;val&quot;: &quot;e&quot;
+},
+&quot;g&quot;: {
+&quot;val&quot;: &quot;g&quot;
+},
+&quot;h&quot;: {
+&quot;val&quot;: &quot;h&quot;
+},
+&quot;i&quot;: {
+&quot;val&quot;: &quot;i&quot;
+},
+&quot;j&quot;: {
+&quot;val&quot;: &quot;j&quot;
+},
+&quot;k&quot;: {
+&quot;val&quot;: &quot;k&quot;
+},
+&quot;n&quot;: {
+&quot;val&quot;: &quot;n&quot;
+},
+&quot;o&quot;: {
+&quot;val&quot;: &quot;o&quot;
+},
+&quot;p&quot;: {
+&quot;val&quot;: &quot;p&quot;
+},
+&quot;q&quot;: {
+&quot;val&quot;: &quot;q&quot;
+},
+&quot;r&quot;: {
+&quot;val&quot;: &quot;r&quot;
+},
+&quot;s&quot;: {
+&quot;val&quot;: &quot;s&quot;
+},
+&quot;t&quot;: {
+&quot;val&quot;: &quot;t&quot;
+},
+&quot;u&quot;: {
+&quot;val&quot;: &quot;u&quot;
+},
+&quot;v&quot;: {
+&quot;val&quot;: &quot;v&quot;
+},
+&quot;w&quot;: {
+&quot;val&quot;: &quot;w&quot;
+},
+&quot;x&quot;: {
+&quot;val&quot;: &quot;x&quot;
+},
+&quot;$&quot;: {
+&quot;val&quot;: &quot;$&quot;
+},
+&quot;+&quot;: {
+&quot;val&quot;: &quot;+&quot;
+},
+&quot;-&quot;: {
+&quot;val&quot;: &quot;-&quot;
+},
+&quot;#&quot;: {
+&quot;val&quot;: &quot;#&quot;
+},
+&quot;<del>&quot;: {
+&quot;val&quot;: &quot;</del>&quot;
+},
+&quot;§&quot;: {
+&quot;val&quot;: &quot;§&quot;
+},
+&quot;:&quot;: {
+&quot;val&quot;: &quot;:&quot;
+},
+&quot;.&quot;: {
+&quot;val&quot;: &quot;.&quot;
+},
+&quot;&amp;&quot;: {
+&quot;val&quot;: &quot;&amp;&quot;
+},
+&quot;<em>&quot;: {
+&quot;val&quot;: &quot;</em>&quot;
+},
+&quot;,&quot;: {
+&quot;val&quot;: &quot;,&quot;
+},
+&quot;^&quot;: {
+&quot;val&quot;: &quot;^&quot;
+},
+&quot;|&quot;: {
+&quot;val&quot;: &quot;|&quot;
+},
+&quot;f001&quot;: {
+&quot;val&quot;: &quot;f001&quot;
+},
+&quot;f002&quot;: {
+&quot;val&quot;: &quot;f002&quot;
+},
+&quot;f003&quot;: {
+&quot;val&quot;: &quot;f003&quot;
+},
+&quot;f004&quot;: {
+&quot;val&quot;: &quot;f004&quot;
+},
+&quot;CEM&quot;: {
+&quot;val&quot;: &quot;CEM&quot;
+},
+&quot;BOS&quot;: {
+&quot;val&quot;: &quot;BOS&quot;
+},
+&quot;EBDR&quot;: {
+&quot;val&quot;: &quot;EBDR&quot;
+},
+&quot;PBDR&quot;: {
+&quot;val&quot;: &quot;PBDR&quot;
+},
+&quot;PBD&quot;: {
+&quot;val&quot;: &quot;PBD&quot;
+},
+&quot;CSVO&quot;: {
+&quot;val&quot;: &quot;CSVO&quot;
+},
+&quot;CSCO&quot;: {
+&quot;val&quot;: &quot;CSCO&quot;
+},
+&quot;CSCT&quot;: {
+&quot;val&quot;: &quot;CSCT&quot;
+},
+&quot;TMFU&quot;: {
+&quot;val&quot;: &quot;TMFU&quot;
+},
+&quot;TMFO&quot;: {
+&quot;val&quot;: &quot;TMFO&quot;
+},
+&quot;CMMA&quot;: {
+&quot;val&quot;: &quot;CMMA&quot;
+},
+&quot;PBRQ&quot;: {
+&quot;val&quot;: &quot;PBRQ&quot;
+},
+&quot;SOLO&quot;: {
+&quot;val&quot;: &quot;SOLO&quot;
+},
+&quot;SBRQ&quot;: {
+&quot;val&quot;: &quot;SBRQ&quot;
+},
+&quot;GBRQ&quot;: {
+&quot;val&quot;: &quot;GBRQ&quot;
+},
+&quot;ICPF&quot;: {
+&quot;val&quot;: &quot;ICPF&quot;
+},
+&quot;DPRQ&quot;: {
+&quot;val&quot;: &quot;DPRQ&quot;
+},
+&quot;DPIN&quot;: {
+&quot;val&quot;: &quot;DPIN&quot;
+},
+&quot;DPCC&quot;: {
+&quot;val&quot;: &quot;DPCC&quot;
+},
+&quot;JITC&quot;: {
+&quot;val&quot;: &quot;JITC&quot;
+},
+&quot;JITP&quot;: {
+&quot;val&quot;: &quot;JITP&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Doc.Cat.<br><strong>@EndUserText.label</strong>: SD Document Category<br><strong>@EndUserText.quickInfo</strong>: SD Document Category</td></tr></table>
+<div id="type-vf_draft_indicator"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vf_draft_indicator">VF_DRAFT_INDICATOR<a href="#vf_draft_indicator" class="hash-link" aria-label="Direct link to VF_DRAFT_INDICATOR" title="Direct link to VF_DRAFT_INDICATOR">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Is Draft<br><strong>@EndUserText.label</strong>: Draft Indicator<br><strong>@EndUserText.quickInfo</strong>: IsDraft Indicator<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-vf_status"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vf_status">VF_STATUS<a href="#vf_status" class="hash-link" aria-label="Direct link to VF_STATUS" title="Direct link to VF_STATUS">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot; &quot;: {
+&quot;val&quot;: &quot;&quot;
+},
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+},
+&quot;D&quot;: {
+&quot;val&quot;: &quot;D&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Status<br><strong>@EndUserText.label</strong>: Status<br><strong>@EndUserText.quickInfo</strong>: SD Billing Status<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-vf_todo"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vf_todo">VF_TODO<a href="#vf_todo" class="hash-link" aria-label="Direct link to VF_TODO" title="Direct link to VF_TODO">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(1)</td><td><strong>enum</strong>: <code>{
+&quot;A&quot;: {
+&quot;val&quot;: &quot;A&quot;
+},
+&quot;B&quot;: {
+&quot;val&quot;: &quot;B&quot;
+},
+&quot;C&quot;: {
+&quot;val&quot;: &quot;C&quot;
+},
+&quot;D&quot;: {
+&quot;val&quot;: &quot;D&quot;
+}
+}</code><br><br><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Issue Type<br><strong>@EndUserText.label</strong>: Issue Type<br><strong>@EndUserText.quickInfo</strong>: Billing Issue Type<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-vkorg"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vkorg">VKORG<a href="#vkorg" class="hash-link" aria-label="Direct link to VKORG" title="Direct link to VKORG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(4)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: SOrg.<br><strong>@EndUserText.label</strong>: Sales Organization<br><strong>@EndUserText.quickInfo</strong>: Sales Organization<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-vsbed"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vsbed">VSBED<a href="#vsbed" class="hash-link" aria-label="Direct link to VSBED" title="Direct link to VSBED">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Shipping Conditions<br><strong>@EndUserText.label</strong>: Shipping Conditions<br><strong>@EndUserText.quickInfo</strong>: Shipping Conditions<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-vtweg"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vtweg">VTWEG<a href="#vtweg" class="hash-link" aria-label="Direct link to VTWEG" title="Direct link to VTWEG">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(2)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: DChl<br><strong>@EndUserText.label</strong>: Distribution Channel<br><strong>@EndUserText.quickInfo</strong>: Distribution Channel<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-waerk"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="waerk">WAERK<a href="#waerk" class="hash-link" aria-label="Direct link to WAERK" title="Direct link to WAERK">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(5)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Crcy<br><strong>@EndUserText.label</strong>: Document Currency<br><strong>@EndUserText.quickInfo</strong>: SD Document Currency<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-wwert_d"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="wwert_d">WWERT_D<a href="#wwert_d" class="hash-link" aria-label="Direct link to WWERT_D" title="Direct link to WWERT_D">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Date</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: TranslDate<br><strong>@EndUserText.label</strong>: Translation Date<br><strong>@EndUserText.quickInfo</strong>: Translation Date<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-xblnr_v1"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="xblnr_v1">XBLNR_V1<a href="#xblnr_v1" class="hash-link" aria-label="Direct link to XBLNR_V1" title="Direct link to XBLNR_V1">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(16)</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: Reference<br><strong>@EndUserText.label</strong>: Reference<br><strong>@EndUserText.quickInfo</strong>: Reference Document Number<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table>
+<div id="type-xegdr"></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="xegdr">XEGDR<a href="#xegdr" class="hash-link" aria-label="Direct link to XEGDR" title="Direct link to XEGDR">​</a></h3>
+<table><tr><th>Type</th><th>Description</th></tr><tr><td>cds.Boolean</td><td><strong>Annotations</strong><br><strong>@EndUserText.heading</strong>: {i18n&gt;<a href="mailto:XEGDR@ENDUSERTEXT.HEADING" target="_blank" rel="noopener noreferrer">XEGDR@ENDUSERTEXT.HEADING</a>}<br><strong>@EndUserText.label</strong>: EU Triangular Deal<br><strong>@EndUserText.quickInfo</strong>: Indicator: Triangular Deal Within the EU<br><strong>@ObjectModel.upperCase</strong>: true</td></tr></table></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/SAP/csn-interop-renderer/tree/main/docs/examples/BillingDocument.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/csn-interop-renderer/examples/Airline"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Airline (Example)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/csn-interop-renderer/examples/CostCenter"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">CostCenter</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#entity-definitions" class="table-of-contents__link toc-highlight">Entity Definitions</a><ul><li><a href="#billingdocument" class="table-of-contents__link toc-highlight">BillingDocument</a></li></ul></li><li><a href="#type-definitions" class="table-of-contents__link toc-highlight">Type Definitions</a><ul><li><a href="#aedat" class="table-of-contents__link toc-highlight">AEDAT</a></li><li><a href="#belnr_d" class="table-of-contents__link toc-highlight">BELNR_D</a></li><li><a href="#bstkd" class="table-of-contents__link toc-highlight">BSTKD</a></li><li><a href="#buchk" class="table-of-contents__link toc-highlight">BUCHK</a></li><li><a href="#bukrs" class="table-of-contents__link toc-highlight">BUKRS</a></li><li><a href="#bzirk" class="table-of-contents__link toc-highlight">BZIRK</a></li><li><a href="#cityc" class="table-of-contents__link toc-highlight">CITYC</a></li><li><a href="#clrst" class="table-of-contents__link toc-highlight">CLRST</a></li><li><a href="#corr_vkont_kk" class="table-of-contents__link toc-highlight">CORR_VKONT_KK</a></li><li><a href="#counc" class="table-of-contents__link toc-highlight">COUNC</a></li><li><a href="#cpkur" class="table-of-contents__link toc-highlight">CPKUR</a></li><li><a href="#dzterm" class="table-of-contents__link toc-highlight">DZTERM</a></li><li><a href="#dzukri" class="table-of-contents__link toc-highlight">DZUKRI</a></li><li><a href="#erdat" class="table-of-contents__link toc-highlight">ERDAT</a></li><li><a href="#ernam" class="table-of-contents__link toc-highlight">ERNAM</a></li><li><a href="#erzet" class="table-of-contents__link toc-highlight">ERZET</a></li><li><a href="#fkart" class="table-of-contents__link toc-highlight">FKART</a></li><li><a href="#fkart_rl" class="table-of-contents__link toc-highlight">FKART_RL</a></li><li><a href="#fkdat" class="table-of-contents__link toc-highlight">FKDAT</a></li><li><a href="#fkdat_rl" class="table-of-contents__link toc-highlight">FKDAT_RL</a></li><li><a href="#fksto" class="table-of-contents__link toc-highlight">FKSTO</a></li><li><a href="#fktyp" class="table-of-contents__link toc-highlight">FKTYP</a></li><li><a href="#gbstk" class="table-of-contents__link toc-highlight">GBSTK</a></li><li><a href="#gjahr" class="table-of-contents__link toc-highlight">GJAHR</a></li><li><a href="#hityp_pr" class="table-of-contents__link toc-highlight">HITYP_PR</a></li><li><a href="#inco1" class="table-of-contents__link toc-highlight">INCO1</a></li><li><a href="#inco2" class="table-of-contents__link toc-highlight">INCO2</a></li><li><a href="#inco2_l" class="table-of-contents__link toc-highlight">INCO2_L</a></li><li><a href="#inco3_l" class="table-of-contents__link toc-highlight">INCO3_L</a></li><li><a href="#incov" class="table-of-contents__link toc-highlight">INCOV</a></li><li><a href="#intra_excl" class="table-of-contents__link toc-highlight">INTRA_EXCL</a></li><li><a href="#intra_rel" class="table-of-contents__link toc-highlight">INTRA_REL</a></li><li><a href="#isaccrualrelevant" class="table-of-contents__link toc-highlight">ISACCRUALRELEVANT</a></li><li><a href="#j_1anopg" class="table-of-contents__link toc-highlight">J_1ANOPG</a></li><li><a href="#kalsmasd" class="table-of-contents__link toc-highlight">KALSMASD</a></li><li><a href="#kdgrp" class="table-of-contents__link toc-highlight">KDGRP</a></li><li><a href="#kidno" class="table-of-contents__link toc-highlight">KIDNO</a></li><li><a href="#kkber" class="table-of-contents__link toc-highlight">KKBER</a></li><li><a href="#knuma" class="table-of-contents__link toc-highlight">KNUMA</a></li><li><a href="#knumv" class="table-of-contents__link toc-highlight">KNUMV</a></li><li><a href="#konda" class="table-of-contents__link toc-highlight">KONDA</a></li><li><a href="#ktgrd" class="table-of-contents__link toc-highlight">KTGRD</a></li><li><a href="#kunag" class="table-of-contents__link toc-highlight">KUNAG</a></li><li><a href="#kunrg" class="table-of-contents__link toc-highlight">KUNRG</a></li><li><a href="#kurrf_not_converted" class="table-of-contents__link toc-highlight">KURRF_NOT_CONVERTED</a></li><li><a href="#kurst" class="table-of-contents__link toc-highlight">KURST</a></li><li><a href="#landtx" class="table-of-contents__link toc-highlight">LANDTX</a></li><li><a href="#lcnum" class="table-of-contents__link toc-highlight">LCNUM</a></li><li><a href="#lifnr_wk" class="table-of-contents__link toc-highlight">LIFNR_WK</a></li><li><a href="#lland" class="table-of-contents__link toc-highlight">LLAND</a></li><li><a href="#logsys" class="table-of-contents__link toc-highlight">LOGSYS</a></li><li><a href="#maber" class="table-of-contents__link toc-highlight">MABER</a></li><li><a href="#mansp" class="table-of-contents__link toc-highlight">MANSP</a></li><li><a href="#mrnkz" class="table-of-contents__link toc-highlight">MRNKZ</a></li><li><a href="#mschl" class="table-of-contents__link toc-highlight">MSCHL</a></li><li><a href="#mwsbp" class="table-of-contents__link toc-highlight">MWSBP</a></li><li><a href="#netwr" class="table-of-contents__link toc-highlight">NETWR</a></li><li><a href="#ordnr_v" class="table-of-contents__link toc-highlight">ORDNR_V</a></li><li><a href="#pltyp" class="table-of-contents__link toc-highlight">PLTYP</a></li><li><a href="#poper" class="table-of-contents__link toc-highlight">POPER</a></li><li><a href="#rassc" class="table-of-contents__link toc-highlight">RASSC</a></li><li><a href="#regio" class="table-of-contents__link toc-highlight">REGIO</a></li><li><a href="#relik" class="table-of-contents__link toc-highlight">RELIK</a></li><li><a href="#rfbsk" class="table-of-contents__link toc-highlight">RFBSK</a></li><li><a href="#schzw_bseg" class="table-of-contents__link toc-highlight">SCHZW_BSEG</a></li><li><a href="#sepa_mndid" class="table-of-contents__link toc-highlight">SEPA_MNDID</a></li><li><a href="#sfakn" class="table-of-contents__link toc-highlight">SFAKN</a></li><li><a href="#spart" class="table-of-contents__link toc-highlight">SPART</a></li><li><a href="#stceg" class="table-of-contents__link toc-highlight">STCEG</a></li><li><a href="#stceg_h" class="table-of-contents__link toc-highlight">STCEG_H</a></li><li><a href="#stceg_l" class="table-of-contents__link toc-highlight">STCEG_L</a></li><li><a href="#stgrd" class="table-of-contents__link toc-highlight">STGRD</a></li><li><a href="#stwae" class="table-of-contents__link toc-highlight">STWAE</a></li><li><a href="#taxk1" class="table-of-contents__link toc-highlight">TAXK1</a></li><li><a href="#taxk2" class="table-of-contents__link toc-highlight">TAXK2</a></li><li><a href="#taxk3" class="table-of-contents__link toc-highlight">TAXK3</a></li><li><a href="#taxk4" class="table-of-contents__link toc-highlight">TAXK4</a></li><li><a href="#taxk5" class="table-of-contents__link toc-highlight">TAXK5</a></li><li><a href="#taxk6" class="table-of-contents__link toc-highlight">TAXK6</a></li><li><a href="#taxk7" class="table-of-contents__link toc-highlight">TAXK7</a></li><li><a href="#taxk8" class="table-of-contents__link toc-highlight">TAXK8</a></li><li><a href="#taxk9" class="table-of-contents__link toc-highlight">TAXK9</a></li><li><a href="#timestampl" class="table-of-contents__link toc-highlight">TIMESTAMPL</a></li><li><a href="#uvall_su" class="table-of-contents__link toc-highlight">UVALL_SU</a></li><li><a href="#uvprs_uk" class="table-of-contents__link toc-highlight">UVPRS_UK</a></li><li><a href="#valdt" class="table-of-contents__link toc-highlight">VALDT</a></li><li><a href="#valtg" class="table-of-contents__link toc-highlight">VALTG</a></li><li><a href="#vbeln_vf" class="table-of-contents__link toc-highlight">VBELN_VF</a></li><li><a href="#vbtypl" class="table-of-contents__link toc-highlight">VBTYPL</a></li><li><a href="#vf_draft_indicator" class="table-of-contents__link toc-highlight">VF_DRAFT_INDICATOR</a></li><li><a href="#vf_status" class="table-of-contents__link toc-highlight">VF_STATUS</a></li><li><a href="#vf_todo" class="table-of-contents__link toc-highlight">VF_TODO</a></li><li><a href="#vkorg" class="table-of-contents__link toc-highlight">VKORG</a></li><li><a href="#vsbed" class="table-of-contents__link toc-highlight">VSBED</a></li><li><a href="#vtweg" class="table-of-contents__link toc-highlight">VTWEG</a></li><li><a href="#waerk" class="table-of-contents__link toc-highlight">WAERK</a></li><li><a href="#wwert_d" class="table-of-contents__link toc-highlight">WWERT_D</a></li><li><a href="#xblnr_v1" class="table-of-contents__link toc-highlight">XBLNR_V1</a></li><li><a href="#xegdr" class="table-of-contents__link toc-highlight">XEGDR</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 SAP SE. Made available under Apache License 2.0.
+
+ This site is hosted by GitHub Pages. Please see the GitHub Privacy Statement for any information how GitHub processes your personal data.</div></div></div></footer></div>
+</body>
+</html>
