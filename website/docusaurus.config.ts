@@ -5,26 +5,22 @@ import type * as Preset from "@docusaurus/preset-classic";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "CSN Interoperability Renderer",
+  title: "CSN Interop Document Renderer",
   tagline: "A tool to generate markdown documentation from CSN JSON documents",
   url: "https://sap.github.io",
   baseUrl: "/csn-interop-renderer/",
+  trailingSlash: false,
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
   onBrokenAnchors: "warn",
+  onDuplicateRoutes: "throw",
+  onBrokenMarkdownLinks: "throw",
+  staticDirectories: ["static"],
   favicon: "img/favicon.ico",
   customFields: {
     repositoryUrl: "https://github.com/SAP/csn-interop-renderer",
   },
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "CPA", // Usually your GitHub org/user name.
+  organizationName: "SAP", // Usually your GitHub org/user name.
   projectName: "csn-interop-renderer", // Usually your repo name.
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -35,12 +31,13 @@ const config: Config = {
       "classic",
       {
         docs: {
-          sidebarPath: "./sidebars.ts",
+          sidebarCollapsible: true,
+          routeBasePath: "/",
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/SAP/csn-interop-renderer/docs",
+          editUrl: "https://github.com/SAP/csn-interop-renderer/tree/main/",
         },
         theme: {
-          customCss: "./src/css/custom.css",
+          customCss: require.resolve("./static/css/custom.css"),
         },
       } satisfies Preset.Options,
     ],
@@ -50,22 +47,15 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "CSN Interop Renderer",
+      title: "",
       logo: {
         alt: "SAP Site Logo",
         src: "img/logo.svg",
       },
       items: [
         {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Documentation",
-        },
-        {
-          to: "/try",
-          position: "left",
-          label: "Try Out",
+          label: "CSN Interoperability Document Renderer",
+          to: "/",
         },
         {
           href: "https://github.com/SAP/csn-interop-renderer",
@@ -76,7 +66,7 @@ const config: Config = {
     },
     footer: {
       style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} SAP SE`,
+      copyright: `Copyright © ${new Date().getFullYear()} SAP SE. Made available under Apache License 2.0.\n\n This site is hosted by GitHub Pages. Please see the GitHub Privacy Statement for any information how GitHub processes your personal data.`,
     },
     prism: {
       theme: prismThemes.github,

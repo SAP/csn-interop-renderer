@@ -6,5 +6,6 @@ examples/out.md
 # Generated files
 .docusaurus
 .cache-loader
+website/build*
 
 sap-csn-interop-renderer-*

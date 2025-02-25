@@ -1,16 +1,10 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/csn-interop-renderer)](https://api.reuse.software/info/github.com/SAP/csn-interop-renderer)
 
-# CSN Interoperability Renderer
+# CSN Interoperability Document Renderer
 
 Converts documents defined using [CSN Interoperability Specification](https://sap.github.io/csn-interop-specification/) into markdown/HTML human readable documentation pages.
 
 🌎 DOCUMENTATION: <https://sap.github.io/csn-interop-renderer/>
-
-👉 Try Out: <https://sap.github.io/csn-interop-renderer/try>
-
-## Requirements and Setup
-
-_Insert a short description what is required to get your project running..._
 
 ## Support, Feedback, Contributing
 
