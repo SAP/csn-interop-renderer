@@ -1,8 +1,8 @@
 ---
-name: CSN Renderer Bug Report
+name: CSN Document Renderer Bug Report
 about: Bug report for csn-interop-renderer
 labels: bug
-title: "CSN Renderer Bug Report"
+title: "CSN Document Renderer Bug Report"
 assignees: ""
 ---
 
