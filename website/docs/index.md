@@ -6,7 +6,7 @@ title: "Overview"
 
 ## Motivation
 
-The [Core Schema Notation Interoperability Specification](https://sap.github.io/csn-interop-specification/) (short: CSN Interop) is a powerful and flexible format used to represent the structure and metadata of data and service models in the wider SAP ecosystem. CSN Interop files are JSON-based and provide a comprehensive way to describe entities, relationships, and other aspects of the model.
+The [core schema notation interoperability specification](https://sap.github.io/csn-interop-specification/) (short: CSN Interop) is a powerful and flexible format used to represent the structure and metadata of data and service models in the wider SAP ecosystem. CSN Interop files are JSON-based and provide a comprehensive way to describe entities, relationships, and other aspects of the model.
 
 Specifications like the CSN Interop are crucial to build consistent and high-quality APIs around Data Products. However, CSN Interop consumers might still miss important facts about the Data Product they want to start integrating with. This is where the CSN Interop document renderer can help.
 
@@ -18,4 +18,4 @@ The CSN Interop document renderer tool is released as BETA version and ready for
 
 ## Relevant Links
 
-- [Core Schema Notation Interoperability Specification](https://sap.github.io/csn-interop-specification/)
+- [core schema notation interoperability specification](https://sap.github.io/csn-interop-specification/)
