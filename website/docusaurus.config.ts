@@ -54,7 +54,7 @@ const config: Config = {
       },
       items: [
         {
-          label: "CSN Interoperability Document Renderer",
+          label: "CSN Interop Document Renderer",
           to: "/",
         },
         {
