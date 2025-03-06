@@ -7,12 +7,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [unreleased]
 
-## [0.0.3]
+## [0.1.0]
 
-    - fix: html <a> tag has wrong link to target element
-
-## [0.0.2]
-
-    - fix: generated html table has no <th> tags
-    - fix: package type definitions .d.ts files are missing
-    - dependency update: use latest csn-interop-specification v.0.4.0
+    - initial npmjs release
