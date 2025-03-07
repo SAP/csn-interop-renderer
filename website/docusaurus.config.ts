@@ -58,6 +58,10 @@ const config: Config = {
           to: "/",
         },
         {
+          label: "Try Out",
+          to: "/try",
+        },
+        {
           href: "https://github.com/SAP/csn-interop-renderer",
           label: "GitHub",
           position: "right",
