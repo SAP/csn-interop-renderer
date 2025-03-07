@@ -7,7 +7,7 @@ jobs:
       contents: read
       id-token: write
     runs-on: ubuntu-latest
-    environment: npmjs:@sap/csn-interop-specification
+    environment: npmjs:@sap/csn-interop-renderer
     steps:
       - uses: actions/checkout@v4
 
