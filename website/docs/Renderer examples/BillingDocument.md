@@ -4,7 +4,6 @@
 
 ### BillingDocument
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="billingdocument-billingdocument">BillingDocument</strong></td><td><a href="#type-vbeln_vf" target="_self">VBELN_VF</a></td><td><strong>Key</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: Bill. Doc.<br /><strong>@EndUserText.label</strong>: Billing Document<br /><strong>@EndUserText.quickInfo</strong>: Billing Document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
@@ -1646,4 +1645,3 @@
 <tr><th>Type</th><th>Description</th></tr>
 <tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>XEGDR@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: EU Triangular Deal<br /><strong>@EndUserText.quickInfo</strong>: Indicator: Triangular Deal Within the EU<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
 </table>
-

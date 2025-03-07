@@ -4,7 +4,6 @@
 
 ### GeneralLedgerAccountLineItem
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="generalledgeraccountlineitem-sourceledger">SourceLedger</strong></td><td><a href="#type-fins_ledger_pers" target="_self">FINS_LEDGER_PERS</a></td><td><strong>Key</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_GLACCOUNTLINEITEMRAWDATA.SOURCELEDGER@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: &lbrace;i18n>I_GLACCOUNTLINEITEMRAWDATA.SOURCELEDGER@ENDUSERTEXT.LABEL&rbrace;<br /><strong>@EndUserText.quickInfo</strong>: &lbrace;i18n>I_GLACCOUNTLINEITEMRAWDATA.SOURCELEDGER@ENDUSERTEXT.QUICKINFO&rbrace;<br /><strong>@ObjectModel.foreignKey.association</strong>: _Ledger<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
@@ -5024,4 +5023,3 @@
 <tr><th>Type</th><th>Description</th></tr>
 <tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>XSPLITMOD_ACD@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: &lbrace;i18n>XSPLITMOD_ACD@ENDUSERTEXT.LABEL&rbrace;<br /><strong>@EndUserText.quickInfo</strong>: &lbrace;i18n>XSPLITMOD_ACD@ENDUSERTEXT.QUICKINFO&rbrace;<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
 </table>
-

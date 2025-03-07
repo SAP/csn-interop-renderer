@@ -9,7 +9,7 @@ glob("examples/*.json", (err, files) => {
   }
 
   files.forEach((file) => {
-    const outputFile = path.join("website", "docs", "examples", path.basename(file, ".json") + ".md");
+    const outputFile = path.join("website", "docs", "Renderer examples", path.basename(file, ".json") + ".md");
     const command = `node ./cli/cli.js -i "${file}" -o "${outputFile}" -r md`;
 
     exec(command, (error, stdout, stderr) => {

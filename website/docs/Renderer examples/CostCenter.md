@@ -4,7 +4,6 @@
 
 ### CostCenter
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter-controllingarea">ControllingArea</strong></td><td><a href="#type-kokrs" target="_self">KOKRS</a></td><td><strong>Key</strong>: true<br /><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: COAr<br /><strong>@EndUserText.label</strong>: Controlling Area<br /><strong>@EndUserText.quickInfo</strong>: Controlling Area<br /><strong>@ObjectModel.foreignKey.association</strong>: _ControllingArea<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
@@ -876,4 +875,3 @@
 <tr><th>Type</th><th>Description</th></tr>
 <tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Plnt<br /><strong>@EndUserText.label</strong>: Plant<br /><strong>@EndUserText.quickInfo</strong>: Plant<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
 </table>
-

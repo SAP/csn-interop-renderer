@@ -131,7 +131,6 @@ This CSN example document shows how the airline example is expressed with a CDS 
 
 ### UnassignedEntity
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="unassignedentity-someelement">SomeElement</strong></td><td>cds.String</td><td></td></tr>
@@ -162,10 +161,9 @@ This CSN example document shows how the airline example is expressed with a CDS 
 
 Exposed Entities:
 
-  - [AirlineService.Airline](#airlineservice.airline)
-  - [AirlineService.Airport](#airlineservice.airport)
-  - [AirlineService.Countries](#airlineservice.countries)
-  - [AirlineService.Countries_texts](#airlineservice.countries_texts)
-  - [AirlineService.FlightConnection](#airlineservice.flightconnection)
-  - [AirlineService.Flight](#airlineservice.flight)
-
+- [AirlineService.Airline](#airlineservice.airline)
+- [AirlineService.Airport](#airlineservice.airport)
+- [AirlineService.Countries](#airlineservice.countries)
+- [AirlineService.Countries_texts](#airlineservice.countries_texts)
+- [AirlineService.FlightConnection](#airlineservice.flightconnection)
+- [AirlineService.Flight](#airlineservice.flight)

@@ -51,7 +51,7 @@ The following rule governs code contributions:
 ## Install dependencies
 
 ```bash
-npm install
+npm ci
 ```
 
 ## Build the project
