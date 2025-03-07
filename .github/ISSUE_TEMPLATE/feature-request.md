@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: CSN Interop Document Renderer Feature Request
 about: Suggest an idea for this project
 title: ""
 labels: enhancement

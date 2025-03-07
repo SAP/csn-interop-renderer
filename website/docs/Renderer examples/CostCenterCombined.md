@@ -4,7 +4,6 @@
 
 ### CostCenter.CostCenterText
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcentertext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key<br /><strong>@ObjectModel.foreignKey.association</strong>: _Language<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ISOLA<br /><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@OriginalType</strong>: SPRAS</td></tr>
@@ -35,7 +34,6 @@
 
 ### CostCenter.CostCenterHierarchyNodeText
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcenterhierarchynodetext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ISOLA<br /><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@OriginalType</strong>: SPRAS</td></tr>
@@ -60,7 +58,6 @@
 <div id="costcenter.costcenter"></div>
 
 ### CostCenter.CostCenter
-
 
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
@@ -168,7 +165,6 @@
 
 ### CostCenter.CostCenterHierarchyNode
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcenterhierarchynode-nodetype">NodeType</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Node Type<br /><strong>@EndUserText.heading</strong>: Node Type<br /><strong>@EndUserText.quickInfo</strong>: Hierarchy node type<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@OriginalType</strong>: NODETYP</td></tr>
@@ -220,7 +216,6 @@
 
 ### CostCenter.CostCenterCategory
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcentercategory-functionalarea">FunctionalArea</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Functional Area<br /><strong>@EndUserText.heading</strong>: Functional Area<br /><strong>@EndUserText.quickInfo</strong>: Functional Area<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@ObjectModel.foreignKey.association</strong>: _FunctionalArea<br /><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@OriginalType</strong>: FKBER</td></tr>
@@ -240,7 +235,6 @@
 
 ### CostCenter.CostCenterCategoryText
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcentercategorytext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key<br /><strong>@ObjectModel.foreignKey.association</strong>: _Language<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ISOLA<br /><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@OriginalType</strong>: SPRAS</td></tr>
@@ -251,7 +245,6 @@
 <div id="costcenter.costcenterhierarchy"></div>
 
 ### CostCenter.CostCenterHierarchy
-
 
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
@@ -280,7 +273,6 @@
 
 ### CostCenter.CostCenterHierarchyText
 
-
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcenterhierarchytext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ISOLA<br /><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@OriginalType</strong>: SPRAS</td></tr>
@@ -302,4 +294,3 @@
   "literal": "number"
 &rbrace;</code><br /><strong>@Search.defaultSearchElement</strong>: true<br /><strong>@OriginalType</strong>: HRYTXT</td></tr>
 </table>
-
