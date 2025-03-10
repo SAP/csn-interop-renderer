@@ -27,6 +27,7 @@
     "cli": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning ./cli/cli.js -i ./examples/Airline.json -o ./examples/out.md -r md",
     "prebuild": "rimraf ./dist",
     "build": "tsc -p tsconfig.build.json",
+    "postbuild": "npm run render-examples",
     "prepublishOnly": "npm run build",
     "test": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --ci --collectCoverage",
     "test:watch": "node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --watchAll",
@@ -36,11 +37,10 @@
     "prettier": "prettier --write \"**/*.{json,yml,yaml,md}\"",
     "prettier:ci": "prettier --check \"**/*.{json,yml,yaml,md}\"",
     "prepare": "is-ci || husky",
-    "render-examples": "node ./scripts/renderExamples.cjs",
-    "postbuild": "npm run render-examples"
+    "render-examples": "node ./scripts/renderExamples.cjs"
   },
   "dependencies": {
-    "@sap/csn-interop-specification": "0.4.0",
+    "@sap/csn-interop-specification": "1.0.0",
     "commander": "13.1.0",
     "json-schema-library": "10.0.0-rc7",
     "marked": "15.0.7"
