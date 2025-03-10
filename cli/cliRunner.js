@@ -65,10 +65,10 @@ async function run(argv) {
       mkdirSync(targetDir, { recursive: true });
     }
     writeFileSync(argv.o, result, "utf-8");
-    process.stdout.write(`[info]: Renderer results have been successfully saved in ${argv.o}\n\n`);
+    process.stdout.write(`[info]: Renderer results have been successfully saved in ${argv.o}\n`);
     process.exit(0);
   } catch (error) {
-    process.stderr.write(`[error]: Cannot write results to the specified file: ${error}\n\n`);
+    process.stderr.write(`[error]: Cannot write results to the specified file: ${error}\n`);
     process.exit(1);
   }
 }
