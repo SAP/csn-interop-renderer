@@ -105,8 +105,20 @@ function processEntities(
 
         // Extract foreign key and path descriptions
         if (Array.isArray(onClause)) {
-          if (isStructuredElementReference(onClause[2])) viaKey = onClause[2].ref[0];
-          if (isStructuredElementReference(onClause[0])) targetElementName = onClause[0].ref[1];
+          if (isStructuredElementReference(onClause[0])) {
+            if (onClause[0].ref.length === 2) {
+              targetElementName = onClause[0].ref[1];
+            } else if (onClause[0].ref.length === 1) {
+              viaKey = onClause[0].ref[0];
+            }
+          }
+          if (isStructuredElementReference(onClause[2])) {
+            if (onClause[2].ref.length === 2) {
+              targetElementName = onClause[2].ref[1];
+            } else if (onClause[2].ref.length === 1) {
+              viaKey = onClause[2].ref[0];
+            }
+          }
         }
 
         const cardinality = element.cardinality?.max === "*" ? "to many" : "to one";

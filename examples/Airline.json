@@ -87,6 +87,13 @@
             "=": "to_CountryCode"
           }
         },
+        "CountryNumber_number": {
+          "@EndUserText.label": "Country Number",
+          "type": "cds.Integer",
+          "@ObjectModel.foreignKey.association": {
+            "=": "to_CountryNumber"
+          }
+        },
         "to_CountryCode": {
           "type": "cds.Association",
           "target": "AirlineService.Countries",
@@ -100,6 +107,22 @@
             "=",
             {
               "ref": ["CountryCode_code"]
+            }
+          ]
+        },
+        "to_CountryNumber": {
+          "type": "cds.Association",
+          "target": "AirlineService.Countries",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": ["CountryNumber_number"]
+            },
+            "=",
+            {
+              "ref": ["to_CountryNumber", "number"]
             }
           ]
         }
@@ -120,6 +143,11 @@
           "key": true,
           "type": "cds.String",
           "length": 3
+        },
+        "number": {
+          "@EndUserText.label": "Country Number",
+          "key": true,
+          "type": "cds.Integer"
         },
         "texts": {
           "type": "cds.Composition",

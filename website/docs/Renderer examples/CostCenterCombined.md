@@ -4,6 +4,7 @@
 
 ### CostCenter.CostCenterText
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcentertext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key<br /><strong>@ObjectModel.foreignKey.association</strong>: _Language</td></tr>
@@ -29,6 +30,7 @@
 
 ### CostCenter.CostCenterHierarchyNodeText
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcenterhierarchynodetext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key</td></tr>
@@ -53,6 +55,7 @@
 <div id="costcenter.costcenter"></div>
 
 ### CostCenter.CostCenter
+
 
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
@@ -157,6 +160,7 @@
 
 ### CostCenter.CostCenterHierarchyNode
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcenterhierarchynode-nodetype">NodeType</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Node Type<br /><strong>@EndUserText.heading</strong>: Node Type<br /><strong>@EndUserText.quickInfo</strong>: Hierarchy node type</td></tr>
@@ -198,6 +202,7 @@
 
 ### CostCenter.CostCenterCategory
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcentercategory-functionalarea">FunctionalArea</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Functional Area<br /><strong>@EndUserText.heading</strong>: Functional Area<br /><strong>@EndUserText.quickInfo</strong>: Functional Area<br /><strong>@ObjectModel.foreignKey.association</strong>: _FunctionalArea</td></tr>
@@ -217,6 +222,7 @@
 
 ### CostCenter.CostCenterCategoryText
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcentercategorytext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key<br /><strong>@ObjectModel.foreignKey.association</strong>: _Language</td></tr>
@@ -227,6 +233,7 @@
 <div id="costcenter.costcenterhierarchy"></div>
 
 ### CostCenter.CostCenterHierarchy
+
 
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
@@ -251,6 +258,7 @@
 
 ### CostCenter.CostCenterHierarchyText
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="costcenter.costcenterhierarchytext-language">Language</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Key<br /><strong>@Semantics.language</strong>: true<br /><strong>@EndUserText.heading</strong>: Language<br /><strong>@EndUserText.quickInfo</strong>: Language Key</td></tr>
@@ -267,3 +275,4 @@
 <tr><td><strong id="costcenter.costcenterhierarchytext-costcenterhierarchy">CostCenterHierarchy</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Cost Center Hierarchy<br /><strong>@EndUserText.heading</strong>: Cost Center Hierarchy<br /><strong>@EndUserText.quickInfo</strong>: Cost Center Hierarchy</td></tr>
 <tr><td><strong id="costcenter.costcenterhierarchytext-costcenterhierarchyname">CostCenterHierarchyName</strong></td><td>cds.String</td><td><strong>@Semantics.text</strong>: true<br /><strong>@EndUserText.label</strong>: Description<br /><strong>@EndUserText.heading</strong>: Hierarchy Description<br /><strong>@EndUserText.quickInfo</strong>: Hierarchy description</td></tr>
 </table>
+

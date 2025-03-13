@@ -35,7 +35,11 @@ This CSN example document shows how the airline example is expressed with a CDS 
 <tr><td><strong id="airlineservice.airport-countrycode_code">CountryCode_code</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Country Code<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
   "=": "to_CountryCode"
 &rbrace;</code></td></tr>
+<tr><td><strong id="airlineservice.airport-countrynumber_number">CountryNumber_number</strong></td><td>cds.Integer</td><td><strong>@EndUserText.label</strong>: Country Number<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
+  "=": "to_CountryNumber"
+&rbrace;</code></td></tr>
 <tr><td><strong id="airlineservice.airport-to_countrycode">to_CountryCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#airlineservice.countries" target="_self">AirlineService.Countries</a> (Path: <a href="#airlineservice.countries" target="_self">AirlineService.Countries</a>.<a href="#airlineservice.countries-code" target="_self">code</a>) via <a href="#airlineservice.airport-countrycode_code" target="_self">CountryCode_code</a></td></tr>
+<tr><td><strong id="airlineservice.airport-to_countrynumber">to_CountryNumber</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#airlineservice.countries" target="_self">AirlineService.Countries</a> (Path: <a href="#airlineservice.countries" target="_self">AirlineService.Countries</a>.<a href="#airlineservice.countries-number" target="_self">number</a>) via <a href="#airlineservice.airport-countrynumber_number" target="_self">CountryNumber_number</a></td></tr>
 </table>
 
 <div id="airlineservice.countries"></div>
@@ -49,6 +53,7 @@ This CSN example document shows how the airline example is expressed with a CDS 
 <tr><td><strong id="airlineservice.countries-code">code</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Country Code<br /><strong>@ObjectModel.text.association</strong>: <code>&lbrace;
   "=": "texts"
 &rbrace;</code></td></tr>
+<tr><td><strong id="airlineservice.countries-number">number</strong></td><td>cds.Integer</td><td><strong>@EndUserText.label</strong>: Country Number</td></tr>
 <tr><td><strong id="airlineservice.countries-texts">texts</strong></td><td>cds.Composition</td><td></td></tr>
 </table>
 
@@ -131,6 +136,7 @@ This CSN example document shows how the airline example is expressed with a CDS 
 
 ### UnassignedEntity
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
 <tr><td><strong id="unassignedentity-someelement">SomeElement</strong></td><td>cds.String</td><td></td></tr>
@@ -161,9 +167,10 @@ This CSN example document shows how the airline example is expressed with a CDS 
 
 Exposed Entities:
 
-- [AirlineService.Airline](#airlineservice.airline)
-- [AirlineService.Airport](#airlineservice.airport)
-- [AirlineService.Countries](#airlineservice.countries)
-- [AirlineService.Countries_texts](#airlineservice.countries_texts)
-- [AirlineService.FlightConnection](#airlineservice.flightconnection)
-- [AirlineService.Flight](#airlineservice.flight)
+  - [AirlineService.Airline](#airlineservice.airline)
+  - [AirlineService.Airport](#airlineservice.airport)
+  - [AirlineService.Countries](#airlineservice.countries)
+  - [AirlineService.Countries_texts](#airlineservice.countries_texts)
+  - [AirlineService.FlightConnection](#airlineservice.flightconnection)
+  - [AirlineService.Flight](#airlineservice.flight)
+
