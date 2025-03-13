@@ -7,7 +7,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [unreleased]
 
-- update to @sap/csn-interop-effective-specification v1.0.0
+## [0.2.0]
+
+- update to @sap/csn-interop-effective-specification v1.0.2
 
 ## [0.1.0]
 
