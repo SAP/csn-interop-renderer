@@ -12,17 +12,14 @@ glob("examples/*.json", (err, files) => {
     const outputFile = path.join("website", "docs", "Renderer examples", path.basename(file, ".json") + ".md");
     const command = `node ./cli/cli.js -i "${file}" -o "${outputFile}" -r md`;
 
-    exec(command, (error, stdout, stderr) => {
+    exec(command, (error, info) => {
       if (error) {
         process.stdout.write(`[error]: Error processing file ${file} \n ${error.message}`);
         return;
       }
-      if (stderr) {
-        process.stdout.write(`[error]: ${stderr}`);
-        return;
+      if (info) {
+        process.stdout.write(`${info}`);
       }
-      process.stdout.write(`[info]: Successfully processed ${file} \n`);
-      process.stdout.write(stdout);
     });
   });
 });

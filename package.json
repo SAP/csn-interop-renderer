@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-renderer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Converts documents defined using CSN Interoperability Specification into markdown/HTML human readable documentation pages.",
   "keywords": [],
   "author": "SAP SE",
@@ -27,6 +27,7 @@
     "cli": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning ./cli/cli.js -i ./examples/Airline.json -o ./examples/out.md -r md",
     "prebuild": "rimraf ./dist",
     "build": "tsc -p tsconfig.build.json",
+    "postbuild": "npm run render-examples",
     "prepublishOnly": "npm run build",
     "test": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --ci --collectCoverage",
     "test:watch": "node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --watchAll",
@@ -36,11 +37,10 @@
     "prettier": "prettier --write \"**/*.{json,yml,yaml,md}\"",
     "prettier:ci": "prettier --check \"**/*.{json,yml,yaml,md}\"",
     "prepare": "is-ci || husky",
-    "render-examples": "node ./scripts/renderExamples.cjs",
-    "postbuild": "npm run render-examples"
+    "render-examples": "node ./scripts/renderExamples.cjs"
   },
   "dependencies": {
-    "@sap/csn-interop-specification": "0.4.0",
+    "@sap/csn-interop-specification": "1.0.2",
     "commander": "13.1.0",
     "json-schema-library": "10.0.0-rc7",
     "marked": "15.0.7"
@@ -51,7 +51,7 @@
     "@tsconfig/node22": "22.0.0",
     "@types/jest": "29.5.14",
     "@types/tmp": "0.2.6",
-    "eslint": "9.21.0",
+    "eslint": "9.22.0",
     "husky": "9.1.7",
     "is-ci": "4.1.0",
     "jest": "29.7.0",
@@ -59,7 +59,7 @@
     "jest-environment-jsdom": "29.7.0",
     "jest-junit": "16.0.0",
     "jest-watch-typeahead": "2.2.2",
-    "lint-staged": "15.4.3",
+    "lint-staged": "15.5.0",
     "prettier": "3.5.3",
     "rimraf": "6.0.1",
     "tmp": "0.2.3",

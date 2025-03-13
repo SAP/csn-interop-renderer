@@ -12,7 +12,6 @@
       "@EndUserText.heading": "{i18n>AFUNK_DLK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>AFUNK_DLK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>AFUNK_DLK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -29,7 +28,6 @@
       "@EndUserText.heading": "{i18n>AUFKALSM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>AUFKALSM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>AUFKALSM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 6
@@ -38,7 +36,6 @@
       "@EndUserText.heading": "{i18n>BKZER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BKZER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BKZER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -46,7 +43,6 @@
       "@EndUserText.heading": "{i18n>BKZKP@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BKZKP@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BKZKP@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -54,7 +50,6 @@
       "@EndUserText.heading": "{i18n>BKZKS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BKZKS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BKZKS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -62,7 +57,6 @@
       "@EndUserText.heading": "{i18n>BKZOB@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BKZOB@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BKZOB@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -70,7 +64,6 @@
       "@EndUserText.heading": "{i18n>BP_GEBER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BP_GEBER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BP_GEBER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -79,7 +72,6 @@
       "@EndUserText.heading": "{i18n>BUKRS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BUKRS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BUKRS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -88,7 +80,6 @@
       "@EndUserText.heading": "{i18n>CCA_TEMPL_CPD@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CCA_TEMPL_CPD@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CCA_TEMPL_CPD@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -97,7 +88,6 @@
       "@EndUserText.heading": "{i18n>CCA_TEMPL_CPI@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CCA_TEMPL_CPI@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CCA_TEMPL_CPI@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -106,7 +96,6 @@
       "@EndUserText.heading": "{i18n>CCA_TEMPL_SCD@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CCA_TEMPL_SCD@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CCA_TEMPL_SCD@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -115,7 +104,6 @@
       "@EndUserText.heading": "{i18n>CCA_TEMPL_SCI@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CCA_TEMPL_SCI@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CCA_TEMPL_SCI@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -124,7 +112,6 @@
       "@EndUserText.heading": "{i18n>CCA_TEMPL_SKD@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CCA_TEMPL_SKD@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CCA_TEMPL_SKD@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -133,7 +120,6 @@
       "@EndUserText.heading": "{i18n>CCA_TEMPL_SKI@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CCA_TEMPL_SKI@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CCA_TEMPL_SKI@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -142,29 +128,16 @@
       "@EndUserText.heading": "{i18n>CCKEY@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CCKEY@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CCKEY@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 23
     },
     "CostCenter": {
-      "@AccessControl.authorizationCheck": {
-        "#": "CHECK"
-      },
-      "@AccessControl.privilegedAssociations": ["_UserRespContactCard", "_UserCrtedContactCard"],
-      "@Analytics.dataCategory": {
-        "#": "DIMENSION"
-      },
-      "@Analytics.dataExtraction.delta.changeDataCapture.automatic": true,
-      "@Analytics.dataExtraction.enabled": true,
-      "@Consumption.filter.businessDate.at": true,
       "@EndUserText.label": "{i18n>I_COSTCENTER@ENDUSERTEXT.LABEL}",
-      "@Metadata.allowExtensions": true,
       "@ObjectModel.modelingPattern": {
         "#": "ANALYTICAL_DIMENSION"
       },
       "@ObjectModel.representativeKey": "CostCenter",
-      "@ObjectModel.sapObjectNodeType.name": "CostCenter",
       "@ObjectModel.supportedCapabilities": [
         {
           "#": "ANALYTICAL_DIMENSION"
@@ -182,185 +155,129 @@
           "#": "EXTRACTION_DATA_SOURCE"
         }
       ],
-      "@ObjectModel.usageType.dataClass": {
-        "#": "ORGANIZATIONAL"
-      },
-      "@ObjectModel.usageType.serviceQuality": {
-        "#": "A"
-      },
-      "@ObjectModel.usageType.sizeCategory": {
-        "#": "L"
-      },
-      "@Search.searchable": true,
-      "@VDM.viewType": {
-        "#": "BASIC"
-      },
       "kind": "entity",
       "elements": {
         "ControllingArea": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.CONTROLLINGAREA@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.CONTROLLINGAREA@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.CONTROLLINGAREA@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ControllingArea",
-          "@ObjectModel.upperCase": true,
           "key": true,
           "type": "KOKRS"
         },
         "CostCenter": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTER@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.hierarchy.association": "_CostCenterHierarchyNode",
           "@ObjectModel.text.association": "_Text",
-          "@ObjectModel.upperCase": true,
-          "@Search.defaultSearchElement": true,
-          "@Search.fuzzinessThreshold": {
-            "value": "0.8",
-            "literal": "number"
-          },
           "key": true,
           "type": "KOSTL"
         },
         "ValidityEndDate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.VALIDITYENDDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.VALIDITYENDDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.VALIDITYENDDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "@Semantics.businessDate.to": true,
           "key": true,
           "type": "DATBI"
         },
         "ValidityStartDate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.VALIDITYSTARTDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.VALIDITYSTARTDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.VALIDITYSTARTDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "@Semantics.businessDate.from": true,
           "type": "DATAB"
         },
         "IsBlkdForPrimaryCostsPosting": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISBLKDFORPRIMARYCOSTSPOSTING@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISBLKDFORPRIMARYCOSTSPOSTING@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISBLKDFORPRIMARYCOSTSPOSTING@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "BKZKP"
         },
         "IsBlockedForPlanPrimaryCosts": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANPRIMARYCOSTS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANPRIMARYCOSTS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANPRIMARYCOSTS@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "PKZKP"
         },
         "CompanyCode": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COMPANYCODE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COMPANYCODE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COMPANYCODE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CompanyCode",
-          "@ObjectModel.upperCase": true,
           "type": "BUKRS"
         },
         "BusinessArea": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.BUSINESSAREA@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.BUSINESSAREA@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.BUSINESSAREA@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_BusinessArea",
-          "@ObjectModel.upperCase": true,
           "type": "GSBER"
         },
         "CostCenterCategory": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERCATEGORY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERCATEGORY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERCATEGORY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CostCenterCategory",
-          "@ObjectModel.upperCase": true,
           "type": "KOSAR"
         },
         "CostCtrResponsiblePersonName": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCTRRESPONSIBLEPERSONNAME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCTRRESPONSIBLEPERSONNAME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCTRRESPONSIBLEPERSONNAME@ENDUSERTEXT.QUICKINFO}",
           "type": "VERAK"
         },
         "CostCtrResponsibleUser": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCTRRESPONSIBLEUSER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCTRRESPONSIBLEUSER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCTRRESPONSIBLEUSER@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_UserRespContactCard",
-          "@ObjectModel.upperCase": true,
           "type": "VERAK_USER"
         },
         "CostCenterCurrency": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERCURRENCY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERCURRENCY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERCURRENCY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_Currency",
-          "@ObjectModel.upperCase": true,
           "@Semantics.currencyCode": true,
           "type": "WAERS"
         },
         "CostingSheet": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTINGSHEET@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTINGSHEET@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTINGSHEET@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CostingSheetProcedure",
-          "@ObjectModel.upperCase": true,
           "type": "AUFKALSM"
         },
         "TaxJurisdiction": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.TAXJURISDICTION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.TAXJURISDICTION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.TAXJURISDICTION@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TXJCD"
         },
         "ProfitCenter": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.PROFITCENTER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.PROFITCENTER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.PROFITCENTER@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ProfitCenter",
-          "@ObjectModel.upperCase": true,
           "type": "PRCTR"
         },
         "Plant": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.PLANT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.PLANT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.PLANT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "WERKS_D"
         },
         "LogicalSystem": {
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.LOGICALSYSTEM@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.LOGICALSYSTEM@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.LOGICALSYSTEM@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "LOGSYSTEM"
         },
         "CostCenterCreationDate": {
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERCREATIONDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERCREATIONDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERCREATIONDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
-          "@Semantics.systemDate.createdAt": true,
           "type": "ERFDT"
         },
         "CostCenterCreatedByUser": {
@@ -368,204 +285,164 @@
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERCREATEDBYUSER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERCREATEDBYUSER@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_UserCrtedContactCard",
-          "@ObjectModel.upperCase": true,
           "type": "ERFNM"
         },
         "IsBlkdForSecondaryCostsPosting": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISBLKDFORSECONDARYCOSTSPOSTING@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISBLKDFORSECONDARYCOSTSPOSTING@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISBLKDFORSECONDARYCOSTSPOSTING@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "BKZKS"
         },
         "IsBlockedForRevenuePosting": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISBLOCKEDFORREVENUEPOSTING@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISBLOCKEDFORREVENUEPOSTING@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISBLOCKEDFORREVENUEPOSTING@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "BKZER"
         },
         "IsBlockedForCommitmentPosting": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISBLOCKEDFORCOMMITMENTPOSTING@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISBLOCKEDFORCOMMITMENTPOSTING@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISBLOCKEDFORCOMMITMENTPOSTING@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "BKZOB"
         },
         "IsBlockedForPlanSecondaryCosts": {
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANSECONDARYCOSTS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANSECONDARYCOSTS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANSECONDARYCOSTS@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FIS_PKZKS"
         },
         "IsBlockedForPlanRevenues": {
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANREVENUES@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANREVENUES@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISBLOCKEDFORPLANREVENUES@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FIS_PKZER"
         },
         "CostCenterAllocationMethod": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERALLOCATIONMETHOD@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERALLOCATIONMETHOD@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERALLOCATIONMETHOD@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "VMETH"
         },
         "ConsumptionQtyIsRecorded": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.CONSUMPTIONQTYISRECORDED@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.CONSUMPTIONQTYISRECORDED@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.CONSUMPTIONQTYISRECORDED@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "MGEFL"
         },
         "Department": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.DEPARTMENT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.DEPARTMENT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.DEPARTMENT@ENDUSERTEXT.QUICKINFO}",
           "type": "ABTEI"
         },
         "SubsequentCostCenter": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.SUBSEQUENTCOSTCENTER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.SUBSEQUENTCOSTCENTER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.SUBSEQUENTCOSTCENTER@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "NKOST"
         },
         "ConditionUsage": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.CONDITIONUSAGE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.CONDITIONUSAGE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.CONDITIONUSAGE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KVEWE"
         },
         "ConditionApplication": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.CONDITIONAPPLICATION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.CONDITIONAPPLICATION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.CONDITIONAPPLICATION@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KAPPL"
         },
         "CostCenterAccountingOverhead": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERACCOUNTINGOVERHEAD@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERACCOUNTINGOVERHEAD@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERACCOUNTINGOVERHEAD@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KOSZSCHL"
         },
         "Country": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COUNTRY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COUNTRY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COUNTRY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_Country",
-          "@ObjectModel.upperCase": true,
           "type": "LAND1"
         },
         "FormOfAddress": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.FORMOFADDRESS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.FORMOFADDRESS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.FORMOFADDRESS@ENDUSERTEXT.QUICKINFO}",
           "type": "ANRED"
         },
         "AddressName": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ADDRESSNAME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ADDRESSNAME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ADDRESSNAME@ENDUSERTEXT.QUICKINFO}",
           "type": "NAME1_GP"
         },
         "AddressAdditionalName": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ADDRESSADDITIONALNAME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ADDRESSADDITIONALNAME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ADDRESSADDITIONALNAME@ENDUSERTEXT.QUICKINFO}",
           "type": "NAME2_GP"
         },
         "CostCenterAddrName3": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERADDRNAME3@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERADDRNAME3@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERADDRNAME3@ENDUSERTEXT.QUICKINFO}",
           "type": "NAME3_GP"
         },
         "CostCenterAddrName4": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERADDRNAME4@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERADDRNAME4@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERADDRNAME4@ENDUSERTEXT.QUICKINFO}",
           "type": "NAME4_GP"
         },
         "CityName": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.CITYNAME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.CITYNAME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.CITYNAME@ENDUSERTEXT.QUICKINFO}",
           "type": "ORT01_GP"
         },
         "District": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.DISTRICT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.DISTRICT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.DISTRICT@ENDUSERTEXT.QUICKINFO}",
           "type": "ORT02_GP"
         },
         "StreetAddressName": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.STREETADDRESSNAME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.STREETADDRESSNAME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.STREETADDRESSNAME@ENDUSERTEXT.QUICKINFO}",
           "type": "STRAS_GP"
         },
         "POBox": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.POBOX@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.POBOX@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.POBOX@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
+
           "type": "PFACH"
         },
         "PostalCode": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.POSTALCODE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.POSTALCODE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.POSTALCODE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
+
           "type": "PSTLZ"
         },
         "POBoxPostalCode": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.POBOXPOSTALCODE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.POBOXPOSTALCODE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.POBOXPOSTALCODE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
+
           "type": "PSTL2"
         },
         "Region": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.REGION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.REGION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.REGION@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_Region",
-          "@ObjectModel.upperCase": true,
           "type": "REGIO"
         },
         "Language": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ISOLA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.LANGUAGE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.LANGUAGE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.LANGUAGE@ENDUSERTEXT.QUICKINFO}",
@@ -573,49 +450,42 @@
           "type": "SPRAS"
         },
         "TeleboxNumber": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.TELEBOXNUMBER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.TELEBOXNUMBER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.TELEBOXNUMBER@ENDUSERTEXT.QUICKINFO}",
           "type": "TELBX"
         },
         "PhoneNumber1": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.PHONENUMBER1@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.PHONENUMBER1@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.PHONENUMBER1@ENDUSERTEXT.QUICKINFO}",
           "type": "TELF1"
         },
         "PhoneNumber2": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.PHONENUMBER2@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.PHONENUMBER2@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.PHONENUMBER2@ENDUSERTEXT.QUICKINFO}",
           "type": "TELF2"
         },
         "FaxNumber": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.FAXNUMBER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.FAXNUMBER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.FAXNUMBER@ENDUSERTEXT.QUICKINFO}",
           "type": "TELFX"
         },
         "TeletexNumber": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.TELETEXNUMBER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.TELETEXNUMBER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.TELETEXNUMBER@ENDUSERTEXT.QUICKINFO}",
           "type": "TELTX"
         },
         "TelexNumber": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.TELEXNUMBER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.TELEXNUMBER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.TELEXNUMBER@ENDUSERTEXT.QUICKINFO}",
           "type": "TELX1"
         },
         "DataCommunicationPhoneNumber": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.DATACOMMUNICATIONPHONENUMBER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.DATACOMMUNICATIONPHONENUMBER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.DATACOMMUNICATIONPHONENUMBER@ENDUSERTEXT.QUICKINFO}",
@@ -625,104 +495,83 @@
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERPRINTERDESTINATION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERPRINTERDESTINATION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERPRINTERDESTINATION@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KDNAM"
         },
         "CostCenterStandardHierArea": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERSTANDARDHIERAREA@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERSTANDARDHIERAREA@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERSTANDARDHIERAREA@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KHINR"
         },
         "CostCollector": {
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCOLLECTOR@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCOLLECTOR@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCOLLECTOR@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "CCKEY"
         },
         "CostCenterIsComplete": {
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERISCOMPLETE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERISCOMPLETE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERISCOMPLETE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KSKOM"
         },
         "IsStatisticalCostCenter": {
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ISSTATISTICALCOSTCENTER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ISSTATISTICALCOSTCENTER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ISSTATISTICALCOSTCENTER@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FINS_XKOSTL_STAT"
         },
         "ObjectInternalID": {
           "@EndUserText.heading": "{i18n>I_COSTCENTER.OBJECTINTERNALID@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.OBJECTINTERNALID@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.OBJECTINTERNALID@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "J_OBJNR"
         },
         "CostCenterFunction": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERFUNCTION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERFUNCTION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERFUNCTION@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FUNKT_DLK"
         },
         "CostCenterAlternativeFunction": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERALTERNATIVEFUNCTION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERALTERNATIVEFUNCTION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERALTERNATIVEFUNCTION@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "AFUNK_DLK"
         },
         "FunctionalArea": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.FUNCTIONALAREA@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.FUNCTIONALAREA@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.FUNCTIONALAREA@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_FunctionalArea",
-          "@ObjectModel.upperCase": true,
           "type": "FKBER"
         },
         "ActyIndepFormulaPlanningTmpl": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ACTYINDEPFORMULAPLANNINGTMPL@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ACTYINDEPFORMULAPLANNINGTMPL@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ACTYINDEPFORMULAPLANNINGTMPL@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ActivityBasedCostingTmplCpi",
-          "@ObjectModel.upperCase": true,
           "type": "CCA_TEMPL_CPI"
         },
         "ActyDepdntFormulaPlanningTmpl": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ACTYDEPDNTFORMULAPLANNINGTMPL@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ACTYDEPDNTFORMULAPLANNINGTMPL@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ACTYDEPDNTFORMULAPLANNINGTMPL@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ActivityBasedCostingTmplCpd",
-          "@ObjectModel.upperCase": true,
           "type": "CCA_TEMPL_CPD"
         },
         "ActyIndependentAllocationTmpl": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ACTYINDEPENDENTALLOCATIONTMPL@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ACTYINDEPENDENTALLOCATIONTMPL@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ACTYINDEPENDENTALLOCATIONTMPL@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ActivityBasedCostingTmplSci",
-          "@ObjectModel.upperCase": true,
           "type": "CCA_TEMPL_SCI"
         },
         "ActyDependentAllocationTmpl": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.ACTYDEPENDENTALLOCATIONTMPL@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.ACTYDEPENDENTALLOCATIONTMPL@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ACTYDEPENDENTALLOCATIONTMPL@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ActivityBasedCostingTmplScd",
-          "@ObjectModel.upperCase": true,
           "type": "CCA_TEMPL_SCD"
         },
         "ActlIndepStatisticalKeyFigures": {
@@ -730,7 +579,6 @@
           "@EndUserText.label": "{i18n>I_COSTCENTER.ACTLINDEPSTATISTICALKEYFIGURES@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ACTLINDEPSTATISTICALKEYFIGURES@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ActivityBasedCostingTmplSki",
-          "@ObjectModel.upperCase": true,
           "type": "CCA_TEMPL_SKI"
         },
         "ActlDepStatisticalKeyFigures": {
@@ -738,150 +586,109 @@
           "@EndUserText.label": "{i18n>I_COSTCENTER.ACTLDEPSTATISTICALKEYFIGURES@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.ACTLDEPSTATISTICALKEYFIGURES@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ActivityBasedCostingTmplSkd",
-          "@ObjectModel.upperCase": true,
           "type": "CCA_TEMPL_SKD"
         },
         "JointVenture": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.JOINTVENTURE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.JOINTVENTURE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.JOINTVENTURE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "JV_NAME"
         },
         "JointVentureRecoveryCode": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.JOINTVENTURERECOVERYCODE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.JOINTVENTURERECOVERYCODE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.JOINTVENTURERECOVERYCODE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "JV_RECIND"
         },
         "JointVentureEquityType": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.JOINTVENTUREEQUITYTYPE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.JOINTVENTUREEQUITYTYPE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.JOINTVENTUREEQUITYTYPE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "JV_ETYPE"
         },
         "JointVentureObjectType": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.JOINTVENTUREOBJECTTYPE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.JOINTVENTUREOBJECTTYPE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.JOINTVENTUREOBJECTTYPE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "JV_OTYPE"
         },
         "JointVentureClass": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.JOINTVENTURECLASS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.JOINTVENTURECLASS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.JOINTVENTURECLASS@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "JV_JIBCL"
         },
         "JointVentureSubClass": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.JOINTVENTURESUBCLASS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.JOINTVENTURESUBCLASS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.JOINTVENTURESUBCLASS@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "JV_JIBSA"
         },
         "BudgetCarryingCostCenter": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.BUDGETCARRYINGCOSTCENTER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.BUDGETCARRYINGCOSTCENTER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.BUDGETCARRYINGCOSTCENTER@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FCO_BUDGET_CARRYING_COST_CTR"
         },
         "AvailabilityControlProfile": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.AVAILABILITYCONTROLPROFILE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.AVAILABILITYCONTROLPROFILE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.AVAILABILITYCONTROLPROFILE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FCO_AVC_PROFILE"
         },
         "AvailabilityControlIsActive": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.AVAILABILITYCONTROLISACTIVE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.AVAILABILITYCONTROLISACTIVE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.AVAILABILITYCONTROLISACTIVE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FCO_AVC_FOR_COST_CENTER_ACTIVE"
         },
         "Fund": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.FUND@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.FUND@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.FUND@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "BP_GEBER"
         },
         "GrantID": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_COSTCENTER.GRANTID@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.GRANTID@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.GRANTID@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "GM_GRANT_NBR"
         },
         "FundIsFixAssigned": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.FUNDISFIXASSIGNED@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.FUNDISFIXASSIGNED@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.FUNDISFIXASSIGNED@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "PSM_FUND_FIX_ASSIGNED"
         },
         "GrantIDIsFixAssigned": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.GRANTIDISFIXASSIGNED@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.GRANTIDISFIXASSIGNED@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.GRANTIDISFIXASSIGNED@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "PSM_GRANT_FIX_ASSIGNED"
         },
         "FunctionalAreaIsFixAssigned": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.FUNCTIONALAREAISFIXASSIGNED@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.FUNCTIONALAREAISFIXASSIGNED@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.FUNCTIONALAREAISFIXASSIGNED@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "PSM_FUNC_AREA_FIX_ASSIGNED"
         },
         "CostCenterLastChangedByUser": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDBYUSER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDBYUSER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDBYUSER@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_LastChangedByUserContactCard",
-          "@ObjectModel.upperCase": true,
           "type": "FCO_LAST_CHANGED_BY"
         },
         "CostCenterLastChangedOnDate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDONDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDONDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDONDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FCO_LAST_CHANGED_ON"
         },
         "CostCenterLastChangedAtTime": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDATTIME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDATTIME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_COSTCENTER.COSTCENTERLASTCHANGEDATTIME@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FCO_LAST_CHANGED_AT"
         },
         "_ActivityBasedCostingTmplCpd": {
@@ -1293,7 +1100,6 @@
           ]
         },
         "_ProfitCenter": {
-          "@Consumption.filter.businessDate.at": true,
           "type": "cds.Association",
           "cardinality": {
             "max": "*"
@@ -1411,7 +1217,6 @@
       "@EndUserText.heading": "{i18n>DATAB@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>DATAB@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>DATAB@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Date"
     },
@@ -1419,7 +1224,6 @@
       "@EndUserText.heading": "{i18n>DATBI@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>DATBI@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>DATBI@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Date"
     },
@@ -1435,7 +1239,6 @@
       "@EndUserText.heading": "{i18n>ERFDT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>ERFDT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>ERFDT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Date"
     },
@@ -1443,7 +1246,6 @@
       "@EndUserText.heading": "{i18n>ERFNM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>ERFNM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>ERFNM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 12
@@ -1452,7 +1254,6 @@
       "@EndUserText.heading": "{i18n>FCO_AVC_FOR_COST_CENTER_ACTIVE@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FCO_AVC_FOR_COST_CENTER_ACTIVE@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FCO_AVC_FOR_COST_CENTER_ACTIVE@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1460,7 +1261,6 @@
       "@EndUserText.heading": "{i18n>FCO_AVC_PROFILE@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FCO_AVC_PROFILE@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FCO_AVC_PROFILE@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 6
@@ -1469,7 +1269,6 @@
       "@EndUserText.heading": "{i18n>FCO_BUDGET_CARRYING_COST_CTR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FCO_BUDGET_CARRYING_COST_CTR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FCO_BUDGET_CARRYING_COST_CTR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1478,7 +1277,6 @@
       "@EndUserText.heading": "{i18n>FCO_LAST_CHANGED_AT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FCO_LAST_CHANGED_AT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FCO_LAST_CHANGED_AT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Time"
     },
@@ -1486,7 +1284,6 @@
       "@EndUserText.heading": "{i18n>FCO_LAST_CHANGED_BY@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FCO_LAST_CHANGED_BY@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FCO_LAST_CHANGED_BY@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 12
@@ -1495,7 +1292,6 @@
       "@EndUserText.heading": "{i18n>FCO_LAST_CHANGED_ON@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FCO_LAST_CHANGED_ON@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FCO_LAST_CHANGED_ON@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Date"
     },
@@ -1503,7 +1299,6 @@
       "@EndUserText.heading": "{i18n>FINS_XKOSTL_STAT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FINS_XKOSTL_STAT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FINS_XKOSTL_STAT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1511,7 +1306,6 @@
       "@EndUserText.heading": "{i18n>FIS_PKZER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FIS_PKZER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FIS_PKZER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1519,7 +1313,6 @@
       "@EndUserText.heading": "{i18n>FIS_PKZKS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FIS_PKZKS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FIS_PKZKS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1527,7 +1320,6 @@
       "@EndUserText.heading": "{i18n>FKBER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FKBER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FKBER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 16
@@ -1536,7 +1328,6 @@
       "@EndUserText.heading": "{i18n>FUNKT_DLK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FUNKT_DLK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FUNKT_DLK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -1545,7 +1336,6 @@
       "@EndUserText.heading": "{i18n>GM_GRANT_NBR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>GM_GRANT_NBR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>GM_GRANT_NBR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 20
@@ -1554,7 +1344,6 @@
       "@EndUserText.heading": "{i18n>GSBER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>GSBER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>GSBER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -1563,7 +1352,6 @@
       "@EndUserText.heading": "{i18n>JV_ETYPE@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>JV_ETYPE@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>JV_ETYPE@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -1572,7 +1360,6 @@
       "@EndUserText.heading": "{i18n>JV_JIBCL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>JV_JIBCL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>JV_JIBCL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -1581,7 +1368,6 @@
       "@EndUserText.heading": "{i18n>JV_JIBSA@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>JV_JIBSA@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>JV_JIBSA@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 5
@@ -1590,7 +1376,6 @@
       "@EndUserText.heading": "{i18n>JV_NAME@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>JV_NAME@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>JV_NAME@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 6
@@ -1599,7 +1384,6 @@
       "@EndUserText.heading": "{i18n>JV_OTYPE@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>JV_OTYPE@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>JV_OTYPE@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -1608,7 +1392,6 @@
       "@EndUserText.heading": "{i18n>JV_RECIND@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>JV_RECIND@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>JV_RECIND@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -1617,7 +1400,6 @@
       "@EndUserText.heading": "{i18n>J_OBJNR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>J_OBJNR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>J_OBJNR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 22
@@ -1626,7 +1408,6 @@
       "@EndUserText.heading": "{i18n>KAPPL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KAPPL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KAPPL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -1635,7 +1416,6 @@
       "@EndUserText.heading": "{i18n>KDNAM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KDNAM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KDNAM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -1644,7 +1424,6 @@
       "@EndUserText.heading": "{i18n>KHINR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KHINR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KHINR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 12
@@ -1653,7 +1432,6 @@
       "@EndUserText.heading": "{i18n>KOKRS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KOKRS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KOKRS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -1662,7 +1440,6 @@
       "@EndUserText.heading": "{i18n>KOSAR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KOSAR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KOSAR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -1671,7 +1448,6 @@
       "@EndUserText.heading": "{i18n>KOSTL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KOSTL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KOSTL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1680,7 +1456,6 @@
       "@EndUserText.heading": "{i18n>KOSZSCHL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KOSZSCHL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KOSZSCHL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 6
@@ -1689,7 +1464,6 @@
       "@EndUserText.heading": "{i18n>KSKOM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KSKOM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KSKOM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1697,7 +1471,6 @@
       "@EndUserText.heading": "{i18n>KVEWE@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KVEWE@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KVEWE@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -1706,7 +1479,6 @@
       "@EndUserText.heading": "{i18n>LAND1@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>LAND1@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>LAND1@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -1715,7 +1487,6 @@
       "@EndUserText.heading": "{i18n>LOGSYSTEM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>LOGSYSTEM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>LOGSYSTEM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1724,7 +1495,6 @@
       "@EndUserText.heading": "{i18n>MGEFL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>MGEFL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>MGEFL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1764,7 +1534,6 @@
       "@EndUserText.heading": "{i18n>NKOST@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>NKOST@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>NKOST@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1789,7 +1558,6 @@
       "@EndUserText.heading": "{i18n>PFACH@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PFACH@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PFACH@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1798,7 +1566,6 @@
       "@EndUserText.heading": "{i18n>PKZKP@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PKZKP@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PKZKP@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1806,7 +1573,6 @@
       "@EndUserText.heading": "{i18n>PRCTR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PRCTR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PRCTR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1815,7 +1581,6 @@
       "@EndUserText.heading": "{i18n>PSM_FUNC_AREA_FIX_ASSIGNED@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PSM_FUNC_AREA_FIX_ASSIGNED@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PSM_FUNC_AREA_FIX_ASSIGNED@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1823,7 +1588,6 @@
       "@EndUserText.heading": "{i18n>PSM_FUND_FIX_ASSIGNED@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PSM_FUND_FIX_ASSIGNED@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PSM_FUND_FIX_ASSIGNED@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1831,7 +1595,6 @@
       "@EndUserText.heading": "{i18n>PSM_GRANT_FIX_ASSIGNED@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PSM_GRANT_FIX_ASSIGNED@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PSM_GRANT_FIX_ASSIGNED@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -1839,7 +1602,6 @@
       "@EndUserText.heading": "{i18n>PSTL2@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PSTL2@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PSTL2@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1848,7 +1610,6 @@
       "@EndUserText.heading": "{i18n>PSTLZ@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PSTLZ@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PSTLZ@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -1857,7 +1618,6 @@
       "@EndUserText.heading": "{i18n>REGIO@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>REGIO@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>REGIO@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -1930,7 +1690,6 @@
       "@EndUserText.heading": "{i18n>TXJCD@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TXJCD@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TXJCD@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 15
@@ -1947,7 +1706,6 @@
       "@EndUserText.heading": "{i18n>VERAK_USER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VERAK_USER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VERAK_USER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 12
@@ -1956,7 +1714,6 @@
       "@EndUserText.heading": "{i18n>VMETH@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VMETH@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VMETH@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -1965,7 +1722,6 @@
       "@EndUserText.heading": "{i18n>WAERS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>WAERS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>WAERS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 5
@@ -1974,7 +1730,6 @@
       "@EndUserText.heading": "{i18n>WERKS_D@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>WERKS_D@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>WERKS_D@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 4

@@ -4,7 +4,6 @@
       "@EndUserText.heading": "{i18n>AEDAT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>AEDAT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>AEDAT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.Date"
     },
@@ -12,7 +11,6 @@
       "@EndUserText.heading": "{i18n>BELNR_D@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BELNR_D@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BELNR_D@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -29,7 +27,6 @@
       "@EndUserText.heading": "{i18n>BUCHK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BUCHK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BUCHK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -52,7 +49,6 @@
       "@EndUserText.heading": "{i18n>BUKRS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BUKRS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BUKRS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -61,42 +57,17 @@
       "@EndUserText.heading": "{i18n>BZIRK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>BZIRK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>BZIRK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
       "kind": "type",
       "type": "cds.String",
       "length": 6
     },
     "BillingDocument": {
-      "@AccessControl.authorizationCheck": {
-        "#": "CHECK"
-      },
-      "@AccessControl.personalData.blocking": {
-        "=": "'TRANSACTIONAL_DATA'",
-        "type": "unchecked"
-      },
-      "@AccessControl.privilegedAssociations": ["_CreatedByUser", "_DunningAreaText", "_CreditControlAreaText"],
-      "@Analytics.dataCategory": {
-        "#": "DIMENSION"
-      },
-      "@Analytics.dataExtraction.delta.changeDataCapture.mapping": [
-        {
-          "table": "vbrk",
-          "role": {
-            "#": "MAIN"
-          },
-          "viewElement": ["BillingDocument"],
-          "tableElement": ["vbeln"]
-        }
-      ],
-      "@Analytics.dataExtraction.enabled": true,
       "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT@ENDUSERTEXT.LABEL}",
-      "@Metadata.allowExtensions": true,
       "@ObjectModel.compositionRoot": true,
       "@ObjectModel.modelingPattern": {
         "#": "ANALYTICAL_DIMENSION"
       },
       "@ObjectModel.representativeKey": "BillingDocument",
-      "@ObjectModel.sapObjectNodeType.name": "BillingDocument",
       "@ObjectModel.supportedCapabilities": [
         {
           "#": "ANALYTICAL_DIMENSION"
@@ -114,26 +85,12 @@
           "#": "EXTRACTION_DATA_SOURCE"
         }
       ],
-      "@ObjectModel.usageType.dataClass": {
-        "#": "TRANSACTIONAL"
-      },
-      "@ObjectModel.usageType.serviceQuality": {
-        "#": "A"
-      },
-      "@ObjectModel.usageType.sizeCategory": {
-        "#": "L"
-      },
-      "@VDM.viewType": {
-        "#": "BASIC"
-      },
       "kind": "entity",
       "elements": {
         "BillingDocument": {
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "key": true,
           "type": "VBELN_VF"
         },
@@ -149,7 +106,6 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTCATEGORY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTCATEGORY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_BillingDocumentCategory",
-          "@ObjectModel.upperCase": true,
           "type": "FKTYP"
         },
         "BillingDocumentType": {
@@ -157,104 +113,79 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTTYPE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTTYPE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_BillingDocumentType",
-          "@ObjectModel.upperCase": true,
           "type": "FKART"
         },
         "CreatedByUser": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CREATEDBYUSER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CREATEDBYUSER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CREATEDBYUSER@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
-          "@Semantics.personalData.isPotentiallySensitive": true,
-          "@Semantics.user.createdBy": true,
           "type": "ERNAM"
         },
         "CreationDate": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CREATIONDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CREATIONDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CREATIONDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
-          "@Semantics.systemDate.createdAt": true,
           "type": "ERDAT"
         },
         "CreationTime": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CREATIONTIME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CREATIONTIME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CREATIONTIME@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
-          "@Semantics.systemTime.createdAt": true,
           "type": "ERZET"
         },
         "LastChangeDate": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.LASTCHANGEDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.LASTCHANGEDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.LASTCHANGEDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
-          "@Semantics.systemDate.lastChangedAt": true,
           "type": "AEDAT"
         },
         "LastChangeDateTime": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.LASTCHANGEDATETIME@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.LASTCHANGEDATETIME@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.LASTCHANGEDATETIME@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
-          "@Semantics.systemDateTime.lastChangedAt": true,
           "type": "TIMESTAMPL"
         },
         "LogicalSystem": {
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.LOGICALSYSTEM@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.LOGICALSYSTEM@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.LOGICALSYSTEM@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_LogicalSystem",
-          "@ObjectModel.upperCase": true,
           "type": "LOGSYS"
         },
         "SalesOrganization": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.SALESORGANIZATION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.SALESORGANIZATION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.SALESORGANIZATION@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_SalesOrganization",
-          "@ObjectModel.upperCase": true,
           "type": "VKORG"
         },
         "DistributionChannel": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.DISTRIBUTIONCHANNEL@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.DISTRIBUTIONCHANNEL@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.DISTRIBUTIONCHANNEL@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_DistributionChannel",
-          "@ObjectModel.upperCase": true,
           "type": "VTWEG"
         },
         "Division": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.DIVISION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.DIVISION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.DIVISION@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_Division",
-          "@ObjectModel.upperCase": true,
           "type": "SPART"
         },
         "BillingDocumentDate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FKDAT"
         },
         "BillingDocumentIsCancelled": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTISCANCELLED@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTISCANCELLED@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTISCANCELLED@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "FKSTO"
         },
         "CancelledBillingDocument": {
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@Consumption.valueHelpDefinition": [
             {
               "entity": {
@@ -267,68 +198,56 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CANCELLEDBILLINGDOCUMENT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CANCELLEDBILLINGDOCUMENT@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CancelledBillingDocument",
-          "@ObjectModel.upperCase": true,
           "type": "SFAKN"
         },
         "BillingDocCombinationCriteria": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCCOMBINATIONCRITERIA@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCCOMBINATIONCRITERIA@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCCOMBINATIONCRITERIA@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "DZUKRI"
         },
         "ManualInvoiceMaintIsRelevant": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.MANUALINVOICEMAINTISRELEVANT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.MANUALINVOICEMAINTISRELEVANT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.MANUALINVOICEMAINTISRELEVANT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "MRNKZ"
         },
         "NmbrOfPages": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.NMBROFPAGES@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.NMBROFPAGES@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.NMBROFPAGES@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "J_1ANOPG"
         },
         "IsIntrastatReportingRelevant": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ISINTRASTATREPORTINGRELEVANT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ISINTRASTATREPORTINGRELEVANT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ISINTRASTATREPORTINGRELEVANT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "INTRA_REL"
         },
         "IsIntrastatReportingExcluded": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ISINTRASTATREPORTINGEXCLUDED@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ISINTRASTATREPORTINGEXCLUDED@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ISINTRASTATREPORTINGEXCLUDED@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "INTRA_EXCL"
         },
         "BillingDocumentIsTemporary": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTISTEMPORARY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTISTEMPORARY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGDOCUMENTISTEMPORARY@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "VF_DRAFT_INDICATOR"
         },
         "TotalNetAmount": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.TOTALNETAMOUNT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.TOTALNETAMOUNT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.TOTALNETAMOUNT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "@Semantics.amount.currencyCode": "TransactionCurrency",
           "type": "NETWR"
         },
         "TransactionCurrency": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.TRANSACTIONCURRENCY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.TRANSACTIONCURRENCY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.TRANSACTIONCURRENCY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_TransactionCurrency",
-          "@ObjectModel.upperCase": true,
           "@Semantics.currencyCode": true,
           "type": "WAERK"
         },
@@ -337,7 +256,6 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.STATISTICSCURRENCY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.STATISTICSCURRENCY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_StatisticsCurrency",
-          "@ObjectModel.upperCase": true,
           "@Semantics.currencyCode": true,
           "type": "STWAE"
         },
@@ -345,43 +263,34 @@
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.TOTALTAXAMOUNT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.TOTALTAXAMOUNT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.TOTALTAXAMOUNT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "@Semantics.amount.currencyCode": "TransactionCurrency",
           "type": "MWSBP"
         },
         "CustomerPriceGroup": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERPRICEGROUP@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERPRICEGROUP@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERPRICEGROUP@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CustomerPriceGroup",
-          "@ObjectModel.upperCase": true,
           "type": "KONDA"
         },
         "PriceListType": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.PRICELISTTYPE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PRICELISTTYPE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PRICELISTTYPE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_PriceListType",
-          "@ObjectModel.upperCase": true,
           "type": "PLTYP"
         },
         "TaxDepartureCountry": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.TAXDEPARTURECOUNTRY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.TAXDEPARTURECOUNTRY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.TAXDEPARTURECOUNTRY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_TaxDepartureCountry",
-          "@ObjectModel.upperCase": true,
           "type": "LANDTX"
         },
         "VATRegistration": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATION@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "STCEG"
         },
         "VATRegistrationOrigin": {
@@ -389,94 +298,79 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATIONORIGIN@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATIONORIGIN@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_VATRegistrationOrigin",
-          "@ObjectModel.upperCase": true,
           "type": "STCEG_H"
         },
         "VATRegistrationCountry": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATIONCOUNTRY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATIONCOUNTRY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.VATREGISTRATIONCOUNTRY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_VATRegistrationCountry",
-          "@ObjectModel.upperCase": true,
           "type": "STCEG_L"
         },
         "HierarchyTypePricing": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.HIERARCHYTYPEPRICING@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.HIERARCHYTYPEPRICING@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.HIERARCHYTYPEPRICING@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "HITYP_PR"
         },
         "CustomerTaxClassification1": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION1@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION1@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION1@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK1"
         },
         "CustomerTaxClassification2": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION2@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION2@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION2@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK2"
         },
         "CustomerTaxClassification3": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION3@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION3@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION3@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK3"
         },
         "CustomerTaxClassification4": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION4@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION4@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION4@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK4"
         },
         "CustomerTaxClassification5": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION5@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION5@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION5@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK5"
         },
         "CustomerTaxClassification6": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION6@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION6@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION6@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK6"
         },
         "CustomerTaxClassification7": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION7@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION7@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION7@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK7"
         },
         "CustomerTaxClassification8": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION8@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION8@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION8@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK8"
         },
         "CustomerTaxClassification9": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION9@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION9@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERTAXCLASSIFICATION9@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "TAXK9"
         },
         "IsEUTriangularDeal": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ISEUTRIANGULARDEAL@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ISEUTRIANGULARDEAL@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ISEUTRIANGULARDEAL@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "XEGDR"
         },
         "SDPricingProcedure": {
@@ -484,69 +378,54 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.SDPRICINGPROCEDURE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.SDPRICINGPROCEDURE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_SDPricingProcedure",
-          "@ObjectModel.upperCase": true,
           "type": "KALSMASD"
         },
         "ShippingCondition": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.SHIPPINGCONDITION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.SHIPPINGCONDITION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.SHIPPINGCONDITION@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ShippingCondition",
-          "@ObjectModel.upperCase": true,
           "type": "VSBED"
         },
         "PlantSupplier": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.PLANTSUPPLIER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PLANTSUPPLIER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PLANTSUPPLIER@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "LIFNR_WK"
         },
         "IncotermsVersion": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.INCOTERMSVERSION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INCOTERMSVERSION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INCOTERMSVERSION@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_IncotermsVersion",
-          "@ObjectModel.upperCase": true,
           "type": "INCOV"
         },
         "IncotermsClassification": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.INCOTERMSCLASSIFICATION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INCOTERMSCLASSIFICATION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INCOTERMSCLASSIFICATION@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_IncotermsClassification",
-          "@ObjectModel.upperCase": true,
           "type": "INCO1"
         },
         "IncotermsTransferLocation": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.INCOTERMSTRANSFERLOCATION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INCOTERMSTRANSFERLOCATION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INCOTERMSTRANSFERLOCATION@ENDUSERTEXT.QUICKINFO}",
           "type": "INCO2"
         },
         "IncotermsLocation1": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION1@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION1@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION1@ENDUSERTEXT.QUICKINFO}",
           "type": "INCO2_L"
         },
         "IncotermsLocation2": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION2@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION2@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION2@ENDUSERTEXT.QUICKINFO}",
           "type": "INCO3_L"
         },
         "PayerParty": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@Consumption.valueHelpDefinition": [
             {
               "entity": {
@@ -559,70 +438,53 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PAYERPARTY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PAYERPARTY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_PayerParty",
-          "@ObjectModel.upperCase": true,
           "type": "KUNRG"
         },
         "ContractAccount": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CONTRACTACCOUNT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CONTRACTACCOUNT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CONTRACTACCOUNT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "CORR_VKONT_KK"
         },
         "CustomerPaymentTerms": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERPAYMENTTERMS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERPAYMENTTERMS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERPAYMENTTERMS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CustomerPaymentTerms",
-          "@ObjectModel.upperCase": true,
           "type": "DZTERM"
         },
         "PaymentMethod": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.PAYMENTMETHOD@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PAYMENTMETHOD@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PAYMENTMETHOD@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_PaymentMethod",
-          "@ObjectModel.upperCase": true,
           "type": "SCHZW_BSEG"
         },
         "PaymentReference": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.PAYMENTREFERENCE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PAYMENTREFERENCE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PAYMENTREFERENCE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KIDNO"
         },
         "FixedValueDate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.FIXEDVALUEDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.FIXEDVALUEDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.FIXEDVALUEDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "VALDT"
         },
         "AdditionalValueDays": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ADDITIONALVALUEDAYS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ADDITIONALVALUEDAYS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ADDITIONALVALUEDAYS@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "VALTG"
         },
         "SEPAMandate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.SEPAMANDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.SEPAMANDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.SEPAMANDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "SEPA_MNDID"
         },
         "CompanyCode": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@Consumption.valueHelpDefinition": [
             {
               "entity": {
@@ -635,22 +497,16 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.COMPANYCODE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.COMPANYCODE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CompanyCode",
-          "@ObjectModel.upperCase": true,
           "type": "BUKRS"
         },
         "FiscalYear": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "GJAHR",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.FISCALYEAR@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.FISCALYEAR@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.FISCALYEAR@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_FiscalYear",
-          "@ObjectModel.upperCase": true,
           "type": "GJAHR"
         },
         "AccountingDocument": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@Consumption.valueHelpDefinition": [
             {
               "entity": {
@@ -673,83 +529,66 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGDOCUMENT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGDOCUMENT@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_AccountingDocument",
-          "@ObjectModel.upperCase": true,
           "type": "BELNR_D"
         },
         "FiscalPeriod": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.FISCALPERIOD@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.FISCALPERIOD@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.FISCALPERIOD@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "POPER"
         },
         "CustomerAccountAssignmentGroup": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERACCOUNTASSIGNMENTGROUP@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERACCOUNTASSIGNMENTGROUP@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERACCOUNTASSIGNMENTGROUP@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CustomerAccountAssgmtGroup",
-          "@ObjectModel.upperCase": true,
           "type": "KTGRD"
         },
         "AccountingExchangeRateIsSet": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATEISSET@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATEISSET@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATEISSET@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "CPKUR"
         },
         "AccountingExchangeRate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KURRF_NOT_CONVERTED"
         },
         "ExchangeRateDate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.EXCHANGERATEDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.EXCHANGERATEDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.EXCHANGERATEDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "WWERT_D"
         },
         "ExchangeRateType": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.EXCHANGERATETYPE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.EXCHANGERATETYPE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.EXCHANGERATETYPE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ExchangeRateType",
-          "@ObjectModel.upperCase": true,
           "type": "KURST"
         },
         "DocumentReferenceID": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.DOCUMENTREFERENCEID@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.DOCUMENTREFERENCEID@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.DOCUMENTREFERENCEID@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "XBLNR_V1"
         },
         "AssignmentReference": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ASSIGNMENTREFERENCE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ASSIGNMENTREFERENCE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ASSIGNMENTREFERENCE@ENDUSERTEXT.QUICKINFO}",
           "type": "ORDNR_V"
         },
         "ReversalReason": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.REVERSALREASON@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.REVERSALREASON@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.REVERSALREASON@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_ReversalReason",
-          "@ObjectModel.upperCase": true,
           "type": "STGRD"
         },
         "DunningArea": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@Consumption.valueHelpDefinition": [
             {
               "entity": {
@@ -769,46 +608,35 @@
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.DUNNINGAREA@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_DunningArea",
           "@ObjectModel.text.association": "_DunningAreaText",
-          "@ObjectModel.upperCase": true,
           "type": "MABER"
         },
         "DunningBlockingReason": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.DUNNINGBLOCKINGREASON@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.DUNNINGBLOCKINGREASON@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.DUNNINGBLOCKINGREASON@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_DunningBlockingReason",
-          "@ObjectModel.upperCase": true,
           "type": "MANSP"
         },
         "DunningKey": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.DUNNINGKEY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.DUNNINGKEY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.DUNNINGKEY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_DunningKey",
-          "@ObjectModel.upperCase": true,
           "type": "MSCHL"
         },
         "InternalFinancialDocument": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.INTERNALFINANCIALDOCUMENT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INTERNALFINANCIALDOCUMENT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INTERNALFINANCIALDOCUMENT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "LCNUM"
         },
         "IsRelevantForAccrual": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.ISRELEVANTFORACCRUAL@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ISRELEVANTFORACCRUAL@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ISRELEVANTFORACCRUAL@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "ISACCRUALRELEVANT"
         },
         "SoldToParty": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@Consumption.valueHelpDefinition": [
             {
               "entity": {
@@ -821,32 +649,25 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.SOLDTOPARTY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.SOLDTOPARTY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_SoldToParty",
-          "@ObjectModel.upperCase": true,
           "type": "KUNAG"
         },
         "PartnerCompany": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.PARTNERCOMPANY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PARTNERCOMPANY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PARTNERCOMPANY@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "RASSC"
         },
         "PurchaseOrderByCustomer": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.PURCHASEORDERBYCUSTOMER@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PURCHASEORDERBYCUSTOMER@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PURCHASEORDERBYCUSTOMER@ENDUSERTEXT.QUICKINFO}",
           "type": "BSTKD"
         },
         "CustomerGroup": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERGROUP@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERGROUP@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERGROUP@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CustomerGroup",
-          "@ObjectModel.upperCase": true,
           "type": "KDGRP"
         },
         "Country": {
@@ -854,47 +675,37 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.COUNTRY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.COUNTRY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_Country",
-          "@ObjectModel.upperCase": true,
           "type": "LLAND"
         },
         "CityCode": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CITYCODE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CITYCODE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CITYCODE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CityCode",
-          "@ObjectModel.upperCase": true,
           "type": "CITYC"
         },
         "SalesDistrict": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.SALESDISTRICT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.SALESDISTRICT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.SALESDISTRICT@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_SalesDistrict",
-          "@ObjectModel.upperCase": true,
           "type": "BZIRK"
         },
         "Region": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.REGION@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.REGION@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.REGION@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_Region",
-          "@ObjectModel.upperCase": true,
           "type": "REGIO"
         },
         "County": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.COUNTY@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.COUNTY@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.COUNTY@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_County_2",
-          "@ObjectModel.upperCase": true,
           "type": "COUNC"
         },
         "CreditControlArea": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@Consumption.valueHelpDefinition": [
             {
               "entity": {
@@ -908,32 +719,25 @@
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CREDITCONTROLAREA@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_CreditControlArea",
           "@ObjectModel.text.association": "_CreditControlAreaText",
-          "@ObjectModel.upperCase": true,
           "type": "KKBER"
         },
         "CustomerRebateAgreement": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
-          "@AbapCatalog.typeSpec.conversionExit": "ALPHA",
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.CUSTOMERREBATEAGREEMENT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.CUSTOMERREBATEAGREEMENT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.CUSTOMERREBATEAGREEMENT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KNUMA"
         },
         "PricingDocument": {
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.PRICINGDOCUMENT@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.PRICINGDOCUMENT@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.PRICINGDOCUMENT@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
           "type": "KNUMV"
         },
         "OverallSDProcessStatus": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.OVERALLSDPROCESSSTATUS@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.OVERALLSDPROCESSSTATUS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.OVERALLSDPROCESSSTATUS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_OverallSDProcessStatus",
-          "@ObjectModel.upperCase": true,
           "type": "GBSTK"
         },
         "OverallBillingStatus": {
@@ -941,7 +745,6 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.OVERALLBILLINGSTATUS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.OVERALLBILLINGSTATUS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_OverallBillingStatus",
-          "@ObjectModel.upperCase": true,
           "type": "VF_STATUS"
         },
         "AccountingPostingStatus": {
@@ -949,7 +752,6 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGPOSTINGSTATUS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGPOSTINGSTATUS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_AccountingPostingStatus",
-          "@ObjectModel.upperCase": true,
           "type": "BUCHK"
         },
         "AccountingTransferStatus": {
@@ -957,7 +759,6 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGTRANSFERSTATUS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.ACCOUNTINGTRANSFERSTATUS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_AccountingTransferStatus",
-          "@ObjectModel.upperCase": true,
           "type": "RFBSK"
         },
         "BillingIssueType": {
@@ -965,7 +766,6 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.BILLINGISSUETYPE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.BILLINGISSUETYPE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_BillingIssueType",
-          "@ObjectModel.upperCase": true,
           "type": "VF_TODO"
         },
         "InvoiceListStatus": {
@@ -973,7 +773,6 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INVOICELISTSTATUS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INVOICELISTSTATUS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_InvoiceListStatus",
-          "@ObjectModel.upperCase": true,
           "type": "RELIK"
         },
         "OvrlItmGeneralIncompletionSts": {
@@ -981,7 +780,7 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.OVRLITMGENERALINCOMPLETIONSTS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.OVRLITMGENERALINCOMPLETIONSTS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_OvrlItmGeneralIncompletionSts",
-          "@ObjectModel.upperCase": true,
+
           "type": "UVALL_SU"
         },
         "OverallPricingIncompletionSts": {
@@ -989,7 +788,7 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.OVERALLPRICINGINCOMPLETIONSTS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.OVERALLPRICINGINCOMPLETIONSTS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_OverallPricingIncompletionSts",
-          "@ObjectModel.upperCase": true,
+
           "type": "UVPRS_UK"
         },
         "InvoiceClearingStatus": {
@@ -997,7 +796,7 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INVOICECLEARINGSTATUS@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INVOICECLEARINGSTATUS@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_InvoiceClearingStatus",
-          "@ObjectModel.upperCase": true,
+
           "type": "CLRST"
         },
         "InvoiceListType": {
@@ -1005,15 +804,14 @@
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INVOICELISTTYPE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INVOICELISTTYPE@ENDUSERTEXT.QUICKINFO}",
           "@ObjectModel.foreignKey.association": "_InvoiceListType",
-          "@ObjectModel.upperCase": true,
+
           "type": "FKART_RL"
         },
         "InvoiceListBillingDate": {
-          "@AbapCatalog.typeSpec.changeDocumentRelevant": true,
           "@EndUserText.heading": "{i18n>I_BILLINGDOCUMENT.INVOICELISTBILLINGDATE@ENDUSERTEXT.HEADING}",
           "@EndUserText.label": "{i18n>I_BILLINGDOCUMENT.INVOICELISTBILLINGDATE@ENDUSERTEXT.LABEL}",
           "@EndUserText.quickInfo": "{i18n>I_BILLINGDOCUMENT.INVOICELISTBILLINGDATE@ENDUSERTEXT.QUICKINFO}",
-          "@ObjectModel.upperCase": true,
+
           "type": "FKDAT_RL"
         },
         "_AccountingDocument": {
@@ -1209,10 +1007,6 @@
           ]
         },
         "_County": {
-          "@API.element.releaseState": {
-            "#": "DEPRECATED"
-          },
-          "@API.element.successor": "_County_2",
           "type": "cds.Association",
           "cardinality": {
             "max": 1
@@ -1309,7 +1103,6 @@
           ]
         },
         "_CreditControlAreaText": {
-          "@Consumption.hidden": true,
           "type": "cds.Association",
           "cardinality": {
             "max": "*"
@@ -1446,7 +1239,6 @@
           ]
         },
         "_DunningAreaText": {
-          "@Consumption.hidden": true,
           "type": "cds.Association",
           "cardinality": {
             "max": "*"
@@ -1640,11 +1432,6 @@
           ]
         },
         "_Item": {
-          "@ObjectModel.association.type": [
-            {
-              "#": "TO_COMPOSITION_CHILD"
-            }
-          ],
           "type": "cds.Association",
           "cardinality": {
             "max": "*"
@@ -1741,11 +1528,6 @@
           ]
         },
         "_Partner": {
-          "@ObjectModel.association.type": [
-            {
-              "#": "TO_COMPOSITION_CHILD"
-            }
-          ],
           "type": "cds.Association",
           "cardinality": {
             "min": 1,
@@ -1819,11 +1601,6 @@
           ]
         },
         "_PricingElement": {
-          "@ObjectModel.association.type": [
-            {
-              "#": "TO_COMPOSITION_CHILD"
-            }
-          ],
           "type": "cds.Association",
           "cardinality": {
             "max": "*"
@@ -2061,7 +1838,7 @@
       "@EndUserText.heading": "{i18n>CITYC@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CITYC@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CITYC@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2070,7 +1847,7 @@
       "@EndUserText.heading": "{i18n>CLRST@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CLRST@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CLRST@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2093,7 +1870,7 @@
       "@EndUserText.heading": "{i18n>CORR_VKONT_KK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CORR_VKONT_KK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CORR_VKONT_KK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 12
@@ -2102,7 +1879,7 @@
       "@EndUserText.heading": "{i18n>COUNC@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>COUNC@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>COUNC@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2111,7 +1888,7 @@
       "@EndUserText.heading": "{i18n>CPKUR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>CPKUR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>CPKUR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -2119,7 +1896,7 @@
       "@EndUserText.heading": "{i18n>DZTERM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>DZTERM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>DZTERM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2128,7 +1905,7 @@
       "@EndUserText.heading": "{i18n>DZUKRI@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>DZUKRI@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>DZUKRI@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 40
@@ -2137,7 +1914,7 @@
       "@EndUserText.heading": "{i18n>ERDAT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>ERDAT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>ERDAT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Date"
     },
@@ -2145,7 +1922,7 @@
       "@EndUserText.heading": "{i18n>ERNAM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>ERNAM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>ERNAM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 12
@@ -2154,7 +1931,7 @@
       "@EndUserText.heading": "{i18n>ERZET@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>ERZET@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>ERZET@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Time"
     },
@@ -2162,7 +1939,7 @@
       "@EndUserText.heading": "{i18n>FKART@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FKART@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FKART@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2171,7 +1948,7 @@
       "@EndUserText.heading": "{i18n>FKART_RL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FKART_RL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FKART_RL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2180,7 +1957,7 @@
       "@EndUserText.heading": "{i18n>FKDAT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FKDAT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FKDAT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Date"
     },
@@ -2188,7 +1965,7 @@
       "@EndUserText.heading": "{i18n>FKDAT_RL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FKDAT_RL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FKDAT_RL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Date"
     },
@@ -2196,7 +1973,7 @@
       "@EndUserText.heading": "{i18n>FKSTO@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FKSTO@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FKSTO@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -2204,7 +1981,7 @@
       "@EndUserText.heading": "{i18n>FKTYP@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>FKTYP@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>FKTYP@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2260,7 +2037,7 @@
       "@EndUserText.heading": "{i18n>GBSTK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>GBSTK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>GBSTK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2283,7 +2060,7 @@
       "@EndUserText.heading": "{i18n>GJAHR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>GJAHR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>GJAHR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2292,7 +2069,7 @@
       "@EndUserText.heading": "{i18n>HITYP_PR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>HITYP_PR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>HITYP_PR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2301,7 +2078,7 @@
       "@EndUserText.heading": "{i18n>INCO1@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>INCO1@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>INCO1@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2334,7 +2111,7 @@
       "@EndUserText.heading": "{i18n>INCOV@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>INCOV@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>INCOV@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2343,7 +2120,7 @@
       "@EndUserText.heading": "{i18n>INTRA_EXCL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>INTRA_EXCL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>INTRA_EXCL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -2351,7 +2128,7 @@
       "@EndUserText.heading": "{i18n>INTRA_REL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>INTRA_REL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>INTRA_REL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -2359,7 +2136,7 @@
       "@EndUserText.heading": "{i18n>ISACCRUALRELEVANT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>ISACCRUALRELEVANT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>ISACCRUALRELEVANT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -2367,7 +2144,7 @@
       "@EndUserText.heading": "{i18n>J_1ANOPG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>J_1ANOPG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>J_1ANOPG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2376,7 +2153,7 @@
       "@EndUserText.heading": "{i18n>KALSMASD@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KALSMASD@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KALSMASD@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 6
@@ -2385,7 +2162,7 @@
       "@EndUserText.heading": "{i18n>KDGRP@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KDGRP@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KDGRP@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2394,7 +2171,7 @@
       "@EndUserText.heading": "{i18n>KIDNO@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KIDNO@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KIDNO@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 30
@@ -2403,7 +2180,7 @@
       "@EndUserText.heading": "{i18n>KKBER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KKBER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KKBER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2412,7 +2189,7 @@
       "@EndUserText.heading": "{i18n>KNUMA@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KNUMA@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KNUMA@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2421,7 +2198,7 @@
       "@EndUserText.heading": "{i18n>KNUMV@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KNUMV@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KNUMV@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2430,7 +2207,7 @@
       "@EndUserText.heading": "{i18n>KONDA@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KONDA@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KONDA@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2439,7 +2216,7 @@
       "@EndUserText.heading": "{i18n>KTGRD@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KTGRD@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KTGRD@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2448,7 +2225,7 @@
       "@EndUserText.heading": "{i18n>KUNAG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KUNAG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KUNAG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2457,7 +2234,7 @@
       "@EndUserText.heading": "{i18n>KUNRG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KUNRG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KUNRG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2466,7 +2243,7 @@
       "@EndUserText.heading": "{i18n>KURRF_NOT_CONVERTED@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KURRF_NOT_CONVERTED@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KURRF_NOT_CONVERTED@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Decimal",
       "precision": 9,
@@ -2476,7 +2253,7 @@
       "@EndUserText.heading": "{i18n>KURST@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>KURST@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>KURST@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -2485,7 +2262,7 @@
       "@EndUserText.heading": "{i18n>LANDTX@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>LANDTX@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>LANDTX@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2494,7 +2271,7 @@
       "@EndUserText.heading": "{i18n>LCNUM@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>LCNUM@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>LCNUM@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2503,7 +2280,7 @@
       "@EndUserText.heading": "{i18n>LIFNR_WK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>LIFNR_WK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>LIFNR_WK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2512,7 +2289,7 @@
       "@EndUserText.heading": "{i18n>LLAND@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>LLAND@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>LLAND@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2521,7 +2298,7 @@
       "@EndUserText.heading": "{i18n>LOGSYS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>LOGSYS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>LOGSYS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2530,7 +2307,7 @@
       "@EndUserText.heading": "{i18n>MABER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>MABER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>MABER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2539,7 +2316,7 @@
       "@EndUserText.heading": "{i18n>MANSP@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>MANSP@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>MANSP@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2548,7 +2325,7 @@
       "@EndUserText.heading": "{i18n>MRNKZ@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>MRNKZ@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>MRNKZ@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -2556,7 +2333,7 @@
       "@EndUserText.heading": "{i18n>MSCHL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>MSCHL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>MSCHL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2565,7 +2342,7 @@
       "@EndUserText.heading": "{i18n>MWSBP@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>MWSBP@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>MWSBP@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Decimal",
       "precision": 34,
@@ -2575,7 +2352,7 @@
       "@EndUserText.heading": "{i18n>NETWR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>NETWR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>NETWR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Decimal",
       "precision": 34,
@@ -2593,7 +2370,7 @@
       "@EndUserText.heading": "{i18n>PLTYP@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>PLTYP@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>PLTYP@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2602,7 +2379,7 @@
       "@EndUserText.heading": "{i18n>POPER@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>POPER@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>POPER@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2611,7 +2388,7 @@
       "@EndUserText.heading": "{i18n>RASSC@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>RASSC@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>RASSC@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 6
@@ -2620,7 +2397,7 @@
       "@EndUserText.heading": "{i18n>REGIO@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>REGIO@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>REGIO@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2629,7 +2406,7 @@
       "@EndUserText.heading": "{i18n>RELIK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>RELIK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>RELIK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2652,7 +2429,7 @@
       "@EndUserText.heading": "{i18n>RFBSK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>RFBSK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>RFBSK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2705,7 +2482,7 @@
       "@EndUserText.heading": "{i18n>SCHZW_BSEG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>SCHZW_BSEG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>SCHZW_BSEG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2714,7 +2491,7 @@
       "@EndUserText.heading": "{i18n>SEPA_MNDID@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>SEPA_MNDID@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>SEPA_MNDID@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 35
@@ -2723,7 +2500,7 @@
       "@EndUserText.heading": "{i18n>SFAKN@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>SFAKN@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>SFAKN@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -2732,7 +2509,7 @@
       "@EndUserText.heading": "{i18n>SPART@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>SPART@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>SPART@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2741,7 +2518,7 @@
       "@EndUserText.heading": "{i18n>STCEG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>STCEG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>STCEG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 20
@@ -2750,7 +2527,7 @@
       "@EndUserText.heading": "{i18n>STCEG_H@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>STCEG_H@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>STCEG_H@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2794,7 +2571,7 @@
       "@EndUserText.heading": "{i18n>STCEG_L@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>STCEG_L@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>STCEG_L@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 3
@@ -2803,7 +2580,7 @@
       "@EndUserText.heading": "{i18n>STGRD@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>STGRD@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>STGRD@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2812,7 +2589,7 @@
       "@EndUserText.heading": "{i18n>STWAE@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>STWAE@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>STWAE@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 5
@@ -2821,7 +2598,7 @@
       "@EndUserText.heading": "{i18n>TAXK1@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK1@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK1@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2830,7 +2607,7 @@
       "@EndUserText.heading": "{i18n>TAXK2@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK2@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK2@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2839,7 +2616,7 @@
       "@EndUserText.heading": "{i18n>TAXK3@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK3@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK3@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2848,7 +2625,7 @@
       "@EndUserText.heading": "{i18n>TAXK4@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK4@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK4@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2857,7 +2634,7 @@
       "@EndUserText.heading": "{i18n>TAXK5@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK5@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK5@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2866,7 +2643,7 @@
       "@EndUserText.heading": "{i18n>TAXK6@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK6@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK6@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2875,7 +2652,7 @@
       "@EndUserText.heading": "{i18n>TAXK7@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK7@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK7@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2884,7 +2661,7 @@
       "@EndUserText.heading": "{i18n>TAXK8@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK8@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK8@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2893,7 +2670,7 @@
       "@EndUserText.heading": "{i18n>TAXK9@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TAXK9@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TAXK9@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1
@@ -2902,7 +2679,7 @@
       "@EndUserText.heading": "{i18n>TIMESTAMPL@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>TIMESTAMPL@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>TIMESTAMPL@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Timestamp"
     },
@@ -2910,7 +2687,7 @@
       "@EndUserText.heading": "{i18n>UVALL_SU@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>UVALL_SU@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>UVALL_SU@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2933,7 +2710,7 @@
       "@EndUserText.heading": "{i18n>UVPRS_UK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>UVPRS_UK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>UVPRS_UK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -2956,7 +2733,7 @@
       "@EndUserText.heading": "{i18n>VALDT@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VALDT@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VALDT@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Date"
     },
@@ -2964,7 +2741,7 @@
       "@EndUserText.heading": "{i18n>VALTG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VALTG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VALTG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -2973,7 +2750,7 @@
       "@EndUserText.heading": "{i18n>VBELN_VF@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VBELN_VF@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VBELN_VF@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 10
@@ -3271,7 +3048,7 @@
       "@EndUserText.heading": "{i18n>VF_DRAFT_INDICATOR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VF_DRAFT_INDICATOR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VF_DRAFT_INDICATOR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     },
@@ -3279,7 +3056,7 @@
       "@EndUserText.heading": "{i18n>VF_STATUS@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VF_STATUS@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VF_STATUS@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -3305,7 +3082,7 @@
       "@EndUserText.heading": "{i18n>VF_TODO@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VF_TODO@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VF_TODO@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 1,
@@ -3328,7 +3105,7 @@
       "@EndUserText.heading": "{i18n>VKORG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VKORG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VKORG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 4
@@ -3337,7 +3114,7 @@
       "@EndUserText.heading": "{i18n>VSBED@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VSBED@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VSBED@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -3346,7 +3123,7 @@
       "@EndUserText.heading": "{i18n>VTWEG@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>VTWEG@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>VTWEG@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 2
@@ -3355,7 +3132,7 @@
       "@EndUserText.heading": "{i18n>WAERK@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>WAERK@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>WAERK@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 5
@@ -3364,7 +3141,7 @@
       "@EndUserText.heading": "{i18n>WWERT_D@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>WWERT_D@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>WWERT_D@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Date"
     },
@@ -3372,7 +3149,7 @@
       "@EndUserText.heading": "{i18n>XBLNR_V1@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>XBLNR_V1@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>XBLNR_V1@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.String",
       "length": 16
@@ -3381,7 +3158,7 @@
       "@EndUserText.heading": "{i18n>XEGDR@ENDUSERTEXT.HEADING}",
       "@EndUserText.label": "{i18n>XEGDR@ENDUSERTEXT.LABEL}",
       "@EndUserText.quickInfo": "{i18n>XEGDR@ENDUSERTEXT.QUICKINFO}",
-      "@ObjectModel.upperCase": true,
+
       "kind": "type",
       "type": "cds.Boolean"
     }

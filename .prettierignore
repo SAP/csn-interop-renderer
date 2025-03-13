@@ -4,5 +4,5 @@ node_modules/
 example.md
 website/.docusaurus
 website/build
-website/docs/examples
+website/docs/Renderer examples
 package-lock.json

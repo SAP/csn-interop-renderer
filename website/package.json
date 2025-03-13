@@ -22,7 +22,7 @@
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.7.0",
-    "@monaco-editor/react": "4.6.0",
+    "@monaco-editor/react": "4.7.0",
     "@sap/csn-interop-renderer": "0.1.0",
     "@tsconfig/docusaurus": "2.0.3",
     "@ui5/webcomponents-icons": "2.5.1",
@@ -32,9 +32,9 @@
     "prism-react-renderer": "2.4.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-markdown": "9.0.3",
-    "remark-gfm": "4.0.0",
-    "typescript": "5.7.3"
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "typescript": "5.8.2"
   },
   "browserslist": {
     "production": [

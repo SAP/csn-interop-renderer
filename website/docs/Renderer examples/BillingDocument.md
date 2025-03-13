@@ -4,91 +4,92 @@
 
 ### BillingDocument
 
+
 <table>
 <tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="billingdocument-billingdocument">BillingDocument</strong></td><td><a href="#type-vbeln_vf" target="_self">VBELN_VF</a></td><td><strong>Key</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: Bill. Doc.<br /><strong>@EndUserText.label</strong>: Billing Document<br /><strong>@EndUserText.quickInfo</strong>: Billing Document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td><strong id="billingdocument-billingdocument">BillingDocument</strong></td><td><a href="#type-vbeln_vf" target="_self">VBELN_VF</a></td><td><strong>Key</strong>: true<br /><strong>@EndUserText.heading</strong>: Bill. Doc.<br /><strong>@EndUserText.label</strong>: Billing Document<br /><strong>@EndUserText.quickInfo</strong>: Billing Document</td></tr>
 <tr><td><strong id="billingdocument-sddocumentcategory">SDDocumentCategory</strong></td><td><a href="#type-vbtypl" target="_self">VBTYPL</a></td><td><strong>@EndUserText.heading</strong>: Doc.Cat.<br /><strong>@EndUserText.label</strong>: SD Document Category<br /><strong>@EndUserText.quickInfo</strong>: SD Document Category<br /><strong>@ObjectModel.foreignKey.association</strong>: _SDDocumentCategory</td></tr>
-<tr><td><strong id="billingdocument-billingdocumentcategory">BillingDocumentCategory</strong></td><td><a href="#type-fktyp" target="_self">FKTYP</a></td><td><strong>@EndUserText.heading</strong>: BlCat<br /><strong>@EndUserText.label</strong>: Billing Category<br /><strong>@EndUserText.quickInfo</strong>: Billing Category<br /><strong>@ObjectModel.foreignKey.association</strong>: _BillingDocumentCategory<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-billingdocumenttype">BillingDocumentType</strong></td><td><a href="#type-fkart" target="_self">FKART</a></td><td><strong>@EndUserText.heading</strong>: BillT<br /><strong>@EndUserText.label</strong>: Billing Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _BillingDocumentType<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-createdbyuser">CreatedByUser</strong></td><td><a href="#type-ernam" target="_self">ERNAM</a></td><td><strong>@EndUserText.heading</strong>: Created By<br /><strong>@EndUserText.label</strong>: Created By<br /><strong>@EndUserText.quickInfo</strong>: Name of Person Responsible for Creating the Object<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.personalData.isPotentiallySensitive</strong>: true<br /><strong>@Semantics.user.createdBy</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-creationdate">CreationDate</strong></td><td><a href="#type-erdat" target="_self">ERDAT</a></td><td><strong>@EndUserText.heading</strong>: Created On<br /><strong>@EndUserText.label</strong>: Created On<br /><strong>@EndUserText.quickInfo</strong>: Record Creation Date<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.systemDate.createdAt</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-creationtime">CreationTime</strong></td><td><a href="#type-erzet" target="_self">ERZET</a></td><td><strong>@EndUserText.heading</strong>: Time<br /><strong>@EndUserText.label</strong>: Time<br /><strong>@EndUserText.quickInfo</strong>: Entry time<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.systemTime.createdAt</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-lastchangedate">LastChangeDate</strong></td><td><a href="#type-aedat" target="_self">AEDAT</a></td><td><strong>@EndUserText.heading</strong>: Chngd On<br /><strong>@EndUserText.label</strong>: Changed On<br /><strong>@EndUserText.quickInfo</strong>: Last Changed On<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.systemDate.lastChangedAt</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-lastchangedatetime">LastChangeDateTime</strong></td><td><a href="#type-timestampl" target="_self">TIMESTAMPL</a></td><td><strong>@EndUserText.heading</strong>: Time Stamp<br /><strong>@EndUserText.label</strong>: Time Stamp<br /><strong>@EndUserText.quickInfo</strong>: UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.systemDateTime.lastChangedAt</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-logicalsystem">LogicalSystem</strong></td><td><a href="#type-logsys" target="_self">LOGSYS</a></td><td><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: Log.System<br /><strong>@EndUserText.label</strong>: Logical System<br /><strong>@EndUserText.quickInfo</strong>: Logical System<br /><strong>@ObjectModel.foreignKey.association</strong>: _LogicalSystem<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-salesorganization">SalesOrganization</strong></td><td><a href="#type-vkorg" target="_self">VKORG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: SOrg.<br /><strong>@EndUserText.label</strong>: Sales Organization<br /><strong>@EndUserText.quickInfo</strong>: Sales Organization<br /><strong>@ObjectModel.foreignKey.association</strong>: _SalesOrganization<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-distributionchannel">DistributionChannel</strong></td><td><a href="#type-vtweg" target="_self">VTWEG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: DChl<br /><strong>@EndUserText.label</strong>: Distribution Channel<br /><strong>@EndUserText.quickInfo</strong>: Distribution Channel<br /><strong>@ObjectModel.foreignKey.association</strong>: _DistributionChannel<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-division">Division</strong></td><td><a href="#type-spart" target="_self">SPART</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Dv<br /><strong>@EndUserText.label</strong>: Division<br /><strong>@EndUserText.quickInfo</strong>: Division<br /><strong>@ObjectModel.foreignKey.association</strong>: _Division<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-billingdocumentdate">BillingDocumentDate</strong></td><td><a href="#type-fkdat" target="_self">FKDAT</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Billing Date<br /><strong>@EndUserText.label</strong>: Billing Date<br /><strong>@EndUserText.quickInfo</strong>: Billing Date<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-billingdocumentiscancelled">BillingDocumentIsCancelled</strong></td><td><a href="#type-fksto" target="_self">FKSTO</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Can<br /><strong>@EndUserText.label</strong>: Canceled<br /><strong>@EndUserText.quickInfo</strong>: Billing document is canceled<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-cancelledbillingdocument">CancelledBillingDocument</strong></td><td><a href="#type-sfakn" target="_self">SFAKN</a></td><td><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+<tr><td><strong id="billingdocument-billingdocumentcategory">BillingDocumentCategory</strong></td><td><a href="#type-fktyp" target="_self">FKTYP</a></td><td><strong>@EndUserText.heading</strong>: BlCat<br /><strong>@EndUserText.label</strong>: Billing Category<br /><strong>@EndUserText.quickInfo</strong>: Billing Category<br /><strong>@ObjectModel.foreignKey.association</strong>: _BillingDocumentCategory</td></tr>
+<tr><td><strong id="billingdocument-billingdocumenttype">BillingDocumentType</strong></td><td><a href="#type-fkart" target="_self">FKART</a></td><td><strong>@EndUserText.heading</strong>: BillT<br /><strong>@EndUserText.label</strong>: Billing Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _BillingDocumentType</td></tr>
+<tr><td><strong id="billingdocument-createdbyuser">CreatedByUser</strong></td><td><a href="#type-ernam" target="_self">ERNAM</a></td><td><strong>@EndUserText.heading</strong>: Created By<br /><strong>@EndUserText.label</strong>: Created By<br /><strong>@EndUserText.quickInfo</strong>: Name of Person Responsible for Creating the Object</td></tr>
+<tr><td><strong id="billingdocument-creationdate">CreationDate</strong></td><td><a href="#type-erdat" target="_self">ERDAT</a></td><td><strong>@EndUserText.heading</strong>: Created On<br /><strong>@EndUserText.label</strong>: Created On<br /><strong>@EndUserText.quickInfo</strong>: Record Creation Date</td></tr>
+<tr><td><strong id="billingdocument-creationtime">CreationTime</strong></td><td><a href="#type-erzet" target="_self">ERZET</a></td><td><strong>@EndUserText.heading</strong>: Time<br /><strong>@EndUserText.label</strong>: Time<br /><strong>@EndUserText.quickInfo</strong>: Entry time</td></tr>
+<tr><td><strong id="billingdocument-lastchangedate">LastChangeDate</strong></td><td><a href="#type-aedat" target="_self">AEDAT</a></td><td><strong>@EndUserText.heading</strong>: Chngd On<br /><strong>@EndUserText.label</strong>: Changed On<br /><strong>@EndUserText.quickInfo</strong>: Last Changed On</td></tr>
+<tr><td><strong id="billingdocument-lastchangedatetime">LastChangeDateTime</strong></td><td><a href="#type-timestampl" target="_self">TIMESTAMPL</a></td><td><strong>@EndUserText.heading</strong>: Time Stamp<br /><strong>@EndUserText.label</strong>: Time Stamp<br /><strong>@EndUserText.quickInfo</strong>: UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)</td></tr>
+<tr><td><strong id="billingdocument-logicalsystem">LogicalSystem</strong></td><td><a href="#type-logsys" target="_self">LOGSYS</a></td><td><strong>@EndUserText.heading</strong>: Log.System<br /><strong>@EndUserText.label</strong>: Logical System<br /><strong>@EndUserText.quickInfo</strong>: Logical System<br /><strong>@ObjectModel.foreignKey.association</strong>: _LogicalSystem</td></tr>
+<tr><td><strong id="billingdocument-salesorganization">SalesOrganization</strong></td><td><a href="#type-vkorg" target="_self">VKORG</a></td><td><strong>@EndUserText.heading</strong>: SOrg.<br /><strong>@EndUserText.label</strong>: Sales Organization<br /><strong>@EndUserText.quickInfo</strong>: Sales Organization<br /><strong>@ObjectModel.foreignKey.association</strong>: _SalesOrganization</td></tr>
+<tr><td><strong id="billingdocument-distributionchannel">DistributionChannel</strong></td><td><a href="#type-vtweg" target="_self">VTWEG</a></td><td><strong>@EndUserText.heading</strong>: DChl<br /><strong>@EndUserText.label</strong>: Distribution Channel<br /><strong>@EndUserText.quickInfo</strong>: Distribution Channel<br /><strong>@ObjectModel.foreignKey.association</strong>: _DistributionChannel</td></tr>
+<tr><td><strong id="billingdocument-division">Division</strong></td><td><a href="#type-spart" target="_self">SPART</a></td><td><strong>@EndUserText.heading</strong>: Dv<br /><strong>@EndUserText.label</strong>: Division<br /><strong>@EndUserText.quickInfo</strong>: Division<br /><strong>@ObjectModel.foreignKey.association</strong>: _Division</td></tr>
+<tr><td><strong id="billingdocument-billingdocumentdate">BillingDocumentDate</strong></td><td><a href="#type-fkdat" target="_self">FKDAT</a></td><td><strong>@EndUserText.heading</strong>: Billing Date<br /><strong>@EndUserText.label</strong>: Billing Date<br /><strong>@EndUserText.quickInfo</strong>: Billing Date</td></tr>
+<tr><td><strong id="billingdocument-billingdocumentiscancelled">BillingDocumentIsCancelled</strong></td><td><a href="#type-fksto" target="_self">FKSTO</a></td><td><strong>@EndUserText.heading</strong>: Can<br /><strong>@EndUserText.label</strong>: Canceled<br /><strong>@EndUserText.quickInfo</strong>: Billing document is canceled</td></tr>
+<tr><td><strong id="billingdocument-cancelledbillingdocument">CancelledBillingDocument</strong></td><td><a href="#type-sfakn" target="_self">SFAKN</a></td><td><strong>@Consumption.valueHelpDefinition</strong>: <code>[
   &lbrace;
     "entity": &lbrace;
       "name": "I_BillingDocumentStdVH",
       "element": "BillingDocument"
     &rbrace;
   &rbrace;
-]</code><br /><strong>@EndUserText.heading</strong>: CancBillDc<br /><strong>@EndUserText.label</strong>: Canceled Bill. Doc.<br /><strong>@EndUserText.quickInfo</strong>: Number of canceled billing document<br /><strong>@ObjectModel.foreignKey.association</strong>: _CancelledBillingDocument<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-billingdoccombinationcriteria">BillingDocCombinationCriteria</strong></td><td><a href="#type-dzukri" target="_self">DZUKRI</a></td><td><strong>@EndUserText.heading</strong>: Combination Criteria in the Billing Doc.<br /><strong>@EndUserText.label</strong>: Combination Criteria<br /><strong>@EndUserText.quickInfo</strong>: Combination criteria in the billing document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-manualinvoicemaintisrelevant">ManualInvoiceMaintIsRelevant</strong></td><td><a href="#type-mrnkz" target="_self">MRNKZ</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: InM<br /><strong>@EndUserText.label</strong>: Man. Invoice Maint.<br /><strong>@EndUserText.quickInfo</strong>: Manual Invoice Maintenance<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-nmbrofpages">NmbrOfPages</strong></td><td><a href="#type-j_1anopg" target="_self">J_1ANOPG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Pages<br /><strong>@EndUserText.label</strong>: Number of Pages<br /><strong>@EndUserText.quickInfo</strong>: Number of pages of invoice<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-isintrastatreportingrelevant">IsIntrastatReportingRelevant</strong></td><td><a href="#type-intra_rel" target="_self">INTRA_REL</a></td><td><strong>@EndUserText.heading</strong>: relevant for Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Relevance<br /><strong>@EndUserText.quickInfo</strong>: Relevant for Intrastat Reporting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-isintrastatreportingexcluded">IsIntrastatReportingExcluded</strong></td><td><a href="#type-intra_excl" target="_self">INTRA_EXCL</a></td><td><strong>@EndUserText.heading</strong>: exclude from Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Exclusion<br /><strong>@EndUserText.quickInfo</strong>: Exclude from Intrastat Reporting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-billingdocumentistemporary">BillingDocumentIsTemporary</strong></td><td><a href="#type-vf_draft_indicator" target="_self">VF_DRAFT_INDICATOR</a></td><td><strong>@EndUserText.heading</strong>: Is Draft<br /><strong>@EndUserText.label</strong>: Draft Indicator<br /><strong>@EndUserText.quickInfo</strong>: IsDraft Indicator<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-totalnetamount">TotalNetAmount</strong></td><td><a href="#type-netwr" target="_self">NETWR</a></td><td><strong>@EndUserText.heading</strong>: Net Value<br /><strong>@EndUserText.label</strong>: Net Value<br /><strong>@EndUserText.quickInfo</strong>: Net Value in Document Currency<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.amount.currencyCode</strong>: TransactionCurrency</td></tr>
-<tr><td><strong id="billingdocument-transactioncurrency">TransactionCurrency</strong></td><td><a href="#type-waerk" target="_self">WAERK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Crcy<br /><strong>@EndUserText.label</strong>: Document Currency<br /><strong>@EndUserText.quickInfo</strong>: SD Document Currency<br /><strong>@ObjectModel.foreignKey.association</strong>: _TransactionCurrency<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.currencyCode</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-statisticscurrency">StatisticsCurrency</strong></td><td><a href="#type-stwae" target="_self">STWAE</a></td><td><strong>@EndUserText.heading</strong>: Curr.<br /><strong>@EndUserText.label</strong>: Statistics Currency<br /><strong>@EndUserText.quickInfo</strong>: Statistics Currency<br /><strong>@ObjectModel.foreignKey.association</strong>: _StatisticsCurrency<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.currencyCode</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-totaltaxamount">TotalTaxAmount</strong></td><td><a href="#type-mwsbp" target="_self">MWSBP</a></td><td><strong>@EndUserText.heading</strong>: Tax Amount<br /><strong>@EndUserText.label</strong>: Tax Amount<br /><strong>@EndUserText.quickInfo</strong>: Tax Amount in Document Currency<br /><strong>@ObjectModel.upperCase</strong>: true<br /><strong>@Semantics.amount.currencyCode</strong>: TransactionCurrency</td></tr>
-<tr><td><strong id="billingdocument-customerpricegroup">CustomerPriceGroup</strong></td><td><a href="#type-konda" target="_self">KONDA</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: CPG<br /><strong>@EndUserText.label</strong>: Customer Price Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Price Group<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerPriceGroup<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-pricelisttype">PriceListType</strong></td><td><a href="#type-pltyp" target="_self">PLTYP</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: PL<br /><strong>@EndUserText.label</strong>: Price List Type<br /><strong>@EndUserText.quickInfo</strong>: Price List Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _PriceListType<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-taxdeparturecountry">TaxDepartureCountry</strong></td><td><a href="#type-landtx" target="_self">LANDTX</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: TDC<br /><strong>@EndUserText.label</strong>: Tax Departure C/R<br /><strong>@EndUserText.quickInfo</strong>: Tax Departure Country/Region<br /><strong>@ObjectModel.foreignKey.association</strong>: _TaxDepartureCountry<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-vatregistration">VATRegistration</strong></td><td><a href="#type-stceg" target="_self">STCEG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: VAT Registration No.<br /><strong>@EndUserText.label</strong>: VAT Registration No.<br /><strong>@EndUserText.quickInfo</strong>: VAT Registration Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-vatregistrationorigin">VATRegistrationOrigin</strong></td><td><a href="#type-stceg_h" target="_self">STCEG_H</a></td><td><strong>@EndUserText.heading</strong>: OSI<br /><strong>@EndUserText.label</strong>: Origin Sales Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Origin of Sales Tax Number<br /><strong>@ObjectModel.foreignKey.association</strong>: _VATRegistrationOrigin<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-vatregistrationcountry">VATRegistrationCountry</strong></td><td><a href="#type-stceg_l" target="_self">STCEG_L</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: STC<br /><strong>@EndUserText.label</strong>: Ctry/Rgn Sls Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Country/Region of Sales Tax ID Number<br /><strong>@ObjectModel.foreignKey.association</strong>: _VATRegistrationCountry<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-hierarchytypepricing">HierarchyTypePricing</strong></td><td><a href="#type-hityp_pr" target="_self">HITYP_PR</a></td><td><strong>@EndUserText.heading</strong>: HPr<br /><strong>@EndUserText.label</strong>: HierarchyTypePricing<br /><strong>@EndUserText.quickInfo</strong>: Hierarchy type for pricing<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification1">CustomerTaxClassification1</strong></td><td><a href="#type-taxk1" target="_self">TAXK1</a></td><td><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.1 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 1 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification2">CustomerTaxClassification2</strong></td><td><a href="#type-taxk2" target="_self">TAXK2</a></td><td><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.2 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 2 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification3">CustomerTaxClassification3</strong></td><td><a href="#type-taxk3" target="_self">TAXK3</a></td><td><strong>@EndUserText.heading</strong>: Tx3Cs<br /><strong>@EndUserText.label</strong>: Tax Class.3 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 3 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification4">CustomerTaxClassification4</strong></td><td><a href="#type-taxk4" target="_self">TAXK4</a></td><td><strong>@EndUserText.heading</strong>: Tx4Cs<br /><strong>@EndUserText.label</strong>: Tax Class.4 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 4 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification5">CustomerTaxClassification5</strong></td><td><a href="#type-taxk5" target="_self">TAXK5</a></td><td><strong>@EndUserText.heading</strong>: Tx5Cs<br /><strong>@EndUserText.label</strong>: Tax Class.5 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 5 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification6">CustomerTaxClassification6</strong></td><td><a href="#type-taxk6" target="_self">TAXK6</a></td><td><strong>@EndUserText.heading</strong>: Tx6Cs<br /><strong>@EndUserText.label</strong>: Tax Class.6 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 6 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification7">CustomerTaxClassification7</strong></td><td><a href="#type-taxk7" target="_self">TAXK7</a></td><td><strong>@EndUserText.heading</strong>: Tx7Cs<br /><strong>@EndUserText.label</strong>: Tax Class.7 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 7 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification8">CustomerTaxClassification8</strong></td><td><a href="#type-taxk8" target="_self">TAXK8</a></td><td><strong>@EndUserText.heading</strong>: Tx8Cs<br /><strong>@EndUserText.label</strong>: Tax Class.8 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 8 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customertaxclassification9">CustomerTaxClassification9</strong></td><td><a href="#type-taxk9" target="_self">TAXK9</a></td><td><strong>@EndUserText.heading</strong>: Tx9Cs<br /><strong>@EndUserText.label</strong>: Tax Class.9 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 9 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-iseutriangulardeal">IsEUTriangularDeal</strong></td><td><a href="#type-xegdr" target="_self">XEGDR</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.ISEUTRIANGULARDEAL@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: EU Triangular Deal<br /><strong>@EndUserText.quickInfo</strong>: Indicator: Triangular Deal Within the EU<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-sdpricingprocedure">SDPricingProcedure</strong></td><td><a href="#type-kalsmasd" target="_self">KALSMASD</a></td><td><strong>@EndUserText.heading</strong>: PriPr.<br /><strong>@EndUserText.label</strong>: Pricing Procedure<br /><strong>@EndUserText.quickInfo</strong>: Pricing Procedure in Pricing<br /><strong>@ObjectModel.foreignKey.association</strong>: _SDPricingProcedure<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-shippingcondition">ShippingCondition</strong></td><td><a href="#type-vsbed" target="_self">VSBED</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Shipping Conditions<br /><strong>@EndUserText.label</strong>: Shipping Conditions<br /><strong>@EndUserText.quickInfo</strong>: Shipping Conditions<br /><strong>@ObjectModel.foreignKey.association</strong>: _ShippingCondition<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-plantsupplier">PlantSupplier</strong></td><td><a href="#type-lifnr_wk" target="_self">LIFNR_WK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: Supplier Number Plant<br /><strong>@EndUserText.label</strong>: Sppl. No. Plnt<br /><strong>@EndUserText.quickInfo</strong>: Supplier Number of Plant<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-incotermsversion">IncotermsVersion</strong></td><td><a href="#type-incov" target="_self">INCOV</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: IncoV<br /><strong>@EndUserText.label</strong>: Incoterms Version<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Version<br /><strong>@ObjectModel.foreignKey.association</strong>: _IncotermsVersion<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-incotermsclassification">IncotermsClassification</strong></td><td><a href="#type-inco1" target="_self">INCO1</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: IncoT<br /><strong>@EndUserText.label</strong>: Incoterms<br /><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 1)<br /><strong>@ObjectModel.foreignKey.association</strong>: _IncotermsClassification<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-incotermstransferlocation">IncotermsTransferLocation</strong></td><td><a href="#type-inco2" target="_self">INCO2</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Inco. 2<br /><strong>@EndUserText.label</strong>: Incoterms (Part 2)<br /><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 2)</td></tr>
-<tr><td><strong id="billingdocument-incotermslocation1">IncotermsLocation1</strong></td><td><a href="#type-inco2_l" target="_self">INCO2_L</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION1@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Incoterms Location 1<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Location 1</td></tr>
-<tr><td><strong id="billingdocument-incotermslocation2">IncotermsLocation2</strong></td><td><a href="#type-inco3_l" target="_self">INCO3_L</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION2@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Incoterms Location 2<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Location 2</td></tr>
-<tr><td><strong id="billingdocument-payerparty">PayerParty</strong></td><td><a href="#type-kunrg" target="_self">KUNRG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+]</code><br /><strong>@EndUserText.heading</strong>: CancBillDc<br /><strong>@EndUserText.label</strong>: Canceled Bill. Doc.<br /><strong>@EndUserText.quickInfo</strong>: Number of canceled billing document<br /><strong>@ObjectModel.foreignKey.association</strong>: _CancelledBillingDocument</td></tr>
+<tr><td><strong id="billingdocument-billingdoccombinationcriteria">BillingDocCombinationCriteria</strong></td><td><a href="#type-dzukri" target="_self">DZUKRI</a></td><td><strong>@EndUserText.heading</strong>: Combination Criteria in the Billing Doc.<br /><strong>@EndUserText.label</strong>: Combination Criteria<br /><strong>@EndUserText.quickInfo</strong>: Combination criteria in the billing document</td></tr>
+<tr><td><strong id="billingdocument-manualinvoicemaintisrelevant">ManualInvoiceMaintIsRelevant</strong></td><td><a href="#type-mrnkz" target="_self">MRNKZ</a></td><td><strong>@EndUserText.heading</strong>: InM<br /><strong>@EndUserText.label</strong>: Man. Invoice Maint.<br /><strong>@EndUserText.quickInfo</strong>: Manual Invoice Maintenance</td></tr>
+<tr><td><strong id="billingdocument-nmbrofpages">NmbrOfPages</strong></td><td><a href="#type-j_1anopg" target="_self">J_1ANOPG</a></td><td><strong>@EndUserText.heading</strong>: Pages<br /><strong>@EndUserText.label</strong>: Number of Pages<br /><strong>@EndUserText.quickInfo</strong>: Number of pages of invoice</td></tr>
+<tr><td><strong id="billingdocument-isintrastatreportingrelevant">IsIntrastatReportingRelevant</strong></td><td><a href="#type-intra_rel" target="_self">INTRA_REL</a></td><td><strong>@EndUserText.heading</strong>: relevant for Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Relevance<br /><strong>@EndUserText.quickInfo</strong>: Relevant for Intrastat Reporting</td></tr>
+<tr><td><strong id="billingdocument-isintrastatreportingexcluded">IsIntrastatReportingExcluded</strong></td><td><a href="#type-intra_excl" target="_self">INTRA_EXCL</a></td><td><strong>@EndUserText.heading</strong>: exclude from Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Exclusion<br /><strong>@EndUserText.quickInfo</strong>: Exclude from Intrastat Reporting</td></tr>
+<tr><td><strong id="billingdocument-billingdocumentistemporary">BillingDocumentIsTemporary</strong></td><td><a href="#type-vf_draft_indicator" target="_self">VF_DRAFT_INDICATOR</a></td><td><strong>@EndUserText.heading</strong>: Is Draft<br /><strong>@EndUserText.label</strong>: Draft Indicator<br /><strong>@EndUserText.quickInfo</strong>: IsDraft Indicator</td></tr>
+<tr><td><strong id="billingdocument-totalnetamount">TotalNetAmount</strong></td><td><a href="#type-netwr" target="_self">NETWR</a></td><td><strong>@EndUserText.heading</strong>: Net Value<br /><strong>@EndUserText.label</strong>: Net Value<br /><strong>@EndUserText.quickInfo</strong>: Net Value in Document Currency<br /><strong>@Semantics.amount.currencyCode</strong>: TransactionCurrency</td></tr>
+<tr><td><strong id="billingdocument-transactioncurrency">TransactionCurrency</strong></td><td><a href="#type-waerk" target="_self">WAERK</a></td><td><strong>@EndUserText.heading</strong>: Crcy<br /><strong>@EndUserText.label</strong>: Document Currency<br /><strong>@EndUserText.quickInfo</strong>: SD Document Currency<br /><strong>@ObjectModel.foreignKey.association</strong>: _TransactionCurrency<br /><strong>@Semantics.currencyCode</strong>: true</td></tr>
+<tr><td><strong id="billingdocument-statisticscurrency">StatisticsCurrency</strong></td><td><a href="#type-stwae" target="_self">STWAE</a></td><td><strong>@EndUserText.heading</strong>: Curr.<br /><strong>@EndUserText.label</strong>: Statistics Currency<br /><strong>@EndUserText.quickInfo</strong>: Statistics Currency<br /><strong>@ObjectModel.foreignKey.association</strong>: _StatisticsCurrency<br /><strong>@Semantics.currencyCode</strong>: true</td></tr>
+<tr><td><strong id="billingdocument-totaltaxamount">TotalTaxAmount</strong></td><td><a href="#type-mwsbp" target="_self">MWSBP</a></td><td><strong>@EndUserText.heading</strong>: Tax Amount<br /><strong>@EndUserText.label</strong>: Tax Amount<br /><strong>@EndUserText.quickInfo</strong>: Tax Amount in Document Currency<br /><strong>@Semantics.amount.currencyCode</strong>: TransactionCurrency</td></tr>
+<tr><td><strong id="billingdocument-customerpricegroup">CustomerPriceGroup</strong></td><td><a href="#type-konda" target="_self">KONDA</a></td><td><strong>@EndUserText.heading</strong>: CPG<br /><strong>@EndUserText.label</strong>: Customer Price Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Price Group<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerPriceGroup</td></tr>
+<tr><td><strong id="billingdocument-pricelisttype">PriceListType</strong></td><td><a href="#type-pltyp" target="_self">PLTYP</a></td><td><strong>@EndUserText.heading</strong>: PL<br /><strong>@EndUserText.label</strong>: Price List Type<br /><strong>@EndUserText.quickInfo</strong>: Price List Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _PriceListType</td></tr>
+<tr><td><strong id="billingdocument-taxdeparturecountry">TaxDepartureCountry</strong></td><td><a href="#type-landtx" target="_self">LANDTX</a></td><td><strong>@EndUserText.heading</strong>: TDC<br /><strong>@EndUserText.label</strong>: Tax Departure C/R<br /><strong>@EndUserText.quickInfo</strong>: Tax Departure Country/Region<br /><strong>@ObjectModel.foreignKey.association</strong>: _TaxDepartureCountry</td></tr>
+<tr><td><strong id="billingdocument-vatregistration">VATRegistration</strong></td><td><a href="#type-stceg" target="_self">STCEG</a></td><td><strong>@EndUserText.heading</strong>: VAT Registration No.<br /><strong>@EndUserText.label</strong>: VAT Registration No.<br /><strong>@EndUserText.quickInfo</strong>: VAT Registration Number</td></tr>
+<tr><td><strong id="billingdocument-vatregistrationorigin">VATRegistrationOrigin</strong></td><td><a href="#type-stceg_h" target="_self">STCEG_H</a></td><td><strong>@EndUserText.heading</strong>: OSI<br /><strong>@EndUserText.label</strong>: Origin Sales Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Origin of Sales Tax Number<br /><strong>@ObjectModel.foreignKey.association</strong>: _VATRegistrationOrigin</td></tr>
+<tr><td><strong id="billingdocument-vatregistrationcountry">VATRegistrationCountry</strong></td><td><a href="#type-stceg_l" target="_self">STCEG_L</a></td><td><strong>@EndUserText.heading</strong>: STC<br /><strong>@EndUserText.label</strong>: Ctry/Rgn Sls Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Country/Region of Sales Tax ID Number<br /><strong>@ObjectModel.foreignKey.association</strong>: _VATRegistrationCountry</td></tr>
+<tr><td><strong id="billingdocument-hierarchytypepricing">HierarchyTypePricing</strong></td><td><a href="#type-hityp_pr" target="_self">HITYP_PR</a></td><td><strong>@EndUserText.heading</strong>: HPr<br /><strong>@EndUserText.label</strong>: HierarchyTypePricing<br /><strong>@EndUserText.quickInfo</strong>: Hierarchy type for pricing</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification1">CustomerTaxClassification1</strong></td><td><a href="#type-taxk1" target="_self">TAXK1</a></td><td><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.1 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 1 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification2">CustomerTaxClassification2</strong></td><td><a href="#type-taxk2" target="_self">TAXK2</a></td><td><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.2 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 2 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification3">CustomerTaxClassification3</strong></td><td><a href="#type-taxk3" target="_self">TAXK3</a></td><td><strong>@EndUserText.heading</strong>: Tx3Cs<br /><strong>@EndUserText.label</strong>: Tax Class.3 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 3 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification4">CustomerTaxClassification4</strong></td><td><a href="#type-taxk4" target="_self">TAXK4</a></td><td><strong>@EndUserText.heading</strong>: Tx4Cs<br /><strong>@EndUserText.label</strong>: Tax Class.4 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 4 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification5">CustomerTaxClassification5</strong></td><td><a href="#type-taxk5" target="_self">TAXK5</a></td><td><strong>@EndUserText.heading</strong>: Tx5Cs<br /><strong>@EndUserText.label</strong>: Tax Class.5 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 5 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification6">CustomerTaxClassification6</strong></td><td><a href="#type-taxk6" target="_self">TAXK6</a></td><td><strong>@EndUserText.heading</strong>: Tx6Cs<br /><strong>@EndUserText.label</strong>: Tax Class.6 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 6 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification7">CustomerTaxClassification7</strong></td><td><a href="#type-taxk7" target="_self">TAXK7</a></td><td><strong>@EndUserText.heading</strong>: Tx7Cs<br /><strong>@EndUserText.label</strong>: Tax Class.7 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 7 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification8">CustomerTaxClassification8</strong></td><td><a href="#type-taxk8" target="_self">TAXK8</a></td><td><strong>@EndUserText.heading</strong>: Tx8Cs<br /><strong>@EndUserText.label</strong>: Tax Class.8 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 8 for Customer</td></tr>
+<tr><td><strong id="billingdocument-customertaxclassification9">CustomerTaxClassification9</strong></td><td><a href="#type-taxk9" target="_self">TAXK9</a></td><td><strong>@EndUserText.heading</strong>: Tx9Cs<br /><strong>@EndUserText.label</strong>: Tax Class.9 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 9 for Customer</td></tr>
+<tr><td><strong id="billingdocument-iseutriangulardeal">IsEUTriangularDeal</strong></td><td><a href="#type-xegdr" target="_self">XEGDR</a></td><td><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.ISEUTRIANGULARDEAL@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: EU Triangular Deal<br /><strong>@EndUserText.quickInfo</strong>: Indicator: Triangular Deal Within the EU</td></tr>
+<tr><td><strong id="billingdocument-sdpricingprocedure">SDPricingProcedure</strong></td><td><a href="#type-kalsmasd" target="_self">KALSMASD</a></td><td><strong>@EndUserText.heading</strong>: PriPr.<br /><strong>@EndUserText.label</strong>: Pricing Procedure<br /><strong>@EndUserText.quickInfo</strong>: Pricing Procedure in Pricing<br /><strong>@ObjectModel.foreignKey.association</strong>: _SDPricingProcedure</td></tr>
+<tr><td><strong id="billingdocument-shippingcondition">ShippingCondition</strong></td><td><a href="#type-vsbed" target="_self">VSBED</a></td><td><strong>@EndUserText.heading</strong>: Shipping Conditions<br /><strong>@EndUserText.label</strong>: Shipping Conditions<br /><strong>@EndUserText.quickInfo</strong>: Shipping Conditions<br /><strong>@ObjectModel.foreignKey.association</strong>: _ShippingCondition</td></tr>
+<tr><td><strong id="billingdocument-plantsupplier">PlantSupplier</strong></td><td><a href="#type-lifnr_wk" target="_self">LIFNR_WK</a></td><td><strong>@EndUserText.heading</strong>: Supplier Number Plant<br /><strong>@EndUserText.label</strong>: Sppl. No. Plnt<br /><strong>@EndUserText.quickInfo</strong>: Supplier Number of Plant</td></tr>
+<tr><td><strong id="billingdocument-incotermsversion">IncotermsVersion</strong></td><td><a href="#type-incov" target="_self">INCOV</a></td><td><strong>@EndUserText.heading</strong>: IncoV<br /><strong>@EndUserText.label</strong>: Incoterms Version<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Version<br /><strong>@ObjectModel.foreignKey.association</strong>: _IncotermsVersion</td></tr>
+<tr><td><strong id="billingdocument-incotermsclassification">IncotermsClassification</strong></td><td><a href="#type-inco1" target="_self">INCO1</a></td><td><strong>@EndUserText.heading</strong>: IncoT<br /><strong>@EndUserText.label</strong>: Incoterms<br /><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 1)<br /><strong>@ObjectModel.foreignKey.association</strong>: _IncotermsClassification</td></tr>
+<tr><td><strong id="billingdocument-incotermstransferlocation">IncotermsTransferLocation</strong></td><td><a href="#type-inco2" target="_self">INCO2</a></td><td><strong>@EndUserText.heading</strong>: Inco. 2<br /><strong>@EndUserText.label</strong>: Incoterms (Part 2)<br /><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 2)</td></tr>
+<tr><td><strong id="billingdocument-incotermslocation1">IncotermsLocation1</strong></td><td><a href="#type-inco2_l" target="_self">INCO2_L</a></td><td><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION1@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Incoterms Location 1<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Location 1</td></tr>
+<tr><td><strong id="billingdocument-incotermslocation2">IncotermsLocation2</strong></td><td><a href="#type-inco3_l" target="_self">INCO3_L</a></td><td><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.INCOTERMSLOCATION2@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Incoterms Location 2<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Location 2</td></tr>
+<tr><td><strong id="billingdocument-payerparty">PayerParty</strong></td><td><a href="#type-kunrg" target="_self">KUNRG</a></td><td><strong>@Consumption.valueHelpDefinition</strong>: <code>[
   &lbrace;
     "entity": &lbrace;
       "name": "I_Customer_VH",
       "element": "Customer"
     &rbrace;
   &rbrace;
-]</code><br /><strong>@EndUserText.heading</strong>: Payer<br /><strong>@EndUserText.label</strong>: Payer<br /><strong>@EndUserText.quickInfo</strong>: Payer<br /><strong>@ObjectModel.foreignKey.association</strong>: _PayerParty<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-contractaccount">ContractAccount</strong></td><td><a href="#type-corr_vkont_kk" target="_self">CORR_VKONT_KK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: Cont.Account<br /><strong>@EndUserText.label</strong>: Contract Account<br /><strong>@EndUserText.quickInfo</strong>: Contract Account Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customerpaymentterms">CustomerPaymentTerms</strong></td><td><a href="#type-dzterm" target="_self">DZTERM</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Terms of Payment<br /><strong>@EndUserText.label</strong>: Terms of Payment<br /><strong>@EndUserText.quickInfo</strong>: Key for Terms of Payment<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerPaymentTerms<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-paymentmethod">PaymentMethod</strong></td><td><a href="#type-schzw_bseg" target="_self">SCHZW_BSEG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: PM<br /><strong>@EndUserText.label</strong>: Payment Method<br /><strong>@EndUserText.quickInfo</strong>: Payment Method<br /><strong>@ObjectModel.foreignKey.association</strong>: _PaymentMethod<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-paymentreference">PaymentReference</strong></td><td><a href="#type-kidno" target="_self">KIDNO</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Payment Reference<br /><strong>@EndUserText.label</strong>: Payment Reference<br /><strong>@EndUserText.quickInfo</strong>: Payment Reference<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-fixedvaluedate">FixedValueDate</strong></td><td><a href="#type-valdt" target="_self">VALDT</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: FixValDate<br /><strong>@EndUserText.label</strong>: Fixed Value Date<br /><strong>@EndUserText.quickInfo</strong>: Fixed Value Date<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-additionalvaluedays">AdditionalValueDays</strong></td><td><a href="#type-valtg" target="_self">VALTG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: AValD<br /><strong>@EndUserText.label</strong>: Addit. Value Days<br /><strong>@EndUserText.quickInfo</strong>: Additional Value Days<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-sepamandate">SEPAMandate</strong></td><td><a href="#type-sepa_mndid" target="_self">SEPA_MNDID</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Mandate Reference<br /><strong>@EndUserText.label</strong>: Mandate Reference<br /><strong>@EndUserText.quickInfo</strong>: Unique Reference to Mandate for each Payee<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-companycode">CompanyCode</strong></td><td><a href="#type-bukrs" target="_self">BUKRS</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+]</code><br /><strong>@EndUserText.heading</strong>: Payer<br /><strong>@EndUserText.label</strong>: Payer<br /><strong>@EndUserText.quickInfo</strong>: Payer<br /><strong>@ObjectModel.foreignKey.association</strong>: _PayerParty</td></tr>
+<tr><td><strong id="billingdocument-contractaccount">ContractAccount</strong></td><td><a href="#type-corr_vkont_kk" target="_self">CORR_VKONT_KK</a></td><td><strong>@EndUserText.heading</strong>: Cont.Account<br /><strong>@EndUserText.label</strong>: Contract Account<br /><strong>@EndUserText.quickInfo</strong>: Contract Account Number</td></tr>
+<tr><td><strong id="billingdocument-customerpaymentterms">CustomerPaymentTerms</strong></td><td><a href="#type-dzterm" target="_self">DZTERM</a></td><td><strong>@EndUserText.heading</strong>: Terms of Payment<br /><strong>@EndUserText.label</strong>: Terms of Payment<br /><strong>@EndUserText.quickInfo</strong>: Key for Terms of Payment<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerPaymentTerms</td></tr>
+<tr><td><strong id="billingdocument-paymentmethod">PaymentMethod</strong></td><td><a href="#type-schzw_bseg" target="_self">SCHZW_BSEG</a></td><td><strong>@EndUserText.heading</strong>: PM<br /><strong>@EndUserText.label</strong>: Payment Method<br /><strong>@EndUserText.quickInfo</strong>: Payment Method<br /><strong>@ObjectModel.foreignKey.association</strong>: _PaymentMethod</td></tr>
+<tr><td><strong id="billingdocument-paymentreference">PaymentReference</strong></td><td><a href="#type-kidno" target="_self">KIDNO</a></td><td><strong>@EndUserText.heading</strong>: Payment Reference<br /><strong>@EndUserText.label</strong>: Payment Reference<br /><strong>@EndUserText.quickInfo</strong>: Payment Reference</td></tr>
+<tr><td><strong id="billingdocument-fixedvaluedate">FixedValueDate</strong></td><td><a href="#type-valdt" target="_self">VALDT</a></td><td><strong>@EndUserText.heading</strong>: FixValDate<br /><strong>@EndUserText.label</strong>: Fixed Value Date<br /><strong>@EndUserText.quickInfo</strong>: Fixed Value Date</td></tr>
+<tr><td><strong id="billingdocument-additionalvaluedays">AdditionalValueDays</strong></td><td><a href="#type-valtg" target="_self">VALTG</a></td><td><strong>@EndUserText.heading</strong>: AValD<br /><strong>@EndUserText.label</strong>: Addit. Value Days<br /><strong>@EndUserText.quickInfo</strong>: Additional Value Days</td></tr>
+<tr><td><strong id="billingdocument-sepamandate">SEPAMandate</strong></td><td><a href="#type-sepa_mndid" target="_self">SEPA_MNDID</a></td><td><strong>@EndUserText.heading</strong>: Mandate Reference<br /><strong>@EndUserText.label</strong>: Mandate Reference<br /><strong>@EndUserText.quickInfo</strong>: Unique Reference to Mandate for each Payee</td></tr>
+<tr><td><strong id="billingdocument-companycode">CompanyCode</strong></td><td><a href="#type-bukrs" target="_self">BUKRS</a></td><td><strong>@Consumption.valueHelpDefinition</strong>: <code>[
   &lbrace;
     "entity": &lbrace;
       "name": "I_CompanyCodeStdVH",
       "element": "CompanyCode"
     &rbrace;
   &rbrace;
-]</code><br /><strong>@EndUserText.heading</strong>: CoCd<br /><strong>@EndUserText.label</strong>: Company Code<br /><strong>@EndUserText.quickInfo</strong>: Company Code<br /><strong>@ObjectModel.foreignKey.association</strong>: _CompanyCode<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-fiscalyear">FiscalYear</strong></td><td><a href="#type-gjahr" target="_self">GJAHR</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: GJAHR<br /><strong>@EndUserText.heading</strong>: Year<br /><strong>@EndUserText.label</strong>: Fiscal Year<br /><strong>@EndUserText.quickInfo</strong>: Fiscal Year<br /><strong>@ObjectModel.foreignKey.association</strong>: _FiscalYear<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-accountingdocument">AccountingDocument</strong></td><td><a href="#type-belnr_d" target="_self">BELNR_D</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+]</code><br /><strong>@EndUserText.heading</strong>: CoCd<br /><strong>@EndUserText.label</strong>: Company Code<br /><strong>@EndUserText.quickInfo</strong>: Company Code<br /><strong>@ObjectModel.foreignKey.association</strong>: _CompanyCode</td></tr>
+<tr><td><strong id="billingdocument-fiscalyear">FiscalYear</strong></td><td><a href="#type-gjahr" target="_self">GJAHR</a></td><td><strong>@EndUserText.heading</strong>: Year<br /><strong>@EndUserText.label</strong>: Fiscal Year<br /><strong>@EndUserText.quickInfo</strong>: Fiscal Year<br /><strong>@ObjectModel.foreignKey.association</strong>: _FiscalYear</td></tr>
+<tr><td><strong id="billingdocument-accountingdocument">AccountingDocument</strong></td><td><a href="#type-belnr_d" target="_self">BELNR_D</a></td><td><strong>@Consumption.valueHelpDefinition</strong>: <code>[
   &lbrace;
     "entity": &lbrace;
       "name": "I_AccountingDocumentStdVH",
@@ -105,17 +106,17 @@
       &rbrace;
     ]
   &rbrace;
-]</code><br /><strong>@EndUserText.heading</strong>: Doc. No.<br /><strong>@EndUserText.label</strong>: Document Number<br /><strong>@EndUserText.quickInfo</strong>: Document Number of an Accounting Document<br /><strong>@ObjectModel.foreignKey.association</strong>: _AccountingDocument<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-fiscalperiod">FiscalPeriod</strong></td><td><a href="#type-poper" target="_self">POPER</a></td><td><strong>@EndUserText.heading</strong>: Period<br /><strong>@EndUserText.label</strong>: Posting Period<br /><strong>@EndUserText.quickInfo</strong>: Posting Period<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customeraccountassignmentgroup">CustomerAccountAssignmentGroup</strong></td><td><a href="#type-ktgrd" target="_self">KTGRD</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: AAGC<br /><strong>@EndUserText.label</strong>: Acct Assmt Grp Cust.<br /><strong>@EndUserText.quickInfo</strong>: Account Assignment Group for Customer<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerAccountAssgmtGroup<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-accountingexchangerateisset">AccountingExchangeRateIsSet</strong></td><td><a href="#type-cpkur" target="_self">CPKUR</a></td><td><strong>@EndUserText.heading</strong>: SRate<br /><strong>@EndUserText.label</strong>: Set Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Setting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-accountingexchangerate">AccountingExchangeRate</strong></td><td><a href="#type-kurrf_not_converted" target="_self">KURRF_NOT_CONVERTED</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Accounting Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate for FI Postings<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-exchangeratedate">ExchangeRateDate</strong></td><td><a href="#type-wwert_d" target="_self">WWERT_D</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: TranslDate<br /><strong>@EndUserText.label</strong>: Translation Date<br /><strong>@EndUserText.quickInfo</strong>: Translation Date<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-exchangeratetype">ExchangeRateType</strong></td><td><a href="#type-kurst" target="_self">KURST</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Exchange Rate Type<br /><strong>@EndUserText.label</strong>: Exchange Rate Type<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _ExchangeRateType<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-documentreferenceid">DocumentReferenceID</strong></td><td><a href="#type-xblnr_v1" target="_self">XBLNR_V1</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Reference<br /><strong>@EndUserText.label</strong>: Reference<br /><strong>@EndUserText.quickInfo</strong>: Reference Document Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-assignmentreference">AssignmentReference</strong></td><td><a href="#type-ordnr_v" target="_self">ORDNR_V</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Assignment<br /><strong>@EndUserText.label</strong>: Assignment<br /><strong>@EndUserText.quickInfo</strong>: Assignment Number</td></tr>
-<tr><td><strong id="billingdocument-reversalreason">ReversalReason</strong></td><td><a href="#type-stgrd" target="_self">STGRD</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Rev.Reas.<br /><strong>@EndUserText.label</strong>: Reversal Reason<br /><strong>@EndUserText.quickInfo</strong>: Reason for Reversal or Inverse Posting<br /><strong>@ObjectModel.foreignKey.association</strong>: _ReversalReason<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-dunningarea">DunningArea</strong></td><td><a href="#type-maber" target="_self">MABER</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+]</code><br /><strong>@EndUserText.heading</strong>: Doc. No.<br /><strong>@EndUserText.label</strong>: Document Number<br /><strong>@EndUserText.quickInfo</strong>: Document Number of an Accounting Document<br /><strong>@ObjectModel.foreignKey.association</strong>: _AccountingDocument</td></tr>
+<tr><td><strong id="billingdocument-fiscalperiod">FiscalPeriod</strong></td><td><a href="#type-poper" target="_self">POPER</a></td><td><strong>@EndUserText.heading</strong>: Period<br /><strong>@EndUserText.label</strong>: Posting Period<br /><strong>@EndUserText.quickInfo</strong>: Posting Period</td></tr>
+<tr><td><strong id="billingdocument-customeraccountassignmentgroup">CustomerAccountAssignmentGroup</strong></td><td><a href="#type-ktgrd" target="_self">KTGRD</a></td><td><strong>@EndUserText.heading</strong>: AAGC<br /><strong>@EndUserText.label</strong>: Acct Assmt Grp Cust.<br /><strong>@EndUserText.quickInfo</strong>: Account Assignment Group for Customer<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerAccountAssgmtGroup</td></tr>
+<tr><td><strong id="billingdocument-accountingexchangerateisset">AccountingExchangeRateIsSet</strong></td><td><a href="#type-cpkur" target="_self">CPKUR</a></td><td><strong>@EndUserText.heading</strong>: SRate<br /><strong>@EndUserText.label</strong>: Set Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Setting</td></tr>
+<tr><td><strong id="billingdocument-accountingexchangerate">AccountingExchangeRate</strong></td><td><a href="#type-kurrf_not_converted" target="_self">KURRF_NOT_CONVERTED</a></td><td><strong>@EndUserText.heading</strong>: &lbrace;i18n>I_BILLINGDOCUMENT.ACCOUNTINGEXCHANGERATE@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Accounting Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate for FI Postings</td></tr>
+<tr><td><strong id="billingdocument-exchangeratedate">ExchangeRateDate</strong></td><td><a href="#type-wwert_d" target="_self">WWERT_D</a></td><td><strong>@EndUserText.heading</strong>: TranslDate<br /><strong>@EndUserText.label</strong>: Translation Date<br /><strong>@EndUserText.quickInfo</strong>: Translation Date</td></tr>
+<tr><td><strong id="billingdocument-exchangeratetype">ExchangeRateType</strong></td><td><a href="#type-kurst" target="_self">KURST</a></td><td><strong>@EndUserText.heading</strong>: Exchange Rate Type<br /><strong>@EndUserText.label</strong>: Exchange Rate Type<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _ExchangeRateType</td></tr>
+<tr><td><strong id="billingdocument-documentreferenceid">DocumentReferenceID</strong></td><td><a href="#type-xblnr_v1" target="_self">XBLNR_V1</a></td><td><strong>@EndUserText.heading</strong>: Reference<br /><strong>@EndUserText.label</strong>: Reference<br /><strong>@EndUserText.quickInfo</strong>: Reference Document Number</td></tr>
+<tr><td><strong id="billingdocument-assignmentreference">AssignmentReference</strong></td><td><a href="#type-ordnr_v" target="_self">ORDNR_V</a></td><td><strong>@EndUserText.heading</strong>: Assignment<br /><strong>@EndUserText.label</strong>: Assignment<br /><strong>@EndUserText.quickInfo</strong>: Assignment Number</td></tr>
+<tr><td><strong id="billingdocument-reversalreason">ReversalReason</strong></td><td><a href="#type-stgrd" target="_self">STGRD</a></td><td><strong>@EndUserText.heading</strong>: Rev.Reas.<br /><strong>@EndUserText.label</strong>: Reversal Reason<br /><strong>@EndUserText.quickInfo</strong>: Reason for Reversal or Inverse Posting<br /><strong>@ObjectModel.foreignKey.association</strong>: _ReversalReason</td></tr>
+<tr><td><strong id="billingdocument-dunningarea">DunningArea</strong></td><td><a href="#type-maber" target="_self">MABER</a></td><td><strong>@Consumption.valueHelpDefinition</strong>: <code>[
   &lbrace;
     "entity": &lbrace;
       "name": "I_DunningAreaStdVH",
@@ -128,119 +129,105 @@
       &rbrace;
     ]
   &rbrace;
-]</code><br /><strong>@EndUserText.heading</strong>: Area<br /><strong>@EndUserText.label</strong>: Dunning Area<br /><strong>@EndUserText.quickInfo</strong>: Dunning Area<br /><strong>@ObjectModel.foreignKey.association</strong>: _DunningArea<br /><strong>@ObjectModel.text.association</strong>: _DunningAreaText<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-dunningblockingreason">DunningBlockingReason</strong></td><td><a href="#type-mansp" target="_self">MANSP</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Block<br /><strong>@EndUserText.label</strong>: Dunning Block<br /><strong>@EndUserText.quickInfo</strong>: Dunning Block<br /><strong>@ObjectModel.foreignKey.association</strong>: _DunningBlockingReason<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-dunningkey">DunningKey</strong></td><td><a href="#type-mschl" target="_self">MSCHL</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Dunn.Key<br /><strong>@EndUserText.label</strong>: Dunning Key<br /><strong>@EndUserText.quickInfo</strong>: Dunning Key<br /><strong>@ObjectModel.foreignKey.association</strong>: _DunningKey<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-internalfinancialdocument">InternalFinancialDocument</strong></td><td><a href="#type-lcnum" target="_self">LCNUM</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: FD No.<br /><strong>@EndUserText.label</strong>: Financial Doc. No.<br /><strong>@EndUserText.quickInfo</strong>: Financial doc. processing: Internal financial doc. number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-isrelevantforaccrual">IsRelevantForAccrual</strong></td><td><a href="#type-isaccrualrelevant" target="_self">ISACCRUALRELEVANT</a></td><td><strong>@EndUserText.heading</strong>: Is Relevant for Accrual<br /><strong>@EndUserText.label</strong>: Relevant for Accrual<br /><strong>@EndUserText.quickInfo</strong>: Is relevant for accrual<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-soldtoparty">SoldToParty</strong></td><td><a href="#type-kunag" target="_self">KUNAG</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+]</code><br /><strong>@EndUserText.heading</strong>: Area<br /><strong>@EndUserText.label</strong>: Dunning Area<br /><strong>@EndUserText.quickInfo</strong>: Dunning Area<br /><strong>@ObjectModel.foreignKey.association</strong>: _DunningArea<br /><strong>@ObjectModel.text.association</strong>: _DunningAreaText</td></tr>
+<tr><td><strong id="billingdocument-dunningblockingreason">DunningBlockingReason</strong></td><td><a href="#type-mansp" target="_self">MANSP</a></td><td><strong>@EndUserText.heading</strong>: Block<br /><strong>@EndUserText.label</strong>: Dunning Block<br /><strong>@EndUserText.quickInfo</strong>: Dunning Block<br /><strong>@ObjectModel.foreignKey.association</strong>: _DunningBlockingReason</td></tr>
+<tr><td><strong id="billingdocument-dunningkey">DunningKey</strong></td><td><a href="#type-mschl" target="_self">MSCHL</a></td><td><strong>@EndUserText.heading</strong>: Dunn.Key<br /><strong>@EndUserText.label</strong>: Dunning Key<br /><strong>@EndUserText.quickInfo</strong>: Dunning Key<br /><strong>@ObjectModel.foreignKey.association</strong>: _DunningKey</td></tr>
+<tr><td><strong id="billingdocument-internalfinancialdocument">InternalFinancialDocument</strong></td><td><a href="#type-lcnum" target="_self">LCNUM</a></td><td><strong>@EndUserText.heading</strong>: FD No.<br /><strong>@EndUserText.label</strong>: Financial Doc. No.<br /><strong>@EndUserText.quickInfo</strong>: Financial doc. processing: Internal financial doc. number</td></tr>
+<tr><td><strong id="billingdocument-isrelevantforaccrual">IsRelevantForAccrual</strong></td><td><a href="#type-isaccrualrelevant" target="_self">ISACCRUALRELEVANT</a></td><td><strong>@EndUserText.heading</strong>: Is Relevant for Accrual<br /><strong>@EndUserText.label</strong>: Relevant for Accrual<br /><strong>@EndUserText.quickInfo</strong>: Is relevant for accrual</td></tr>
+<tr><td><strong id="billingdocument-soldtoparty">SoldToParty</strong></td><td><a href="#type-kunag" target="_self">KUNAG</a></td><td><strong>@Consumption.valueHelpDefinition</strong>: <code>[
   &lbrace;
     "entity": &lbrace;
       "name": "I_Customer_VH",
       "element": "Customer"
     &rbrace;
   &rbrace;
-]</code><br /><strong>@EndUserText.heading</strong>: Sold-to<br /><strong>@EndUserText.label</strong>: Sold-to Party<br /><strong>@EndUserText.quickInfo</strong>: Sold-to Party<br /><strong>@ObjectModel.foreignKey.association</strong>: _SoldToParty<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-partnercompany">PartnerCompany</strong></td><td><a href="#type-rassc" target="_self">RASSC</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: Tr.Prt<br /><strong>@EndUserText.label</strong>: Trading Partner No.<br /><strong>@EndUserText.quickInfo</strong>: Company ID of Trading Partner<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-purchaseorderbycustomer">PurchaseOrderByCustomer</strong></td><td><a href="#type-bstkd" target="_self">BSTKD</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Customer Reference<br /><strong>@EndUserText.label</strong>: Customer Reference<br /><strong>@EndUserText.quickInfo</strong>: Customer Reference</td></tr>
-<tr><td><strong id="billingdocument-customergroup">CustomerGroup</strong></td><td><a href="#type-kdgrp" target="_self">KDGRP</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: CGrp<br /><strong>@EndUserText.label</strong>: Customer Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Group<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerGroup<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-country">Country</strong></td><td><a href="#type-lland" target="_self">LLAND</a></td><td><strong>@EndUserText.heading</strong>: Dest. Ctry/Reg<br /><strong>@EndUserText.label</strong>: Dest. Country/Region<br /><strong>@EndUserText.quickInfo</strong>: Destination Country/Region<br /><strong>@ObjectModel.foreignKey.association</strong>: _Country<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-citycode">CityCode</strong></td><td><a href="#type-cityc" target="_self">CITYC</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Code<br /><strong>@EndUserText.label</strong>: City Code<br /><strong>@EndUserText.quickInfo</strong>: City Code<br /><strong>@ObjectModel.foreignKey.association</strong>: _CityCode<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-salesdistrict">SalesDistrict</strong></td><td><a href="#type-bzirk" target="_self">BZIRK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: SDst<br /><strong>@EndUserText.label</strong>: Sales District<br /><strong>@EndUserText.quickInfo</strong>: Sales District<br /><strong>@ObjectModel.foreignKey.association</strong>: _SalesDistrict<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-region">Region</strong></td><td><a href="#type-regio" target="_self">REGIO</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: Rg<br /><strong>@EndUserText.label</strong>: Region<br /><strong>@EndUserText.quickInfo</strong>: Region (State, Province, County)<br /><strong>@ObjectModel.foreignKey.association</strong>: _Region<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-county">County</strong></td><td><a href="#type-counc" target="_self">COUNC</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: CCd<br /><strong>@EndUserText.label</strong>: County Code<br /><strong>@EndUserText.quickInfo</strong>: County Code<br /><strong>@ObjectModel.foreignKey.association</strong>: _County_2<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-creditcontrolarea">CreditControlArea</strong></td><td><a href="#type-kkber" target="_self">KKBER</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@Consumption.valueHelpDefinition</strong>: <code>[
+]</code><br /><strong>@EndUserText.heading</strong>: Sold-to<br /><strong>@EndUserText.label</strong>: Sold-to Party<br /><strong>@EndUserText.quickInfo</strong>: Sold-to Party<br /><strong>@ObjectModel.foreignKey.association</strong>: _SoldToParty</td></tr>
+<tr><td><strong id="billingdocument-partnercompany">PartnerCompany</strong></td><td><a href="#type-rassc" target="_self">RASSC</a></td><td><strong>@EndUserText.heading</strong>: Tr.Prt<br /><strong>@EndUserText.label</strong>: Trading Partner No.<br /><strong>@EndUserText.quickInfo</strong>: Company ID of Trading Partner</td></tr>
+<tr><td><strong id="billingdocument-purchaseorderbycustomer">PurchaseOrderByCustomer</strong></td><td><a href="#type-bstkd" target="_self">BSTKD</a></td><td><strong>@EndUserText.heading</strong>: Customer Reference<br /><strong>@EndUserText.label</strong>: Customer Reference<br /><strong>@EndUserText.quickInfo</strong>: Customer Reference</td></tr>
+<tr><td><strong id="billingdocument-customergroup">CustomerGroup</strong></td><td><a href="#type-kdgrp" target="_self">KDGRP</a></td><td><strong>@EndUserText.heading</strong>: CGrp<br /><strong>@EndUserText.label</strong>: Customer Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Group<br /><strong>@ObjectModel.foreignKey.association</strong>: _CustomerGroup</td></tr>
+<tr><td><strong id="billingdocument-country">Country</strong></td><td><a href="#type-lland" target="_self">LLAND</a></td><td><strong>@EndUserText.heading</strong>: Dest. Ctry/Reg<br /><strong>@EndUserText.label</strong>: Dest. Country/Region<br /><strong>@EndUserText.quickInfo</strong>: Destination Country/Region<br /><strong>@ObjectModel.foreignKey.association</strong>: _Country</td></tr>
+<tr><td><strong id="billingdocument-citycode">CityCode</strong></td><td><a href="#type-cityc" target="_self">CITYC</a></td><td><strong>@EndUserText.heading</strong>: Code<br /><strong>@EndUserText.label</strong>: City Code<br /><strong>@EndUserText.quickInfo</strong>: City Code<br /><strong>@ObjectModel.foreignKey.association</strong>: _CityCode</td></tr>
+<tr><td><strong id="billingdocument-salesdistrict">SalesDistrict</strong></td><td><a href="#type-bzirk" target="_self">BZIRK</a></td><td><strong>@EndUserText.heading</strong>: SDst<br /><strong>@EndUserText.label</strong>: Sales District<br /><strong>@EndUserText.quickInfo</strong>: Sales District<br /><strong>@ObjectModel.foreignKey.association</strong>: _SalesDistrict</td></tr>
+<tr><td><strong id="billingdocument-region">Region</strong></td><td><a href="#type-regio" target="_self">REGIO</a></td><td><strong>@EndUserText.heading</strong>: Rg<br /><strong>@EndUserText.label</strong>: Region<br /><strong>@EndUserText.quickInfo</strong>: Region (State, Province, County)<br /><strong>@ObjectModel.foreignKey.association</strong>: _Region</td></tr>
+<tr><td><strong id="billingdocument-county">County</strong></td><td><a href="#type-counc" target="_self">COUNC</a></td><td><strong>@EndUserText.heading</strong>: CCd<br /><strong>@EndUserText.label</strong>: County Code<br /><strong>@EndUserText.quickInfo</strong>: County Code<br /><strong>@ObjectModel.foreignKey.association</strong>: _County_2</td></tr>
+<tr><td><strong id="billingdocument-creditcontrolarea">CreditControlArea</strong></td><td><a href="#type-kkber" target="_self">KKBER</a></td><td><strong>@Consumption.valueHelpDefinition</strong>: <code>[
   &lbrace;
     "entity": &lbrace;
       "name": "I_CreditControlAreaStdVH",
       "element": "CreditControlArea"
     &rbrace;
   &rbrace;
-]</code><br /><strong>@EndUserText.heading</strong>: CCAr<br /><strong>@EndUserText.label</strong>: Credit Control Area<br /><strong>@EndUserText.quickInfo</strong>: Credit Control Area<br /><strong>@ObjectModel.foreignKey.association</strong>: _CreditControlArea<br /><strong>@ObjectModel.text.association</strong>: _CreditControlAreaText<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-customerrebateagreement">CustomerRebateAgreement</strong></td><td><a href="#type-knuma" target="_self">KNUMA</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@AbapCatalog.typeSpec.conversionExit</strong>: ALPHA<br /><strong>@EndUserText.heading</strong>: Agreement<br /><strong>@EndUserText.label</strong>: Agreement<br /><strong>@EndUserText.quickInfo</strong>: Agreement (various conditions grouped together)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-pricingdocument">PricingDocument</strong></td><td><a href="#type-knumv" target="_self">KNUMV</a></td><td><strong>@EndUserText.heading</strong>: Doc.Cond.<br /><strong>@EndUserText.label</strong>: Doc. Condition No.<br /><strong>@EndUserText.quickInfo</strong>: Number of the Document Condition<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-overallsdprocessstatus">OverallSDProcessStatus</strong></td><td><a href="#type-gbstk" target="_self">GBSTK</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: OS<br /><strong>@EndUserText.label</strong>: Overall Status<br /><strong>@EndUserText.quickInfo</strong>: Overall Processing Status (Header/All Items)<br /><strong>@ObjectModel.foreignKey.association</strong>: _OverallSDProcessStatus<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-overallbillingstatus">OverallBillingStatus</strong></td><td><a href="#type-vf_status" target="_self">VF_STATUS</a></td><td><strong>@EndUserText.heading</strong>: Status<br /><strong>@EndUserText.label</strong>: Status<br /><strong>@EndUserText.quickInfo</strong>: SD Billing Status<br /><strong>@ObjectModel.foreignKey.association</strong>: _OverallBillingStatus<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-accountingpostingstatus">AccountingPostingStatus</strong></td><td><a href="#type-buchk" target="_self">BUCHK</a></td><td><strong>@EndUserText.heading</strong>: PS<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Posting Status of Billing Document<br /><strong>@ObjectModel.foreignKey.association</strong>: _AccountingPostingStatus<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-accountingtransferstatus">AccountingTransferStatus</strong></td><td><a href="#type-rfbsk" target="_self">RFBSK</a></td><td><strong>@EndUserText.heading</strong>: PsSt<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Status for Transfer to Accounting<br /><strong>@ObjectModel.foreignKey.association</strong>: _AccountingTransferStatus<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-billingissuetype">BillingIssueType</strong></td><td><a href="#type-vf_todo" target="_self">VF_TODO</a></td><td><strong>@EndUserText.heading</strong>: Issue Type<br /><strong>@EndUserText.label</strong>: Issue Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Issue Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _BillingIssueType<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-invoiceliststatus">InvoiceListStatus</strong></td><td><a href="#type-relik" target="_self">RELIK</a></td><td><strong>@EndUserText.heading</strong>: ILSt<br /><strong>@EndUserText.label</strong>: Invoice List Status<br /><strong>@EndUserText.quickInfo</strong>: Invoice list status of billing document<br /><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceListStatus<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-ovrlitmgeneralincompletionsts">OvrlItmGeneralIncompletionSts</strong></td><td><a href="#type-uvall_su" target="_self">UVALL_SU</a></td><td><strong>@EndUserText.heading</strong>: AI<br /><strong>@EndUserText.label</strong>: All Items<br /><strong>@EndUserText.quickInfo</strong>: Incompletion Status (All Items)<br /><strong>@ObjectModel.foreignKey.association</strong>: _OvrlItmGeneralIncompletionSts<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-overallpricingincompletionsts">OverallPricingIncompletionSts</strong></td><td><a href="#type-uvprs_uk" target="_self">UVPRS_UK</a></td><td><strong>@EndUserText.heading</strong>: PI<br /><strong>@EndUserText.label</strong>: Pricing – All Items<br /><strong>@EndUserText.quickInfo</strong>: Pricing Incompletion Status (All Items)<br /><strong>@ObjectModel.foreignKey.association</strong>: _OverallPricingIncompletionSts<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-invoiceclearingstatus">InvoiceClearingStatus</strong></td><td><a href="#type-clrst" target="_self">CLRST</a></td><td><strong>@EndUserText.heading</strong>: Clearing Status<br /><strong>@EndUserText.label</strong>: Clearing Status<br /><strong>@EndUserText.quickInfo</strong>: Clearing Status of Billing Document<br /><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceClearingStatus<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-invoicelisttype">InvoiceListType</strong></td><td><a href="#type-fkart_rl" target="_self">FKART_RL</a></td><td><strong>@EndUserText.heading</strong>: ILTyp<br /><strong>@EndUserText.label</strong>: Invoice List Type<br /><strong>@EndUserText.quickInfo</strong>: Invoice List Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceListType<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-invoicelistbillingdate">InvoiceListBillingDate</strong></td><td><a href="#type-fkdat_rl" target="_self">FKDAT_RL</a></td><td><strong>@AbapCatalog.typeSpec.changeDocumentRelevant</strong>: true<br /><strong>@EndUserText.heading</strong>: InvList BD<br /><strong>@EndUserText.label</strong>: Inv. List Bill. Date<br /><strong>@EndUserText.quickInfo</strong>: Billing date for the invoice list<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-_accountingdocument">_AccountingDocument</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingdocument" target="_self">I_AccountingDocument</a> () via <a href="#billingdocument-_accountingdocument" target="_self">_AccountingDocument</a></td></tr>
-<tr><td><strong id="billingdocument-_accountingpostingstatus">_AccountingPostingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingpostingstatus" target="_self">I_AccountingPostingStatus</a> () via <a href="#billingdocument-_accountingpostingstatus" target="_self">_AccountingPostingStatus</a></td></tr>
-<tr><td><strong id="billingdocument-_accountingtransferstatus">_AccountingTransferStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingtransferstatus" target="_self">I_AccountingTransferStatus</a> () via <a href="#billingdocument-_accountingtransferstatus" target="_self">_AccountingTransferStatus</a></td></tr>
-<tr><td><strong id="billingdocument-_billingdocumentcategory">_BillingDocumentCategory</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumentcategory" target="_self">I_BillingDocumentCategory</a> () via <a href="#billingdocument-_billingdocumentcategory" target="_self">_BillingDocumentCategory</a></td></tr>
-<tr><td><strong id="billingdocument-_billingdocumenttype">_BillingDocumentType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a> () via <a href="#billingdocument-_billingdocumenttype" target="_self">_BillingDocumentType</a></td></tr>
-<tr><td><strong id="billingdocument-_billingissuetype">_BillingIssueType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingissuetype" target="_self">I_BillingIssueType</a> () via <a href="#billingdocument-_billingissuetype" target="_self">_BillingIssueType</a></td></tr>
-<tr><td><strong id="billingdocument-_cancelledbillingdocument">_CancelledBillingDocument</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#billingdocument" target="_self">BillingDocument</a> () via <a href="#billingdocument-_cancelledbillingdocument" target="_self">_CancelledBillingDocument</a></td></tr>
-<tr><td><strong id="billingdocument-_citycode">_CityCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_citycode" target="_self">I_CityCode</a> () via <a href="#billingdocument-_citycode" target="_self">_CityCode</a></td></tr>
-<tr><td><strong id="billingdocument-_companycode">_CompanyCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_companycode" target="_self">I_CompanyCode</a> () via <a href="#billingdocument-_companycode" target="_self">_CompanyCode</a></td></tr>
-<tr><td><strong id="billingdocument-_country">_Country</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> () via <a href="#billingdocument-_country" target="_self">_Country</a></td></tr>
-<tr><td><strong id="billingdocument-_county">_County</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_countycode" target="_self">I_CountyCode</a> () via <a href="#billingdocument-_county" target="_self">_County</a><br /><strong>@API.element.releaseState</strong>: <code>&lbrace;
-  "#": "DEPRECATED"
-&rbrace;</code><br /><strong>@API.element.successor</strong>: _County_2</td></tr>
-<tr><td><strong id="billingdocument-_county_2">_County_2</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_taxingcounty" target="_self">I_TaxingCounty</a> () via <a href="#billingdocument-_county_2" target="_self">_County_2</a></td></tr>
-<tr><td><strong id="billingdocument-_createdbyuser">_CreatedByUser</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_user" target="_self">I_User</a> () via <a href="#billingdocument-_createdbyuser" target="_self">_CreatedByUser</a></td></tr>
-<tr><td><strong id="billingdocument-_creditcontrolarea">_CreditControlArea</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_creditcontrolarea" target="_self">I_CreditControlArea</a> () via <a href="#billingdocument-_creditcontrolarea" target="_self">_CreditControlArea</a></td></tr>
-<tr><td><strong id="billingdocument-_creditcontrolareatext">_CreditControlAreaText</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_creditcontrolareatext" target="_self">I_CreditControlAreaText</a> () via <a href="#billingdocument-_creditcontrolareatext" target="_self">_CreditControlAreaText</a><br /><strong>@Consumption.hidden</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-_customeraccountassgmtgroup">_CustomerAccountAssgmtGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customeraccountassgmtgroup" target="_self">I_CustomerAccountAssgmtGroup</a> () via <a href="#billingdocument-_customeraccountassgmtgroup" target="_self">_CustomerAccountAssgmtGroup</a></td></tr>
-<tr><td><strong id="billingdocument-_customergroup">_CustomerGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customergroup" target="_self">I_CustomerGroup</a> () via <a href="#billingdocument-_customergroup" target="_self">_CustomerGroup</a></td></tr>
-<tr><td><strong id="billingdocument-_customerpaymentterms">_CustomerPaymentTerms</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customerpaymentterms" target="_self">I_CustomerPaymentTerms</a> () via <a href="#billingdocument-_customerpaymentterms" target="_self">_CustomerPaymentTerms</a></td></tr>
-<tr><td><strong id="billingdocument-_customerpricegroup">_CustomerPriceGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customerpricegroup" target="_self">I_CustomerPriceGroup</a> () via <a href="#billingdocument-_customerpricegroup" target="_self">_CustomerPriceGroup</a></td></tr>
-<tr><td><strong id="billingdocument-_distributionchannel">_DistributionChannel</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_distributionchannel" target="_self">I_DistributionChannel</a> () via <a href="#billingdocument-_distributionchannel" target="_self">_DistributionChannel</a></td></tr>
-<tr><td><strong id="billingdocument-_division">_Division</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_division" target="_self">I_Division</a> () via <a href="#billingdocument-_division" target="_self">_Division</a></td></tr>
-<tr><td><strong id="billingdocument-_dunningarea">_DunningArea</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningarea" target="_self">I_DunningArea</a> () via <a href="#billingdocument-_dunningarea" target="_self">_DunningArea</a></td></tr>
-<tr><td><strong id="billingdocument-_dunningareatext">_DunningAreaText</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_dunningareatext" target="_self">I_DunningAreaText</a> () via <a href="#billingdocument-_dunningareatext" target="_self">_DunningAreaText</a><br /><strong>@Consumption.hidden</strong>: true</td></tr>
-<tr><td><strong id="billingdocument-_dunningblockingreason">_DunningBlockingReason</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningblockingreasoncode" target="_self">I_DunningBlockingReasonCode</a> () via <a href="#billingdocument-_dunningblockingreason" target="_self">_DunningBlockingReason</a></td></tr>
-<tr><td><strong id="billingdocument-_dunningkey">_DunningKey</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningkey" target="_self">I_DunningKey</a> () via <a href="#billingdocument-_dunningkey" target="_self">_DunningKey</a></td></tr>
-<tr><td><strong id="billingdocument-_enhancedfields">_EnhancedFields</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocenhancedfields" target="_self">I_BillingDocEnhancedFields</a> () via <a href="#billingdocument-_enhancedfields" target="_self">_EnhancedFields</a></td></tr>
-<tr><td><strong id="billingdocument-_exchangeratetype">_ExchangeRateType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_exchangeratetype" target="_self">I_ExchangeRateType</a> () via <a href="#billingdocument-_exchangeratetype" target="_self">_ExchangeRateType</a></td></tr>
-<tr><td><strong id="billingdocument-_fiscalyear">_FiscalYear</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_fiscalyearforcompanycode" target="_self">I_FiscalYearForCompanyCode</a> () via <a href="#billingdocument-_fiscalyear" target="_self">_FiscalYear</a></td></tr>
-<tr><td><strong id="billingdocument-_incotermsclassification">_IncotermsClassification</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_incotermsclassification" target="_self">I_IncotermsClassification</a> () via <a href="#billingdocument-_incotermsclassification" target="_self">_IncotermsClassification</a></td></tr>
-<tr><td><strong id="billingdocument-_incotermsversion">_IncotermsVersion</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_incotermsversion" target="_self">I_IncotermsVersion</a> () via <a href="#billingdocument-_incotermsversion" target="_self">_IncotermsVersion</a></td></tr>
-<tr><td><strong id="billingdocument-_invoiceclearingstatus">_InvoiceClearingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_invoiceclearingstatus" target="_self">I_InvoiceClearingStatus</a> () via <a href="#billingdocument-_invoiceclearingstatus" target="_self">_InvoiceClearingStatus</a></td></tr>
-<tr><td><strong id="billingdocument-_invoiceliststatus">_InvoiceListStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_invoiceliststatus" target="_self">I_InvoiceListStatus</a> () via <a href="#billingdocument-_invoiceliststatus" target="_self">_InvoiceListStatus</a></td></tr>
-<tr><td><strong id="billingdocument-_invoicelisttype">_InvoiceListType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a> () via <a href="#billingdocument-_invoicelisttype" target="_self">_InvoiceListType</a></td></tr>
-<tr><td><strong id="billingdocument-_item">_Item</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentitem" target="_self">I_BillingDocumentItem</a> () via <a href="#billingdocument-_item" target="_self">_Item</a><br /><strong>@ObjectModel.association.type</strong>: <code>[
-  &lbrace;
-    "#": "TO_COMPOSITION_CHILD"
-  &rbrace;
-]</code></td></tr>
-<tr><td><strong id="billingdocument-_logicalsystem">_LogicalSystem</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_logicalsystem" target="_self">I_LogicalSystem</a> () via <a href="#billingdocument-_logicalsystem" target="_self">_LogicalSystem</a></td></tr>
-<tr><td><strong id="billingdocument-_overallbillingstatus">_OverallBillingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallbillingstatus" target="_self">I_OverallBillingStatus</a> () via <a href="#billingdocument-_overallbillingstatus" target="_self">_OverallBillingStatus</a></td></tr>
-<tr><td><strong id="billingdocument-_overallpricingincompletionsts">_OverallPricingIncompletionSts</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallprcincompletionsts" target="_self">I_OverallPrcIncompletionSts</a> () via <a href="#billingdocument-_overallpricingincompletionsts" target="_self">_OverallPricingIncompletionSts</a></td></tr>
-<tr><td><strong id="billingdocument-_overallsdprocessstatus">_OverallSDProcessStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallsdprocessstatus" target="_self">I_OverallSDProcessStatus</a> () via <a href="#billingdocument-_overallsdprocessstatus" target="_self">_OverallSDProcessStatus</a></td></tr>
-<tr><td><strong id="billingdocument-_ovrlitmgeneralincompletionsts">_OvrlItmGeneralIncompletionSts</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_ovrlitmgenincompletionsts" target="_self">I_OvrlItmGenIncompletionSts</a> () via <a href="#billingdocument-_ovrlitmgeneralincompletionsts" target="_self">_OvrlItmGeneralIncompletionSts</a></td></tr>
-<tr><td><strong id="billingdocument-_partner">_Partner</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentpartner" target="_self">I_BillingDocumentPartner</a> () via <a href="#billingdocument-_partner" target="_self">_Partner</a><br /><strong>@ObjectModel.association.type</strong>: <code>[
-  &lbrace;
-    "#": "TO_COMPOSITION_CHILD"
-  &rbrace;
-]</code></td></tr>
-<tr><td><strong id="billingdocument-_payerparty">_PayerParty</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customer" target="_self">I_Customer</a> () via <a href="#billingdocument-_payerparty" target="_self">_PayerParty</a></td></tr>
-<tr><td><strong id="billingdocument-_paymentmethod">_PaymentMethod</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_paymentmethod" target="_self">I_PaymentMethod</a> () via <a href="#billingdocument-_paymentmethod" target="_self">_PaymentMethod</a></td></tr>
-<tr><td><strong id="billingdocument-_pricelisttype">_PriceListType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_pricelisttype" target="_self">I_PriceListType</a> () via <a href="#billingdocument-_pricelisttype" target="_self">_PriceListType</a></td></tr>
-<tr><td><strong id="billingdocument-_pricingelement">_PricingElement</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentprcgelmnt" target="_self">I_BillingDocumentPrcgElmnt</a> () via <a href="#billingdocument-_pricingelement" target="_self">_PricingElement</a><br /><strong>@ObjectModel.association.type</strong>: <code>[
-  &lbrace;
-    "#": "TO_COMPOSITION_CHILD"
-  &rbrace;
-]</code></td></tr>
-<tr><td><strong id="billingdocument-_region">_Region</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_region" target="_self">I_Region</a> () via <a href="#billingdocument-_region" target="_self">_Region</a></td></tr>
-<tr><td><strong id="billingdocument-_reversalreason">_ReversalReason</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_reversalreason" target="_self">I_ReversalReason</a> () via <a href="#billingdocument-_reversalreason" target="_self">_ReversalReason</a></td></tr>
-<tr><td><strong id="billingdocument-_salesdistrict">_SalesDistrict</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_salesdistrict" target="_self">I_SalesDistrict</a> () via <a href="#billingdocument-_salesdistrict" target="_self">_SalesDistrict</a></td></tr>
-<tr><td><strong id="billingdocument-_salesorganization">_SalesOrganization</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_salesorganization" target="_self">I_SalesOrganization</a> () via <a href="#billingdocument-_salesorganization" target="_self">_SalesOrganization</a></td></tr>
-<tr><td><strong id="billingdocument-_sddocumentcategory">_SDDocumentCategory</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_sddocumentcategory" target="_self">I_SDDocumentCategory</a> () via <a href="#billingdocument-_sddocumentcategory" target="_self">_SDDocumentCategory</a></td></tr>
-<tr><td><strong id="billingdocument-_sdpricingprocedure">_SDPricingProcedure</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_slspricingprocedure" target="_self">I_SlsPricingProcedure</a> () via <a href="#billingdocument-_sdpricingprocedure" target="_self">_SDPricingProcedure</a></td></tr>
-<tr><td><strong id="billingdocument-_shippingcondition">_ShippingCondition</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_shippingcondition" target="_self">I_ShippingCondition</a> () via <a href="#billingdocument-_shippingcondition" target="_self">_ShippingCondition</a></td></tr>
-<tr><td><strong id="billingdocument-_soldtoparty">_SoldToParty</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customer" target="_self">I_Customer</a> () via <a href="#billingdocument-_soldtoparty" target="_self">_SoldToParty</a></td></tr>
-<tr><td><strong id="billingdocument-_statisticscurrency">_StatisticsCurrency</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_currency" target="_self">I_Currency</a> () via <a href="#billingdocument-_statisticscurrency" target="_self">_StatisticsCurrency</a></td></tr>
-<tr><td><strong id="billingdocument-_taxdeparturecountry">_TaxDepartureCountry</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> () via <a href="#billingdocument-_taxdeparturecountry" target="_self">_TaxDepartureCountry</a></td></tr>
-<tr><td><strong id="billingdocument-_transactioncurrency">_TransactionCurrency</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_currency" target="_self">I_Currency</a> () via <a href="#billingdocument-_transactioncurrency" target="_self">_TransactionCurrency</a></td></tr>
-<tr><td><strong id="billingdocument-_vatregistrationcountry">_VATRegistrationCountry</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> () via <a href="#billingdocument-_vatregistrationcountry" target="_self">_VATRegistrationCountry</a></td></tr>
-<tr><td><strong id="billingdocument-_vatregistrationorigin">_VATRegistrationOrigin</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_vatregistrationorigin" target="_self">I_VATRegistrationOrigin</a> () via <a href="#billingdocument-_vatregistrationorigin" target="_self">_VATRegistrationOrigin</a></td></tr>
+]</code><br /><strong>@EndUserText.heading</strong>: CCAr<br /><strong>@EndUserText.label</strong>: Credit Control Area<br /><strong>@EndUserText.quickInfo</strong>: Credit Control Area<br /><strong>@ObjectModel.foreignKey.association</strong>: _CreditControlArea<br /><strong>@ObjectModel.text.association</strong>: _CreditControlAreaText</td></tr>
+<tr><td><strong id="billingdocument-customerrebateagreement">CustomerRebateAgreement</strong></td><td><a href="#type-knuma" target="_self">KNUMA</a></td><td><strong>@EndUserText.heading</strong>: Agreement<br /><strong>@EndUserText.label</strong>: Agreement<br /><strong>@EndUserText.quickInfo</strong>: Agreement (various conditions grouped together)</td></tr>
+<tr><td><strong id="billingdocument-pricingdocument">PricingDocument</strong></td><td><a href="#type-knumv" target="_self">KNUMV</a></td><td><strong>@EndUserText.heading</strong>: Doc.Cond.<br /><strong>@EndUserText.label</strong>: Doc. Condition No.<br /><strong>@EndUserText.quickInfo</strong>: Number of the Document Condition</td></tr>
+<tr><td><strong id="billingdocument-overallsdprocessstatus">OverallSDProcessStatus</strong></td><td><a href="#type-gbstk" target="_self">GBSTK</a></td><td><strong>@EndUserText.heading</strong>: OS<br /><strong>@EndUserText.label</strong>: Overall Status<br /><strong>@EndUserText.quickInfo</strong>: Overall Processing Status (Header/All Items)<br /><strong>@ObjectModel.foreignKey.association</strong>: _OverallSDProcessStatus</td></tr>
+<tr><td><strong id="billingdocument-overallbillingstatus">OverallBillingStatus</strong></td><td><a href="#type-vf_status" target="_self">VF_STATUS</a></td><td><strong>@EndUserText.heading</strong>: Status<br /><strong>@EndUserText.label</strong>: Status<br /><strong>@EndUserText.quickInfo</strong>: SD Billing Status<br /><strong>@ObjectModel.foreignKey.association</strong>: _OverallBillingStatus</td></tr>
+<tr><td><strong id="billingdocument-accountingpostingstatus">AccountingPostingStatus</strong></td><td><a href="#type-buchk" target="_self">BUCHK</a></td><td><strong>@EndUserText.heading</strong>: PS<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Posting Status of Billing Document<br /><strong>@ObjectModel.foreignKey.association</strong>: _AccountingPostingStatus</td></tr>
+<tr><td><strong id="billingdocument-accountingtransferstatus">AccountingTransferStatus</strong></td><td><a href="#type-rfbsk" target="_self">RFBSK</a></td><td><strong>@EndUserText.heading</strong>: PsSt<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Status for Transfer to Accounting<br /><strong>@ObjectModel.foreignKey.association</strong>: _AccountingTransferStatus</td></tr>
+<tr><td><strong id="billingdocument-billingissuetype">BillingIssueType</strong></td><td><a href="#type-vf_todo" target="_self">VF_TODO</a></td><td><strong>@EndUserText.heading</strong>: Issue Type<br /><strong>@EndUserText.label</strong>: Issue Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Issue Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _BillingIssueType</td></tr>
+<tr><td><strong id="billingdocument-invoiceliststatus">InvoiceListStatus</strong></td><td><a href="#type-relik" target="_self">RELIK</a></td><td><strong>@EndUserText.heading</strong>: ILSt<br /><strong>@EndUserText.label</strong>: Invoice List Status<br /><strong>@EndUserText.quickInfo</strong>: Invoice list status of billing document<br /><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceListStatus</td></tr>
+<tr><td><strong id="billingdocument-ovrlitmgeneralincompletionsts">OvrlItmGeneralIncompletionSts</strong></td><td><a href="#type-uvall_su" target="_self">UVALL_SU</a></td><td><strong>@EndUserText.heading</strong>: AI<br /><strong>@EndUserText.label</strong>: All Items<br /><strong>@EndUserText.quickInfo</strong>: Incompletion Status (All Items)<br /><strong>@ObjectModel.foreignKey.association</strong>: _OvrlItmGeneralIncompletionSts</td></tr>
+<tr><td><strong id="billingdocument-overallpricingincompletionsts">OverallPricingIncompletionSts</strong></td><td><a href="#type-uvprs_uk" target="_self">UVPRS_UK</a></td><td><strong>@EndUserText.heading</strong>: PI<br /><strong>@EndUserText.label</strong>: Pricing – All Items<br /><strong>@EndUserText.quickInfo</strong>: Pricing Incompletion Status (All Items)<br /><strong>@ObjectModel.foreignKey.association</strong>: _OverallPricingIncompletionSts</td></tr>
+<tr><td><strong id="billingdocument-invoiceclearingstatus">InvoiceClearingStatus</strong></td><td><a href="#type-clrst" target="_self">CLRST</a></td><td><strong>@EndUserText.heading</strong>: Clearing Status<br /><strong>@EndUserText.label</strong>: Clearing Status<br /><strong>@EndUserText.quickInfo</strong>: Clearing Status of Billing Document<br /><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceClearingStatus</td></tr>
+<tr><td><strong id="billingdocument-invoicelisttype">InvoiceListType</strong></td><td><a href="#type-fkart_rl" target="_self">FKART_RL</a></td><td><strong>@EndUserText.heading</strong>: ILTyp<br /><strong>@EndUserText.label</strong>: Invoice List Type<br /><strong>@EndUserText.quickInfo</strong>: Invoice List Type<br /><strong>@ObjectModel.foreignKey.association</strong>: _InvoiceListType</td></tr>
+<tr><td><strong id="billingdocument-invoicelistbillingdate">InvoiceListBillingDate</strong></td><td><a href="#type-fkdat_rl" target="_self">FKDAT_RL</a></td><td><strong>@EndUserText.heading</strong>: InvList BD<br /><strong>@EndUserText.label</strong>: Inv. List Bill. Date<br /><strong>@EndUserText.quickInfo</strong>: Billing date for the invoice list</td></tr>
+<tr><td><strong id="billingdocument-_accountingdocument">_AccountingDocument</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingdocument" target="_self">I_AccountingDocument</a> (Path: <a href="#i_accountingdocument" target="_self">I_AccountingDocument</a>.<a href="#i_accountingdocument-companycode" target="_self">CompanyCode</a>) via <a href="#billingdocument-companycode" target="_self">CompanyCode</a></td></tr>
+<tr><td><strong id="billingdocument-_accountingpostingstatus">_AccountingPostingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingpostingstatus" target="_self">I_AccountingPostingStatus</a> (Path: <a href="#i_accountingpostingstatus" target="_self">I_AccountingPostingStatus</a>.<a href="#i_accountingpostingstatus-accountingpostingstatus" target="_self">AccountingPostingStatus</a>) via <a href="#billingdocument-accountingpostingstatus" target="_self">AccountingPostingStatus</a></td></tr>
+<tr><td><strong id="billingdocument-_accountingtransferstatus">_AccountingTransferStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_accountingtransferstatus" target="_self">I_AccountingTransferStatus</a> (Path: <a href="#i_accountingtransferstatus" target="_self">I_AccountingTransferStatus</a>.<a href="#i_accountingtransferstatus-accountingtransferstatus" target="_self">AccountingTransferStatus</a>) via <a href="#billingdocument-accountingtransferstatus" target="_self">AccountingTransferStatus</a></td></tr>
+<tr><td><strong id="billingdocument-_billingdocumentcategory">_BillingDocumentCategory</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumentcategory" target="_self">I_BillingDocumentCategory</a> (Path: <a href="#i_billingdocumentcategory" target="_self">I_BillingDocumentCategory</a>.<a href="#i_billingdocumentcategory-billingdocumentcategory" target="_self">BillingDocumentCategory</a>) via <a href="#billingdocument-billingdocumentcategory" target="_self">BillingDocumentCategory</a></td></tr>
+<tr><td><strong id="billingdocument-_billingdocumenttype">_BillingDocumentType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a> (Path: <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a>.<a href="#i_billingdocumenttype-billingdocumenttype" target="_self">BillingDocumentType</a>) via <a href="#billingdocument-billingdocumenttype" target="_self">BillingDocumentType</a></td></tr>
+<tr><td><strong id="billingdocument-_billingissuetype">_BillingIssueType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingissuetype" target="_self">I_BillingIssueType</a> (Path: <a href="#i_billingissuetype" target="_self">I_BillingIssueType</a>.<a href="#i_billingissuetype-billingissuetype" target="_self">BillingIssueType</a>) via <a href="#billingdocument-billingissuetype" target="_self">BillingIssueType</a></td></tr>
+<tr><td><strong id="billingdocument-_cancelledbillingdocument">_CancelledBillingDocument</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#billingdocument" target="_self">BillingDocument</a> (Path: <a href="#billingdocument" target="_self">BillingDocument</a>.<a href="#billingdocument-billingdocument" target="_self">BillingDocument</a>) via <a href="#billingdocument-cancelledbillingdocument" target="_self">CancelledBillingDocument</a></td></tr>
+<tr><td><strong id="billingdocument-_citycode">_CityCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_citycode" target="_self">I_CityCode</a> (Path: <a href="#i_citycode" target="_self">I_CityCode</a>.<a href="#i_citycode-citycode" target="_self">CityCode</a>) via <a href="#billingdocument-citycode" target="_self">CityCode</a></td></tr>
+<tr><td><strong id="billingdocument-_companycode">_CompanyCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_companycode" target="_self">I_CompanyCode</a> (Path: <a href="#i_companycode" target="_self">I_CompanyCode</a>.<a href="#i_companycode-companycode" target="_self">CompanyCode</a>) via <a href="#billingdocument-companycode" target="_self">CompanyCode</a></td></tr>
+<tr><td><strong id="billingdocument-_country">_Country</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> (Path: <a href="#i_country" target="_self">I_Country</a>.<a href="#i_country-country" target="_self">Country</a>) via <a href="#billingdocument-country" target="_self">Country</a></td></tr>
+<tr><td><strong id="billingdocument-_county">_County</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_countycode" target="_self">I_CountyCode</a> (Path: <a href="#i_countycode" target="_self">I_CountyCode</a>.<a href="#i_countycode-country" target="_self">Country</a>) via <a href="#billingdocument-country" target="_self">Country</a></td></tr>
+<tr><td><strong id="billingdocument-_county_2">_County_2</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_taxingcounty" target="_self">I_TaxingCounty</a> (Path: <a href="#i_taxingcounty" target="_self">I_TaxingCounty</a>.<a href="#i_taxingcounty-country" target="_self">Country</a>) via <a href="#billingdocument-country" target="_self">Country</a></td></tr>
+<tr><td><strong id="billingdocument-_createdbyuser">_CreatedByUser</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_user" target="_self">I_User</a> (Path: <a href="#i_user" target="_self">I_User</a>.<a href="#i_user-userid" target="_self">UserID</a>) via <a href="#billingdocument-createdbyuser" target="_self">CreatedByUser</a></td></tr>
+<tr><td><strong id="billingdocument-_creditcontrolarea">_CreditControlArea</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_creditcontrolarea" target="_self">I_CreditControlArea</a> (Path: <a href="#i_creditcontrolarea" target="_self">I_CreditControlArea</a>.<a href="#i_creditcontrolarea-creditcontrolarea" target="_self">CreditControlArea</a>) via <a href="#billingdocument-creditcontrolarea" target="_self">CreditControlArea</a></td></tr>
+<tr><td><strong id="billingdocument-_creditcontrolareatext">_CreditControlAreaText</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_creditcontrolareatext" target="_self">I_CreditControlAreaText</a> (Path: <a href="#i_creditcontrolareatext" target="_self">I_CreditControlAreaText</a>.<a href="#i_creditcontrolareatext-creditcontrolarea" target="_self">CreditControlArea</a>) via <a href="#billingdocument-creditcontrolarea" target="_self">CreditControlArea</a></td></tr>
+<tr><td><strong id="billingdocument-_customeraccountassgmtgroup">_CustomerAccountAssgmtGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customeraccountassgmtgroup" target="_self">I_CustomerAccountAssgmtGroup</a> (Path: <a href="#i_customeraccountassgmtgroup" target="_self">I_CustomerAccountAssgmtGroup</a>.<a href="#i_customeraccountassgmtgroup-customeraccountassignmentgroup" target="_self">CustomerAccountAssignmentGroup</a>) via <a href="#billingdocument-customeraccountassignmentgroup" target="_self">CustomerAccountAssignmentGroup</a></td></tr>
+<tr><td><strong id="billingdocument-_customergroup">_CustomerGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customergroup" target="_self">I_CustomerGroup</a> (Path: <a href="#i_customergroup" target="_self">I_CustomerGroup</a>.<a href="#i_customergroup-customergroup" target="_self">CustomerGroup</a>) via <a href="#billingdocument-customergroup" target="_self">CustomerGroup</a></td></tr>
+<tr><td><strong id="billingdocument-_customerpaymentterms">_CustomerPaymentTerms</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customerpaymentterms" target="_self">I_CustomerPaymentTerms</a> (Path: <a href="#i_customerpaymentterms" target="_self">I_CustomerPaymentTerms</a>.<a href="#i_customerpaymentterms-customerpaymentterms" target="_self">CustomerPaymentTerms</a>) via <a href="#billingdocument-customerpaymentterms" target="_self">CustomerPaymentTerms</a></td></tr>
+<tr><td><strong id="billingdocument-_customerpricegroup">_CustomerPriceGroup</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customerpricegroup" target="_self">I_CustomerPriceGroup</a> (Path: <a href="#i_customerpricegroup" target="_self">I_CustomerPriceGroup</a>.<a href="#i_customerpricegroup-customerpricegroup" target="_self">CustomerPriceGroup</a>) via <a href="#billingdocument-customerpricegroup" target="_self">CustomerPriceGroup</a></td></tr>
+<tr><td><strong id="billingdocument-_distributionchannel">_DistributionChannel</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_distributionchannel" target="_self">I_DistributionChannel</a> (Path: <a href="#i_distributionchannel" target="_self">I_DistributionChannel</a>.<a href="#i_distributionchannel-distributionchannel" target="_self">DistributionChannel</a>) via <a href="#billingdocument-distributionchannel" target="_self">DistributionChannel</a></td></tr>
+<tr><td><strong id="billingdocument-_division">_Division</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_division" target="_self">I_Division</a> (Path: <a href="#i_division" target="_self">I_Division</a>.<a href="#i_division-division" target="_self">Division</a>) via <a href="#billingdocument-division" target="_self">Division</a></td></tr>
+<tr><td><strong id="billingdocument-_dunningarea">_DunningArea</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningarea" target="_self">I_DunningArea</a> (Path: <a href="#i_dunningarea" target="_self">I_DunningArea</a>.<a href="#i_dunningarea-dunningarea" target="_self">DunningArea</a>) via <a href="#billingdocument-dunningarea" target="_self">DunningArea</a></td></tr>
+<tr><td><strong id="billingdocument-_dunningareatext">_DunningAreaText</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_dunningareatext" target="_self">I_DunningAreaText</a> (Path: <a href="#i_dunningareatext" target="_self">I_DunningAreaText</a>.<a href="#i_dunningareatext-dunningarea" target="_self">DunningArea</a>) via <a href="#billingdocument-dunningarea" target="_self">DunningArea</a></td></tr>
+<tr><td><strong id="billingdocument-_dunningblockingreason">_DunningBlockingReason</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningblockingreasoncode" target="_self">I_DunningBlockingReasonCode</a> (Path: <a href="#i_dunningblockingreasoncode" target="_self">I_DunningBlockingReasonCode</a>.<a href="#i_dunningblockingreasoncode-dunningblockingreason" target="_self">DunningBlockingReason</a>) via <a href="#billingdocument-dunningblockingreason" target="_self">DunningBlockingReason</a></td></tr>
+<tr><td><strong id="billingdocument-_dunningkey">_DunningKey</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_dunningkey" target="_self">I_DunningKey</a> (Path: <a href="#i_dunningkey" target="_self">I_DunningKey</a>.<a href="#i_dunningkey-dunningkey" target="_self">DunningKey</a>) via <a href="#billingdocument-dunningkey" target="_self">DunningKey</a></td></tr>
+<tr><td><strong id="billingdocument-_enhancedfields">_EnhancedFields</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocenhancedfields" target="_self">I_BillingDocEnhancedFields</a> (Path: <a href="#i_billingdocenhancedfields" target="_self">I_BillingDocEnhancedFields</a>.<a href="#i_billingdocenhancedfields-billingdocument" target="_self">BillingDocument</a>) via <a href="#billingdocument-billingdocument" target="_self">BillingDocument</a></td></tr>
+<tr><td><strong id="billingdocument-_exchangeratetype">_ExchangeRateType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_exchangeratetype" target="_self">I_ExchangeRateType</a> (Path: <a href="#i_exchangeratetype" target="_self">I_ExchangeRateType</a>.<a href="#i_exchangeratetype-exchangeratetype" target="_self">ExchangeRateType</a>) via <a href="#billingdocument-exchangeratetype" target="_self">ExchangeRateType</a></td></tr>
+<tr><td><strong id="billingdocument-_fiscalyear">_FiscalYear</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_fiscalyearforcompanycode" target="_self">I_FiscalYearForCompanyCode</a> (Path: <a href="#i_fiscalyearforcompanycode" target="_self">I_FiscalYearForCompanyCode</a>.<a href="#i_fiscalyearforcompanycode-fiscalyear" target="_self">FiscalYear</a>) via <a href="#billingdocument-fiscalyear" target="_self">FiscalYear</a></td></tr>
+<tr><td><strong id="billingdocument-_incotermsclassification">_IncotermsClassification</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_incotermsclassification" target="_self">I_IncotermsClassification</a> (Path: <a href="#i_incotermsclassification" target="_self">I_IncotermsClassification</a>.<a href="#i_incotermsclassification-incotermsclassification" target="_self">IncotermsClassification</a>) via <a href="#billingdocument-incotermsclassification" target="_self">IncotermsClassification</a></td></tr>
+<tr><td><strong id="billingdocument-_incotermsversion">_IncotermsVersion</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_incotermsversion" target="_self">I_IncotermsVersion</a> (Path: <a href="#i_incotermsversion" target="_self">I_IncotermsVersion</a>.<a href="#i_incotermsversion-incotermsversion" target="_self">IncotermsVersion</a>) via <a href="#billingdocument-incotermsversion" target="_self">IncotermsVersion</a></td></tr>
+<tr><td><strong id="billingdocument-_invoiceclearingstatus">_InvoiceClearingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_invoiceclearingstatus" target="_self">I_InvoiceClearingStatus</a> (Path: <a href="#i_invoiceclearingstatus" target="_self">I_InvoiceClearingStatus</a>.<a href="#i_invoiceclearingstatus-invoiceclearingstatus" target="_self">InvoiceClearingStatus</a>) via <a href="#billingdocument-invoiceclearingstatus" target="_self">InvoiceClearingStatus</a></td></tr>
+<tr><td><strong id="billingdocument-_invoiceliststatus">_InvoiceListStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_invoiceliststatus" target="_self">I_InvoiceListStatus</a> (Path: <a href="#i_invoiceliststatus" target="_self">I_InvoiceListStatus</a>.<a href="#i_invoiceliststatus-invoiceliststatus" target="_self">InvoiceListStatus</a>) via <a href="#billingdocument-invoiceliststatus" target="_self">InvoiceListStatus</a></td></tr>
+<tr><td><strong id="billingdocument-_invoicelisttype">_InvoiceListType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a> (Path: <a href="#i_billingdocumenttype" target="_self">I_BillingDocumentType</a>.<a href="#i_billingdocumenttype-billingdocumenttype" target="_self">BillingDocumentType</a>) via <a href="#billingdocument-invoicelisttype" target="_self">InvoiceListType</a></td></tr>
+<tr><td><strong id="billingdocument-_item">_Item</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentitem" target="_self">I_BillingDocumentItem</a> (Path: <a href="#i_billingdocumentitem" target="_self">I_BillingDocumentItem</a>.<a href="#i_billingdocumentitem-billingdocument" target="_self">BillingDocument</a>) via <a href="#billingdocument-billingdocument" target="_self">BillingDocument</a></td></tr>
+<tr><td><strong id="billingdocument-_logicalsystem">_LogicalSystem</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_logicalsystem" target="_self">I_LogicalSystem</a> (Path: <a href="#i_logicalsystem" target="_self">I_LogicalSystem</a>.<a href="#i_logicalsystem-logicalsystem" target="_self">LogicalSystem</a>) via <a href="#billingdocument-logicalsystem" target="_self">LogicalSystem</a></td></tr>
+<tr><td><strong id="billingdocument-_overallbillingstatus">_OverallBillingStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallbillingstatus" target="_self">I_OverallBillingStatus</a> (Path: <a href="#i_overallbillingstatus" target="_self">I_OverallBillingStatus</a>.<a href="#i_overallbillingstatus-overallbillingstatus" target="_self">OverallBillingStatus</a>) via <a href="#billingdocument-overallbillingstatus" target="_self">OverallBillingStatus</a></td></tr>
+<tr><td><strong id="billingdocument-_overallpricingincompletionsts">_OverallPricingIncompletionSts</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallprcincompletionsts" target="_self">I_OverallPrcIncompletionSts</a> (Path: <a href="#i_overallprcincompletionsts" target="_self">I_OverallPrcIncompletionSts</a>.<a href="#i_overallprcincompletionsts-overallpricingincompletionsts" target="_self">OverallPricingIncompletionSts</a>) via <a href="#billingdocument-overallpricingincompletionsts" target="_self">OverallPricingIncompletionSts</a></td></tr>
+<tr><td><strong id="billingdocument-_overallsdprocessstatus">_OverallSDProcessStatus</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_overallsdprocessstatus" target="_self">I_OverallSDProcessStatus</a> (Path: <a href="#i_overallsdprocessstatus" target="_self">I_OverallSDProcessStatus</a>.<a href="#i_overallsdprocessstatus-overallsdprocessstatus" target="_self">OverallSDProcessStatus</a>) via <a href="#billingdocument-overallsdprocessstatus" target="_self">OverallSDProcessStatus</a></td></tr>
+<tr><td><strong id="billingdocument-_ovrlitmgeneralincompletionsts">_OvrlItmGeneralIncompletionSts</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_ovrlitmgenincompletionsts" target="_self">I_OvrlItmGenIncompletionSts</a> (Path: <a href="#i_ovrlitmgenincompletionsts" target="_self">I_OvrlItmGenIncompletionSts</a>.<a href="#i_ovrlitmgenincompletionsts-ovrlitmgeneralincompletionsts" target="_self">OvrlItmGeneralIncompletionSts</a>) via <a href="#billingdocument-ovrlitmgeneralincompletionsts" target="_self">OvrlItmGeneralIncompletionSts</a></td></tr>
+<tr><td><strong id="billingdocument-_partner">_Partner</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentpartner" target="_self">I_BillingDocumentPartner</a> (Path: <a href="#i_billingdocumentpartner" target="_self">I_BillingDocumentPartner</a>.<a href="#i_billingdocumentpartner-billingdocument" target="_self">BillingDocument</a>) via <a href="#billingdocument-billingdocument" target="_self">BillingDocument</a></td></tr>
+<tr><td><strong id="billingdocument-_payerparty">_PayerParty</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customer" target="_self">I_Customer</a> (Path: <a href="#i_customer" target="_self">I_Customer</a>.<a href="#i_customer-customer" target="_self">Customer</a>) via <a href="#billingdocument-payerparty" target="_self">PayerParty</a></td></tr>
+<tr><td><strong id="billingdocument-_paymentmethod">_PaymentMethod</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_paymentmethod" target="_self">I_PaymentMethod</a> (Path: <a href="#i_paymentmethod" target="_self">I_PaymentMethod</a>.<a href="#i_paymentmethod-paymentmethod" target="_self">PaymentMethod</a>) via <a href="#billingdocument-paymentmethod" target="_self">PaymentMethod</a></td></tr>
+<tr><td><strong id="billingdocument-_pricelisttype">_PriceListType</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_pricelisttype" target="_self">I_PriceListType</a> (Path: <a href="#i_pricelisttype" target="_self">I_PriceListType</a>.<a href="#i_pricelisttype-pricelisttype" target="_self">PriceListType</a>) via <a href="#billingdocument-pricelisttype" target="_self">PriceListType</a></td></tr>
+<tr><td><strong id="billingdocument-_pricingelement">_PricingElement</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#i_billingdocumentprcgelmnt" target="_self">I_BillingDocumentPrcgElmnt</a> (Path: <a href="#i_billingdocumentprcgelmnt" target="_self">I_BillingDocumentPrcgElmnt</a>.<a href="#i_billingdocumentprcgelmnt-billingdocument" target="_self">BillingDocument</a>) via <a href="#billingdocument-billingdocument" target="_self">BillingDocument</a></td></tr>
+<tr><td><strong id="billingdocument-_region">_Region</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_region" target="_self">I_Region</a> (Path: <a href="#i_region" target="_self">I_Region</a>.<a href="#i_region-region" target="_self">Region</a>) via <a href="#billingdocument-region" target="_self">Region</a></td></tr>
+<tr><td><strong id="billingdocument-_reversalreason">_ReversalReason</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_reversalreason" target="_self">I_ReversalReason</a> (Path: <a href="#i_reversalreason" target="_self">I_ReversalReason</a>.<a href="#i_reversalreason-reversalreason" target="_self">ReversalReason</a>) via <a href="#billingdocument-reversalreason" target="_self">ReversalReason</a></td></tr>
+<tr><td><strong id="billingdocument-_salesdistrict">_SalesDistrict</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_salesdistrict" target="_self">I_SalesDistrict</a> (Path: <a href="#i_salesdistrict" target="_self">I_SalesDistrict</a>.<a href="#i_salesdistrict-salesdistrict" target="_self">SalesDistrict</a>) via <a href="#billingdocument-salesdistrict" target="_self">SalesDistrict</a></td></tr>
+<tr><td><strong id="billingdocument-_salesorganization">_SalesOrganization</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_salesorganization" target="_self">I_SalesOrganization</a> (Path: <a href="#i_salesorganization" target="_self">I_SalesOrganization</a>.<a href="#i_salesorganization-salesorganization" target="_self">SalesOrganization</a>) via <a href="#billingdocument-salesorganization" target="_self">SalesOrganization</a></td></tr>
+<tr><td><strong id="billingdocument-_sddocumentcategory">_SDDocumentCategory</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_sddocumentcategory" target="_self">I_SDDocumentCategory</a> (Path: <a href="#i_sddocumentcategory" target="_self">I_SDDocumentCategory</a>.<a href="#i_sddocumentcategory-sddocumentcategory" target="_self">SDDocumentCategory</a>) via <a href="#billingdocument-sddocumentcategory" target="_self">SDDocumentCategory</a></td></tr>
+<tr><td><strong id="billingdocument-_sdpricingprocedure">_SDPricingProcedure</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_slspricingprocedure" target="_self">I_SlsPricingProcedure</a> (Path: <a href="#i_slspricingprocedure" target="_self">I_SlsPricingProcedure</a>.<a href="#i_slspricingprocedure-pricingprocedure" target="_self">PricingProcedure</a>) via <a href="#billingdocument-sdpricingprocedure" target="_self">SDPricingProcedure</a></td></tr>
+<tr><td><strong id="billingdocument-_shippingcondition">_ShippingCondition</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_shippingcondition" target="_self">I_ShippingCondition</a> (Path: <a href="#i_shippingcondition" target="_self">I_ShippingCondition</a>.<a href="#i_shippingcondition-shippingcondition" target="_self">ShippingCondition</a>) via <a href="#billingdocument-shippingcondition" target="_self">ShippingCondition</a></td></tr>
+<tr><td><strong id="billingdocument-_soldtoparty">_SoldToParty</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_customer" target="_self">I_Customer</a> (Path: <a href="#i_customer" target="_self">I_Customer</a>.<a href="#i_customer-customer" target="_self">Customer</a>) via <a href="#billingdocument-soldtoparty" target="_self">SoldToParty</a></td></tr>
+<tr><td><strong id="billingdocument-_statisticscurrency">_StatisticsCurrency</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_currency" target="_self">I_Currency</a> (Path: <a href="#i_currency" target="_self">I_Currency</a>.<a href="#i_currency-currency" target="_self">Currency</a>) via <a href="#billingdocument-statisticscurrency" target="_self">StatisticsCurrency</a></td></tr>
+<tr><td><strong id="billingdocument-_taxdeparturecountry">_TaxDepartureCountry</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> (Path: <a href="#i_country" target="_self">I_Country</a>.<a href="#i_country-country" target="_self">Country</a>) via <a href="#billingdocument-taxdeparturecountry" target="_self">TaxDepartureCountry</a></td></tr>
+<tr><td><strong id="billingdocument-_transactioncurrency">_TransactionCurrency</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_currency" target="_self">I_Currency</a> (Path: <a href="#i_currency" target="_self">I_Currency</a>.<a href="#i_currency-currency" target="_self">Currency</a>) via <a href="#billingdocument-transactioncurrency" target="_self">TransactionCurrency</a></td></tr>
+<tr><td><strong id="billingdocument-_vatregistrationcountry">_VATRegistrationCountry</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_country" target="_self">I_Country</a> (Path: <a href="#i_country" target="_self">I_Country</a>.<a href="#i_country-country" target="_self">Country</a>) via <a href="#billingdocument-vatregistrationcountry" target="_self">VATRegistrationCountry</a></td></tr>
+<tr><td><strong id="billingdocument-_vatregistrationorigin">_VATRegistrationOrigin</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#i_vatregistrationorigin" target="_self">I_VATRegistrationOrigin</a> (Path: <a href="#i_vatregistrationorigin" target="_self">I_VATRegistrationOrigin</a>.<a href="#i_vatregistrationorigin-vatregistrationorigin" target="_self">VATRegistrationOrigin</a>) via <a href="#billingdocument-vatregistrationorigin" target="_self">VATRegistrationOrigin</a></td></tr>
 </table>
 
 ## Type Definitions
@@ -251,7 +238,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Chngd On<br /><strong>@EndUserText.label</strong>: Changed On<br /><strong>@EndUserText.quickInfo</strong>: Last Changed On<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Chngd On<br /><strong>@EndUserText.label</strong>: Changed On<br /><strong>@EndUserText.quickInfo</strong>: Last Changed On</td></tr>
 </table>
 
 <div id="type-belnr_d"></div>
@@ -260,7 +247,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Doc. No.<br /><strong>@EndUserText.label</strong>: Document Number<br /><strong>@EndUserText.quickInfo</strong>: Document Number of an Accounting Document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Doc. No.<br /><strong>@EndUserText.label</strong>: Document Number<br /><strong>@EndUserText.quickInfo</strong>: Document Number of an Accounting Document</td></tr>
 </table>
 
 <div id="type-bstkd"></div>
@@ -291,7 +278,7 @@
   "C": &lbrace;
     "val": "C"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PS<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Posting Status of Billing Document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PS<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Posting Status of Billing Document</td></tr>
 </table>
 
 <div id="type-bukrs"></div>
@@ -300,7 +287,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CoCd<br /><strong>@EndUserText.label</strong>: Company Code<br /><strong>@EndUserText.quickInfo</strong>: Company Code<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CoCd<br /><strong>@EndUserText.label</strong>: Company Code<br /><strong>@EndUserText.quickInfo</strong>: Company Code</td></tr>
 </table>
 
 <div id="type-bzirk"></div>
@@ -309,7 +296,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(6)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: SDst<br /><strong>@EndUserText.label</strong>: Sales District<br /><strong>@EndUserText.quickInfo</strong>: Sales District<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(6)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: SDst<br /><strong>@EndUserText.label</strong>: Sales District<br /><strong>@EndUserText.quickInfo</strong>: Sales District</td></tr>
 </table>
 
 <div id="type-cityc"></div>
@@ -318,7 +305,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Code<br /><strong>@EndUserText.label</strong>: City Code<br /><strong>@EndUserText.quickInfo</strong>: City Code<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Code<br /><strong>@EndUserText.label</strong>: City Code<br /><strong>@EndUserText.quickInfo</strong>: City Code</td></tr>
 </table>
 
 <div id="type-clrst"></div>
@@ -340,7 +327,7 @@
   "C": &lbrace;
     "val": "C"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Clearing Status<br /><strong>@EndUserText.label</strong>: Clearing Status<br /><strong>@EndUserText.quickInfo</strong>: Clearing Status of Billing Document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Clearing Status<br /><strong>@EndUserText.label</strong>: Clearing Status<br /><strong>@EndUserText.quickInfo</strong>: Clearing Status of Billing Document</td></tr>
 </table>
 
 <div id="type-corr_vkont_kk"></div>
@@ -349,7 +336,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(12)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Cont.Account<br /><strong>@EndUserText.label</strong>: Contract Account<br /><strong>@EndUserText.quickInfo</strong>: Contract Account Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(12)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Cont.Account<br /><strong>@EndUserText.label</strong>: Contract Account<br /><strong>@EndUserText.quickInfo</strong>: Contract Account Number</td></tr>
 </table>
 
 <div id="type-counc"></div>
@@ -358,7 +345,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CCd<br /><strong>@EndUserText.label</strong>: County Code<br /><strong>@EndUserText.quickInfo</strong>: County Code<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CCd<br /><strong>@EndUserText.label</strong>: County Code<br /><strong>@EndUserText.quickInfo</strong>: County Code</td></tr>
 </table>
 
 <div id="type-cpkur"></div>
@@ -367,7 +354,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: SRate<br /><strong>@EndUserText.label</strong>: Set Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Setting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: SRate<br /><strong>@EndUserText.label</strong>: Set Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Setting</td></tr>
 </table>
 
 <div id="type-dzterm"></div>
@@ -376,7 +363,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Terms of Payment<br /><strong>@EndUserText.label</strong>: Terms of Payment<br /><strong>@EndUserText.quickInfo</strong>: Key for Terms of Payment<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Terms of Payment<br /><strong>@EndUserText.label</strong>: Terms of Payment<br /><strong>@EndUserText.quickInfo</strong>: Key for Terms of Payment</td></tr>
 </table>
 
 <div id="type-dzukri"></div>
@@ -385,7 +372,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(40)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Combination Criteria in the Billing Doc.<br /><strong>@EndUserText.label</strong>: Combination Criteria<br /><strong>@EndUserText.quickInfo</strong>: Combination criteria in the billing document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(40)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Combination Criteria in the Billing Doc.<br /><strong>@EndUserText.label</strong>: Combination Criteria<br /><strong>@EndUserText.quickInfo</strong>: Combination criteria in the billing document</td></tr>
 </table>
 
 <div id="type-erdat"></div>
@@ -394,7 +381,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Created On<br /><strong>@EndUserText.label</strong>: Created On<br /><strong>@EndUserText.quickInfo</strong>: Record Creation Date<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Created On<br /><strong>@EndUserText.label</strong>: Created On<br /><strong>@EndUserText.quickInfo</strong>: Record Creation Date</td></tr>
 </table>
 
 <div id="type-ernam"></div>
@@ -403,7 +390,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(12)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Created By<br /><strong>@EndUserText.label</strong>: Created By<br /><strong>@EndUserText.quickInfo</strong>: Name of Person Responsible for Creating the Object<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(12)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Created By<br /><strong>@EndUserText.label</strong>: Created By<br /><strong>@EndUserText.quickInfo</strong>: Name of Person Responsible for Creating the Object</td></tr>
 </table>
 
 <div id="type-erzet"></div>
@@ -412,7 +399,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Time</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Time<br /><strong>@EndUserText.label</strong>: Time<br /><strong>@EndUserText.quickInfo</strong>: Entry time<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Time</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Time<br /><strong>@EndUserText.label</strong>: Time<br /><strong>@EndUserText.quickInfo</strong>: Entry time</td></tr>
 </table>
 
 <div id="type-fkart"></div>
@@ -421,7 +408,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: BillT<br /><strong>@EndUserText.label</strong>: Billing Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Type<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: BillT<br /><strong>@EndUserText.label</strong>: Billing Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Type</td></tr>
 </table>
 
 <div id="type-fkart_rl"></div>
@@ -430,7 +417,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: ILTyp<br /><strong>@EndUserText.label</strong>: Invoice List Type<br /><strong>@EndUserText.quickInfo</strong>: Invoice List Type<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: ILTyp<br /><strong>@EndUserText.label</strong>: Invoice List Type<br /><strong>@EndUserText.quickInfo</strong>: Invoice List Type</td></tr>
 </table>
 
 <div id="type-fkdat"></div>
@@ -439,7 +426,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Billing Date<br /><strong>@EndUserText.label</strong>: Billing Date<br /><strong>@EndUserText.quickInfo</strong>: Billing Date<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Billing Date<br /><strong>@EndUserText.label</strong>: Billing Date<br /><strong>@EndUserText.quickInfo</strong>: Billing Date</td></tr>
 </table>
 
 <div id="type-fkdat_rl"></div>
@@ -448,7 +435,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: InvList BD<br /><strong>@EndUserText.label</strong>: Inv. List Bill. Date<br /><strong>@EndUserText.quickInfo</strong>: Billing date for the invoice list<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: InvList BD<br /><strong>@EndUserText.label</strong>: Inv. List Bill. Date<br /><strong>@EndUserText.quickInfo</strong>: Billing date for the invoice list</td></tr>
 </table>
 
 <div id="type-fksto"></div>
@@ -457,7 +444,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Can<br /><strong>@EndUserText.label</strong>: Canceled<br /><strong>@EndUserText.quickInfo</strong>: Billing document is canceled<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Can<br /><strong>@EndUserText.label</strong>: Canceled<br /><strong>@EndUserText.quickInfo</strong>: Billing document is canceled</td></tr>
 </table>
 
 <div id="type-fktyp"></div>
@@ -512,7 +499,7 @@
   "S": &lbrace;
     "val": "S"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: BlCat<br /><strong>@EndUserText.label</strong>: Billing Category<br /><strong>@EndUserText.quickInfo</strong>: Billing Category<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: BlCat<br /><strong>@EndUserText.label</strong>: Billing Category<br /><strong>@EndUserText.quickInfo</strong>: Billing Category</td></tr>
 </table>
 
 <div id="type-gbstk"></div>
@@ -534,7 +521,7 @@
   "C": &lbrace;
     "val": "C"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: OS<br /><strong>@EndUserText.label</strong>: Overall Status<br /><strong>@EndUserText.quickInfo</strong>: Overall Processing Status (Header/All Items)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: OS<br /><strong>@EndUserText.label</strong>: Overall Status<br /><strong>@EndUserText.quickInfo</strong>: Overall Processing Status (Header/All Items)</td></tr>
 </table>
 
 <div id="type-gjahr"></div>
@@ -543,7 +530,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Year<br /><strong>@EndUserText.label</strong>: Fiscal Year<br /><strong>@EndUserText.quickInfo</strong>: Fiscal Year<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Year<br /><strong>@EndUserText.label</strong>: Fiscal Year<br /><strong>@EndUserText.quickInfo</strong>: Fiscal Year</td></tr>
 </table>
 
 <div id="type-hityp_pr"></div>
@@ -552,7 +539,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: HPr<br /><strong>@EndUserText.label</strong>: HierarchyTypePricing<br /><strong>@EndUserText.quickInfo</strong>: Hierarchy type for pricing<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: HPr<br /><strong>@EndUserText.label</strong>: HierarchyTypePricing<br /><strong>@EndUserText.quickInfo</strong>: Hierarchy type for pricing</td></tr>
 </table>
 
 <div id="type-inco1"></div>
@@ -561,7 +548,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: IncoT<br /><strong>@EndUserText.label</strong>: Incoterms<br /><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 1)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: IncoT<br /><strong>@EndUserText.label</strong>: Incoterms<br /><strong>@EndUserText.quickInfo</strong>: Incoterms (Part 1)</td></tr>
 </table>
 
 <div id="type-inco2"></div>
@@ -597,7 +584,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: IncoV<br /><strong>@EndUserText.label</strong>: Incoterms Version<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Version<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: IncoV<br /><strong>@EndUserText.label</strong>: Incoterms Version<br /><strong>@EndUserText.quickInfo</strong>: Incoterms Version</td></tr>
 </table>
 
 <div id="type-intra_excl"></div>
@@ -606,7 +593,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: exclude from Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Exclusion<br /><strong>@EndUserText.quickInfo</strong>: Exclude from Intrastat Reporting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: exclude from Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Exclusion<br /><strong>@EndUserText.quickInfo</strong>: Exclude from Intrastat Reporting</td></tr>
 </table>
 
 <div id="type-intra_rel"></div>
@@ -615,7 +602,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: relevant for Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Relevance<br /><strong>@EndUserText.quickInfo</strong>: Relevant for Intrastat Reporting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: relevant for Intrastat<br /><strong>@EndUserText.label</strong>: Intrastat Relevance<br /><strong>@EndUserText.quickInfo</strong>: Relevant for Intrastat Reporting</td></tr>
 </table>
 
 <div id="type-isaccrualrelevant"></div>
@@ -624,7 +611,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Is Relevant for Accrual<br /><strong>@EndUserText.label</strong>: Relevant for Accrual<br /><strong>@EndUserText.quickInfo</strong>: Is relevant for accrual<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Is Relevant for Accrual<br /><strong>@EndUserText.label</strong>: Relevant for Accrual<br /><strong>@EndUserText.quickInfo</strong>: Is relevant for accrual</td></tr>
 </table>
 
 <div id="type-j_1anopg"></div>
@@ -633,7 +620,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Pages<br /><strong>@EndUserText.label</strong>: Number of Pages<br /><strong>@EndUserText.quickInfo</strong>: Number of pages of invoice<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Pages<br /><strong>@EndUserText.label</strong>: Number of Pages<br /><strong>@EndUserText.quickInfo</strong>: Number of pages of invoice</td></tr>
 </table>
 
 <div id="type-kalsmasd"></div>
@@ -642,7 +629,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(6)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PriPr.<br /><strong>@EndUserText.label</strong>: Pricing Procedure<br /><strong>@EndUserText.quickInfo</strong>: Pricing Procedure in Pricing<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(6)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PriPr.<br /><strong>@EndUserText.label</strong>: Pricing Procedure<br /><strong>@EndUserText.quickInfo</strong>: Pricing Procedure in Pricing</td></tr>
 </table>
 
 <div id="type-kdgrp"></div>
@@ -651,7 +638,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CGrp<br /><strong>@EndUserText.label</strong>: Customer Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Group<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CGrp<br /><strong>@EndUserText.label</strong>: Customer Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Group</td></tr>
 </table>
 
 <div id="type-kidno"></div>
@@ -660,7 +647,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(30)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Payment Reference<br /><strong>@EndUserText.label</strong>: Payment Reference<br /><strong>@EndUserText.quickInfo</strong>: Payment Reference<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(30)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Payment Reference<br /><strong>@EndUserText.label</strong>: Payment Reference<br /><strong>@EndUserText.quickInfo</strong>: Payment Reference</td></tr>
 </table>
 
 <div id="type-kkber"></div>
@@ -669,7 +656,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CCAr<br /><strong>@EndUserText.label</strong>: Credit Control Area<br /><strong>@EndUserText.quickInfo</strong>: Credit Control Area<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CCAr<br /><strong>@EndUserText.label</strong>: Credit Control Area<br /><strong>@EndUserText.quickInfo</strong>: Credit Control Area</td></tr>
 </table>
 
 <div id="type-knuma"></div>
@@ -678,7 +665,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Agreement<br /><strong>@EndUserText.label</strong>: Agreement<br /><strong>@EndUserText.quickInfo</strong>: Agreement (various conditions grouped together)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Agreement<br /><strong>@EndUserText.label</strong>: Agreement<br /><strong>@EndUserText.quickInfo</strong>: Agreement (various conditions grouped together)</td></tr>
 </table>
 
 <div id="type-knumv"></div>
@@ -687,7 +674,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Doc.Cond.<br /><strong>@EndUserText.label</strong>: Doc. Condition No.<br /><strong>@EndUserText.quickInfo</strong>: Number of the Document Condition<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Doc.Cond.<br /><strong>@EndUserText.label</strong>: Doc. Condition No.<br /><strong>@EndUserText.quickInfo</strong>: Number of the Document Condition</td></tr>
 </table>
 
 <div id="type-konda"></div>
@@ -696,7 +683,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CPG<br /><strong>@EndUserText.label</strong>: Customer Price Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Price Group<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CPG<br /><strong>@EndUserText.label</strong>: Customer Price Group<br /><strong>@EndUserText.quickInfo</strong>: Customer Price Group</td></tr>
 </table>
 
 <div id="type-ktgrd"></div>
@@ -705,7 +692,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: AAGC<br /><strong>@EndUserText.label</strong>: Acct Assmt Grp Cust.<br /><strong>@EndUserText.quickInfo</strong>: Account Assignment Group for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: AAGC<br /><strong>@EndUserText.label</strong>: Acct Assmt Grp Cust.<br /><strong>@EndUserText.quickInfo</strong>: Account Assignment Group for Customer</td></tr>
 </table>
 
 <div id="type-kunag"></div>
@@ -714,7 +701,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Sold-to<br /><strong>@EndUserText.label</strong>: Sold-to Party<br /><strong>@EndUserText.quickInfo</strong>: Sold-to Party<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Sold-to<br /><strong>@EndUserText.label</strong>: Sold-to Party<br /><strong>@EndUserText.quickInfo</strong>: Sold-to Party</td></tr>
 </table>
 
 <div id="type-kunrg"></div>
@@ -723,7 +710,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Payer<br /><strong>@EndUserText.label</strong>: Payer<br /><strong>@EndUserText.quickInfo</strong>: Payer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Payer<br /><strong>@EndUserText.label</strong>: Payer<br /><strong>@EndUserText.quickInfo</strong>: Payer</td></tr>
 </table>
 
 <div id="type-kurrf_not_converted"></div>
@@ -732,7 +719,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Decimal</td><td><strong>precision</strong>: 9<br /><strong>scale</strong>: 5<br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>KURRF_NOT_CONVERTED@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Accounting Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate for FI Postings<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Decimal</td><td><strong>precision</strong>: 9<br /><strong>scale</strong>: 5<br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>KURRF_NOT_CONVERTED@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: Accounting Exchange Rate<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate for FI Postings</td></tr>
 </table>
 
 <div id="type-kurst"></div>
@@ -741,7 +728,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Exchange Rate Type<br /><strong>@EndUserText.label</strong>: Exchange Rate Type<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Type<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Exchange Rate Type<br /><strong>@EndUserText.label</strong>: Exchange Rate Type<br /><strong>@EndUserText.quickInfo</strong>: Exchange Rate Type</td></tr>
 </table>
 
 <div id="type-landtx"></div>
@@ -750,7 +737,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: TDC<br /><strong>@EndUserText.label</strong>: Tax Departure C/R<br /><strong>@EndUserText.quickInfo</strong>: Tax Departure Country/Region<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: TDC<br /><strong>@EndUserText.label</strong>: Tax Departure C/R<br /><strong>@EndUserText.quickInfo</strong>: Tax Departure Country/Region</td></tr>
 </table>
 
 <div id="type-lcnum"></div>
@@ -759,7 +746,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: FD No.<br /><strong>@EndUserText.label</strong>: Financial Doc. No.<br /><strong>@EndUserText.quickInfo</strong>: Financial doc. processing: Internal financial doc. number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: FD No.<br /><strong>@EndUserText.label</strong>: Financial Doc. No.<br /><strong>@EndUserText.quickInfo</strong>: Financial doc. processing: Internal financial doc. number</td></tr>
 </table>
 
 <div id="type-lifnr_wk"></div>
@@ -768,7 +755,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Supplier Number Plant<br /><strong>@EndUserText.label</strong>: Sppl. No. Plnt<br /><strong>@EndUserText.quickInfo</strong>: Supplier Number of Plant<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Supplier Number Plant<br /><strong>@EndUserText.label</strong>: Sppl. No. Plnt<br /><strong>@EndUserText.quickInfo</strong>: Supplier Number of Plant</td></tr>
 </table>
 
 <div id="type-lland"></div>
@@ -777,7 +764,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Dest. Ctry/Reg<br /><strong>@EndUserText.label</strong>: Dest. Country/Region<br /><strong>@EndUserText.quickInfo</strong>: Destination Country/Region<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Dest. Ctry/Reg<br /><strong>@EndUserText.label</strong>: Dest. Country/Region<br /><strong>@EndUserText.quickInfo</strong>: Destination Country/Region</td></tr>
 </table>
 
 <div id="type-logsys"></div>
@@ -786,7 +773,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Log.System<br /><strong>@EndUserText.label</strong>: Logical System<br /><strong>@EndUserText.quickInfo</strong>: Logical System<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Log.System<br /><strong>@EndUserText.label</strong>: Logical System<br /><strong>@EndUserText.quickInfo</strong>: Logical System</td></tr>
 </table>
 
 <div id="type-maber"></div>
@@ -795,7 +782,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Area<br /><strong>@EndUserText.label</strong>: Dunning Area<br /><strong>@EndUserText.quickInfo</strong>: Dunning Area<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Area<br /><strong>@EndUserText.label</strong>: Dunning Area<br /><strong>@EndUserText.quickInfo</strong>: Dunning Area</td></tr>
 </table>
 
 <div id="type-mansp"></div>
@@ -804,7 +791,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Block<br /><strong>@EndUserText.label</strong>: Dunning Block<br /><strong>@EndUserText.quickInfo</strong>: Dunning Block<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Block<br /><strong>@EndUserText.label</strong>: Dunning Block<br /><strong>@EndUserText.quickInfo</strong>: Dunning Block</td></tr>
 </table>
 
 <div id="type-mrnkz"></div>
@@ -813,7 +800,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: InM<br /><strong>@EndUserText.label</strong>: Man. Invoice Maint.<br /><strong>@EndUserText.quickInfo</strong>: Manual Invoice Maintenance<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: InM<br /><strong>@EndUserText.label</strong>: Man. Invoice Maint.<br /><strong>@EndUserText.quickInfo</strong>: Manual Invoice Maintenance</td></tr>
 </table>
 
 <div id="type-mschl"></div>
@@ -822,7 +809,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Dunn.Key<br /><strong>@EndUserText.label</strong>: Dunning Key<br /><strong>@EndUserText.quickInfo</strong>: Dunning Key<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Dunn.Key<br /><strong>@EndUserText.label</strong>: Dunning Key<br /><strong>@EndUserText.quickInfo</strong>: Dunning Key</td></tr>
 </table>
 
 <div id="type-mwsbp"></div>
@@ -831,7 +818,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Decimal</td><td><strong>precision</strong>: 34<br /><strong>scale</strong>: floating<br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tax Amount<br /><strong>@EndUserText.label</strong>: Tax Amount<br /><strong>@EndUserText.quickInfo</strong>: Tax Amount in Document Currency<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Decimal</td><td><strong>precision</strong>: 34<br /><strong>scale</strong>: floating<br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tax Amount<br /><strong>@EndUserText.label</strong>: Tax Amount<br /><strong>@EndUserText.quickInfo</strong>: Tax Amount in Document Currency</td></tr>
 </table>
 
 <div id="type-netwr"></div>
@@ -840,7 +827,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Decimal</td><td><strong>precision</strong>: 34<br /><strong>scale</strong>: floating<br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Net Value<br /><strong>@EndUserText.label</strong>: Net Value<br /><strong>@EndUserText.quickInfo</strong>: Net Value in Document Currency<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Decimal</td><td><strong>precision</strong>: 34<br /><strong>scale</strong>: floating<br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Net Value<br /><strong>@EndUserText.label</strong>: Net Value<br /><strong>@EndUserText.quickInfo</strong>: Net Value in Document Currency</td></tr>
 </table>
 
 <div id="type-ordnr_v"></div>
@@ -858,7 +845,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PL<br /><strong>@EndUserText.label</strong>: Price List Type<br /><strong>@EndUserText.quickInfo</strong>: Price List Type<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PL<br /><strong>@EndUserText.label</strong>: Price List Type<br /><strong>@EndUserText.quickInfo</strong>: Price List Type</td></tr>
 </table>
 
 <div id="type-poper"></div>
@@ -867,7 +854,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Period<br /><strong>@EndUserText.label</strong>: Posting Period<br /><strong>@EndUserText.quickInfo</strong>: Posting Period<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Period<br /><strong>@EndUserText.label</strong>: Posting Period<br /><strong>@EndUserText.quickInfo</strong>: Posting Period</td></tr>
 </table>
 
 <div id="type-rassc"></div>
@@ -876,7 +863,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(6)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tr.Prt<br /><strong>@EndUserText.label</strong>: Trading Partner No.<br /><strong>@EndUserText.quickInfo</strong>: Company ID of Trading Partner<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(6)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tr.Prt<br /><strong>@EndUserText.label</strong>: Trading Partner No.<br /><strong>@EndUserText.quickInfo</strong>: Company ID of Trading Partner</td></tr>
 </table>
 
 <div id="type-regio"></div>
@@ -885,7 +872,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Rg<br /><strong>@EndUserText.label</strong>: Region<br /><strong>@EndUserText.quickInfo</strong>: Region (State, Province, County)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Rg<br /><strong>@EndUserText.label</strong>: Region<br /><strong>@EndUserText.quickInfo</strong>: Region (State, Province, County)</td></tr>
 </table>
 
 <div id="type-relik"></div>
@@ -907,7 +894,7 @@
   "C": &lbrace;
     "val": "C"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: ILSt<br /><strong>@EndUserText.label</strong>: Invoice List Status<br /><strong>@EndUserText.quickInfo</strong>: Invoice list status of billing document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: ILSt<br /><strong>@EndUserText.label</strong>: Invoice List Status<br /><strong>@EndUserText.quickInfo</strong>: Invoice list status of billing document</td></tr>
 </table>
 
 <div id="type-rfbsk"></div>
@@ -959,7 +946,7 @@
   "N": &lbrace;
     "val": "N"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PsSt<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Status for Transfer to Accounting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PsSt<br /><strong>@EndUserText.label</strong>: Posting Status<br /><strong>@EndUserText.quickInfo</strong>: Status for Transfer to Accounting</td></tr>
 </table>
 
 <div id="type-schzw_bseg"></div>
@@ -968,7 +955,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PM<br /><strong>@EndUserText.label</strong>: Payment Method<br /><strong>@EndUserText.quickInfo</strong>: Payment Method<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PM<br /><strong>@EndUserText.label</strong>: Payment Method<br /><strong>@EndUserText.quickInfo</strong>: Payment Method</td></tr>
 </table>
 
 <div id="type-sepa_mndid"></div>
@@ -977,7 +964,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(35)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Mandate Reference<br /><strong>@EndUserText.label</strong>: Mandate Reference<br /><strong>@EndUserText.quickInfo</strong>: Unique Reference to Mandate for each Payee<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(35)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Mandate Reference<br /><strong>@EndUserText.label</strong>: Mandate Reference<br /><strong>@EndUserText.quickInfo</strong>: Unique Reference to Mandate for each Payee</td></tr>
 </table>
 
 <div id="type-sfakn"></div>
@@ -986,7 +973,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CancBillDc<br /><strong>@EndUserText.label</strong>: Canceled Bill. Doc.<br /><strong>@EndUserText.quickInfo</strong>: Number of canceled billing document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: CancBillDc<br /><strong>@EndUserText.label</strong>: Canceled Bill. Doc.<br /><strong>@EndUserText.quickInfo</strong>: Number of canceled billing document</td></tr>
 </table>
 
 <div id="type-spart"></div>
@@ -995,7 +982,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Dv<br /><strong>@EndUserText.label</strong>: Division<br /><strong>@EndUserText.quickInfo</strong>: Division<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Dv<br /><strong>@EndUserText.label</strong>: Division<br /><strong>@EndUserText.quickInfo</strong>: Division</td></tr>
 </table>
 
 <div id="type-stceg"></div>
@@ -1004,7 +991,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(20)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: VAT Registration No.<br /><strong>@EndUserText.label</strong>: VAT Registration No.<br /><strong>@EndUserText.quickInfo</strong>: VAT Registration Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(20)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: VAT Registration No.<br /><strong>@EndUserText.label</strong>: VAT Registration No.<br /><strong>@EndUserText.quickInfo</strong>: VAT Registration Number</td></tr>
 </table>
 
 <div id="type-stceg_h"></div>
@@ -1047,7 +1034,7 @@
   "K": &lbrace;
     "val": "K"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: OSI<br /><strong>@EndUserText.label</strong>: Origin Sales Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Origin of Sales Tax Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: OSI<br /><strong>@EndUserText.label</strong>: Origin Sales Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Origin of Sales Tax Number</td></tr>
 </table>
 
 <div id="type-stceg_l"></div>
@@ -1056,7 +1043,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: STC<br /><strong>@EndUserText.label</strong>: Ctry/Rgn Sls Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Country/Region of Sales Tax ID Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: STC<br /><strong>@EndUserText.label</strong>: Ctry/Rgn Sls Tax No.<br /><strong>@EndUserText.quickInfo</strong>: Country/Region of Sales Tax ID Number</td></tr>
 </table>
 
 <div id="type-stgrd"></div>
@@ -1065,7 +1052,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Rev.Reas.<br /><strong>@EndUserText.label</strong>: Reversal Reason<br /><strong>@EndUserText.quickInfo</strong>: Reason for Reversal or Inverse Posting<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Rev.Reas.<br /><strong>@EndUserText.label</strong>: Reversal Reason<br /><strong>@EndUserText.quickInfo</strong>: Reason for Reversal or Inverse Posting</td></tr>
 </table>
 
 <div id="type-stwae"></div>
@@ -1074,7 +1061,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(5)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Curr.<br /><strong>@EndUserText.label</strong>: Statistics Currency<br /><strong>@EndUserText.quickInfo</strong>: Statistics Currency<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(5)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Curr.<br /><strong>@EndUserText.label</strong>: Statistics Currency<br /><strong>@EndUserText.quickInfo</strong>: Statistics Currency</td></tr>
 </table>
 
 <div id="type-taxk1"></div>
@@ -1083,7 +1070,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.1 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 1 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.1 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 1 for Customer</td></tr>
 </table>
 
 <div id="type-taxk2"></div>
@@ -1092,7 +1079,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.2 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 2 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx2Cs<br /><strong>@EndUserText.label</strong>: Tax Class.2 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 2 for Customer</td></tr>
 </table>
 
 <div id="type-taxk3"></div>
@@ -1101,7 +1088,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx3Cs<br /><strong>@EndUserText.label</strong>: Tax Class.3 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 3 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx3Cs<br /><strong>@EndUserText.label</strong>: Tax Class.3 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 3 for Customer</td></tr>
 </table>
 
 <div id="type-taxk4"></div>
@@ -1110,7 +1097,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx4Cs<br /><strong>@EndUserText.label</strong>: Tax Class.4 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 4 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx4Cs<br /><strong>@EndUserText.label</strong>: Tax Class.4 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 4 for Customer</td></tr>
 </table>
 
 <div id="type-taxk5"></div>
@@ -1119,7 +1106,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx5Cs<br /><strong>@EndUserText.label</strong>: Tax Class.5 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 5 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx5Cs<br /><strong>@EndUserText.label</strong>: Tax Class.5 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 5 for Customer</td></tr>
 </table>
 
 <div id="type-taxk6"></div>
@@ -1128,7 +1115,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx6Cs<br /><strong>@EndUserText.label</strong>: Tax Class.6 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 6 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx6Cs<br /><strong>@EndUserText.label</strong>: Tax Class.6 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 6 for Customer</td></tr>
 </table>
 
 <div id="type-taxk7"></div>
@@ -1137,7 +1124,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx7Cs<br /><strong>@EndUserText.label</strong>: Tax Class.7 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 7 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx7Cs<br /><strong>@EndUserText.label</strong>: Tax Class.7 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 7 for Customer</td></tr>
 </table>
 
 <div id="type-taxk8"></div>
@@ -1146,7 +1133,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx8Cs<br /><strong>@EndUserText.label</strong>: Tax Class.8 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 8 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx8Cs<br /><strong>@EndUserText.label</strong>: Tax Class.8 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 8 for Customer</td></tr>
 </table>
 
 <div id="type-taxk9"></div>
@@ -1155,7 +1142,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx9Cs<br /><strong>@EndUserText.label</strong>: Tax Class.9 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 9 for Customer<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(1)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Tx9Cs<br /><strong>@EndUserText.label</strong>: Tax Class.9 Customer<br /><strong>@EndUserText.quickInfo</strong>: Tax Classification 9 for Customer</td></tr>
 </table>
 
 <div id="type-timestampl"></div>
@@ -1164,7 +1151,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Timestamp</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Time Stamp<br /><strong>@EndUserText.label</strong>: Time Stamp<br /><strong>@EndUserText.quickInfo</strong>: UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Timestamp</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Time Stamp<br /><strong>@EndUserText.label</strong>: Time Stamp<br /><strong>@EndUserText.quickInfo</strong>: UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)</td></tr>
 </table>
 
 <div id="type-uvall_su"></div>
@@ -1186,7 +1173,7 @@
   "C": &lbrace;
     "val": "C"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: AI<br /><strong>@EndUserText.label</strong>: All Items<br /><strong>@EndUserText.quickInfo</strong>: Incompletion Status (All Items)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: AI<br /><strong>@EndUserText.label</strong>: All Items<br /><strong>@EndUserText.quickInfo</strong>: Incompletion Status (All Items)</td></tr>
 </table>
 
 <div id="type-uvprs_uk"></div>
@@ -1208,7 +1195,7 @@
   "C": &lbrace;
     "val": "C"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PI<br /><strong>@EndUserText.label</strong>: Pricing – All Items<br /><strong>@EndUserText.quickInfo</strong>: Pricing Incompletion Status (All Items)<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: PI<br /><strong>@EndUserText.label</strong>: Pricing – All Items<br /><strong>@EndUserText.quickInfo</strong>: Pricing Incompletion Status (All Items)</td></tr>
 </table>
 
 <div id="type-valdt"></div>
@@ -1217,7 +1204,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: FixValDate<br /><strong>@EndUserText.label</strong>: Fixed Value Date<br /><strong>@EndUserText.quickInfo</strong>: Fixed Value Date<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: FixValDate<br /><strong>@EndUserText.label</strong>: Fixed Value Date<br /><strong>@EndUserText.quickInfo</strong>: Fixed Value Date</td></tr>
 </table>
 
 <div id="type-valtg"></div>
@@ -1226,7 +1213,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: AValD<br /><strong>@EndUserText.label</strong>: Addit. Value Days<br /><strong>@EndUserText.quickInfo</strong>: Additional Value Days<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: AValD<br /><strong>@EndUserText.label</strong>: Addit. Value Days<br /><strong>@EndUserText.quickInfo</strong>: Additional Value Days</td></tr>
 </table>
 
 <div id="type-vbeln_vf"></div>
@@ -1235,7 +1222,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Bill. Doc.<br /><strong>@EndUserText.label</strong>: Billing Document<br /><strong>@EndUserText.quickInfo</strong>: Billing Document<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(10)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Bill. Doc.<br /><strong>@EndUserText.label</strong>: Billing Document<br /><strong>@EndUserText.quickInfo</strong>: Billing Document</td></tr>
 </table>
 
 <div id="type-vbtypl"></div>
@@ -1533,7 +1520,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Is Draft<br /><strong>@EndUserText.label</strong>: Draft Indicator<br /><strong>@EndUserText.quickInfo</strong>: IsDraft Indicator<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Is Draft<br /><strong>@EndUserText.label</strong>: Draft Indicator<br /><strong>@EndUserText.quickInfo</strong>: IsDraft Indicator</td></tr>
 </table>
 
 <div id="type-vf_status"></div>
@@ -1558,7 +1545,7 @@
   "D": &lbrace;
     "val": "D"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Status<br /><strong>@EndUserText.label</strong>: Status<br /><strong>@EndUserText.quickInfo</strong>: SD Billing Status<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Status<br /><strong>@EndUserText.label</strong>: Status<br /><strong>@EndUserText.quickInfo</strong>: SD Billing Status</td></tr>
 </table>
 
 <div id="type-vf_todo"></div>
@@ -1580,7 +1567,7 @@
   "D": &lbrace;
     "val": "D"
   &rbrace;
-&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Issue Type<br /><strong>@EndUserText.label</strong>: Issue Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Issue Type<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+&rbrace;</code><br /><br /><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Issue Type<br /><strong>@EndUserText.label</strong>: Issue Type<br /><strong>@EndUserText.quickInfo</strong>: Billing Issue Type</td></tr>
 </table>
 
 <div id="type-vkorg"></div>
@@ -1589,7 +1576,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: SOrg.<br /><strong>@EndUserText.label</strong>: Sales Organization<br /><strong>@EndUserText.quickInfo</strong>: Sales Organization<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(4)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: SOrg.<br /><strong>@EndUserText.label</strong>: Sales Organization<br /><strong>@EndUserText.quickInfo</strong>: Sales Organization</td></tr>
 </table>
 
 <div id="type-vsbed"></div>
@@ -1598,7 +1585,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Shipping Conditions<br /><strong>@EndUserText.label</strong>: Shipping Conditions<br /><strong>@EndUserText.quickInfo</strong>: Shipping Conditions<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Shipping Conditions<br /><strong>@EndUserText.label</strong>: Shipping Conditions<br /><strong>@EndUserText.quickInfo</strong>: Shipping Conditions</td></tr>
 </table>
 
 <div id="type-vtweg"></div>
@@ -1607,7 +1594,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: DChl<br /><strong>@EndUserText.label</strong>: Distribution Channel<br /><strong>@EndUserText.quickInfo</strong>: Distribution Channel<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(2)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: DChl<br /><strong>@EndUserText.label</strong>: Distribution Channel<br /><strong>@EndUserText.quickInfo</strong>: Distribution Channel</td></tr>
 </table>
 
 <div id="type-waerk"></div>
@@ -1616,7 +1603,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(5)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Crcy<br /><strong>@EndUserText.label</strong>: Document Currency<br /><strong>@EndUserText.quickInfo</strong>: SD Document Currency<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(5)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Crcy<br /><strong>@EndUserText.label</strong>: Document Currency<br /><strong>@EndUserText.quickInfo</strong>: SD Document Currency</td></tr>
 </table>
 
 <div id="type-wwert_d"></div>
@@ -1625,7 +1612,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: TranslDate<br /><strong>@EndUserText.label</strong>: Translation Date<br /><strong>@EndUserText.quickInfo</strong>: Translation Date<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Date</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: TranslDate<br /><strong>@EndUserText.label</strong>: Translation Date<br /><strong>@EndUserText.quickInfo</strong>: Translation Date</td></tr>
 </table>
 
 <div id="type-xblnr_v1"></div>
@@ -1634,7 +1621,7 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(16)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Reference<br /><strong>@EndUserText.label</strong>: Reference<br /><strong>@EndUserText.quickInfo</strong>: Reference Document Number<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.String(16)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: Reference<br /><strong>@EndUserText.label</strong>: Reference<br /><strong>@EndUserText.quickInfo</strong>: Reference Document Number</td></tr>
 </table>
 
 <div id="type-xegdr"></div>
@@ -1643,5 +1630,6 @@
 
 <table>
 <tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>XEGDR@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: EU Triangular Deal<br /><strong>@EndUserText.quickInfo</strong>: Indicator: Triangular Deal Within the EU<br /><strong>@ObjectModel.upperCase</strong>: true</td></tr>
+<tr><td>cds.Boolean</td><td><strong>Annotations</strong><br /><strong>@EndUserText.heading</strong>: &lbrace;i18n>XEGDR@ENDUSERTEXT.HEADING&rbrace;<br /><strong>@EndUserText.label</strong>: EU Triangular Deal<br /><strong>@EndUserText.quickInfo</strong>: Indicator: Triangular Deal Within the EU</td></tr>
 </table>
+
