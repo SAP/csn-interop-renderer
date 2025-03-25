@@ -9,6 +9,7 @@ import Loader from "../loader/loader";
 import exampleData from "./example";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
 import { generateHtml, generateMarkdown } from "@sap/csn-interop-renderer";
 
 type OutputFormat = "markdown" | "html" | "web-component";
@@ -152,7 +153,7 @@ export default function Renderer(): JSX.Element {
       case "markdown":
         return (
           <div className={styles.RenderWrapper}>
-            <Markdown rehypePlugins={[rehypeRaw]}>{renderedContent}</Markdown>
+            <Markdown rehypePlugins={[rehypeRaw, rehypeSlug]}>{renderedContent}</Markdown>
           </div>
         );
       case "html":

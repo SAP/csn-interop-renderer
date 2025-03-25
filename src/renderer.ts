@@ -15,6 +15,7 @@ import {
   type ServiceDefinition,
 } from "@sap/csn-interop-specification";
 import { marked } from "marked";
+import { gfmHeadingId } from "marked-gfm-heading-id";
 
 // Helper functions
 function isEntityDefinition(entry: DefinitionEntry): entry is EntityDefinition {
@@ -59,6 +60,20 @@ function renderStringWithI18n(content: string, i18n: CSNInteropRoot["i18n"]): st
   return esacpedContent;
 }
 
+/**
+ * Get the header id the same format as GitHub does it for rendered markdown content.
+ * @param definitionName The name of a definition
+ * @param definitionElementName The name of a definition element
+ * @returns The markdown headline id
+ *
+ */
+function getHeaderId(definitionName: string, entityElementName?: string): string {
+  if (entityElementName) {
+    return `${definitionName.toLowerCase().replaceAll(".", "")}-${entityElementName.toLowerCase().replaceAll(".", "")}`;
+  }
+  return definitionName.toLowerCase().replaceAll(".", "");
+}
+
 function renderObject(content: string): string {
   return `<code>${JSON.stringify(content, undefined, 2).replace(/{/g, "&lbrace;").replace(/}/g, "&rbrace;")}</code>`;
 }
@@ -72,13 +87,12 @@ function processEntities(
   let output = "## Entity Definitions\n\n";
   // Process entities
   for (const [entityName, entity] of entities) {
-    output += `<div id="${entityName.toLowerCase()}"></div>\n\n`;
     output += `### ${entityName}\n\n`;
 
     const dotSplittedEntityName = entityName.split(".");
 
     if (dotSplittedEntityName.length > 1 && serviceNames.includes(dotSplittedEntityName[0])) {
-      output += `- **Exposed via**: [${dotSplittedEntityName[0]}](#service-${dotSplittedEntityName[0].toLowerCase()})\n`;
+      output += `- **Exposed via**: [${dotSplittedEntityName[0]}](#${dotSplittedEntityName[0].toLowerCase()})\n`;
     }
 
     output += "\n";
@@ -124,11 +138,11 @@ function processEntities(
         const cardinality = element.cardinality?.max === "*" ? "to many" : "to one";
         const pathDescription =
           targetEntityName && targetElementName
-            ? `Path: <a href="#${targetEntityName.toLowerCase()}" target="_self">${targetEntityName}</a>.<a href="#${targetEntityName.toLowerCase()}-${targetElementName.toLowerCase()}" target="_self">${targetElementName}</a>`
+            ? `Path: <a href="#${getHeaderId(targetEntityName)}">${targetEntityName}</a>.<a href="#${getHeaderId(targetEntityName, targetElementName)}">${targetElementName}</a>`
             : "";
 
         descriptionParts.push(
-          `<strong>Association</strong>: Links ${cardinality} <a href="#${targetEntityName.toLowerCase()}" target="_self">${targetEntityName}</a> (${pathDescription}) via <a href="#${entityName.toLowerCase()}-${viaKey.toLowerCase()}" target="_self">${viaKey}</a>`,
+          `<strong>Association</strong>: Links ${cardinality} <a href="#${getHeaderId(targetEntityName)}">${targetEntityName}</a> (${pathDescription}) via <a href="#${getHeaderId(entityName, viaKey)}">${viaKey}</a>`,
         );
       }
 
@@ -142,11 +156,11 @@ function processEntities(
 
       const description = descriptionParts.join("<br />");
       const typeLink = isCustomType(element)
-        ? `<a href="#type-${element.type.toLowerCase()}" target="_self">${element.type}</a>`
+        ? `<a href="#${element.type.toLowerCase()}">${element.type}</a>`
         : element.type;
 
       output += `<tr>`;
-      output += `<td><strong id="${entityName.toLowerCase()}-${elementName.toLowerCase()}">${elementName}</strong></td>`;
+      output += `<td><strong id="${getHeaderId(entityName, elementName)}">${elementName}</strong></td>`;
       output += `<td>${typeLink}</td>`;
       output += `<td>${description}</td>`;
       output += `</tr>\n`;
@@ -167,8 +181,6 @@ function processTypes(types: [string, TypeDefinition][], i18n: CSNInteropRoot["i
     const restProps = Object.entries(definition).filter(
       ([key]) => !key.startsWith("@") && !["doc", "kind", "type", "length"].includes(key),
     );
-
-    output += `<div id="type-${typeName.toLowerCase()}"></div>\n\n`;
 
     output += `### ${typeName}\n\n`;
 
@@ -215,14 +227,12 @@ function processServices(
       ([key]) => !key.startsWith("@") && !["doc", "kind", "type", "length"].includes(key),
     );
 
-    output += `<div id="service-${serviceName.toLowerCase()}"></div>\n\n`;
-
     output += `### ${serviceName}\n\n`;
 
     if (doc) output += `${marked.parse(doc)}\n`;
 
     if (exposedEntities) {
-      output += `Exposed Entities:\n\n${exposedEntities.reduce((result, [entityName]) => [...result, `  - [${entityName}](#${entityName.toLowerCase()})`], [] as string[]).join("\n")}\n\n`;
+      output += `Exposed Entities:\n\n${exposedEntities.reduce((result, [entityName]) => [...result, `  - [${entityName}](#${getHeaderId(entityName)})`], [] as string[]).join("\n")}\n\n`;
     }
 
     if (!restProps.length && !annotations.length) return output;
@@ -284,6 +294,7 @@ export const renderer = async (json: CSNInteropRoot, asHTml: boolean = false): P
   output += processServices(services, entities, i18n);
 
   if (asHTml) {
+    marked.use(gfmHeadingId());
     const html = await marked.parse(output);
     return html;
   }

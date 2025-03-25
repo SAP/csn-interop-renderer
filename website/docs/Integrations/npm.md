@@ -29,3 +29,27 @@ const generatedMarkdownResult = generateMarkdown(yourCsnInputJson);
 // use the 'generatedHtmlResult' for further processing
 const generatedHtmlResult = generateHtml(yourCsnInputJson);
 ```
+
+:::info
+The generated `html` result is the the same as the `markdown` result but internally further processed through the [marked](https://www.npmjs.com/package/marked) library.
+:::
+
+:::warning
+The `html` result is not sanitized and it's recommended to use a sanitize library.
+
+Depending on the used sanitize library sometimes headline ids are removed and links between the CSN entities may not work anymore.
+Please consider configuring the sanitize library to allow `id` as valid attribute for headline tags.
+
+Example of how a sanitizer library like [sanitize-html](https://github.com/apostrophecms/sanitize-html) could be configured:
+
+```js
+sanitizeHtml(generatedHtmlResult, {
+  allowedAttributes: { h1: ["id"], h2: ["id"], h3: ["id"], h4: ["id"], strong: ["id"], a: ["href"] },
+});
+```
+
+:::
+
+:::info
+The algorithm that generates the `id` for the `html` output result is the [github-slugger](https://github.com/Flet/github-slugger) which matches how GitHub markdown headline id generation works.
+:::
