@@ -63,8 +63,8 @@ function renderStringWithI18n(content: string, i18n: CSNInteropRoot["i18n"]): st
 /**
  * Get the header id the same format as GitHub does it for rendered markdown content.
  * @param definitionName The name of a definition
- * @param definitionElementName The name of a definition element
- * @returns The markdown headline id
+ * @param entityElementName The name of a definition element
+ * @returns The markdown headline id in specific GitHub format style
  *
  */
 function getHeaderId(definitionName: string, entityElementName?: string): string {
