@@ -18,31 +18,37 @@ npm install @sap/csn-interop-renderer --save
 
 Import the web component and use it in your project. Where `yourCsnInputJson` is a valid CSN JSON object.
 
-```html
-<csn-renderer source="{JSON.stringify(yourCsnInputJson)}" />
-```
+- in React:
 
-_Note_: web components can only take string as input props, no JSON objects, the CSN JSON object must be stringified.
+  ```html
+  <csn-renderer source="{JSON.stringify(yourCsnInputJson)}" />
+  ```
+
+- in Angular:
+
+  ```html
+  <csn-renderer [attr.source]="yourCsnInputJson | json" />
+  ```
+
+  Additionally don't forget to add `schemas: [CUSTOM_ELEMENTS_SCHEMA]` to ngModule, to allow the usage of custom tag names.
 
 ### Component styling
 
 The web-component has an open DOM which means that it can be styled from the outside as needed. Example:
 
-styles.css file
-
 ```css
-th,
-td {
-  border: 1px solid;
+.custom-container {
+  h1,
+  h2 {
+    color: red;
+  }
 }
 ```
 
-app.ts file
-
-```js
-import styles from "./styles.css";
-....
-<csn-renderer source="{JSON.stringify(yourCsnInputJson)}" />
+```html
+<csn-renderer class="custom-container" source="{JSON.stringify(yourCsnInputJson)}" />
+or
+<csn-renderer class="custom-container" [attr.source]="yourCsnInputJson | json" />
 ```
 
-Defined styles will be applied for the table used the web-component.
+All defined styles will be applied for the html table used the web-component.
