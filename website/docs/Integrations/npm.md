@@ -30,10 +30,6 @@ const generatedMarkdownResult = generateMarkdown(yourCsnInputJson);
 const generatedHtmlResult = generateHtml(yourCsnInputJson);
 ```
 
-:::info
-The generated `html` result is the the same as the `markdown` result but internally further processed through the [marked](https://www.npmjs.com/package/marked) library.
-:::
-
 :::warning
 The `html` result is not sanitized and it's recommended to use a sanitize library.
 
