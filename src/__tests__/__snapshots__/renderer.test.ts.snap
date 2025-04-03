@@ -9,121 +9,95 @@ This CSN example document shows how the airline example is expressed with a CDS 
 
 ### AirlineService.Airline
 
-- **Exposed via**: [AirlineService](#airlineservice)
+<p>Human readable description of the entity, in <strong>markdown</strong>.</p>
+
+Exposed via:
+[AirlineService](#airlineservice)
 
 <table>
-<tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="airlineserviceairline-airlineid">AirlineID</strong></td><td><a href="#airlineuuid">AirlineUuid</a></td><td><strong>Key</strong>: true<br /><strong>@EndUserText.label</strong>: Airline<br /><strong>@ObjectModel.text.element</strong>: <code>[
-  "Name"
-]</code></td></tr>
-<tr><td><strong id="airlineserviceairline-name">Name</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Name<br /><strong>@Semantics.text</strong>: true</td></tr>
-<tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Currency Code<br /><strong>@Semantics.currencyCode</strong>: true</td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairline-airlineid">AirlineID</strong><br /><br /><small>Human readable description of the element, in **markdown**.</small></td><td><a href="#airlineuuid">AirlineUuid</a></td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Airline"<br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><td><strong id="airlineserviceairline-name">Name</strong><br /><br /><small></small></td><td>cds.String(4)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Name"<br />@Semantics.text: true</td></tr>
+<tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong><br /><br /><small></small></td><td>cds.String(17)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Currency Code"<br />@Semantics.currencyCode: true</td></tr>
 </table>
 
 ### AirlineService.Airport
 
-- **Exposed via**: [AirlineService](#airlineservice)
+Exposed via:
+[AirlineService](#airlineservice)
 
 <table>
-<tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="airlineserviceairport-airportid">AirportID</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Airport<br /><strong>@ObjectModel.text.element</strong>: <code>[
-  "Name"
-]</code></td></tr>
-<tr><td><strong id="airlineserviceairport-name">Name</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Name<br /><strong>@Semantics.text</strong>: true</td></tr>
-<tr><td><strong id="airlineserviceairport-city">City</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: City</td></tr>
-<tr><td><strong id="airlineserviceairport-countrycode_code">CountryCode_code</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Country Code<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
-  "=": "to_CountryCode"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceairport-to_countrycode">to_CountryCode</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to one <a href="#airlineservicecountries">AirlineService.Countries</a> (Path: <a href="#airlineservicecountries">AirlineService.Countries</a>.<a href="#airlineservicecountries-code">code</a>) via <a href="#airlineserviceairport-countrycode_code">CountryCode_code</a></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairport-airportid">AirportID</strong><br /><br /><small></small></td><td>cds.String(9)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Airport"<br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><td><strong id="airlineserviceairport-name">Name</strong><br /><br /><small></small></td><td>cds.String(4)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Name"<br />@Semantics.text: true</td></tr>
+<tr><td><strong id="airlineserviceairport-city">City</strong><br /><br /><small></small></td><td>cds.String(4)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "City"</td></tr>
+<tr><td><strong id="airlineserviceairport-countrycode_code">CountryCode_code</strong><br /><br /><small></small></td><td>cds.String(16)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Country Code"<br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_CountryCode"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceairport-to_countrycode">to_CountryCode</strong><br /><br /><small></small></td><td>cds.Association</td><td>Association to one <a href="#airlineservicecountries">AirlineService.Countries</a> (path: <a href="#airlineservicecountries">AirlineService.Countries</a>.<a href="#airlineservicecountries-code">code</a>) via <a href="#airlineserviceairport-countrycode_code">CountryCode_code</a><br /><br /></td></tr>
 </table>
 
 ### AirlineService.Countries
 
-- **Exposed via**: [AirlineService](#airlineservice)
+Exposed via:
+[AirlineService](#airlineservice)
 
 <table>
-<tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="airlineservicecountries-code">code</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Country Code<br /><strong>@ObjectModel.text.association</strong>: <code>&lbrace;
-  "=": "texts"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineservicecountries-texts">texts</strong></td><td>cds.Composition</td><td></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br /><br /><small></small></td><td>cds.String(4)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Country Code"<br />@ObjectModel.text.association: <code>&lbrace;"=":"texts"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineservicecountries-texts">texts</strong><br /><br /><small></small></td><td>cds.Composition</td><td></td></tr>
 </table>
 
 ### AirlineService.Countries_texts
 
-- **Exposed via**: [AirlineService](#airlineservice)
+Exposed via:
+[AirlineService](#airlineservice)
 
 <table>
-<tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="airlineservicecountries_texts-code">code</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Country Code</td></tr>
-<tr><td><strong id="airlineservicecountries_texts-locale">locale</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Language Code<br /><strong>@Semantics.language</strong>: true</td></tr>
-<tr><td><strong id="airlineservicecountries_texts-name">name</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Name<br /><strong>@Semantics.text</strong>: true</td></tr>
-<tr><td><strong id="airlineservicecountries_texts-descr">descr</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Description<br /><strong>@Semantics.text</strong>: true</td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries_texts-code">code</strong><br /><br /><small></small></td><td>cds.String(4)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Country Code"</td></tr>
+<tr><td><strong id="airlineservicecountries_texts-locale">locale</strong><br /><br /><small></small></td><td>cds.String(6)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Language Code"<br />@Semantics.language: true</td></tr>
+<tr><td><strong id="airlineservicecountries_texts-name">name</strong><br /><br /><small></small></td><td>cds.String(4)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Name"<br />@Semantics.text: true</td></tr>
+<tr><td><strong id="airlineservicecountries_texts-descr">descr</strong><br /><br /><small></small></td><td>cds.String(5)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Description"<br />@Semantics.text: true</td></tr>
 </table>
 
 ### AirlineService.FlightConnection
 
-- **Exposed via**: [AirlineService](#airlineservice)
+Exposed via:
+[AirlineService](#airlineservice)
 
 <table>
-<tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="airlineserviceflightconnection-airlineid">AirlineID</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Airline<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
-  "=": "to_Airline"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-connectionid">ConnectionID</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Flight Number</td></tr>
-<tr><td><strong id="airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Departure Airport<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
-  "=": "to_DepartureAirport"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Destination Airport<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
-  "=": "to_DestinationAirport"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-departuretime">DepartureTime</strong></td><td>cds.Time</td><td><strong>@EndUserText.label</strong>: Departure Time</td></tr>
-<tr><td><strong id="airlineserviceflightconnection-arrivaltime">ArrivalTime</strong></td><td>cds.Time</td><td><strong>@EndUserText.label</strong>: Arrival Time</td></tr>
-<tr><td><strong id="airlineserviceflightconnection-distance">Distance</strong></td><td>cds.Integer</td><td><strong>@EndUserText.label</strong>: Distance<br /><strong>@Semantics.quantity.unitOfMeasure</strong>: <code>&lbrace;
-  "=": "DistanceUnit"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-distanceunit">DistanceUnit</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Distance Unit</td></tr>
-<tr><td><strong id="airlineserviceflightconnection-to_airline">to_Airline</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#airlineserviceairline">AirlineService.Airline</a> (Path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflightconnection-airlineid">AirlineID</a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-to_departureairport">to_DepartureAirport</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#airlineserviceairport">AirlineService.Airport</a> (Path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-to_destinationairport">to_DestinationAirport</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#airlineserviceairport">AirlineService.Airport</a> (Path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</a></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflightconnection-airlineid">AirlineID</strong><br /><br /><small></small></td><td>cds.String(9)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Airline"<br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-connectionid">ConnectionID</strong><br /><br /><small></small></td><td>cds.String(12)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Flight Number"</td></tr>
+<tr><td><strong id="airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</strong><br /><br /><small></small></td><td>cds.String(26)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Departure Airport"<br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DepartureAirport"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</strong><br /><br /><small></small></td><td>cds.String(28)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Destination Airport"<br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DestinationAirport"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-departuretime">DepartureTime</strong><br /><br /><small></small></td><td>cds.Time</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Departure Time"</td></tr>
+<tr><td><strong id="airlineserviceflightconnection-arrivaltime">ArrivalTime</strong><br /><br /><small></small></td><td>cds.Time</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Arrival Time"</td></tr>
+<tr><td><strong id="airlineserviceflightconnection-distance">Distance</strong><br /><br /><small></small></td><td>cds.Integer</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Distance"<br />@Semantics.quantity.unitOfMeasure: <code>&lbrace;"=":"DistanceUnit"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-distanceunit">DistanceUnit</strong><br /><br /><small></small></td><td>cds.String(12)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Distance Unit"</td></tr>
+<tr><td><strong id="airlineserviceflightconnection-to_airline">to_Airline</strong><br /><br /><small></small></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflightconnection-airlineid">AirlineID</a><br /><br /></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-to_departureairport">to_DepartureAirport</strong><br /><br /><small></small></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</a><br /><br /></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-to_destinationairport">to_DestinationAirport</strong><br /><br /><small></small></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</a><br /><br /></td></tr>
 </table>
 
 ### AirlineService.Flight
 
-- **Exposed via**: [AirlineService](#airlineservice)
+Exposed via:
+[AirlineService](#airlineservice)
 
 <table>
-<tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="airlineserviceflight-airlineid">AirlineID</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Airline<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
-  "=": "to_Airline"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-flightdate">FlightDate</strong></td><td>cds.Date</td><td><strong>@EndUserText.label</strong>: Flight Date</td></tr>
-<tr><td><strong id="airlineserviceflight-connectionid">ConnectionID</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Flight Number<br /><strong>@ObjectModel.foreignKey.association</strong>: <code>&lbrace;
-  "=": "to_Connection"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-price">Price</strong></td><td>cds.Decimal</td><td><strong>@EndUserText.label</strong>: Price<br /><strong>@Aggregation.default</strong>: <code>&lbrace;
-  "#": "MIN"
-&rbrace;</code><br /><strong>@Semantics.amount.currencyCode</strong>: <code>&lbrace;
-  "=": "CurrencyCode_code"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-currencycode_code">CurrencyCode_code</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Currency Code<br /><strong>@Semantics.currencyCode</strong>: true</td></tr>
-<tr><td><strong id="airlineserviceflight-planetype">PlaneType</strong></td><td>cds.String</td><td><strong>@EndUserText.label</strong>: Plane Type</td></tr>
-<tr><td><strong id="airlineserviceflight-maximumseats">MaximumSeats</strong></td><td>cds.Integer</td><td><strong>@EndUserText.label</strong>: Maximum Seats<br /><strong>@Aggregation.default</strong>: <code>&lbrace;
-  "#": "SUM"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong></td><td>cds.Integer</td><td><strong>@EndUserText.label</strong>: Occupied Seats<br /><strong>@Aggregation.default</strong>: <code>&lbrace;
-  "#": "SUM"
-&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-to_airline">to_Airline</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#airlineserviceairline">AirlineService.Airline</a> (Path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
-<tr><td><strong id="airlineserviceflight-to_connection">to_Connection</strong></td><td>cds.Association</td><td><strong>Association</strong>: Links to many <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a> (Path: <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a>.<a href="#airlineserviceflightconnection-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflight-airlineid">AirlineID</strong><br /><br /><small></small></td><td>cds.String(9)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Airline"<br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-flightdate">FlightDate</strong><br /><br /><small></small></td><td>cds.Date</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Flight Date"</td></tr>
+<tr><td><strong id="airlineserviceflight-connectionid">ConnectionID</strong><br /><br /><small></small></td><td>cds.String(12)</td><td>key: true<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Flight Number"<br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Connection"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-price">Price</strong><br /><br /><small></small></td><td>cds.Decimal</td><td>precision: 16<br />scale: 3<br /><br /><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Price"<br />@Aggregation.default: <code>&lbrace;"#":"MIN"&rbrace;</code><br />@Semantics.amount.currencyCode: <code>&lbrace;"=":"CurrencyCode_code"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-currencycode_code">CurrencyCode_code</strong><br /><br /><small></small></td><td>cds.String(17)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Currency Code"<br />@Semantics.currencyCode: true</td></tr>
+<tr><td><strong id="airlineserviceflight-planetype">PlaneType</strong><br /><br /><small></small></td><td>cds.String(9)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Plane Type"</td></tr>
+<tr><td><strong id="airlineserviceflight-maximumseats">MaximumSeats</strong><br /><br /><small></small></td><td>cds.Integer</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Maximum Seats"<br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong><br /><br /><small></small></td><td>cds.Integer</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Occupied Seats"<br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-to_airline">to_Airline</strong><br /><br /><small></small></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a><br /><br /></td></tr>
+<tr><td><strong id="airlineserviceflight-to_connection">to_Connection</strong><br /><br /><small></small></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a> (path: <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a>.<a href="#airlineserviceflightconnection-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a><br /><br /></td></tr>
 </table>
 
 ### UnassignedEntity
 
+<p>This entity is not prefixed with the service name and therefore not accessible through the service.</p>
 
 <table>
-<tr><th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th></tr>
-<tr><td><strong id="unassignedentity-someelement">SomeElement</strong></td><td>cds.String</td><td></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="unassignedentity-someelement">SomeElement</strong><br /><br /><small></small></td><td>cds.String</td><td>key: true<br /><br /></td></tr>
 </table>
 
 ## Type Definitions
@@ -133,10 +107,7 @@ This CSN example document shows how the airline example is expressed with a CDS 
 <p>Description of the reuse type</p>
 
 <table>
-<tr><th>Type</th><th>Description</th></tr>
-<tr><td>cds.String(3)</td><td><strong>Annotations</strong><br /><strong>@EndUserText.label</strong>: Airline<br /><strong>@ObjectModel.text.element</strong>: <code>[
-  "Name"
-]</code></td></tr>
+<tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td><a href="https://sap.github.io/csn-interop-specification/spec-v1/extensions/" target="_blank">Annotations</a>:<br />@EndUserText.label: "Airline"<br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
 </table>
 
 ## Services

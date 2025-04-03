@@ -18,7 +18,7 @@
     },
     "AirlineService.Airline": {
       "kind": "entity",
-      "doc": "Human readable description of the entity, in **markdown**.",
+      "doc": "Human readable description of the entity AirlineService.Airline, in **markdown**.",
       "@EndUserText.label": "Airline",
       "@ObjectModel.modelingPattern": {
         "#": "ANALYTICAL_DIMENSION"
@@ -27,7 +27,7 @@
         "AirlineID": {
           "@EndUserText.label": "Airline",
           "@ObjectModel.text.element": ["Name"],
-          "doc": "Human readable description of the element, in **markdown**.",
+          "doc": "Add human readable documentation text in **markdown** here, database storage ID.",
           "key": true,
           "type": "AirlineUuid",
           "length": 3
@@ -36,13 +36,15 @@
           "@EndUserText.label": "Name",
           "@Semantics.text": true,
           "type": "cds.String",
-          "length": 40
+          "length": 40,
+          "doc": "The name of the **airline**."
         },
         "CurrencyCode_code": {
           "@EndUserText.label": "Currency Code",
           "@Semantics.currencyCode": true,
           "type": "cds.String",
-          "length": 3
+          "length": 3,
+          "doc": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, `sed diam` nonumy <br/> eirmod tempor invidunt ut labore et dolore magna aliquyam."
         }
       }
     },
