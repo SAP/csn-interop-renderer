@@ -90,14 +90,11 @@ function processEntities(
       output += `${marked.parse(entityDefinition.doc)}\n`;
     }
 
-    const entityAnnotations: [string, unknown][] = Object.entries(entityDefinition).filter(([key]) =>
-      key.startsWith("@"),
-    );
     const entityRestProps = Object.entries(entityDefinition).filter(
-      ([key]) => !key.startsWith("@") && !["kind", "doc", "elements"].includes(key),
+      ([key]) => !["kind", "doc", "elements"].includes(key),
     );
 
-    output += `${getDescriptionData(entityRestProps, entityAnnotations, annotationValueLinkTransformers, i18n)}\n\n`;
+    output += `${getDescriptionData(entityRestProps, annotationValueLinkTransformers, i18n)}\n\n`;
 
     output += `Elements: \n\n`;
 
@@ -110,11 +107,8 @@ function processEntities(
     output += `</tr>`;
 
     for (const [elementName, elementDefinition] of Object.entries(entityDefinition.elements)) {
-      const elementAnnotations: [string, unknown][] = Object.entries(elementDefinition).filter(([key]) =>
-        key.startsWith("@"),
-      );
       const elementRestProps = Object.entries(elementDefinition).filter(
-        ([key]) => !key.startsWith("@") && !["type", "length", "cardinality", "on", "target"].includes(key),
+        ([key]) => !["type", "length", "cardinality", "on", "target"].includes(key),
       );
 
       const lengthConstraint =
@@ -164,7 +158,7 @@ function processEntities(
       output += `<tr>`;
       output += `<td><strong id="${getHeaderId(entityName, elementName)}">${elementName}</strong><br /><br /></td>`;
       output += `<td>${typeLink}</td>`;
-      output += `<td>${getDescriptionData(elementRestProps, elementAnnotations, annotationValueLinkTransformers, i18n, customDescriptionCellDataText)}</td>`;
+      output += `<td>${getDescriptionData(elementRestProps, annotationValueLinkTransformers, i18n, customDescriptionCellDataText)}</td>`;
       output += `</tr>\n`;
     }
 
@@ -186,12 +180,11 @@ function processTypes(
       output += `${marked.parse(typeDefinition.doc)}\n`;
     }
 
-    const annotations: [string, unknown][] = Object.entries(typeDefinition).filter(([key]) => key.startsWith("@"));
     const restProps: [string, unknown][] = Object.entries(typeDefinition).filter(
-      ([key]) => !key.startsWith("@") && !["doc", "kind", "type", "length"].includes(key),
+      ([key]) => !["doc", "kind", "type", "length"].includes(key),
     );
 
-    if (!restProps.length && !annotations.length) return output;
+    if (!restProps.length) return output;
 
     output += `<table>\n`;
 
@@ -204,7 +197,7 @@ function processTypes(
     const lengthConstraint =
       isLengthConstrainable(typeDefinition) && typeDefinition.length ? `(${typeDefinition.length})` : "";
     output += `<td>${typeDefinition.type}${lengthConstraint}</td>`;
-    output += `<td>${getDescriptionData(restProps, annotations, annotationValueLinkTransformers, i18n)}</td>`;
+    output += `<td>${getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
     output += `</tr>\n`;
 
     output += `</table>\n\n`;
@@ -231,12 +224,11 @@ function processServices(
       output += `Exposed Entities:\n\n${exposedEntities.reduce((result, [entityName]) => [...result, `  - [${entityName}](#${getHeaderId(entityName)})`], [] as string[]).join("\n")}\n\n`;
     }
 
-    const annotations: [string, unknown][] = Object.entries(serviceDefinition).filter(([key]) => key.startsWith("@"));
     const restProps: [string, unknown][] = Object.entries(serviceDefinition).filter(
-      ([key]) => !key.startsWith("@") && !["doc", "kind"].includes(key),
+      ([key]) => !["doc", "kind"].includes(key),
     );
 
-    if (!restProps.length && !annotations.length) return output;
+    if (!restProps.length) return output;
 
     output += `<table>\n`;
 
@@ -245,7 +237,7 @@ function processServices(
     output += `</tr>`;
 
     output += `<tr>`;
-    output += `<td>${getDescriptionData(restProps, annotations, annotationValueLinkTransformers, i18n)}</td>`;
+    output += `<td>${getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
     output += `</tr>\n`;
 
     output += `</table>\n\n`;

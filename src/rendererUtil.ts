@@ -4,20 +4,22 @@ import { marked } from "marked";
 
 export function getDescriptionData(
   props: [string, unknown][],
-  annotations: [string, unknown][],
   annotationLinkCallbacks: AnnotationLinkCallback[] | undefined,
   i18n: CSNInteropRoot["i18n"] | undefined,
   customDescriptionCellDataText?: string,
 ): string {
   if (customDescriptionCellDataText) return customDescriptionCellDataText;
 
+  const annotations: [string, unknown][] = props.filter(([key]) => key.startsWith("@"));
+  const restProps = props.filter(([key]) => !key.startsWith("@"));
+
   let description = "";
 
-  const propsParts = props.map(([key, value]) => {
-    if (key === "doc") {
-      return `${marked.parse(typeof value === "string" ? value : JSON.stringify(value))}`;
+  const restPropsParts = restProps.map((prop) => {
+    if (prop[0] === "doc") {
+      return `${marked.parse(typeof prop[1] === "string" ? prop[1] : JSON.stringify(prop[1]))}`;
     }
-    return `${key}: ${renderContentWithI18n(value, i18n)}`;
+    return `${prop[0]}: ${renderContentWithI18n(prop[1], i18n)}`;
   });
 
   const annotationParts = annotations.map(([key, value]) => {
@@ -30,8 +32,8 @@ export function getDescriptionData(
     return `${key}: ${renderContentWithI18n(value, i18n)}`;
   });
 
-  if (propsParts.length) {
-    description += `${propsParts.join("<br />")}<br />`;
+  if (restPropsParts.length) {
+    description += `${restPropsParts.join("<br />")}<br />`;
   }
 
   if (annotationParts.length) {
