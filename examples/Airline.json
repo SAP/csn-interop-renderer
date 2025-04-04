@@ -19,10 +19,12 @@
     "AirlineService.Airline": {
       "kind": "entity",
       "doc": "Human readable description of the entity AirlineService.Airline, in **markdown**.",
+      "@EntityRelationship.entityType": "sap.vdm.sont:AirlineService.Airline",
       "@EndUserText.label": "Airline",
       "@ObjectModel.modelingPattern": {
         "#": "ANALYTICAL_DIMENSION"
       },
+      "abstract": false,
       "elements": {
         "AirlineID": {
           "@EndUserText.label": "Airline",
@@ -30,7 +32,7 @@
           "doc": "Add human readable documentation text in **markdown** here, database storage ID.",
           "key": true,
           "type": "AirlineUuid",
-          "length": 3
+          "default": { "val": 3 }
         },
         "Name": {
           "@EndUserText.label": "Name",
@@ -43,7 +45,7 @@
           "@EndUserText.label": "Currency Code",
           "@Semantics.currencyCode": true,
           "type": "cds.String",
-          "length": 3,
+          "length": 33,
           "doc": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, `sed diam` nonumy <br/> eirmod tempor invidunt ut labore et dolore magna aliquyam."
         }
       }

@@ -13,10 +13,13 @@ import {
   type OnValue,
   type CustomType,
   type ServiceDefinition,
+  StringType,
+  LargeStringType,
 } from "@sap/csn-interop-specification";
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
-import { getDescriptionCellData } from "./rendererUtil.js";
+import { getDescriptionData } from "./rendererUtil.js";
+import { AnnotationLinkCallback, CsnInteropRendererConfig } from "./types/index.js";
 
 // Helper functions
 function isEntityDefinition(entry: DefinitionEntry): entry is EntityDefinition {
@@ -31,7 +34,7 @@ function isStructuredElementReference(
 
 function isLengthConstrainable(
   entry: TypeDefinition | ElementEntry,
-): entry is StringTypeDefinition | LargeStringTypeDefinition {
+): entry is StringTypeDefinition | LargeStringTypeDefinition | StringType | LargeStringType | CustomType {
   return Object.hasOwn(entry, "length");
 }
 
@@ -70,20 +73,33 @@ function processEntities(
   entities: [string, EntityDefinition][],
   serviceNames: string[],
   i18n: CSNInteropRoot["i18n"] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
 ): string {
   if (!entities.length) return "";
   let output = "## Entity Definitions\n\n";
   for (const [entityName, entityDefinition] of entities) {
     output += `### ${entityName}\n\n`;
-    if (entityDefinition.doc) {
-      output += `${marked.parse(entityDefinition.doc)}\n`;
-    }
 
     const dotSplittedEntityName = entityName.split(".");
 
     if (dotSplittedEntityName.length > 1 && serviceNames.includes(dotSplittedEntityName[0])) {
-      output += `Exposed via:\n[${dotSplittedEntityName[0]}](#${dotSplittedEntityName[0].toLowerCase()})\n\n`;
+      output += `Entity exposed via:\n[${dotSplittedEntityName[0]}](#${dotSplittedEntityName[0].toLowerCase()})\n\n`;
     }
+
+    if (entityDefinition.doc) {
+      output += `${marked.parse(entityDefinition.doc)}\n`;
+    }
+
+    const entityAnnotations: [string, unknown][] = Object.entries(entityDefinition).filter(([key]) =>
+      key.startsWith("@"),
+    );
+    const entityRestProps = Object.entries(entityDefinition).filter(
+      ([key]) => !key.startsWith("@") && !["kind", "doc", "elements"].includes(key),
+    );
+
+    output += `${getDescriptionData(entityRestProps, entityAnnotations, annotationValueLinkTransformers, i18n)}\n\n`;
+
+    output += `Elements: \n\n`;
 
     output += `<table>\n`;
 
@@ -94,13 +110,15 @@ function processEntities(
     output += `</tr>`;
 
     for (const [elementName, elementDefinition] of Object.entries(entityDefinition.elements)) {
-      const annotations: [string, unknown][] = Object.entries(elementDefinition).filter(([key]) => key.startsWith("@"));
-      const restProps = Object.entries(elementDefinition).filter(
-        ([key]) => !key.startsWith("@") && !["doc", "type", "length", "cardinality", "on", "target"].includes(key),
+      const elementAnnotations: [string, unknown][] = Object.entries(elementDefinition).filter(([key]) =>
+        key.startsWith("@"),
+      );
+      const elementRestProps = Object.entries(elementDefinition).filter(
+        ([key]) => !key.startsWith("@") && !["type", "length", "cardinality", "on", "target"].includes(key),
       );
 
       const lengthConstraint =
-        isLengthConstrainable(elementDefinition) && elementName.length ? `(${elementName.length})` : "";
+        isLengthConstrainable(elementDefinition) && elementDefinition.length ? `(${elementDefinition.length})` : "";
       const typeLink = isCustomType(elementDefinition)
         ? `<a href="#${elementDefinition.type.toLowerCase()}">${elementDefinition.type}</a>`
         : elementDefinition.type + lengthConstraint;
@@ -144,9 +162,9 @@ function processEntities(
       }
 
       output += `<tr>`;
-      output += `<td><strong id="${getHeaderId(entityName, elementName)}">${elementName}</strong><br /><br /><small>${elementDefinition.doc ? elementDefinition.doc : ""}</small></td>`;
+      output += `<td><strong id="${getHeaderId(entityName, elementName)}">${elementName}</strong><br /><br /></td>`;
       output += `<td>${typeLink}</td>`;
-      output += `<td>${getDescriptionCellData(restProps, annotations, i18n, customDescriptionCellDataText)}</td>`;
+      output += `<td>${getDescriptionData(elementRestProps, elementAnnotations, annotationValueLinkTransformers, i18n, customDescriptionCellDataText)}</td>`;
       output += `</tr>\n`;
     }
 
@@ -155,7 +173,11 @@ function processEntities(
   return output;
 }
 
-function processTypes(types: [string, TypeDefinition][], i18n: CSNInteropRoot["i18n"] | undefined): string {
+function processTypes(
+  types: [string, TypeDefinition][],
+  i18n: CSNInteropRoot["i18n"] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
+): string {
   if (!types.length) return "";
   let output = "## Type Definitions\n\n";
   for (const [typeName, typeDefinition] of types) {
@@ -182,7 +204,7 @@ function processTypes(types: [string, TypeDefinition][], i18n: CSNInteropRoot["i
     const lengthConstraint =
       isLengthConstrainable(typeDefinition) && typeDefinition.length ? `(${typeDefinition.length})` : "";
     output += `<td>${typeDefinition.type}${lengthConstraint}</td>`;
-    output += `<td>${getDescriptionCellData(restProps, annotations, i18n)}</td>`;
+    output += `<td>${getDescriptionData(restProps, annotations, annotationValueLinkTransformers, i18n)}</td>`;
     output += `</tr>\n`;
 
     output += `</table>\n\n`;
@@ -194,6 +216,7 @@ function processServices(
   services: [string, ServiceDefinition][],
   entities: [string, EntityDefinition][],
   i18n: CSNInteropRoot["i18n"] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
 ): string {
   if (!services.length) return "";
   let output = "## Services\n\n";
@@ -222,7 +245,7 @@ function processServices(
     output += `</tr>`;
 
     output += `<tr>`;
-    output += `<td>${getDescriptionCellData(restProps, annotations, i18n)}</td>`;
+    output += `<td>${getDescriptionData(restProps, annotations, annotationValueLinkTransformers, i18n)}</td>`;
     output += `</tr>\n`;
 
     output += `</table>\n\n`;
@@ -231,7 +254,11 @@ function processServices(
 }
 
 // Main renderer function
-export const renderer = async (json: CSNInteropRoot, asHTml: boolean = false): Promise<string> => {
+export const renderer = async (
+  json: CSNInteropRoot,
+  config?: CsnInteropRendererConfig,
+  asHTml: boolean = false,
+): Promise<string> => {
   const { definitions, meta, i18n } = json;
 
   let output = "";
@@ -256,9 +283,10 @@ export const renderer = async (json: CSNInteropRoot, asHTml: boolean = false): P
     entities,
     services.map((serviceTuple) => serviceTuple[0]),
     i18n,
+    config?.annotationLinkCallbacks,
   );
-  output += processTypes(types, i18n);
-  output += processServices(services, entities, i18n);
+  output += processTypes(types, i18n, config?.annotationLinkCallbacks);
+  output += processServices(services, entities, i18n, config?.annotationLinkCallbacks);
 
   if (asHTml) {
     marked.use(gfmHeadingId());
@@ -268,27 +296,3 @@ export const renderer = async (json: CSNInteropRoot, asHTml: boolean = false): P
 
   return output;
 };
-
-// const generatedMarkdownResult = generateMarkdown(yourCsnInputJson, {
-//   annotations: {
-//    "@EntityRelationship.entityType": {
-//     link: (value) => {
-//      if (value.startWith("sap.odm")) {
-//       const parts = value.split(":");
-//       const namespace = parts[0];
-//       const entityName = parts[1];
-//       const version = parts[2] || "v1";
-//       const ordId = `${namespace}:entityType:${entityName}:${version}`;
-//       return `https://api.sap.com/ord/${ordId}`;
-//      }
-//      return null;
-//     },
-//    }
-//   }
-//  });
-
-// sap.odm:entityType:PurchasingOrganization:v1
-// const ordId = sap.odm:entityType:PurchasingOrganization:v1
-// https://api.sap.com/ord/sap.odm:entityType:PurchasingOrganization:v1
-
-// https://api.sap.com/ord/sap.vdm.sont:entityType:BusinessPartner:v1
