@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renderer Tests generates markdown output from example file 1`] = `
-"# Airline (Example)
+"**Primer:**
+
+<a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core schema notation interoperability (short: CSN Interop)</a> is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem.
+CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+
+# Airline (Example)
 
 This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API.
 
@@ -158,7 +163,12 @@ Exposed Entities:
 `;
 
 exports[`Renderer Tests generates markdown output from example file with annotations links configuration 1`] = `
-"# Airline (Example)
+"**Primer:**
+
+<a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core schema notation interoperability (short: CSN Interop)</a> is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem.
+CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+
+# Airline (Example)
 
 This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API.
 

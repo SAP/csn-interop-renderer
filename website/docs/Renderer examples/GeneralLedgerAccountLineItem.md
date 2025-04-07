@@ -1,3 +1,8 @@
+**Primer:**
+
+<a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core schema notation interoperability (short: CSN Interop)</a> is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem.
+CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+
 ## Entity Definitions
 
 ### GeneralLedgerAccountLineItem
