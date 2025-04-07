@@ -19,7 +19,7 @@ import {
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { getDescriptionData } from "./rendererUtil.js";
-import { AnnotationLinkCallback, CsnInteropRendererConfig } from "./types/index.js";
+import { AnnotationLinkCallback, CsnRendererConfig } from "./types/index.js";
 
 // Helper functions
 function isEntityDefinition(entry: DefinitionEntry): entry is EntityDefinition {
@@ -248,7 +248,7 @@ function processServices(
 // Main renderer function
 export const renderer = async (
   json: CSNInteropRoot,
-  config?: CsnInteropRendererConfig,
+  config?: CsnRendererConfig,
   asHTml: boolean = false,
 ): Promise<string> => {
   const { definitions, meta, i18n } = json;

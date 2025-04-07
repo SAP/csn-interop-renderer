@@ -1,14 +1,14 @@
 import { parser } from "./parser.js";
 import * as customWebComponent from "./customWebComponent/csnRenderer.js";
 import { CSNInteropRoot } from "@sap/csn-interop-specification";
-import { CsnInteropRendererConfig } from "./types/index.js";
+import { CsnRendererConfig } from "./types/index.js";
 
 /**
  * Converts JSON CSNInteropRoot object into an markdown string.
  *
  * @param inputText A valid JSON CSNInteropRoot object.
  */
-async function generateMarkdown(inputText: CSNInteropRoot, config?: CsnInteropRendererConfig): Promise<string> {
+async function generateMarkdown(inputText: CSNInteropRoot, config?: CsnRendererConfig): Promise<string> {
   const result = await parser(inputText, config);
   return result;
 }
@@ -18,7 +18,7 @@ async function generateMarkdown(inputText: CSNInteropRoot, config?: CsnInteropRe
  *
  * @param inputText A valid JSON CSNInteropRoot object.
  */
-async function generateHtml(inputText: CSNInteropRoot, config?: CsnInteropRendererConfig): Promise<string> {
+async function generateHtml(inputText: CSNInteropRoot, config?: CsnRendererConfig): Promise<string> {
   const result = await parser(inputText, config, true);
   return result;
 }

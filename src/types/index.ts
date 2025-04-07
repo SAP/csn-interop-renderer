@@ -1,10 +1,23 @@
 interface AnnotationLinkCallback {
-  /** Callback function to offer the the possibility to provide a custom link for a specific annotation key */
+  /** Callback function to offer the possibility to provide a custom link transformer for a specific annotation key
+      Usage e.g. :
+
+      {
+        annotationLinkCallbacks: [
+          {
+            "@EndUserText.label": (_annotationValue: unknown): string => {
+              return "https://example.com/";
+            },
+          },
+        ],
+      }
+
+   */
   [annotationKey: string]: (annotationValue: unknown) => string;
 }
 
-interface CsnInteropRendererConfig {
+interface CsnRendererConfig {
   annotationLinkCallbacks?: AnnotationLinkCallback[];
 }
 
-export { CsnInteropRendererConfig, AnnotationLinkCallback };
+export { CsnRendererConfig, AnnotationLinkCallback };

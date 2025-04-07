@@ -1,10 +1,10 @@
 import { CSNInteropRoot, schemas } from "@sap/csn-interop-specification";
 import { renderer } from "./renderer.js";
-import { CsnInteropRendererConfig } from "./types/index.js";
+import { CsnRendererConfig } from "./types/index.js";
 
 export const parser = async (
   text: CSNInteropRoot,
-  config?: CsnInteropRendererConfig,
+  config?: CsnRendererConfig,
   generateAsHTml: boolean = false,
 ): Promise<string> => {
   // eslint-disable-next-line @typescript-eslint/naming-convention

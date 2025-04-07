@@ -14,15 +14,15 @@ import { generateHtml, generateMarkdown } from "@sap/csn-interop-renderer";
 
 type OutputFormat = "markdown" | "html" | "web-component";
 
-export default function Renderer(): JSX.Element {
+export default function Renderer(): React.JSX.Element {
   const [csnStringValue, setCsnStringValue] = useState<string>("");
   const [outputFormat, setOutputFormat] = useState<OutputFormat>("html");
   const [renderedContent, setRenderedContent] = useState<string>("");
   const [autoRun, setAutoRun] = useState(false);
   const [isRendering, setIsRendering] = useState<boolean>(false);
   const [error, setError] = useState<unknown | undefined>(undefined);
-  const monacoRef = useRef<Monaco>();
-  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>();
+  const monacoRef = useRef<Monaco>(undefined);
+  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>(undefined);
 
   const generateContent = async (input: string, format: OutputFormat): Promise<void> => {
     if (!input) return;
@@ -114,7 +114,7 @@ export default function Renderer(): JSX.Element {
     }
   }, [editorRef, monacoRef]);
 
-  const getSideBarContent = (): JSX.Element => {
+  const getSideBarContent = (): React.JSX.Element => {
     if (error) {
       return (
         <div style={{ textAlign: "center", marginTop: "150px" }}>
@@ -148,7 +148,7 @@ export default function Renderer(): JSX.Element {
     );
   };
 
-  const renderOutput = (): JSX.Element => {
+  const renderOutput = (): React.JSX.Element => {
     switch (outputFormat) {
       case "markdown":
         return (
@@ -165,7 +165,27 @@ export default function Renderer(): JSX.Element {
       case "web-component":
         return (
           <div className={styles.RenderWrapper}>
-            <csn-renderer source={renderedContent} />
+            <csn-renderer
+              source={renderedContent}
+              config={JSON.stringify(
+                {
+                  annotationLinkCallbacks: [
+                    {
+                      "@EndUserText.label": (_annotationValue: unknown): string => {
+                        return "https://example.com/";
+                      },
+                    },
+                  ],
+                },
+                (key, value) => {
+                  if (key.startsWith("@") && typeof value === "function") {
+                    return value.toString();
+                  }
+                  return value;
+                },
+                4,
+              )}
+            />
           </div>
         );
       default:

@@ -28,6 +28,7 @@ export function getDescriptionData(
       if (transformer) {
         return `${key}: <a href="${transformer[key](value)}" target="_blank">${value}</a>`;
       }
+      return `${key}: ${renderContentWithI18n(value, i18n)}`;
     }
     return `${key}: ${renderContentWithI18n(value, i18n)}`;
   });
