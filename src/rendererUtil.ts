@@ -2,6 +2,8 @@ import { CSNInteropRoot } from "@sap/csn-interop-specification";
 import { AnnotationLinkCallback } from "./types/index.js";
 import { marked } from "marked";
 
+// TODO: extend function to support html line endings <br> and markdown line endings \n
+// because the function can be called inside html table where <br> is needed and in plain markdown context where \n is needed BUT <br> just happens to work as well
 export function getDescriptionData(
   props: [string, unknown][],
   annotationLinkCallbacks: AnnotationLinkCallback[] | undefined,
@@ -49,10 +51,12 @@ export function renderContentWithI18n(content: unknown, i18n: CSNInteropRoot["i1
   if (!i18n) {
     return `<code>${escapedContent}</code>`;
   }
-  const matches = escapedContent.match(/^{i18n>(.*)}$/);
-  const enKey = Object.keys(i18n).find((key) => key.match(/^en$/i));
-  if (matches?.[1] && enKey && i18n[enKey]?.[matches[1]]) {
-    return i18n[enKey][matches[1]];
+  if (typeof content === "string") {
+    const matches = content.match(/^{i18n>(.*)}$/);
+    const enKey = Object.keys(i18n).find((key) => key.match(/^en$/i));
+    if (matches?.[1] && enKey && i18n[enKey]?.[matches[1]]) {
+      return i18n[enKey][matches[1]];
+    }
   }
   return `<code>${escapedContent}</code>`;
 }
