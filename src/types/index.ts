@@ -13,7 +13,7 @@ interface AnnotationLinkCallback {
       }
 
    */
-  [annotationKey: string]: (annotationValue: unknown) => string;
+  [annotationKey: string]: ((annotationValue: unknown) => Promise<string>) | ((annotationValue: unknown) => string);
 }
 
 interface CsnRendererConfig {
