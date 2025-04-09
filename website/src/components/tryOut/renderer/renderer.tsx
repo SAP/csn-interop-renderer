@@ -165,27 +165,7 @@ export default function Renderer(): React.JSX.Element {
       case "web-component":
         return (
           <div className={styles.RenderWrapper}>
-            <csn-renderer
-              source={renderedContent}
-              config={JSON.stringify(
-                {
-                  annotationLinkCallbacks: [
-                    {
-                      "@EndUserText.label": (_annotationValue: unknown): string => {
-                        return "https://example.com/";
-                      },
-                    },
-                  ],
-                },
-                (key, value) => {
-                  if (key.startsWith("@") && typeof value === "function") {
-                    return value.toString();
-                  }
-                  return value;
-                },
-                4,
-              )}
-            />
+            <csn-renderer source={renderedContent} />
           </div>
         );
       default:
