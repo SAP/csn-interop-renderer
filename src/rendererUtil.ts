@@ -28,7 +28,7 @@ export function getDescriptionData(
     if (annotationLinkCallbacks) {
       const transformer = annotationLinkCallbacks.find((annotationKey) => Object.hasOwn(annotationKey, key));
       if (transformer) {
-        return `${key}: <a href="${transformer[key](value)}" target="_blank">${value}</a>`;
+        return `${key}: <a href="${transformer[key](value)}" target="_blank">${renderContentWithI18n(value, i18n)}</a>`;
       }
       return `${key}: ${renderContentWithI18n(value, i18n)}`;
     }
