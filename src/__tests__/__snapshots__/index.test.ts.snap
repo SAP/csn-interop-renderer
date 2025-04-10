@@ -1,10 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Index Tests generateHtml Tests config Tests should generate successfully and skip custom links for unknown annotations 1`] = `
-"**Primer:**
-
-<a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core schema notation interoperability (short: CSN Interop)</a> is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem.
-CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
 
 # Airline (Example)
 
@@ -163,10 +160,7 @@ Exposed Entities:
 `;
 
 exports[`Index Tests generateHtml Tests config Tests should generate successfully with custom links for defined annotations 1`] = `
-"**Primer:**
-
-<a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core schema notation interoperability (short: CSN Interop)</a> is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem.
-CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
 
 # Airline (Example)
 
@@ -197,7 +191,7 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a><br />@ObjectModel.compositionRoot: <code>true</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a><br />@ObjectModel.compositionRoot: <a href="https://example.org/" target="_blank"><code>true</code></a>
 
 Elements: 
 
@@ -325,10 +319,7 @@ Exposed Entities:
 `;
 
 exports[`Index Tests generateMarkdown Tests config Tests should generate successfully and skip custom links for unknown annotations 1`] = `
-"**Primer:**
-
-<a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core schema notation interoperability (short: CSN Interop)</a> is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem.
-CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
 
 # Airline (Example)
 
@@ -487,10 +478,7 @@ Exposed Entities:
 `;
 
 exports[`Index Tests generateMarkdown Tests config Tests should generate successfully with custom links for defined annotations 1`] = `
-"**Primer:**
-
-<a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core schema notation interoperability (short: CSN Interop)</a> is a powerful and flexible format used to describe entity and service models in the wider SAP and BTP ecosystem.
-CSN files are JSON-based and provide comprehensive metadata about entities and their structure, relationships, and other aspects of the model.
+">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
 
 # Airline (Example)
 
@@ -521,7 +509,7 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a><br />@ObjectModel.compositionRoot: <a href="https://example.org/" target="_blank"><code>true</code></a>
 
 Elements: 
 
