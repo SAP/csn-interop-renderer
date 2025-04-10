@@ -35,7 +35,7 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <code>"myValue4"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code>
+@EndUserText.label: <code>"myValue4"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code><br />@ObjectModel.compositionRoot: <code>true</code>
 
 Elements: 
 
@@ -181,15 +181,15 @@ Entity exposed via:
 
 <p>Human readable description of the entity, in <strong>markdown</strong>.</p>
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
 
 Elements: 
 
 <table>
 <tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairline-airlineid">AirlineID</strong><br /><br /></td><td><a href="#airlineuuid">AirlineUuid</a></td><td><p>Human readable description of the element, in <strong>markdown</strong>.</p>
-<br />key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
-<tr><td><strong id="airlineserviceairline-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
-<tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
+<br />key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><td><strong id="airlineserviceairline-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
 </table>
 
 ### AirlineService.Airport
@@ -197,15 +197,15 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a><br />@ObjectModel.compositionRoot: <code>true</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairport-airportid">AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airport"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
-<tr><td><strong id="airlineserviceairport-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
-<tr><td><strong id="airlineserviceairport-city">City</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"City"</code></a></td></tr>
-<tr><td><strong id="airlineserviceairport-countrycode_code">CountryCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_CountryCode"&rbrace;</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairport-airportid">AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airport"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><td><strong id="airlineserviceairport-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><td><strong id="airlineserviceairport-city">City</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"City"</code></a></td></tr>
+<tr><td><strong id="airlineserviceairport-countrycode_code">CountryCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_CountryCode"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineserviceairport-to_countrycode">to_CountryCode</strong><br /><br /></td><td>cds.Association</td><td>Association to one <a href="#airlineservicecountries">AirlineService.Countries</a> (path: <a href="#airlineservicecountries">AirlineService.Countries</a>.<a href="#airlineservicecountries-code">code</a>) via <a href="#airlineserviceairport-countrycode_code">CountryCode_code</a></td></tr>
 </table>
 
@@ -214,12 +214,12 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Countries"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EndUserText.quickInfo: <code>"quick info here"</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Countries"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EndUserText.quickInfo: <code>"quick info here"</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.text.association: <code>&lbrace;"=":"texts"&rbrace;</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.text.association: <code>&lbrace;"=":"texts"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineservicecountries-texts">texts</strong><br /><br /></td><td>cds.Composition</td><td></td></tr>
 </table>
 
@@ -228,15 +228,15 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Countries Texts"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"LANGUAGE_DEPENDENT_TEXT"&rbrace;</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Countries Texts"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"LANGUAGE_DEPENDENT_TEXT"&rbrace;</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries_texts-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Country Code"</code></a></td></tr>
-<tr><td><strong id="airlineservicecountries_texts-locale">locale</strong><br /><br /></td><td>cds.String(14)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Language Code"</code></a><br />@Semantics.language: <code>true</code></td></tr>
-<tr><td><strong id="airlineservicecountries_texts-name">name</strong><br /><br /></td><td>cds.String(255)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
-<tr><td><strong id="airlineservicecountries_texts-descr">descr</strong><br /><br /></td><td>cds.String(1000)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Description"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries_texts-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Country Code"</code></a></td></tr>
+<tr><td><strong id="airlineservicecountries_texts-locale">locale</strong><br /><br /></td><td>cds.String(14)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Language Code"</code></a><br />@Semantics.language: <code>true</code></td></tr>
+<tr><td><strong id="airlineservicecountries_texts-name">name</strong><br /><br /></td><td>cds.String(255)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><td><strong id="airlineservicecountries_texts-descr">descr</strong><br /><br /></td><td>cds.String(1000)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Description"</code></a><br />@Semantics.text: <code>true</code></td></tr>
 </table>
 
 ### AirlineService.FlightConnection
@@ -244,19 +244,19 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Connection"</code></a><br />@ObjectModel.representativeKey: <code>&lbrace;"=":"ConnectionID"&rbrace;</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Connection"</code></a><br />@ObjectModel.representativeKey: <code>&lbrace;"=":"ConnectionID"&rbrace;</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflightconnection-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Number"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Departure Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DepartureAirport"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Destination Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DestinationAirport"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-departuretime">DepartureTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Departure Time"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-arrivaltime">ArrivalTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Arrival Time"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-distance">Distance</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Distance"</code></a><br />@Semantics.quantity.unitOfMeasure: <code>&lbrace;"=":"DistanceUnit"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-distanceunit">DistanceUnit</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Distance Unit"</code></a></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflightconnection-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Number"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Departure Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DepartureAirport"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Destination Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DestinationAirport"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-departuretime">DepartureTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Departure Time"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-arrivaltime">ArrivalTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Arrival Time"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-distance">Distance</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Distance"</code></a><br />@Semantics.quantity.unitOfMeasure: <code>&lbrace;"=":"DistanceUnit"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-distanceunit">DistanceUnit</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Distance Unit"</code></a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_airline">to_Airline</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflightconnection-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_departureairport">to_DepartureAirport</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_destinationairport">to_DestinationAirport</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</a></td></tr>
@@ -267,19 +267,19 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_FACT"&rbrace;</code><br />@ObjectModel.supportedCapabilities: <code>[&lbrace;"#":"DATA_STRUCTURE"&rbrace;]</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_FACT"&rbrace;</code><br />@ObjectModel.supportedCapabilities: <code>[&lbrace;"#":"DATA_STRUCTURE"&rbrace;]</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflight-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-flightdate">FlightDate</strong><br /><br /></td><td>cds.Date</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Date"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflight-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Number"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Connection"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-price">Price</strong><br /><br /></td><td>cds.Decimal</td><td>precision: <code>16</code><br />scale: <code>3</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Price"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"MIN"&rbrace;</code><br />@Semantics.amount.currencyCode: <code>&lbrace;"=":"CurrencyCode_code"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
-<tr><td><strong id="airlineserviceflight-planetype">PlaneType</strong><br /><br /></td><td>cds.String(10)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Plane Type"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflight-maximumseats">MaximumSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Maximum Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Occupied Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflight-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-flightdate">FlightDate</strong><br /><br /></td><td>cds.Date</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Date"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflight-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Number"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Connection"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-price">Price</strong><br /><br /></td><td>cds.Decimal</td><td>precision: <code>16</code><br />scale: <code>3</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Price"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"MIN"&rbrace;</code><br />@Semantics.amount.currencyCode: <code>&lbrace;"=":"CurrencyCode_code"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
+<tr><td><strong id="airlineserviceflight-planetype">PlaneType</strong><br /><br /></td><td>cds.String(10)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Plane Type"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflight-maximumseats">MaximumSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Maximum Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Occupied Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineserviceflight-to_airline">to_Airline</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflight-to_connection">to_Connection</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a> (path: <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a>.<a href="#airlineserviceflightconnection-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
 </table>
@@ -303,7 +303,7 @@ Elements:
 <p>Description of the reuse type</p>
 
 <table>
-<tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
 </table>
 
 ## Services
@@ -359,7 +359,7 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <code>"myValue4"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code>
+@EndUserText.label: <code>"myValue4"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code><br />@ObjectModel.compositionRoot: <code>true</code>
 
 Elements: 
 
@@ -505,15 +505,15 @@ Entity exposed via:
 
 <p>Human readable description of the entity, in <strong>markdown</strong>.</p>
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
 
 Elements: 
 
 <table>
 <tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairline-airlineid">AirlineID</strong><br /><br /></td><td><a href="#airlineuuid">AirlineUuid</a></td><td><p>Human readable description of the element, in <strong>markdown</strong>.</p>
-<br />key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
-<tr><td><strong id="airlineserviceairline-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
-<tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
+<br />key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><td><strong id="airlineserviceairline-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
 </table>
 
 ### AirlineService.Airport
@@ -521,15 +521,15 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairport-airportid">AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airport"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
-<tr><td><strong id="airlineserviceairport-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
-<tr><td><strong id="airlineserviceairport-city">City</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"City"</code></a></td></tr>
-<tr><td><strong id="airlineserviceairport-countrycode_code">CountryCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_CountryCode"&rbrace;</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairport-airportid">AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airport"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><td><strong id="airlineserviceairport-name">Name</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><td><strong id="airlineserviceairport-city">City</strong><br /><br /></td><td>cds.String(40)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"City"</code></a></td></tr>
+<tr><td><strong id="airlineserviceairport-countrycode_code">CountryCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_CountryCode"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineserviceairport-to_countrycode">to_CountryCode</strong><br /><br /></td><td>cds.Association</td><td>Association to one <a href="#airlineservicecountries">AirlineService.Countries</a> (path: <a href="#airlineservicecountries">AirlineService.Countries</a>.<a href="#airlineservicecountries-code">code</a>) via <a href="#airlineserviceairport-countrycode_code">CountryCode_code</a></td></tr>
 </table>
 
@@ -538,12 +538,12 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Countries"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EndUserText.quickInfo: <code>"quick info here"</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Countries"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EndUserText.quickInfo: <code>"quick info here"</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.text.association: <code>&lbrace;"=":"texts"&rbrace;</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Country Code"</code></a><br />@ObjectModel.text.association: <code>&lbrace;"=":"texts"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineservicecountries-texts">texts</strong><br /><br /></td><td>cds.Composition</td><td></td></tr>
 </table>
 
@@ -552,15 +552,15 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Countries Texts"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"LANGUAGE_DEPENDENT_TEXT"&rbrace;</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Countries Texts"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"LANGUAGE_DEPENDENT_TEXT"&rbrace;</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries_texts-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Country Code"</code></a></td></tr>
-<tr><td><strong id="airlineservicecountries_texts-locale">locale</strong><br /><br /></td><td>cds.String(14)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Language Code"</code></a><br />@Semantics.language: <code>true</code></td></tr>
-<tr><td><strong id="airlineservicecountries_texts-name">name</strong><br /><br /></td><td>cds.String(255)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
-<tr><td><strong id="airlineservicecountries_texts-descr">descr</strong><br /><br /></td><td>cds.String(1000)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Description"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries_texts-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Country Code"</code></a></td></tr>
+<tr><td><strong id="airlineservicecountries_texts-locale">locale</strong><br /><br /></td><td>cds.String(14)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Language Code"</code></a><br />@Semantics.language: <code>true</code></td></tr>
+<tr><td><strong id="airlineservicecountries_texts-name">name</strong><br /><br /></td><td>cds.String(255)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Name"</code></a><br />@Semantics.text: <code>true</code></td></tr>
+<tr><td><strong id="airlineservicecountries_texts-descr">descr</strong><br /><br /></td><td>cds.String(1000)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Description"</code></a><br />@Semantics.text: <code>true</code></td></tr>
 </table>
 
 ### AirlineService.FlightConnection
@@ -568,19 +568,19 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Connection"</code></a><br />@ObjectModel.representativeKey: <code>&lbrace;"=":"ConnectionID"&rbrace;</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Connection"</code></a><br />@ObjectModel.representativeKey: <code>&lbrace;"=":"ConnectionID"&rbrace;</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflightconnection-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Number"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Departure Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DepartureAirport"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Destination Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DestinationAirport"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-departuretime">DepartureTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Departure Time"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-arrivaltime">ArrivalTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Arrival Time"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-distance">Distance</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Distance"</code></a><br />@Semantics.quantity.unitOfMeasure: <code>&lbrace;"=":"DistanceUnit"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflightconnection-distanceunit">DistanceUnit</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Distance Unit"</code></a></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflightconnection-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Number"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Departure Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DepartureAirport"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Destination Airport"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_DestinationAirport"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-departuretime">DepartureTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Departure Time"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-arrivaltime">ArrivalTime</strong><br /><br /></td><td>cds.Time</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Arrival Time"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-distance">Distance</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Distance"</code></a><br />@Semantics.quantity.unitOfMeasure: <code>&lbrace;"=":"DistanceUnit"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflightconnection-distanceunit">DistanceUnit</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Distance Unit"</code></a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_airline">to_Airline</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflightconnection-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_departureairport">to_DepartureAirport</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_destinationairport">to_DestinationAirport</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</a></td></tr>
@@ -591,19 +591,19 @@ Elements:
 Entity exposed via:
 [AirlineService](#airlineservice)
 
-@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_FACT"&rbrace;</code><br />@ObjectModel.supportedCapabilities: <code>[&lbrace;"#":"DATA_STRUCTURE"&rbrace;]</code>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_FACT"&rbrace;</code><br />@ObjectModel.supportedCapabilities: <code>[&lbrace;"#":"DATA_STRUCTURE"&rbrace;]</code>
 
 Elements: 
 
 <table>
-<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflight-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-flightdate">FlightDate</strong><br /><br /></td><td>cds.Date</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Date"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflight-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Flight Number"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Connection"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-price">Price</strong><br /><br /></td><td>cds.Decimal</td><td>precision: <code>16</code><br />scale: <code>3</code><br />@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Price"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"MIN"&rbrace;</code><br />@Semantics.amount.currencyCode: <code>&lbrace;"=":"CurrencyCode_code"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
-<tr><td><strong id="airlineserviceflight-planetype">PlaneType</strong><br /><br /></td><td>cds.String(10)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Plane Type"</code></a></td></tr>
-<tr><td><strong id="airlineserviceflight-maximumseats">MaximumSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Maximum Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Occupied Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
+<tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceflight-airlineid">AirlineID</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Airline"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-flightdate">FlightDate</strong><br /><br /></td><td>cds.Date</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Date"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflight-connectionid">ConnectionID</strong><br /><br /></td><td>cds.String(4)</td><td>key: <code>true</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Flight Number"</code></a><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_Connection"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-price">Price</strong><br /><br /></td><td>cds.Decimal</td><td>precision: <code>16</code><br />scale: <code>3</code><br />@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Price"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"MIN"&rbrace;</code><br />@Semantics.amount.currencyCode: <code>&lbrace;"=":"CurrencyCode_code"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Currency Code"</code></a><br />@Semantics.currencyCode: <code>true</code></td></tr>
+<tr><td><strong id="airlineserviceflight-planetype">PlaneType</strong><br /><br /></td><td>cds.String(10)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Plane Type"</code></a></td></tr>
+<tr><td><strong id="airlineserviceflight-maximumseats">MaximumSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Maximum Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
+<tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Occupied Seats"</code></a><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineserviceflight-to_airline">to_Airline</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflight-to_connection">to_Connection</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a> (path: <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a>.<a href="#airlineserviceflightconnection-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
 </table>
@@ -627,7 +627,7 @@ Elements:
 <p>Description of the reuse type</p>
 
 <table>
-<tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td>@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
+<tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td>@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
 </table>
 
 ## Services

@@ -19,9 +19,10 @@ describe("Index Tests", () => {
           { entity: { name: "myValue3" } },
         ];
         cloneExample.definitions["AirlineService.Airport"]["@EndUserText.label"] = "myValue4";
+        cloneExample.definitions["AirlineService.Airport"]["@ObjectModel.compositionRoot"] = true;
         cloneExample.definitions["AirlineService.Countries"]["@EndUserText.quickInfo"] = "quick info here";
 
-        const delay = (ms: number): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
+        const delay = async (ms: number): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
 
         const result = await generateMarkdown(cloneExample, {
           annotationLinkCallbacks: [
@@ -44,6 +45,17 @@ describe("Index Tests", () => {
                 return "https://google.com/";
               },
             },
+            {
+              // for annotation key "@ObjectModel.compositionRoot" add promise link computing logic
+              // eslint-disable-next-line @typescript-eslint/promise-function-async
+              "@ObjectModel.compositionRoot": (_annotationValue: unknown): Promise<string> => {
+                return new Promise<string>((resolve) => {
+                  setTimeout(() => {
+                    resolve("https://example.org/");
+                  }, 100);
+                });
+              },
+            },
           ],
         });
 
@@ -57,7 +69,10 @@ describe("Index Tests", () => {
           `@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a>`,
         );
         expect(result).toContain(
-          `@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"myValue4"</code></a>`,
+          `@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a>`,
+        );
+        expect(result).toContain(
+          `@ObjectModel.compositionRoot: <a href="https://example.org/" target="_blank"><code>true</code></a>`,
         );
         expect(result).toContain(`@EndUserText.quickInfo: <code>"quick info here"</code>`);
         expect(result).toMatchSnapshot();
@@ -96,9 +111,10 @@ describe("Index Tests", () => {
           { entity: { name: "myValue3" } },
         ];
         cloneExample.definitions["AirlineService.Airport"]["@EndUserText.label"] = "myValue4";
+        cloneExample.definitions["AirlineService.Airport"]["@ObjectModel.compositionRoot"] = true;
         cloneExample.definitions["AirlineService.Countries"]["@EndUserText.quickInfo"] = "quick info here";
 
-        const delay = (ms: number): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
+        const delay = async (ms: number): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
 
         const result = await generateMarkdown(cloneExample, {
           annotationLinkCallbacks: [
@@ -121,6 +137,17 @@ describe("Index Tests", () => {
                 return "https://google.com/";
               },
             },
+            {
+              // for annotation key "@ObjectModel.compositionRoot" add promise link computing logic
+              // eslint-disable-next-line @typescript-eslint/promise-function-async
+              "@ObjectModel.compositionRoot": (_annotationValue: unknown): Promise<string> => {
+                return new Promise<string>((resolve) => {
+                  setTimeout(() => {
+                    resolve("https://example.org/");
+                  }, 100);
+                });
+              },
+            },
           ],
         });
 
@@ -134,7 +161,10 @@ describe("Index Tests", () => {
           `@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue3"&rbrace;&rbrace;]</code></a>`,
         );
         expect(result).toContain(
-          `@EndUserText.label: <a href="[object Promise]" target="_blank"><code>"myValue4"</code></a>`,
+          `@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"myValue4"</code></a>`,
+        );
+        expect(result).toContain(
+          `@ObjectModel.compositionRoot: <a href="https://example.org/" target="_blank"><code>true</code></a>`,
         );
         expect(result).toContain(`@EndUserText.quickInfo: <code>"quick info here"</code>`);
         expect(result).toMatchSnapshot();

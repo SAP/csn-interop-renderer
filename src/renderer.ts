@@ -69,12 +69,12 @@ function getHeaderId(definitionName: string, entityElementName?: string): string
 }
 
 // Sub render functions
-function processEntities(
+async function processEntities(
   entities: [string, EntityDefinition][],
   serviceNames: string[],
   i18n: CSNInteropRoot["i18n"] | undefined,
   annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
-): string {
+): Promise<string> {
   if (!entities.length) return "";
   let output = "## Entity Definitions\n\n";
   for (const [entityName, entityDefinition] of entities) {
@@ -82,7 +82,11 @@ function processEntities(
 
     const dotSplittedEntityName = entityName.split(".");
 
-    if (dotSplittedEntityName.length > 1 && serviceNames.includes(dotSplittedEntityName[0])) {
+    if (
+      dotSplittedEntityName.length > 1 &&
+      dotSplittedEntityName[0] &&
+      serviceNames.includes(dotSplittedEntityName[0])
+    ) {
       output += `Entity exposed via:\n[${dotSplittedEntityName[0]}](#${dotSplittedEntityName[0].toLowerCase()})\n\n`;
     }
 
@@ -94,7 +98,7 @@ function processEntities(
       ([key]) => !["kind", "doc", "elements"].includes(key),
     );
 
-    output += `${getDescriptionData(entityRestProps, annotationValueLinkTransformers, i18n)}\n\n`;
+    output += `${await getDescriptionData(entityRestProps, annotationValueLinkTransformers, i18n)}\n\n`;
 
     output += `Elements: \n\n`;
 
@@ -158,7 +162,7 @@ function processEntities(
       output += `<tr>`;
       output += `<td><strong id="${getHeaderId(entityName, elementName)}">${elementName}</strong><br /><br /></td>`;
       output += `<td>${typeLink}</td>`;
-      output += `<td>${getDescriptionData(elementRestProps, annotationValueLinkTransformers, i18n, customDescriptionCellDataText)}</td>`;
+      output += `<td>${await getDescriptionData(elementRestProps, annotationValueLinkTransformers, i18n, customDescriptionCellDataText)}</td>`;
       output += `</tr>\n`;
     }
 
@@ -167,11 +171,11 @@ function processEntities(
   return output;
 }
 
-function processTypes(
+async function processTypes(
   types: [string, TypeDefinition][],
   i18n: CSNInteropRoot["i18n"] | undefined,
   annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
-): string {
+): Promise<string> {
   if (!types.length) return "";
   let output = "## Type Definitions\n\n";
   for (const [typeName, typeDefinition] of types) {
@@ -197,7 +201,7 @@ function processTypes(
     const lengthConstraint =
       isLengthConstrainable(typeDefinition) && typeDefinition.length ? `(${typeDefinition.length})` : "";
     output += `<td>${typeDefinition.type}${lengthConstraint}</td>`;
-    output += `<td>${getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
+    output += `<td>${await getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
     output += `</tr>\n`;
 
     output += `</table>\n\n`;
@@ -205,12 +209,12 @@ function processTypes(
   return output;
 }
 
-function processServices(
+async function processServices(
   services: [string, ServiceDefinition][],
   entities: [string, EntityDefinition][],
   i18n: CSNInteropRoot["i18n"] | undefined,
   annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
-): string {
+): Promise<string> {
   if (!services.length) return "";
   let output = "## Services\n\n";
   for (const [serviceName, serviceDefinition] of services) {
@@ -237,7 +241,7 @@ function processServices(
     output += `</tr>`;
 
     output += `<tr>`;
-    output += `<td>${getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
+    output += `<td>${await getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
     output += `</tr>\n`;
 
     output += `</table>\n\n`;
@@ -279,14 +283,14 @@ export const renderer = async (
     ServiceDefinition,
   ][];
 
-  output += processEntities(
+  output += await processEntities(
     entities,
     services.map((serviceTuple) => serviceTuple[0]),
     i18n,
     config?.annotationLinkCallbacks,
   );
-  output += processTypes(types, i18n, config?.annotationLinkCallbacks);
-  output += processServices(services, entities, i18n, config?.annotationLinkCallbacks);
+  output += await processTypes(types, i18n, config?.annotationLinkCallbacks);
+  output += await processServices(services, entities, i18n, config?.annotationLinkCallbacks);
 
   if (asHTml) {
     marked.use(gfmHeadingId());
