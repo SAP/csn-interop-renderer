@@ -9,11 +9,20 @@
     "baseUrl": ".",
     "inlineSourceMap": true,
     "resolveJsonModule": true,
-    "noImplicitAny": true,
     "paths": {
       "src/*": ["src/*"]
     },
-    "declaration": true
+    "declaration": true,
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
