@@ -23,11 +23,22 @@ Import the package and use it in your project. Where `yourCsnInputJson` is a val
 ```js
 import { generateMarkdown, generateHtml } from "@sap/csn-interop-renderer";
 
+const optionalConfig = {
+        annotationLinkCallbacks: [
+          {
+            "@EndUserText.label": (_annotationValue: unknown): string=> {
+              return "https://example.com/";
+              };
+          },
+        ],
+      };
+
+
 // use the 'generatedMarkdownResult' for further processing
-const generatedMarkdownResult = generateMarkdown(yourCsnInputJson);
+const generatedMarkdownResult = generateMarkdown(yourCsnInputJson, optionalConfig);
 
 // use the 'generatedHtmlResult' for further processing
-const generatedHtmlResult = generateHtml(yourCsnInputJson);
+const generatedHtmlResult = generateHtml(yourCsnInputJson, optionalConfig);
 ```
 
 :::warning

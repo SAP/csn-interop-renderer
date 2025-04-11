@@ -2,7 +2,7 @@ import { CSNInteropRoot } from "@sap/csn-interop-specification";
 import { AnnotationLinkCallback } from "./types/index.js";
 import { marked } from "marked";
 
-// TODO: extend function to support html line endings <br> and markdown line endings \n
+// TODO: extend function to support html line endings <br> and/or markdown line endings \n
 // because the function can be called inside html table where <br> is needed and in plain markdown context where \n is needed BUT <br> just happens to work as well
 export async function getDescriptionData(
   props: [string, unknown][],
