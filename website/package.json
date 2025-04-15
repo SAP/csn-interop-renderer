@@ -23,7 +23,7 @@
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.7.0",
     "@monaco-editor/react": "4.7.0",
-    "@sap/csn-interop-renderer": "0.2.1",
+    "@sap/csn-interop-renderer": "0.3.0",
     "@tsconfig/docusaurus": "2.0.3",
     "@ui5/webcomponents-icons": "2.5.1",
     "@ui5/webcomponents-react": "2.5.0",
@@ -35,7 +35,7 @@
     "react-markdown": "10.1.0",
     "rehype-slug": "6.0.0",
     "remark-gfm": "4.0.1",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "browserslist": {
     "production": [
