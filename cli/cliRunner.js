@@ -52,7 +52,7 @@ async function run(argv) {
 
   try {
     const resultAsHtml = argv.r === "html";
-    result = await parser(trimmed, resultAsHtml);
+    result = await parser(trimmed, undefined, resultAsHtml);
   } catch (error) {
     process.stderr.write(`${error.message}\n\n`); // no [error]: needed, prefix is contained  in the original code
     process.exit(1);

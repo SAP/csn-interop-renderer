@@ -1,7 +1,12 @@
 import { CSNInteropRoot, schemas } from "@sap/csn-interop-specification";
 import { renderer } from "./renderer.js";
+import { CsnRendererConfig } from "./types/index.js";
 
-export const parser = async (text: CSNInteropRoot, generateAsHTml: boolean = false): Promise<string> => {
+export const parser = async (
+  text: CSNInteropRoot,
+  config?: CsnRendererConfig,
+  generateAsHTml: boolean = false,
+): Promise<string> => {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   let Draft07;
   const jsonSchemaLib = await import("json-schema-library");
@@ -32,5 +37,5 @@ export const parser = async (text: CSNInteropRoot, generateAsHTml: boolean = fal
       }, ""),
     );
   }
-  return renderer(text, generateAsHTml);
+  return renderer(text, config, generateAsHTml);
 };

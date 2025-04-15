@@ -9,6 +9,7 @@ type CsnRendererPropName = keyof CsnRendererProps;
 
 export class CsnRenderer extends HTMLElement {
   private _htmlContent: string = "";
+  private _source: string = "";
 
   public constructor() {
     super();
@@ -16,22 +17,14 @@ export class CsnRenderer extends HTMLElement {
 
   public static observedAttributes: CsnRendererPropName[] = ["source"];
 
-  private async _renderHtml(newValue?: string): Promise<void> {
-    if (newValue) {
-      this._htmlContent = await generateHtml(JSON.parse(newValue));
+  private async _renderHtml(value: string | null | undefined): Promise<void> {
+    if (value) {
+      this._htmlContent = await generateHtml(JSON.parse(value));
       this.innerHTML = this._htmlContent;
-    } else {
-      const csnDataSource = this.getAttribute("source");
-      if (csnDataSource) {
-        this._htmlContent = await generateHtml(JSON.parse(csnDataSource));
-        this.innerHTML = this._htmlContent;
-      }
     }
   }
 
-  public connectedCallback(): void {
-    void this._renderHtml();
-  }
+  public connectedCallback(): void {}
 
   public disconnectedCallback(): void {}
 
@@ -39,7 +32,8 @@ export class CsnRenderer extends HTMLElement {
 
   public attributeChangedCallback(name: CsnRendererPropName, _oldValue: unknown, newValue: unknown): void {
     if (name === "source" && !!newValue && typeof newValue === "string") {
-      void this._renderHtml(newValue);
+      this._source = newValue;
+      void this._renderHtml(this._source);
     }
   }
 }
@@ -53,9 +47,9 @@ declare global {
 
   // registering the React typings of the custom element
   // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
+  namespace React.JSX {
     interface IntrinsicElements {
-      ["csn-renderer"]: { source: string };
+      ["csn-renderer"]: { source: string; config?: string };
     }
   }
 }

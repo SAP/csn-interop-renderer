@@ -13,9 +13,13 @@ import {
   type OnValue,
   type CustomType,
   type ServiceDefinition,
+  StringType,
+  LargeStringType,
 } from "@sap/csn-interop-specification";
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
+import { getDescriptionData } from "./rendererUtil.js";
+import { AnnotationLinkCallbacks, CsnRendererConfig } from "./types/index.js";
 
 // Helper functions
 function isEntityDefinition(entry: DefinitionEntry): entry is EntityDefinition {
@@ -28,7 +32,9 @@ function isStructuredElementReference(
   return typeof entry === "object" && Object.hasOwn(entry, "ref");
 }
 
-function isLengthConstrainable(entry: TypeDefinition): entry is StringTypeDefinition | LargeStringTypeDefinition {
+function isLengthConstrainable(
+  entry: TypeDefinition | ElementEntry,
+): entry is StringTypeDefinition | LargeStringTypeDefinition | StringType | LargeStringType | CustomType {
   return Object.hasOwn(entry, "length");
 }
 
@@ -48,18 +54,6 @@ function isAssociationType(element: AssociationType | CustomType): element is As
   return "target" in element && element.type === "cds.Association";
 }
 
-function renderStringWithI18n(content: string, i18n: CSNInteropRoot["i18n"]): string {
-  const esacpedContent =
-    typeof content.replace === "function" ? content.replace(/{/g, "&lbrace;").replace(/}/g, "&rbrace;") : content;
-  if (!i18n || typeof content?.match !== "function") return esacpedContent;
-  const matches = content.match(/^{i18n>(.*)}$/);
-  const enKey = Object.keys(i18n).find((key) => key.match(/^en$/i));
-  if (matches?.[1] && enKey && i18n[enKey]?.[matches[1]]) {
-    return i18n[enKey][matches[1]];
-  }
-  return esacpedContent;
-}
-
 /**
  * Get the header id the same format as GitHub does it for rendered markdown content.
  * @param definitionName The name of a definition
@@ -74,46 +68,67 @@ function getHeaderId(definitionName: string, entityElementName?: string): string
   return definitionName.toLowerCase().replaceAll(".", "");
 }
 
-function renderObject(content: string): string {
-  return `<code>${JSON.stringify(content, undefined, 2).replace(/{/g, "&lbrace;").replace(/}/g, "&rbrace;")}</code>`;
-}
-
 // Sub render functions
-function processEntities(
+async function processEntities(
   entities: [string, EntityDefinition][],
   serviceNames: string[],
-  i18n: CSNInteropRoot["i18n"],
-): string {
+  i18n: CSNInteropRoot["i18n"] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
+): Promise<string> {
+  if (!entities.length) return "";
   let output = "## Entity Definitions\n\n";
-  // Process entities
-  for (const [entityName, entity] of entities) {
+  for (const [entityName, entityDefinition] of entities) {
     output += `### ${entityName}\n\n`;
 
     const dotSplittedEntityName = entityName.split(".");
 
-    if (dotSplittedEntityName.length > 1 && serviceNames.includes(dotSplittedEntityName[0])) {
-      output += `- **Exposed via**: [${dotSplittedEntityName[0]}](#${dotSplittedEntityName[0].toLowerCase()})\n`;
+    if (
+      dotSplittedEntityName.length > 1 &&
+      dotSplittedEntityName[0] &&
+      serviceNames.includes(dotSplittedEntityName[0])
+    ) {
+      output += `Entity exposed via:\n[${dotSplittedEntityName[0]}](#${dotSplittedEntityName[0].toLowerCase()})\n\n`;
     }
 
-    output += "\n";
+    if (entityDefinition.doc) {
+      output += `${marked.parse(entityDefinition.doc)}\n`;
+    }
 
-    // Table header for entity elements
-    output += `<table>\n<tr>`;
-    output += `<th><strong>Element</strong></th><th><strong>Type</strong></th><th><strong>Description</strong></th>`;
-    output += `</tr>\n`;
+    const entityRestProps = Object.entries(entityDefinition).filter(
+      ([key]) => !["kind", "doc", "elements"].includes(key),
+    );
 
-    for (const [elementName, element] of Object.entries(entity.elements)) {
-      const descriptionParts: string[] = [];
+    output += `${await getDescriptionData(entityRestProps, annotationValueLinkTransformers, i18n)}\n\n`;
 
-      // Key and derived type handling
-      if (isCustomType(element) && element.key) {
-        descriptionParts.push("<strong>Key</strong>: true");
-      }
+    output += `Elements: \n\n`;
+
+    output += `<table>\n`;
+
+    output += `<tr>`;
+    output += `<th>Element</th>`;
+    output += `<th>Type</th>`;
+    output += `<th>Description</th>`;
+    output += `</tr>`;
+
+    for (const [elementName, elementDefinition] of Object.entries(entityDefinition.elements)) {
+      const elementRestProps = Object.entries(elementDefinition).filter(
+        ([key]) => !["type", "length", "cardinality", "on", "target"].includes(key),
+      );
+
+      const lengthConstraint =
+        isLengthConstrainable(elementDefinition) && elementDefinition.length ? `(${elementDefinition.length})` : "";
+      const typeLink = isCustomType(elementDefinition)
+        ? `<a href="#${elementDefinition.type.toLowerCase()}">${elementDefinition.type}</a>`
+        : elementDefinition.type + lengthConstraint;
+
+      let customDescriptionCellDataText = undefined;
+
+      // TODO: Composition handling
 
       // Association handling
-      if (isAssociationType(element) && element.target) {
-        const targetEntityName = element.target;
-        const onClause = element.on;
+      if (isAssociationType(elementDefinition) && elementDefinition.target) {
+        const targetEntityName = elementDefinition.target;
+        const onClause = elementDefinition.on;
         let targetElementName = "";
         let viaKey = "";
 
@@ -135,34 +150,19 @@ function processEntities(
           }
         }
 
-        const cardinality = element.cardinality?.max === "*" ? "to many" : "to one";
+        const cardinality = elementDefinition.cardinality?.max === "*" ? "to many" : "to one";
         const pathDescription =
           targetEntityName && targetElementName
-            ? `Path: <a href="#${getHeaderId(targetEntityName)}">${targetEntityName}</a>.<a href="#${getHeaderId(targetEntityName, targetElementName)}">${targetElementName}</a>`
+            ? `path: <a href="#${getHeaderId(targetEntityName)}">${targetEntityName}</a>.<a href="#${getHeaderId(targetEntityName, targetElementName)}">${targetElementName}</a>`
             : "";
 
-        descriptionParts.push(
-          `<strong>Association</strong>: Links ${cardinality} <a href="#${getHeaderId(targetEntityName)}">${targetEntityName}</a> (${pathDescription}) via <a href="#${getHeaderId(entityName, viaKey)}">${viaKey}</a>`,
-        );
+        customDescriptionCellDataText = `Association ${cardinality} <a href="#${getHeaderId(targetEntityName)}">${targetEntityName}</a> (${pathDescription}) via <a href="#${getHeaderId(entityName, viaKey)}">${viaKey}</a>`;
       }
-
-      // Annotation handling
-      for (const [key, value] of Object.entries(element)) {
-        if (key.startsWith("@")) {
-          const formattedValue = typeof value === "object" ? renderObject(value) : renderStringWithI18n(value, i18n);
-          descriptionParts.push(`<strong>${key}</strong>: ${formattedValue}`);
-        }
-      }
-
-      const description = descriptionParts.join("<br />");
-      const typeLink = isCustomType(element)
-        ? `<a href="#${element.type.toLowerCase()}">${element.type}</a>`
-        : element.type;
 
       output += `<tr>`;
-      output += `<td><strong id="${getHeaderId(entityName, elementName)}">${elementName}</strong></td>`;
+      output += `<td><strong id="${getHeaderId(entityName, elementName)}">${elementName}</strong><br /><br /></td>`;
       output += `<td>${typeLink}</td>`;
-      output += `<td>${description}</td>`;
+      output += `<td>${await getDescriptionData(elementRestProps, annotationValueLinkTransformers, i18n, customDescriptionCellDataText)}</td>`;
       output += `</tr>\n`;
     }
 
@@ -171,92 +171,78 @@ function processEntities(
   return output;
 }
 
-function processTypes(types: [string, TypeDefinition][], i18n: CSNInteropRoot["i18n"]): string {
+async function processTypes(
+  types: [string, TypeDefinition][],
+  i18n: CSNInteropRoot["i18n"] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
+): Promise<string> {
   if (!types.length) return "";
   let output = "## Type Definitions\n\n";
-  for (const [typeName, definition] of types) {
-    const doc = definition.doc || "";
-    const lengthConstraint = isLengthConstrainable(definition) && definition.length ? `(${definition.length})` : "";
-    const annotations = Object.entries(definition).filter(([key]) => key.startsWith("@"));
-    const restProps = Object.entries(definition).filter(
-      ([key]) => !key.startsWith("@") && !["doc", "kind", "type", "length"].includes(key),
-    );
-
+  for (const [typeName, typeDefinition] of types) {
     output += `### ${typeName}\n\n`;
+    if (typeDefinition.doc) {
+      output += `${marked.parse(typeDefinition.doc)}\n`;
+    }
 
-    if (doc) output += `${marked.parse(doc)}\n`;
-
-    output += `<table>\n<tr><th>Type</th><th>Description</th></tr>\n`;
-
-    const descriptionParts = restProps.map(
-      ([key, value]) => `<strong>${key}</strong>: ${typeof value === "object" ? renderObject(value) : value}`,
+    const restProps: [string, unknown][] = Object.entries(typeDefinition).filter(
+      ([key]) => !["doc", "kind", "type", "length"].includes(key),
     );
-    const annotationParts = annotations.map(
-      ([key, value]) =>
-        `<strong>${key}</strong>: ${typeof value === "object" ? renderObject(value) : renderStringWithI18n(value, i18n)}`,
-    );
+
+    if (!restProps.length) return output;
+
+    output += `<table>\n`;
 
     output += `<tr>`;
-    output += `<td>${definition.type}${lengthConstraint}</td>`;
-    output += `<td>`;
-    if (descriptionParts.length) {
-      output += `${descriptionParts.join("<br />")}<br /><br />`;
-    }
-    if (annotationParts.length) {
-      output += `<strong>Annotations</strong><br />${annotationParts.join("<br />")}`;
-    }
-    output += `</td></tr>\n`;
+    output += `<th>Type</th>`;
+    output += `<th>Description</th>`;
+    output += `</tr>`;
+
+    output += `<tr>`;
+    const lengthConstraint =
+      isLengthConstrainable(typeDefinition) && typeDefinition.length ? `(${typeDefinition.length})` : "";
+    output += `<td>${typeDefinition.type}${lengthConstraint}</td>`;
+    output += `<td>${await getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
+    output += `</tr>\n`;
 
     output += `</table>\n\n`;
   }
   return output;
 }
 
-function processServices(
+async function processServices(
   services: [string, ServiceDefinition][],
   entities: [string, EntityDefinition][],
-  i18n: CSNInteropRoot["i18n"],
-): string {
+  i18n: CSNInteropRoot["i18n"] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
+): Promise<string> {
   if (!services.length) return "";
   let output = "## Services\n\n";
-  for (const [serviceName, definition] of services) {
-    const exposedEntities = entities.filter(([entityName]) => entityName.split(".")[0] === serviceName);
-    const doc = definition.doc || "";
-    const annotations = Object.entries(definition).filter(([key]) => key.startsWith("@"));
-    const restProps = Object.entries(definition).filter(
-      ([key]) => !key.startsWith("@") && !["doc", "kind", "type", "length"].includes(key),
-    );
-
+  for (const [serviceName, serviceDefinition] of services) {
     output += `### ${serviceName}\n\n`;
+    if (serviceDefinition.doc) {
+      output += `${marked.parse(serviceDefinition.doc)}\n`;
+    }
 
-    if (doc) output += `${marked.parse(doc)}\n`;
-
+    const exposedEntities = entities.filter(([entityName]) => entityName.split(".")[0] === serviceName);
     if (exposedEntities) {
       output += `Exposed Entities:\n\n${exposedEntities.reduce((result, [entityName]) => [...result, `  - [${entityName}](#${getHeaderId(entityName)})`], [] as string[]).join("\n")}\n\n`;
     }
 
-    if (!restProps.length && !annotations.length) return output;
-
-    output += `<table>\n<tr><th>Description</th></tr>\n`;
-
-    const descriptionParts = restProps.map(
-      ([key, value]) => `<strong>${key}</strong>: ${typeof value === "object" ? renderObject(value) : value}`,
+    const restProps: [string, unknown][] = Object.entries(serviceDefinition).filter(
+      ([key]) => !["doc", "kind"].includes(key),
     );
 
-    const annotationParts = annotations.map(
-      ([key, value]) =>
-        `<strong>${key}</strong>: ${typeof value === "object" ? renderObject(value) : renderStringWithI18n(value, i18n)}`,
-    );
+    if (!restProps.length) return output;
+
+    output += `<table>\n`;
 
     output += `<tr>`;
-    output += `<td>`;
-    if (descriptionParts.length) {
-      output += `<td>${descriptionParts.join("<br />")}<br /><br />`;
-    }
-    if (annotationParts.length) {
-      output += `<strong>Annotations</strong><br />${annotationParts.join("<br />")}`;
-    }
-    output += `</td></tr>\n`;
+    output += `<th>Description</th>`;
+    output += `</tr>`;
+
+    output += `<tr>`;
+    output += `<td>${await getDescriptionData(restProps, annotationValueLinkTransformers, i18n)}</td>`;
+    output += `</tr>\n`;
 
     output += `</table>\n\n`;
   }
@@ -264,10 +250,22 @@ function processServices(
 }
 
 // Main renderer function
-export const renderer = async (json: CSNInteropRoot, asHTml: boolean = false): Promise<string> => {
-  const { definitions, meta, i18n } = json;
+export const renderer = async (
+  json: CSNInteropRoot,
+  config?: CsnRendererConfig,
+  asHTml: boolean = false,
+): Promise<string> => {
+  const { definitions, meta, i18n, csnInteropEffective } = json;
 
   let output = "";
+
+  switch (csnInteropEffective) {
+    case "1.0":
+      output += `>This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.\n\n`;
+      break;
+    default:
+      break;
+  }
 
   if (meta?.document?.title) output += `# ${meta.document.title}\n\n`;
   if (meta?.document?.doc) output += `${meta.document.doc}\n\n`;
@@ -285,13 +283,14 @@ export const renderer = async (json: CSNInteropRoot, asHTml: boolean = false): P
     ServiceDefinition,
   ][];
 
-  output += processEntities(
+  output += await processEntities(
     entities,
     services.map((serviceTuple) => serviceTuple[0]),
     i18n,
+    config?.annotationLinkCallbacks,
   );
-  output += processTypes(types, i18n);
-  output += processServices(services, entities, i18n);
+  output += await processTypes(types, i18n, config?.annotationLinkCallbacks);
+  output += await processServices(services, entities, i18n, config?.annotationLinkCallbacks);
 
   if (asHTml) {
     marked.use(gfmHeadingId());
