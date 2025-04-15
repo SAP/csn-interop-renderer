@@ -25,38 +25,33 @@ describe("Index Tests", () => {
         const delay = async (ms: number): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
 
         const result = await generateMarkdown(cloneExample, {
-          annotationLinkCallbacks: [
-            {
-              // for annotation key "@EntityRelationship.entityType" add link computing logic
-              "@EntityRelationship.entityType": (annotationValue: unknown): string => {
-                return annotationValue + "Boom";
-              },
+          annotationLinkCallbacks: {
+            // for annotation key "@EntityRelationship.entityType" add link computing logic
+            "@EntityRelationship.entityType": (annotationValue: unknown): string => {
+              return annotationValue + "Boom";
             },
-            {
-              // for annotation key "@Consumption.valueHelpDefinition" add link computing logic
-              "@Consumption.valueHelpDefinition": (_annotationValue: unknown): string => {
-                return "https://example.com/";
-              },
+
+            // for annotation key "@Consumption.valueHelpDefinition" add link computing logic
+            "@Consumption.valueHelpDefinition": (_annotationValue: unknown): string => {
+              return "https://example.com/";
             },
-            {
-              // for annotation key "@EndUserText.label" add async link computing logic
-              "@EndUserText.label": async (_annotationValue: unknown): Promise<string> => {
-                await delay(100);
-                return "https://google.com/";
-              },
+
+            // for annotation key "@EndUserText.label" add async link computing logic
+            "@EndUserText.label": async (_annotationValue: unknown): Promise<string> => {
+              await delay(100);
+              return "https://google.com/";
             },
-            {
-              // for annotation key "@ObjectModel.compositionRoot" add promise link computing logic
-              // eslint-disable-next-line @typescript-eslint/promise-function-async
-              "@ObjectModel.compositionRoot": (_annotationValue: unknown): Promise<string> => {
-                return new Promise<string>((resolve) => {
-                  setTimeout(() => {
-                    resolve("https://example.org/");
-                  }, 100);
-                });
-              },
+
+            // for annotation key "@ObjectModel.compositionRoot" add promise link computing logic
+            // eslint-disable-next-line @typescript-eslint/promise-function-async
+            "@ObjectModel.compositionRoot": (_annotationValue: unknown): Promise<string> => {
+              return new Promise<string>((resolve) => {
+                setTimeout(() => {
+                  resolve("https://example.org/");
+                }, 100);
+              });
             },
-          ],
+          },
         });
 
         expect(result).toContain(
@@ -82,15 +77,13 @@ describe("Index Tests", () => {
         // prepare data
         const cloneExample = { ...example };
         const result = await generateMarkdown(cloneExample, {
-          annotationLinkCallbacks: [
-            {
-              // for non existent csn-interop-spec annotation key "@AnnotationDoesNotExist" add link computing logic
-              // this should be ignored and not be processed at all
-              "@AnnotationDoesNotExist": (_annotationValue: unknown): string => {
-                return "shouldNeverHappen";
-              },
+          annotationLinkCallbacks: {
+            // for non existent csn-interop-spec annotation key "@AnnotationDoesNotExist" add link computing logic
+            // this should be ignored and not be processed at all
+            "@AnnotationDoesNotExist": (_annotationValue: unknown): string => {
+              return "shouldNeverHappen";
             },
-          ],
+          },
         });
         expect(result).not.toContain(`shouldNeverHappen`);
         expect(result).toMatchSnapshot();
@@ -117,38 +110,33 @@ describe("Index Tests", () => {
         const delay = async (ms: number): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
 
         const result = await generateMarkdown(cloneExample, {
-          annotationLinkCallbacks: [
-            {
-              // for annotation key "@EntityRelationship.entityType" add link computing logic
-              "@EntityRelationship.entityType": (annotationValue: unknown): string => {
-                return annotationValue + "Boom";
-              },
+          annotationLinkCallbacks: {
+            // for annotation key "@EntityRelationship.entityType" add link computing logic
+            "@EntityRelationship.entityType": (annotationValue: unknown): string => {
+              return annotationValue + "Boom";
             },
-            {
-              // for annotation key "@Consumption.valueHelpDefinition" add link computing logic
-              "@Consumption.valueHelpDefinition": (_annotationValue: unknown): string => {
-                return "https://example.com/";
-              },
+
+            // for annotation key "@Consumption.valueHelpDefinition" add link computing logic
+            "@Consumption.valueHelpDefinition": (_annotationValue: unknown): string => {
+              return "https://example.com/";
             },
-            {
-              // for annotation key "@EndUserText.label" add async link computing logic
-              "@EndUserText.label": async (_annotationValue: unknown): Promise<string> => {
-                await delay(100);
-                return "https://google.com/";
-              },
+
+            // for annotation key "@EndUserText.label" add async link computing logic
+            "@EndUserText.label": async (_annotationValue: unknown): Promise<string> => {
+              await delay(100);
+              return "https://google.com/";
             },
-            {
-              // for annotation key "@ObjectModel.compositionRoot" add promise link computing logic
-              // eslint-disable-next-line @typescript-eslint/promise-function-async
-              "@ObjectModel.compositionRoot": (_annotationValue: unknown): Promise<string> => {
-                return new Promise<string>((resolve) => {
-                  setTimeout(() => {
-                    resolve("https://example.org/");
-                  }, 100);
-                });
-              },
+
+            // for annotation key "@ObjectModel.compositionRoot" add promise link computing logic
+            // eslint-disable-next-line @typescript-eslint/promise-function-async
+            "@ObjectModel.compositionRoot": (_annotationValue: unknown): Promise<string> => {
+              return new Promise<string>((resolve) => {
+                setTimeout(() => {
+                  resolve("https://example.org/");
+                }, 100);
+              });
             },
-          ],
+          },
         });
 
         expect(result).toContain(
@@ -174,15 +162,13 @@ describe("Index Tests", () => {
         // prepare data
         const cloneExample = { ...example };
         const result = await generateMarkdown(cloneExample, {
-          annotationLinkCallbacks: [
-            {
-              // for non existent csn-interop-spec annotation key "@AnnotationDoesNotExist" add link computing logic
-              // this should be ignored and not be processed at all
-              "@AnnotationDoesNotExist": (_annotationValue: unknown): string => {
-                return "shouldNeverHappen";
-              },
+          annotationLinkCallbacks: {
+            // for non existent csn-interop-spec annotation key "@AnnotationDoesNotExist" add link computing logic
+            // this should be ignored and not be processed at all
+            "@AnnotationDoesNotExist": (_annotationValue: unknown): string => {
+              return "shouldNeverHappen";
             },
-          ],
+          },
         });
         expect(result).not.toContain(`shouldNeverHappen`);
         expect(result).toMatchSnapshot();

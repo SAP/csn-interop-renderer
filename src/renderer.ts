@@ -19,7 +19,7 @@ import {
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { getDescriptionData } from "./rendererUtil.js";
-import { AnnotationLinkCallback, CsnRendererConfig } from "./types/index.js";
+import { AnnotationLinkCallbacks, CsnRendererConfig } from "./types/index.js";
 
 // Helper functions
 function isEntityDefinition(entry: DefinitionEntry): entry is EntityDefinition {
@@ -73,7 +73,7 @@ async function processEntities(
   entities: [string, EntityDefinition][],
   serviceNames: string[],
   i18n: CSNInteropRoot["i18n"] | undefined,
-  annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
 ): Promise<string> {
   if (!entities.length) return "";
   let output = "## Entity Definitions\n\n";
@@ -174,7 +174,7 @@ async function processEntities(
 async function processTypes(
   types: [string, TypeDefinition][],
   i18n: CSNInteropRoot["i18n"] | undefined,
-  annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
 ): Promise<string> {
   if (!types.length) return "";
   let output = "## Type Definitions\n\n";
@@ -213,7 +213,7 @@ async function processServices(
   services: [string, ServiceDefinition][],
   entities: [string, EntityDefinition][],
   i18n: CSNInteropRoot["i18n"] | undefined,
-  annotationValueLinkTransformers: AnnotationLinkCallback[] | undefined,
+  annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
 ): Promise<string> {
   if (!services.length) return "";
   let output = "## Services\n\n";
