@@ -1,9 +1,9 @@
-import { CSNInteropRoot, schemas } from "@sap/csn-interop-specification";
+import { CSNInteropEffectiveDocument, schemas } from "@sap/csn-interop-specification";
 import { renderer } from "./renderer.js";
 import { CsnRendererConfig } from "./types/index.js";
 
 export const parser = async (
-  text: CSNInteropRoot,
+  text: CSNInteropEffectiveDocument,
   config?: CsnRendererConfig,
   generateAsHTml: boolean = false,
 ): Promise<string> => {

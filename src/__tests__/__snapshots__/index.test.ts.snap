@@ -16,7 +16,7 @@ Entity exposed via:
 
 <p>Human readable description of the entity, in <strong>markdown</strong>.</p>
 
-@EndUserText.label: <code>"Airline"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <code>"myValue1"</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code>
+@EndUserText.label: <code>"Airline"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <code>"my.namespace:Value"</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code>
 
 Elements: 
 
@@ -175,7 +175,7 @@ Entity exposed via:
 
 <p>Human readable description of the entity, in <strong>markdown</strong>.</p>
 
-@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="my.namespace:ValueBoom" target="_blank"><code>"my.namespace:Value"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
 
 Elements: 
 
@@ -334,7 +334,7 @@ Entity exposed via:
 
 <p>Human readable description of the entity, in <strong>markdown</strong>.</p>
 
-@EndUserText.label: <code>"Airline"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <code>"myValue1"</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code>
+@EndUserText.label: <code>"Airline"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <code>"my.namespace:Value"</code><br />@Consumption.valueHelpDefinition: <code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code>
 
 Elements: 
 
@@ -493,7 +493,7 @@ Entity exposed via:
 
 <p>Human readable description of the entity, in <strong>markdown</strong>.</p>
 
-@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
+@EndUserText.label: <a href="https://google.com/" target="_blank"><code>"Airline"</code></a><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code><br />@EntityRelationship.entityType: <a href="my.namespace:ValueBoom" target="_blank"><code>"my.namespace:Value"</code></a><br />@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>
 
 Elements: 
 

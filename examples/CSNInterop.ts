@@ -1,6 +1,6 @@
-import { CSNInteropRoot } from "@sap/csn-interop-specification";
+import { CSNInteropEffectiveDocument } from "@sap/csn-interop-specification";
 
-const example: CSNInteropRoot = {
+const example: CSNInteropEffectiveDocument = {
   csnInteropEffective: "1.0",
   $version: "2.0",
   meta: {

@@ -1,7 +1,7 @@
 import {
   type TypeDefinition,
   type AssociationType,
-  type CSNInteropRoot,
+  type CSNInteropEffectiveDocument,
   type ElementEntry,
   type DefinitionEntry,
   type EntityDefinition,
@@ -72,7 +72,7 @@ function getHeaderId(definitionName: string, entityElementName?: string): string
 async function processEntities(
   entities: [string, EntityDefinition][],
   serviceNames: string[],
-  i18n: CSNInteropRoot["i18n"] | undefined,
+  i18n: CSNInteropEffectiveDocument["i18n"] | undefined,
   annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
 ): Promise<string> {
   if (!entities.length) return "";
@@ -173,7 +173,7 @@ async function processEntities(
 
 async function processTypes(
   types: [string, TypeDefinition][],
-  i18n: CSNInteropRoot["i18n"] | undefined,
+  i18n: CSNInteropEffectiveDocument["i18n"] | undefined,
   annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
 ): Promise<string> {
   if (!types.length) return "";
@@ -212,7 +212,7 @@ async function processTypes(
 async function processServices(
   services: [string, ServiceDefinition][],
   entities: [string, EntityDefinition][],
-  i18n: CSNInteropRoot["i18n"] | undefined,
+  i18n: CSNInteropEffectiveDocument["i18n"] | undefined,
   annotationValueLinkTransformers: AnnotationLinkCallbacks | undefined,
 ): Promise<string> {
   if (!services.length) return "";
@@ -251,7 +251,7 @@ async function processServices(
 
 // Main renderer function
 export const renderer = async (
-  json: CSNInteropRoot,
+  json: CSNInteropEffectiveDocument,
   config?: CsnRendererConfig,
   asHTml: boolean = false,
 ): Promise<string> => {
