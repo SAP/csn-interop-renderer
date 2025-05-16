@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [unreleased]
 
+## [0.3.1]
+
+- dependency update: csn-interop-spec v.1.0.4
+
 ## [0.3.0]
 
 - npm package integration, the exported functions have now support for optional `config` property
