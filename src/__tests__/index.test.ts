@@ -11,7 +11,7 @@ describe("Index Tests", () => {
       test("should generate successfully with custom links for defined annotations", async () => {
         // prepare data, add annotations
         const cloneExample = { ...example };
-        cloneExample.definitions["AirlineService.Airline"]["@EntityRelationship.entityType"] = "myValue1";
+        cloneExample.definitions["AirlineService.Airline"]["@EntityRelationship.entityType"] = "my.namespace:Value";
         cloneExample.definitions["AirlineService.Airline"]["@Consumption.valueHelpDefinition"] = [
           { entity: { name: "myValue2" } },
         ];
@@ -55,7 +55,7 @@ describe("Index Tests", () => {
         });
 
         expect(result).toContain(
-          `@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a>`,
+          `@EntityRelationship.entityType: <a href="my.namespace:ValueBoom" target="_blank"><code>"my.namespace:Value"</code></a>`,
         );
         expect(result).toContain(
           `@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>`,
@@ -96,7 +96,7 @@ describe("Index Tests", () => {
       test("should generate successfully with custom links for defined annotations", async () => {
         // prepare data, add annotations
         const cloneExample = { ...example };
-        cloneExample.definitions["AirlineService.Airline"]["@EntityRelationship.entityType"] = "myValue1";
+        cloneExample.definitions["AirlineService.Airline"]["@EntityRelationship.entityType"] = "my.namespace:Value";
         cloneExample.definitions["AirlineService.Airline"]["@Consumption.valueHelpDefinition"] = [
           { entity: { name: "myValue2" } },
         ];
@@ -140,7 +140,7 @@ describe("Index Tests", () => {
         });
 
         expect(result).toContain(
-          `@EntityRelationship.entityType: <a href="myValue1Boom" target="_blank"><code>"myValue1"</code></a>`,
+          `@EntityRelationship.entityType: <a href="my.namespace:ValueBoom" target="_blank"><code>"my.namespace:Value"</code></a>`,
         );
         expect(result).toContain(
           `@Consumption.valueHelpDefinition: <a href="https://example.com/" target="_blank"><code>[&lbrace;"entity":&lbrace;"name":"myValue2"&rbrace;&rbrace;]</code></a>`,

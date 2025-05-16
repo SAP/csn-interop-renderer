@@ -1,7 +1,7 @@
 import { generateHtml } from "../index.js";
 
 export interface CsnRendererProps {
-  /** @param source A valid text (containing JSON CSNInteropRoot object).*/
+  /** @param source A valid text (containing JSON CSNInteropEffectiveDocument object).*/
   source: string;
 }
 

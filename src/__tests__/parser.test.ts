@@ -1,6 +1,6 @@
 import { parser } from "../parser.js";
 import example from "../../examples/CSNInterop.js";
-import { CSNInteropRoot } from "@sap/csn-interop-specification";
+import { CSNInteropEffectiveDocument } from "@sap/csn-interop-specification";
 
 describe("Parser Tests", () => {
   test("should throw some errors if corrupt file is provided", async () => {
@@ -8,7 +8,7 @@ describe("Parser Tests", () => {
     expect.assertions(2);
 
     try {
-      await parser(exampleString as unknown as CSNInteropRoot);
+      await parser(exampleString as unknown as CSNInteropEffectiveDocument);
     } catch (error: unknown) {
       expect(error).toBeDefined();
       expect(error).toMatchSnapshot();

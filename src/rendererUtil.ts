@@ -1,4 +1,4 @@
-import { CSNInteropRoot } from "@sap/csn-interop-specification";
+import { CSNInteropEffectiveDocument } from "@sap/csn-interop-specification";
 import { AnnotationLinkCallbacks, LinkCallbackFunction } from "./types/index.js";
 import { marked } from "marked";
 
@@ -7,7 +7,7 @@ import { marked } from "marked";
 export async function getDescriptionData(
   props: [string, unknown][],
   annotationLinkCallbacks: AnnotationLinkCallbacks | undefined,
-  i18n: CSNInteropRoot["i18n"] | undefined,
+  i18n: CSNInteropEffectiveDocument["i18n"] | undefined,
   customDescriptionCellDataText?: string,
 ): Promise<string> {
   if (customDescriptionCellDataText) return customDescriptionCellDataText;
@@ -66,7 +66,7 @@ export async function getDescriptionData(
   return description;
 }
 
-export function renderContentWithI18n(content: unknown, i18n: CSNInteropRoot["i18n"] | undefined): string {
+export function renderContentWithI18n(content: unknown, i18n: CSNInteropEffectiveDocument["i18n"] | undefined): string {
   const escapedContent = JSON.stringify(content).replace(/{/g, "&lbrace;").replace(/}/g, "&rbrace;");
 
   if (!i18n) {
