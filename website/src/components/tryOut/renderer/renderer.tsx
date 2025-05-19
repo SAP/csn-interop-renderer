@@ -6,7 +6,7 @@ import FileIcon from "./img/file.svg";
 import styles from "./renderer.module.css";
 import Error from "../error/error";
 import Loader from "../loader/loader";
-import exampleData from "./example";
+import exampleData from "./example.json";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
@@ -34,12 +34,26 @@ export default function Renderer(): React.JSX.Element {
       const trimmedInput = JSON.parse(input.trim().replace(/[\n\r\t]/gm, ""));
       let content: string;
 
+      // const delay = (ms): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
+
       switch (format) {
         case "markdown":
           content = await generateMarkdown(trimmedInput);
           break;
         case "html":
-          content = await generateHtml(trimmedInput);
+          content = await generateHtml(trimmedInput, {
+            annotationLinkCallbacks: {
+              "@EntityRelationship.entityType": (_annotationValue: unknown): string => {
+                return "https://example.com/";
+              },
+              "@ODM.entityName": (_annotationValue: unknown): string => {
+                return "https://example.com/";
+              },
+              "@ODM.oidReference.entityName": (_annotationValue: unknown): string => {
+                return "https://example.com/";
+              },
+            },
+          });
           break;
         case "web-component":
           content = JSON.stringify(trimmedInput, null, 2);
@@ -110,6 +124,13 @@ export default function Renderer(): React.JSX.Element {
     if (editorRef.current && monacoRef.current) {
       const model = editorRef.current.getModel();
       monacoRef.current.editor.setModelLanguage(model, "json");
+      monacoRef.current.languages.json.jsonDefaults.setDiagnosticsOptions({
+        validate: true,
+        allowComments: true,
+        schemas: [{ uri: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json" }],
+        enableSchemaRequest: true,
+        schemaRequest: "warning",
+      });
       editorRef.current.getAction("editor.action.formatDocument").run();
     }
   }, [editorRef, monacoRef]);
