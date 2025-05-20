@@ -1,10 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CLI End-to-End Tests runs with CSN JSON input file and generate successfully "html" output file 1`] = `
-"<blockquote>
-<p>This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.</p>
-</blockquote>
-<h1 id="airline-example">Airline (Example)</h1>
+"<h1 id="airline-example">Airline (Example)</h1>
 <p>This CSN example document shows how the airline example is expressed with a CDS <strong>Service</strong> exposing the entities through an API.</p>
 <h2 id="entity-definitions">Entity Definitions</h2>
 <h3 id="airlineserviceairline">AirlineService.Airline</h3>
@@ -133,9 +130,7 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 `;
 
 exports[`CLI End-to-End Tests runs with CSN JSON input file and generate successfully "md" output file 1`] = `
-">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
-
-# Airline (Example)
+"# Airline (Example)
 
 This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API.
 
