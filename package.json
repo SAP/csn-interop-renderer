@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-renderer",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Converts documents defined using CSN Interoperability Specification into markdown/HTML human readable documentation pages.",
   "keywords": [],
   "author": "SAP SE",

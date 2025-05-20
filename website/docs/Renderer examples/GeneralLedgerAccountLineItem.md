@@ -1,5 +1,3 @@
->This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
-
 ## Entity Definitions
 
 ### GeneralLedgerAccountLineItem

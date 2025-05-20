@@ -255,17 +255,9 @@ export const renderer = async (
   config?: CsnRendererConfig,
   asHTml: boolean = false,
 ): Promise<string> => {
-  const { definitions, meta, i18n, csnInteropEffective } = json;
+  const { definitions, meta, i18n } = json;
 
   let output = "";
-
-  switch (csnInteropEffective) {
-    case "1.0":
-      output += `>This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.\n\n`;
-      break;
-    default:
-      break;
-  }
 
   if (meta?.document?.title) output += `# ${meta.document.title}\n\n`;
   if (meta?.document?.doc) output += `${meta.document.doc}\n\n`;

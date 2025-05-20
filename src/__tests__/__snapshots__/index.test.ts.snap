@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Index Tests generateHtml Tests config Tests should generate successfully and skip custom links for unknown annotations 1`] = `
-">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
-
-# Airline (Example)
+"# Airline (Example)
 
 This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API.
 
@@ -160,9 +158,7 @@ Exposed Entities:
 `;
 
 exports[`Index Tests generateHtml Tests config Tests should generate successfully with custom links for defined annotations 1`] = `
-">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
-
-# Airline (Example)
+"# Airline (Example)
 
 This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API.
 
@@ -319,9 +315,7 @@ Exposed Entities:
 `;
 
 exports[`Index Tests generateMarkdown Tests config Tests should generate successfully and skip custom links for unknown annotations 1`] = `
-">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
-
-# Airline (Example)
+"# Airline (Example)
 
 This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API.
 
@@ -478,9 +472,7 @@ Exposed Entities:
 `;
 
 exports[`Index Tests generateMarkdown Tests config Tests should generate successfully with custom links for defined annotations 1`] = `
-">This Data Product definition description was done using the <a href="https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective" target="_blank">Core Schema Notation Interoperability (short: CSN Interop)</a> format.
-
-# Airline (Example)
+"# Airline (Example)
 
 This CSN example document shows how the airline example is expressed with a CDS **Service** exposing the entities through an API.
 
