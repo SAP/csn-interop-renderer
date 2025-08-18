@@ -1,0 +1,57 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":pinAllExceptPeerDependencies"],
+  "semanticCommits": "enabled",
+  "enabledManagers": ["npm"],
+  "branchPrefix": "deps/",
+  "timezone": "Europe/Berlin",
+  "schedule": ["every weekend"],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "packageRules": [
+    {
+      "groupName": "CSN-interop-specification",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["@sap/csn-interop-specification"]
+    },
+    {
+      "groupName": "CLI and Utils",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["commander", "json-schema-library", "marked", "marked-gfm-heading-id"]
+    },
+    {
+      "groupName": "Linting Tools",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["eslint", "@sap/eslint-config", "prettier"]
+    },
+    {
+      "groupName": "TypeScript Build Tools",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["typescript", "ts-jest", "tsx", "@tsconfig/node22"]
+    },
+    {
+      "groupName": "Testing Frameworks",
+      "matchManagers": ["npm"],
+      "matchPackageNames": [
+        "jest",
+        "jest-cli",
+        "jest-environment-jsdom",
+        "jest-junit",
+        "jest-watch-typeahead",
+        "@types/jest"
+      ]
+    },
+    {
+      "groupName": "Misc Tools",
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["rimraf", "husky", "is-ci", "lint-staged"]
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["dependencies", "devDependencies"],
+      "matchDatasources": ["npm"],
+      "semanticCommitType": "chore",
+      "automerge": true
+    }
+  ]
+}

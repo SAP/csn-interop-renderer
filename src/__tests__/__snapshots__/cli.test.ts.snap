@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`CLI End-to-End Tests runs with CSN JSON input file and generate successfully "html" output file 1`] = `
 "<h1 id="airline-example">Airline (Example)</h1>

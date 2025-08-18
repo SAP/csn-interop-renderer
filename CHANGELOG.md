@@ -7,6 +7,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [unreleased]
 
+## [0.3.4]
+
+- dependency update: csn-interop-spec v.1.0.7
+- update other dependencies
+
 ## [0.3.3]
 
 - remove from the generated result the link to csn-interop-spec
