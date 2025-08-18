@@ -1,4 +1,4 @@
-const glob = require("glob");
+const { glob } = require("glob");
 const { exec } = require("child_process");
 const path = require("path");
 
