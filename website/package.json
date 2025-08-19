@@ -17,25 +17,24 @@
     "eslint:ci": "eslint ."
   },
   "devDependencies": {
-    "@docusaurus/core": "3.7.0",
-    "@docusaurus/module-type-aliases": "3.7.0",
-    "@docusaurus/preset-classic": "3.7.0",
-    "@docusaurus/tsconfig": "3.7.0",
-    "@docusaurus/types": "3.7.0",
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/module-type-aliases": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/tsconfig": "3.8.1",
+    "@docusaurus/types": "3.8.1",
     "@monaco-editor/react": "4.7.0",
-    "@sap/csn-interop-renderer": "0.3.2",
+    "@sap/csn-interop-renderer": "0.3.4",
     "@tsconfig/docusaurus": "2.0.3",
-    "@ui5/webcomponents-icons": "2.5.1",
-    "@ui5/webcomponents-react": "2.5.0",
+    "@ui5/webcomponents-icons": "2.13.2",
+    "@ui5/webcomponents-react": "2.13.1",
     "classnames": "2.5.1",
     "clsx": "2.1.1",
     "prism-react-renderer": "2.4.1",
     "react": "18.3.1",
-    "react-dom": "18.3.1",
     "react-markdown": "10.1.0",
     "rehype-slug": "6.0.0",
     "remark-gfm": "4.0.1",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "browserslist": {
     "production": [
