@@ -21,4 +21,4 @@ interface CsnRendererConfig {
   annotationLinkCallbacks?: AnnotationLinkCallbacks;
 }
 
-export { CsnRendererConfig, AnnotationLinkCallbacks, LinkCallbackFunction };
+export { type CsnRendererConfig, type AnnotationLinkCallbacks, type LinkCallbackFunction };

@@ -1,32 +1,20 @@
 import { CSNInteropEffectiveDocument, schemas } from "@sap/csn-interop-specification";
 import { renderer } from "./renderer.js";
 import { CsnRendererConfig } from "./types/index.js";
+import { compileSchema } from "json-schema-library";
 
 export const parser = async (
   text: CSNInteropEffectiveDocument,
   config?: CsnRendererConfig,
   generateAsHTml: boolean = false,
 ): Promise<string> => {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  let Draft07;
-  const jsonSchemaLib = await import("json-schema-library");
+  const draft07SchemaNode = compileSchema(schemas.csnInteropEffectiveSchema);
+  const validationResult = draft07SchemaNode.validate(text);
 
-  // Check if we are in Node environment
-  if (typeof process !== "undefined" && process.versions && process.versions.node) {
-    // Node environment
-    Draft07 = jsonSchemaLib.default.Draft07;
-  } else {
-    // Browser environment
-    Draft07 = jsonSchemaLib.Draft07;
-  }
-
-  const draft07 = new Draft07(schemas.csnInteropEffectiveSchema);
-  const errors = draft07.validate(text);
-
-  if (errors.length) {
+  if (validationResult.errors.length) {
     const preparedErrors = [];
 
-    for (const error of errors) {
+    for (const error of validationResult.errors) {
       preparedErrors.push({ message: error.message, type: error.type, code: error.code });
     }
 
