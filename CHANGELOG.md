@@ -7,8 +7,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [unreleased]
 
-## [0.3.5]
+## [0.4.0]
 
+- update to node v24
 - dependency update
 
 ## [0.3.4]
