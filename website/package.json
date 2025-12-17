@@ -23,7 +23,7 @@
     "@docusaurus/tsconfig": "3.9.2",
     "@docusaurus/types": "3.9.2",
     "@monaco-editor/react": "4.7.0",
-    "@sap/csn-interop-renderer": "0.3.4",
+    "@sap/csn-interop-renderer": "0.4.0",
     "@tsconfig/docusaurus": "2.0.7",
     "@ui5/webcomponents-icons": "2.13.2",
     "@ui5/webcomponents-react": "2.13.1",
