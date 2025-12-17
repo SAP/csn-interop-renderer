@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/package",
   "name": "@sap/csn-interop-renderer",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "Converts documents defined using CSN Interoperability Specification into markdown/HTML human readable documentation pages.",
   "keywords": [],
   "author": "SAP SE",
@@ -20,8 +20,8 @@
     "cli/"
   ],
   "engines": {
-    "node": ">=22",
-    "npm": ">=10"
+    "node": ">=24",
+    "npm": ">=11"
   },
   "scripts": {
     "cli": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning ./cli/cli.js -i ./examples/Airline.json -o ./examples/out.md -r md",
