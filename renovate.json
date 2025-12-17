@@ -51,7 +51,7 @@
       "matchDepTypes": ["dependencies", "devDependencies"],
       "matchDatasources": ["npm"],
       "semanticCommitType": "chore",
-      "automerge": true
+      "automerge": false
     }
   ]
 }
