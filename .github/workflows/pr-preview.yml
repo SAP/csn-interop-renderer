@@ -46,7 +46,7 @@ jobs:
       - name: PR preview
         uses: open-resource-discovery/pr-preview-action@main
         with:
-          fork: true
+        #  fork: true
           build-dir: website/build
           target-repo: SAP/csn-interop-pr-preview
           pages-base-url: https://sap.github.io/csn-interop-pr-preview
