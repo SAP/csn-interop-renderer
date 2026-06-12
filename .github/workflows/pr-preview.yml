@@ -38,7 +38,7 @@ jobs:
         working-directory: ./website
         env:
           PR_PREVIEW_NUMBER: ${{ github.event.pull_request.number }}
-          BASE_URL: /csn-interop-renderer/pr-${{ github.event.pull_request.number }}/
+          BASE_URL: /csn-interop-pr-preview/csn-interop-renderer/pr-${{ github.event.pull_request.number }}/
         run: |
           set -euo pipefail
           npm run build
