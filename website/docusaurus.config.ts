@@ -4,11 +4,14 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const isPrPreview = Boolean(process.env.PR_PREVIEW_NUMBER);
+const baseUrl = process.env.BASE_URL || "/csn-interop-renderer/";
+
 const config: Config = {
   title: "CSN Interop Document Renderer",
   tagline: "A tool to generate markdown documentation from CSN JSON documents",
   url: "https://sap.github.io",
-  baseUrl: "/csn-interop-renderer/",
+  baseUrl,
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenAnchors: "warn",
@@ -68,6 +71,16 @@ const config: Config = {
         },
       ],
     },
+    ...(isPrPreview
+      ? {
+          announcementBar: {
+            content: `<b>This is a preview version of the website for <a href="https://github.com/SAP/csn-interop-renderer/pull/${process.env.PR_PREVIEW_NUMBER}" target="_blank" rel="noopener noreferrer">PR #${process.env.PR_PREVIEW_NUMBER}</a></b>`,
+            backgroundColor: "#e65050ff",
+            textColor: "#fff",
+            isCloseable: false,
+          },
+        }
+      : {}),
     footer: {
       style: "dark",
       copyright: `Copyright © ${new Date().getFullYear()} SAP SE. Made available under Apache License 2.0.\n\n This site is hosted by GitHub Pages. Please see the GitHub Privacy Statement for any information how GitHub processes your personal data.`,
