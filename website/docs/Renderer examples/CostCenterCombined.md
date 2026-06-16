@@ -217,3 +217,5 @@ Elements:
 <tr><td><strong id="costcentercostcenterhierarchytext-costcenterhierarchyname">CostCenterHierarchyName</strong><br /><br /></td><td>cds.String(50)</td><td>@Semantics.text: <code>true</code><br />@EndUserText.label: Description<br />@EndUserText.heading: Hierarchy Description<br />@EndUserText.quickInfo: Hierarchy description</td></tr>
 </table>
 
+
+> PR Preview worker smoke test.
