@@ -9,6 +9,10 @@ import {
   type LargeStringTypeDefinition,
   type StructuredElementReference,
   type EqualsOperator,
+  type SmallerOperator,
+  type SmallerEqualsOperator,
+  type GreaterOperator,
+  type GreaterEqualsOperator,
   type ANDOperator,
   type OnValue,
   type CustomType,
@@ -27,7 +31,15 @@ function isEntityDefinition(entry: DefinitionEntry): entry is EntityDefinition {
 }
 
 function isStructuredElementReference(
-  entry: StructuredElementReference | EqualsOperator | ANDOperator | OnValue,
+  entry:
+    | StructuredElementReference
+    | EqualsOperator
+    | SmallerOperator
+    | SmallerEqualsOperator
+    | GreaterOperator
+    | GreaterEqualsOperator
+    | ANDOperator
+    | OnValue,
 ): entry is StructuredElementReference {
   return typeof entry === "object" && Object.hasOwn(entry, "ref");
 }
