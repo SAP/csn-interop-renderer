@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunk_sap_csn_interop_renderer_website=globalThis.webpackChunk_sap_csn_interop_renderer_website||[]).push([[874],{6336(e){e.exports=JSON.parse('{"metadata":{"permalink":"/csn-interop-renderer/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":0,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
