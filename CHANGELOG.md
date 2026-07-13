@@ -7,6 +7,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [unreleased]
 
+## [0.5.0]
+
+- dependency update: csn-interop-spec v1.2.4
+- support `on` condition comparison operators (`<`, `<=`, `>`, `>=`) introduced in csn-interop-spec v1.2.0
+
 ## [0.4.0]
 
 - update to node v24
