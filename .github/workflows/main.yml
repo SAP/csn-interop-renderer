@@ -81,6 +81,9 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Install NPM dependencies
+        run: npm ci
+
       - name: Build
         run: npm run build
 
