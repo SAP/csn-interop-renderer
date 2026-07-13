@@ -7,18 +7,14 @@ exports[`Custom web-component Tests should properly render the provided CSN sour
 <h3 id="airlineserviceairline">AirlineService.Airline</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
-<p>Human readable description of the entity, in <strong>markdown</strong>.</p>
-
-<p>@EndUserText.label: <code>"Airline"</code><br>@ObjectModel.modelingPattern: <code>{"#":"ANALYTICAL_DIMENSION"}</code></p>
+<p>Human readable description of the entity, in <strong>markdown</strong>.</p><p>@EndUserText.label: <code>"Airline"</code><br>@ObjectModel.modelingPattern: <code>{"#":"ANALYTICAL_DIMENSION"}</code></p>
 <p>Elements: </p>
 <table>
 <tbody><tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairline-airlineid">AirlineID</strong><br><br></td><td><a href="#airlineuuid">AirlineUuid</a></td><td><p>Human readable description of the element, in <strong>markdown</strong>.</p>
 <br>key: <code>true</code><br>@EndUserText.label: <code>"Airline"</code><br>@ObjectModel.text.element: <code>["Name"]</code></td></tr>
 <tr><td><strong id="airlineserviceairline-name">Name</strong><br><br></td><td>cds.String(40)</td><td>@EndUserText.label: <code>"Name"</code><br>@Semantics.text: <code>true</code></td></tr>
 <tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong><br><br></td><td>cds.String(3)</td><td>@EndUserText.label: <code>"Currency Code"</code><br>@Semantics.currencyCode: <code>true</code></td></tr>
-</tbody></table>
-
-<h3 id="airlineserviceairport">AirlineService.Airport</h3>
+</tbody></table><h3 id="airlineserviceairport">AirlineService.Airport</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Airport"</code><br>@ObjectModel.modelingPattern: <code>{"#":"ANALYTICAL_DIMENSION"}</code></p>
@@ -29,9 +25,7 @@ exports[`Custom web-component Tests should properly render the provided CSN sour
 <tr><td><strong id="airlineserviceairport-city">City</strong><br><br></td><td>cds.String(40)</td><td>@EndUserText.label: <code>"City"</code></td></tr>
 <tr><td><strong id="airlineserviceairport-countrycode_code">CountryCode_code</strong><br><br></td><td>cds.String(3)</td><td>@EndUserText.label: <code>"Country Code"</code><br>@ObjectModel.foreignKey.association: <code>{"=":"to_CountryCode"}</code></td></tr>
 <tr><td><strong id="airlineserviceairport-to_countrycode">to_CountryCode</strong><br><br></td><td>cds.Association</td><td>Association to one <a href="#airlineservicecountries">AirlineService.Countries</a> (path: <a href="#airlineservicecountries">AirlineService.Countries</a>.<a href="#airlineservicecountries-code">code</a>) via <a href="#airlineserviceairport-countrycode_code">CountryCode_code</a></td></tr>
-</tbody></table>
-
-<h3 id="airlineservicecountries">AirlineService.Countries</h3>
+</tbody></table><h3 id="airlineservicecountries">AirlineService.Countries</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Countries"</code><br>@ObjectModel.modelingPattern: <code>{"#":"ANALYTICAL_DIMENSION"}</code></p>
@@ -39,9 +33,7 @@ exports[`Custom web-component Tests should properly render the provided CSN sour
 <table>
 <tbody><tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br><br></td><td>cds.String(3)</td><td>key: <code>true</code><br>@EndUserText.label: <code>"Country Code"</code><br>@ObjectModel.text.association: <code>{"=":"texts"}</code></td></tr>
 <tr><td><strong id="airlineservicecountries-texts">texts</strong><br><br></td><td>cds.Composition</td><td></td></tr>
-</tbody></table>
-
-<h3 id="airlineservicecountries_texts">AirlineService.Countries_texts</h3>
+</tbody></table><h3 id="airlineservicecountries_texts">AirlineService.Countries_texts</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Countries Texts"</code><br>@ObjectModel.modelingPattern: <code>{"#":"LANGUAGE_DEPENDENT_TEXT"}</code></p>
@@ -51,9 +43,7 @@ exports[`Custom web-component Tests should properly render the provided CSN sour
 <tr><td><strong id="airlineservicecountries_texts-locale">locale</strong><br><br></td><td>cds.String(14)</td><td>key: <code>true</code><br>@EndUserText.label: <code>"Language Code"</code><br>@Semantics.language: <code>true</code></td></tr>
 <tr><td><strong id="airlineservicecountries_texts-name">name</strong><br><br></td><td>cds.String(255)</td><td>@EndUserText.label: <code>"Name"</code><br>@Semantics.text: <code>true</code></td></tr>
 <tr><td><strong id="airlineservicecountries_texts-descr">descr</strong><br><br></td><td>cds.String(1000)</td><td>@EndUserText.label: <code>"Description"</code><br>@Semantics.text: <code>true</code></td></tr>
-</tbody></table>
-
-<h3 id="airlineserviceflightconnection">AirlineService.FlightConnection</h3>
+</tbody></table><h3 id="airlineserviceflightconnection">AirlineService.FlightConnection</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Flight Connection"</code><br>@ObjectModel.representativeKey: <code>{"=":"ConnectionID"}</code><br>@ObjectModel.modelingPattern: <code>{"#":"ANALYTICAL_DIMENSION"}</code></p>
@@ -70,9 +60,7 @@ exports[`Custom web-component Tests should properly render the provided CSN sour
 <tr><td><strong id="airlineserviceflightconnection-to_airline">to_Airline</strong><br><br></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflightconnection-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_departureairport">to_DepartureAirport</strong><br><br></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_destinationairport">to_DestinationAirport</strong><br><br></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</a></td></tr>
-</tbody></table>
-
-<h3 id="airlineserviceflight">AirlineService.Flight</h3>
+</tbody></table><h3 id="airlineserviceflight">AirlineService.Flight</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Flight"</code><br>@ObjectModel.modelingPattern: <code>{"#":"ANALYTICAL_FACT"}</code><br>@ObjectModel.supportedCapabilities: <code>[{"#":"DATA_STRUCTURE"}]</code></p>
@@ -88,31 +76,17 @@ exports[`Custom web-component Tests should properly render the provided CSN sour
 <tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong><br><br></td><td>cds.Integer</td><td>@EndUserText.label: <code>"Occupied Seats"</code><br>@Aggregation.default: <code>{"#":"SUM"}</code></td></tr>
 <tr><td><strong id="airlineserviceflight-to_airline">to_Airline</strong><br><br></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflight-to_connection">to_Connection</strong><br><br></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a> (path: <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a>.<a href="#airlineserviceflightconnection-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
-</tbody></table>
-
-<h3 id="unassignedentity">UnassignedEntity</h3>
-<p>This entity is not prefixed with the service name and therefore not accessible through the service.</p>
-
-
-
-<p>Elements: </p>
+</tbody></table><h3 id="unassignedentity">UnassignedEntity</h3>
+<p>This entity is not prefixed with the service name and therefore not accessible through the service.</p><p>Elements: </p>
 <table>
 <tbody><tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="unassignedentity-someelement">SomeElement</strong><br><br></td><td>cds.String</td><td>key: <code>true</code><br></td></tr>
-</tbody></table>
-
-<h2 id="type-definitions">Type Definitions</h2>
+</tbody></table><h2 id="type-definitions">Type Definitions</h2>
 <h3 id="airlineuuid">AirlineUuid</h3>
-<p>Description of the reuse type</p>
-
-<table>
+<p>Description of the reuse type</p><table>
 <tbody><tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td>@EndUserText.label: <code>"Airline"</code><br>@ObjectModel.text.element: <code>["Name"]</code></td></tr>
-</tbody></table>
-
-<h2 id="services">Services</h2>
+</tbody></table><h2 id="services">Services</h2>
 <h3 id="airlineservice">AirlineService</h3>
-<p>This is describing the service that exposes the CDS entities through an API.</p>
-
-<p>Exposed Entities:</p>
+<p>This is describing the service that exposes the CDS entities through an API.</p><p>Exposed Entities:</p>
 <ul>
 <li><a href="#airlineserviceairline">AirlineService.Airline</a></li>
 <li><a href="#airlineserviceairport">AirlineService.Airport</a></li>

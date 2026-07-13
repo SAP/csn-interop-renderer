@@ -7,9 +7,7 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 <h3 id="airlineserviceairline">AirlineService.Airline</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
-<p>Human readable description of the entity AirlineService.Airline, in <strong>markdown</strong>.</p>
-
-<p>abstract: <code>false</code><br />@EntityRelationship.entityType: <code>"sap.vdm.sont:AirlineService.Airline"</code><br />@EndUserText.label: <code>"Airline"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code></p>
+<p>Human readable description of the entity AirlineService.Airline, in <strong>markdown</strong>.</p><p>abstract: <code>false</code><br />@EntityRelationship.entityType: <code>"sap.vdm.sont:AirlineService.Airline"</code><br />@EndUserText.label: <code>"Airline"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code></p>
 <p>Elements: </p>
 <table>
 <tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineserviceairline-airlineid">AirlineID</strong><br /><br /></td><td><a href="#airlineuuid">AirlineUuid</a></td><td><p>Add human readable documentation text in <strong>markdown</strong> here, database storage ID.</p>
@@ -18,9 +16,7 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 <br />@EndUserText.label: <code>"Name"</code><br />@Semantics.text: <code>true</code></td></tr>
 <tr><td><strong id="airlineserviceairline-currencycode_code">CurrencyCode_code</strong><br /><br /></td><td>cds.String(33)</td><td><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <code>sed diam</code> nonumy <br/> eirmod tempor invidunt ut labore et dolore magna aliquyam.</p>
 <br />@EndUserText.label: <code>"Currency Code"</code><br />@Semantics.currencyCode: <code>true</code></td></tr>
-</table>
-
-<h3 id="airlineserviceairport">AirlineService.Airport</h3>
+</table><h3 id="airlineserviceairport">AirlineService.Airport</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Airport"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code></p>
@@ -33,9 +29,7 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 <tr><td><strong id="airlineserviceairport-countrynumber_number">CountryNumber_number</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <code>"Country Number"</code><br />@ObjectModel.foreignKey.association: <code>&lbrace;"=":"to_CountryNumber"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineserviceairport-to_countrycode">to_CountryCode</strong><br /><br /></td><td>cds.Association</td><td>Association to one <a href="#airlineservicecountries">AirlineService.Countries</a> (path: <a href="#airlineservicecountries">AirlineService.Countries</a>.<a href="#airlineservicecountries-code">code</a>) via <a href="#airlineserviceairport-countrycode_code">CountryCode_code</a></td></tr>
 <tr><td><strong id="airlineserviceairport-to_countrynumber">to_CountryNumber</strong><br /><br /></td><td>cds.Association</td><td>Association to one <a href="#airlineservicecountries">AirlineService.Countries</a> (path: <a href="#airlineservicecountries">AirlineService.Countries</a>.<a href="#airlineservicecountries-number">number</a>) via <a href="#airlineserviceairport-countrynumber_number">CountryNumber_number</a></td></tr>
-</table>
-
-<h3 id="airlineservicecountries">AirlineService.Countries</h3>
+</table><h3 id="airlineservicecountries">AirlineService.Countries</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Countries"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code></p>
@@ -44,9 +38,7 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 <tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <code>"Country Code"</code><br />@ObjectModel.text.association: <code>&lbrace;"=":"texts"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineservicecountries-number">number</strong><br /><br /></td><td>cds.Integer</td><td>key: <code>true</code><br />@EndUserText.label: <code>"Country Number"</code></td></tr>
 <tr><td><strong id="airlineservicecountries-texts">texts</strong><br /><br /></td><td>cds.Composition</td><td></td></tr>
-</table>
-
-<h3 id="airlineservicecountries_texts">AirlineService.Countries_texts</h3>
+</table><h3 id="airlineservicecountries_texts">AirlineService.Countries_texts</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Countries Texts"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"LANGUAGE_DEPENDENT_TEXT"&rbrace;</code></p>
@@ -56,9 +48,7 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 <tr><td><strong id="airlineservicecountries_texts-locale">locale</strong><br /><br /></td><td>cds.String(14)</td><td>key: <code>true</code><br />@EndUserText.label: <code>"Language Code"</code><br />@Semantics.language: <code>true</code></td></tr>
 <tr><td><strong id="airlineservicecountries_texts-name">name</strong><br /><br /></td><td>cds.String(255)</td><td>@EndUserText.label: <code>"Name"</code><br />@Semantics.text: <code>true</code></td></tr>
 <tr><td><strong id="airlineservicecountries_texts-descr">descr</strong><br /><br /></td><td>cds.String(1000)</td><td>@EndUserText.label: <code>"Description"</code><br />@Semantics.text: <code>true</code></td></tr>
-</table>
-
-<h3 id="airlineserviceflightconnection">AirlineService.FlightConnection</h3>
+</table><h3 id="airlineserviceflightconnection">AirlineService.FlightConnection</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Flight Connection"</code><br />@ObjectModel.representativeKey: <code>&lbrace;"=":"ConnectionID"&rbrace;</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_DIMENSION"&rbrace;</code></p>
@@ -75,9 +65,7 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 <tr><td><strong id="airlineserviceflightconnection-to_airline">to_Airline</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflightconnection-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_departureairport">to_DepartureAirport</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-departureairport_airportid">DepartureAirport_AirportID</a></td></tr>
 <tr><td><strong id="airlineserviceflightconnection-to_destinationairport">to_DestinationAirport</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairport">AirlineService.Airport</a> (path: <a href="#airlineserviceairport">AirlineService.Airport</a>.<a href="#airlineserviceairport-airportid">AirportID</a>) via <a href="#airlineserviceflightconnection-destinationairport_airportid">DestinationAirport_AirportID</a></td></tr>
-</table>
-
-<h3 id="airlineserviceflight">AirlineService.Flight</h3>
+</table><h3 id="airlineserviceflight">AirlineService.Flight</h3>
 <p>Entity exposed via:
 <a href="#airlineservice">AirlineService</a></p>
 <p>@EndUserText.label: <code>"Flight"</code><br />@ObjectModel.modelingPattern: <code>&lbrace;"#":"ANALYTICAL_FACT"&rbrace;</code><br />@ObjectModel.supportedCapabilities: <code>[&lbrace;&quot;#&quot;:&quot;DATA_STRUCTURE&quot;&rbrace;]</code></p>
@@ -93,31 +81,17 @@ exports[`CLI End-to-End Tests runs with CSN JSON input file and generate success
 <tr><td><strong id="airlineserviceflight-occupiedseats">OccupiedSeats</strong><br /><br /></td><td>cds.Integer</td><td>@EndUserText.label: <code>"Occupied Seats"</code><br />@Aggregation.default: <code>&lbrace;"#":"SUM"&rbrace;</code></td></tr>
 <tr><td><strong id="airlineserviceflight-to_airline">to_Airline</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceairline">AirlineService.Airline</a> (path: <a href="#airlineserviceairline">AirlineService.Airline</a>.<a href="#airlineserviceairline-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
 <tr><td><strong id="airlineserviceflight-to_connection">to_Connection</strong><br /><br /></td><td>cds.Association</td><td>Association to many <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a> (path: <a href="#airlineserviceflightconnection">AirlineService.FlightConnection</a>.<a href="#airlineserviceflightconnection-airlineid">AirlineID</a>) via <a href="#airlineserviceflight-airlineid">AirlineID</a></td></tr>
-</table>
-
-<h3 id="unassignedentity">UnassignedEntity</h3>
-<p>This entity is not prefixed with the service name and therefore not accessible through the service.</p>
-
-
-
-<p>Elements: </p>
+</table><h3 id="unassignedentity">UnassignedEntity</h3>
+<p>This entity is not prefixed with the service name and therefore not accessible through the service.</p><p>Elements: </p>
 <table>
 <tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="unassignedentity-someelement">SomeElement</strong><br /><br /></td><td>cds.String</td><td>key: <code>true</code><br /></td></tr>
-</table>
-
-<h2 id="type-definitions">Type Definitions</h2>
+</table><h2 id="type-definitions">Type Definitions</h2>
 <h3 id="airlineuuid">AirlineUuid</h3>
-<p>Description of the reuse type</p>
-
-<table>
+<p>Description of the reuse type</p><table>
 <tr><th>Type</th><th>Description</th></tr><tr><td>cds.String(3)</td><td>@EndUserText.label: <code>"Airline"</code><br />@ObjectModel.text.element: <code>["Name"]</code></td></tr>
-</table>
-
-<h2 id="services">Services</h2>
+</table><h2 id="services">Services</h2>
 <h3 id="airlineservice">AirlineService</h3>
-<p>This is describing the service that exposes the CDS entities through an API.</p>
-
-<p>Exposed Entities:</p>
+<p>This is describing the service that exposes the CDS entities through an API.</p><p>Exposed Entities:</p>
 <ul>
 <li><a href="#airlineserviceairline">AirlineService.Airline</a></li>
 <li><a href="#airlineserviceairport">AirlineService.Airport</a></li>
