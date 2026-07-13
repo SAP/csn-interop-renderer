@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - dependency update: csn-interop-spec v1.2.4
 - support `on` condition comparison operators (`<`, `<=`, `>`, `>=`) introduced in csn-interop-spec v1.2.0
+- other dependency update (fix security vulnerabilities)
 
 ## [0.4.0]
 

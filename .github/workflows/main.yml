@@ -82,6 +82,12 @@ jobs:
           node-version: "24"
 
       - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install NPM dependencies
         working-directory: ./website
         run: npm ci
 

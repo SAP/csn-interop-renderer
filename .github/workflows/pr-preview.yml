@@ -28,6 +28,14 @@ jobs:
         with:
           node-version: 24
 
+      - name: Install NPM dependencies
+        if: github.event.action != 'closed'
+        run: npm ci
+
+      - name: Build
+        if: github.event.action != 'closed'
+        run: npm run build
+
       - name: Install website dependencies
         if: github.event.action != 'closed'
         working-directory: ./website

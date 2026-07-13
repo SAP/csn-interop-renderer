@@ -1,4 +1,3 @@
-import path from "path";
 import { withCustomConfig } from "@sap/eslint-config";
 
 const conf = withCustomConfig([
@@ -15,12 +14,6 @@ const conf = withCustomConfig([
   },
   {
     files: ["src/**/*.ts"],
-    languageOptions: {
-      parserOptions: {
-        project: "tsconfig.json",
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
     rules: {
       "require-await": "off",
       "@typescript-eslint/require-await": "error",
@@ -30,12 +23,6 @@ const conf = withCustomConfig([
   },
   {
     files: ["website/**/*.ts", "website/**/*.tsx"],
-    languageOptions: {
-      parserOptions: {
-        project: "tsconfig.json",
-        tsconfigRootDir: path.resolve(import.meta.dirname, "./website"),
-      },
-    },
   },
 ]);
 
