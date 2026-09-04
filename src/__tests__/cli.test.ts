@@ -8,7 +8,7 @@ describe("CLI End-to-End Tests", () => {
   const cliScriptPath = "./cli/cli.js";
   const cases = ["md", "html"];
   describe("runs with CSN JSON input file and generate successfully", () => {
-    test.each(cases)("%p output file", async (outputFormat) => {
+    test.each(cases)("%p output file", async (outputFormat: string) => {
       const inputFile = "./examples/Airline.json";
       const targetFile = fileSync({ mode: 0o644, prefix: "test01", postfix: ".md" });
       const cliArguments = [cliScriptPath, "-i", inputFile, "-o", targetFile.name, "-r", outputFormat];
@@ -24,10 +24,21 @@ describe("CLI End-to-End Tests", () => {
         // Check that stderr is empty
         expect(stderr).toEqual("");
 
-        // Read output file and see if it's a valid renderer file with the right structure
+        // Read output file and verify it has the right structure
         const fileContent = readFileSync(targetFile.name).toString();
 
         expect(fileContent).toMatchSnapshot();
+
+        if (outputFormat === "md") {
+          expect(fileContent).toContain("## Entity Definitions");
+          expect(fileContent).toContain("## Services");
+          expect(fileContent).toContain("<table>");
+          expect(fileContent).not.toMatch(/<h[1-6]/);
+        } else {
+          expect(fileContent).toMatch(/<h[1-6]/);
+          expect(fileContent).toContain("<table");
+          expect(fileContent).not.toContain("## Entity Definitions");
+        }
       } catch (e) {
         expect(e).toEqual("This should not happen, above try block should not throw!");
       } finally {
