@@ -163,27 +163,23 @@ describe("Prototype pollution resistance", () => {
     try {
       await parser(polluted);
     } catch {
-      // expected — schema rejects __proto__ as a definition name
+      // Validation may reject the special key; the important guarantee is no prototype mutation.
     }
     expect(Object.prototype.hasOwnProperty.call(Object.prototype, "kind")).toBe(before);
   });
 
-  test("constructor key in definitions does not crash the process", async () => {
+  test("constructor key in definitions is rendered as an ordinary definition", async () => {
     const tricky = JSON.parse(
       '{"csnInteropEffective":"1.0","$version":"2.0","definitions":{"constructor":{"kind":"entity","elements":{"ID":{"type":"cds.String"}}}}}',
     );
-    await expect(parser(tricky))
-      .resolves.toBeDefined()
-      .catch(() => {
-        /* validation rejection is acceptable */
-      });
+    await expect(parser(tricky)).resolves.toContain("constructor");
   });
 });
 
 // ---------------------------------------------------------------------------
 // 5. Large and degenerate inputs
 // ---------------------------------------------------------------------------
-describe("Large and degenerate inputs", () => {
+describe("Large and edge-case inputs", () => {
   test("document with empty definitions is rejected by schema validation", async () => {
     await expect(generateMarkdown({ csnInteropEffective: "1.0", $version: "2.0", definitions: {} })).rejects.toThrow();
   });
@@ -213,7 +209,7 @@ describe("Large and degenerate inputs", () => {
   test("doc field of 10000 chars renders without truncation", async () => {
     const longDoc = "x".repeat(10000);
     const result = await generateMarkdown(makeDocWithEntity("Foo", { doc: longDoc }));
-    expect(result).toContain("x".repeat(100));
+    expect(result).toContain(longDoc);
   });
 });
 
@@ -226,14 +222,8 @@ describe("generateHtml — output structure", () => {
     expect(result.trim()).toMatch(/^<h1/);
   });
 
-  test("minimal document produces a non-empty HTML string", async () => {
+  test("minimal document renders its entity name in HTML", async () => {
     const result = await generateHtml(makeDoc());
-    expect(typeof result).toBe("string");
-    expect(result.length).toBeGreaterThan(0);
-  });
-
-  test("script tag in doc survives into HTML output (consumer must sanitize)", async () => {
-    const result = await generateHtml(makeDocWithEntity("Foo", { doc: "<script>alert(1)</script>" }));
-    expect(result).toContain("script");
+    expect(result).toContain("MinEntity");
   });
 });

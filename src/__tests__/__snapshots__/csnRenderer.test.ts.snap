@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`Custom web-component Tests should properly render the provided CSN source document 1`] = `
+exports[`CsnRenderer should properly render the provided CSN source document 1`] = `
 "<h1 id="airline-example">Airline (Example)</h1>
 <p>This CSN example document shows how the airline example is expressed with a CDS <strong>Service</strong> exposing the entities through an API.</p>
 <h2 id="entity-definitions">Entity Definitions</h2>
@@ -96,4 +96,13 @@ exports[`Custom web-component Tests should properly render the provided CSN sour
 <li><a href="#airlineserviceflight">AirlineService.Flight</a></li>
 </ul>
 "
+`;
+
+exports[`CsnRenderer — rendering valid minimal document renders entity name into innerHTML 1`] = `
+"<h2 id="entity-definitions">Entity Definitions</h2>
+<h3 id="myentity">MyEntity</h3>
+<p>Elements: </p>
+<table>
+<tbody><tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="myentity-id">ID</strong><br><br></td><td>cds.String</td><td></td></tr>
+</tbody></table>"
 `;

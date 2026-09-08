@@ -29,46 +29,7 @@ describe("Renderer Tests", () => {
   });
 });
 
-// ---------------------------------------------------------------------------
-// renderer.ts — full example output structure
-// ---------------------------------------------------------------------------
-describe("Renderer — output structure from example document", () => {
-  test("generates markdown with all expected sections", async () => {
-    const result = await renderer(example);
-    expect(result).toContain("## Entity Definitions");
-    expect(result).toContain("## Type Definitions");
-    expect(result).toContain("## Services");
-    expect(result).toContain("### AirlineService.Airline");
-    expect(result).toContain("<table>");
-    expect(result).toContain("<th>Element</th>");
-    expect(result).toContain("<th>Type</th>");
-    expect(result).toContain("<th>Description</th>");
-  });
-
-  test("entity exposed via service has 'Entity exposed via' line", async () => {
-    const result = await renderer(example);
-    expect(result).toContain("Entity exposed via:");
-    expect(result).toContain("[AirlineService]");
-  });
-
-  test("custom type element renders as anchor link to the type definition", async () => {
-    const result = await renderer(example);
-    // AirlineID has type AirlineUuid (a custom type) — should be a link
-    expect(result).toContain('<a href="#airlineuuid">AirlineUuid</a>');
-  });
-
-  test("element with length constraint renders type with length", async () => {
-    const result = await renderer(example);
-    // cds.String(40) — Name field
-    expect(result).toContain("cds.String(40)");
-  });
-
-  test("association renders 'Association to one' with path and via link", async () => {
-    const result = await renderer(example);
-    expect(result).toContain("Association to one");
-    expect(result).toContain("via");
-  });
-
+describe("Renderer — i18n", () => {
   test("i18n content is resolved to English text in output", async () => {
     const docWithI18n = makeDoc(
       JSON.parse(
@@ -304,7 +265,7 @@ describe("generateHtml — output format", () => {
 // ---------------------------------------------------------------------------
 // renderer.ts — processEntities branch coverage
 // ---------------------------------------------------------------------------
-describe("renderer.ts — processEntities branches", () => {
+describe("renderer — associations", () => {
   test("association with cardinality max=* renders 'Association to many'", async () => {
     const doc = JSON.parse(
       JSON.stringify({
@@ -410,7 +371,7 @@ describe("renderer.ts — processEntities branches", () => {
 // ---------------------------------------------------------------------------
 // renderer.ts — processTypes
 // ---------------------------------------------------------------------------
-describe("renderer.ts — processTypes", () => {
+describe("renderer — type definitions", () => {
   test("type with no annotations skips the table", async () => {
     const result = await renderer(makeDoc({ definitions: { MyType: { kind: "type", type: "cds.String" } } }));
     expect(result).toContain("## Type Definitions");
@@ -454,7 +415,7 @@ describe("renderer.ts — processTypes", () => {
 // ---------------------------------------------------------------------------
 // renderer.ts — processServices
 // ---------------------------------------------------------------------------
-describe("renderer.ts — processServices", () => {
+describe("renderer — service definitions", () => {
   test("service with no annotations skips the service table", async () => {
     const result = await renderer(
       makeDoc({
@@ -590,20 +551,21 @@ describe("getDescriptionData", () => {
   test("annotation with async callback renders anchor link", async () => {
     const result = await getDescriptionData(
       [["@MyAnnotation", "myValue"]],
-      { "@MyAnnotation": () => "https://async-result.com" },
+      {
+        "@MyAnnotation": async () => {
+          await Promise.resolve();
+          return "https://async-result.com";
+        },
+      },
       undefined,
     );
     expect(result).toContain('<a href="https://async-result.com"');
   });
 
-  test("annotation with promise-returning callback renders anchor link", async () => {
-    const result = await getDescriptionData(
-      [["@MyAnnotation", "myValue"]],
-      {
-        "@MyAnnotation": async () => Promise.resolve("https://promise-result.com"),
-      },
-      undefined,
-    );
+  test("annotation with a promise-returning callback renders an anchor link", async () => {
+    const callback: () => Promise<string> = Promise.resolve.bind(Promise, "https://promise-result.com");
+    const result = await getDescriptionData([["@MyAnnotation", "myValue"]], { "@MyAnnotation": callback }, undefined);
+
     expect(result).toContain('<a href="https://promise-result.com"');
   });
 });

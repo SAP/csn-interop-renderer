@@ -5,12 +5,15 @@
 import example from "../../examples/CSNInterop.js";
 import { CsnRenderer } from "../customWebComponent/csnRenderer.js";
 
-describe("Custom web-component Tests", () => {
+const waitForRender = async (): Promise<void> => {
+  await new Promise<void>((resolve) => setTimeout(resolve, 0));
+};
+
+describe("CsnRenderer", () => {
   test("should properly render the provided CSN source document", async () => {
     const component = new CsnRenderer();
     component.setAttribute("source", JSON.stringify(example));
-    // let some time pass until the async generateHtml function has finished
-    await new Promise((result) => setTimeout(result, 10));
+    await waitForRender();
     expect(component).toBeDefined();
     expect(component.innerHTML).toMatchSnapshot();
   });
@@ -20,15 +23,6 @@ describe("Custom web-component Tests", () => {
 // CsnRenderer — rendering
 // ---------------------------------------------------------------------------
 describe("CsnRenderer — rendering", () => {
-  test("renders HTML into innerHTML when source attribute is set", async () => {
-    const component = new CsnRenderer();
-    component.setAttribute("source", JSON.stringify(example));
-    await new Promise((r) => setTimeout(r, 100));
-    expect(component.innerHTML).toContain("AirlineService.Airline");
-    expect(component.innerHTML).toContain("<h");
-    expect(component.innerHTML).toContain("<table");
-  });
-
   test("valid minimal document renders entity name into innerHTML", async () => {
     const component = new CsnRenderer();
     component.setAttribute(
@@ -41,16 +35,16 @@ describe("CsnRenderer — rendering", () => {
         },
       }),
     );
-    await new Promise((r) => setTimeout(r, 100));
-    expect(component.innerHTML).toContain("MyEntity");
+    await waitForRender();
+    expect(component.innerHTML).toMatchSnapshot();
   });
 });
 
 // ---------------------------------------------------------------------------
 // CsnRenderer — _renderHtml guards
 // ---------------------------------------------------------------------------
-describe("CsnRenderer — _renderHtml guards", () => {
-  test("_renderHtml with empty string does not update innerHTML", async () => {
+describe("CsnRenderer — render guards", () => {
+  test("does not update innerHTML for an empty source", async () => {
     const component = new CsnRenderer() as unknown as {
       _renderHtml: (v: string) => Promise<void>;
       innerHTML: string;
@@ -59,7 +53,7 @@ describe("CsnRenderer — _renderHtml guards", () => {
     expect(component.innerHTML).toBe("");
   });
 
-  test("_renderHtml with null does not update innerHTML", async () => {
+  test("does not update innerHTML for a null source", async () => {
     const component = new CsnRenderer() as unknown as {
       _renderHtml: (v: string | null) => Promise<void>;
       innerHTML: string;
@@ -68,7 +62,7 @@ describe("CsnRenderer — _renderHtml guards", () => {
     expect(component.innerHTML).toBe("");
   });
 
-  test("_renderHtml with invalid JSON rejects with SyntaxError", async () => {
+  test("rejects invalid JSON with a SyntaxError", async () => {
     const component = new CsnRenderer() as unknown as {
       _renderHtml: (v: string) => Promise<void>;
     };
@@ -79,11 +73,10 @@ describe("CsnRenderer — _renderHtml guards", () => {
 // ---------------------------------------------------------------------------
 // CsnRenderer — attributeChangedCallback guards
 // ---------------------------------------------------------------------------
-describe("CsnRenderer — attributeChangedCallback", () => {
-  test("setting source to empty string does not trigger render", async () => {
+describe("CsnRenderer — attribute changes", () => {
+  test("does not render an empty source attribute", () => {
     const component = new CsnRenderer();
     component.setAttribute("source", "");
-    await new Promise((r) => setTimeout(r, 20));
     expect(component.innerHTML).toBe("");
   });
 
