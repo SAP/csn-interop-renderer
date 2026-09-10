@@ -1,31 +1,33 @@
 import { parser } from "../parser.js";
-import example from "../../examples/CSNInterop.js";
-import { CSNInteropEffectiveDocument } from "@sap/csn-interop-specification";
+import type { CSNInteropEffectiveDocument } from "@sap/csn-interop-specification";
 
-describe("Parser Tests", () => {
-  test("should throw some errors if corrupt file is provided", async () => {
-    const exampleString = "asdasjklajs;;";
-    expect.assertions(2);
-
-    try {
-      await parser(exampleString as unknown as CSNInteropEffectiveDocument);
-    } catch (error: unknown) {
-      expect(error).toBeDefined();
-      expect(error).toMatchSnapshot();
-    }
+describe("parser", () => {
+  test("rejects a non-object input", async () => {
+    await expect(parser("not a document" as unknown as CSNInteropEffectiveDocument)).rejects.toThrow(/type.*object/i);
   });
 
-  test("should throw some errors JSON file is invalid", async () => {
-    // @ts-expect-error We intentionally break something here
-    delete example.definitions;
+  test("rejects a document missing the definitions field with a validation error", async () => {
+    const bad = { csnInteropEffective: "1.0", $version: "2.0" } as unknown as CSNInteropEffectiveDocument;
 
-    expect.assertions(2);
+    await expect(parser(bad)).rejects.toThrow(/definitions/i);
+  });
 
-    try {
-      await parser(example);
-    } catch (error: unknown) {
-      expect(error).toBeDefined();
-      expect(error).toMatchSnapshot();
-    }
+  test("rejects null input", async () => {
+    await expect(parser(null as unknown as CSNInteropEffectiveDocument)).rejects.toThrow(/type.*object/i);
+  });
+
+  test("rejects an empty document", async () => {
+    await expect(parser({} as unknown as CSNInteropEffectiveDocument)).rejects.toThrow(/csnInteropEffective/i);
+  });
+
+  test("renders a minimal valid document", async () => {
+    const doc: CSNInteropEffectiveDocument = {
+      csnInteropEffective: "1.0",
+      $version: "2.0",
+      definitions: {
+        MinEntity: { kind: "entity", elements: { ID: { type: "cds.String" } } },
+      },
+    };
+    await expect(parser(doc)).resolves.toContain("MinEntity");
   });
 });
