@@ -142,12 +142,11 @@ describe("Annotation link callback URL injection", () => {
     expect(result).not.toContain('<a href=""');
   });
 
-  test("callback returning undefined throws TypeError (known bug — no null check)", async () => {
-    await expect(
-      generateMarkdown(makeAnnotatedDoc(), {
-        annotationLinkCallbacks: { "@MyAnnotation": (): string => undefined as unknown as string },
-      }),
-    ).rejects.toThrow("Cannot read properties of undefined");
+  test("callback returning undefined produces no anchor link", async () => {
+    const result = await generateMarkdown(makeAnnotatedDoc(), {
+      annotationLinkCallbacks: { "@MyAnnotation": (): string => undefined as unknown as string },
+    });
+    expect(result).not.toContain("<a href=");
   });
 });
 

@@ -14,7 +14,6 @@ describe("CsnRenderer", () => {
     const component = new CsnRenderer();
     component.setAttribute("source", JSON.stringify(example));
     await waitForRender();
-    expect(component).toBeDefined();
     expect(component.innerHTML).toMatchSnapshot();
   });
 });
@@ -87,22 +86,5 @@ describe("CsnRenderer — attribute changes", () => {
     };
     expect(() => component.attributeChangedCallback("data-other", null, "value")).not.toThrow();
     expect(component.innerHTML).toBe("");
-  });
-});
-
-// ---------------------------------------------------------------------------
-// CsnRenderer — lifecycle callbacks
-// ---------------------------------------------------------------------------
-describe("CsnRenderer — lifecycle callbacks", () => {
-  test("connectedCallback does not throw", () => {
-    expect(() => new CsnRenderer().connectedCallback()).not.toThrow();
-  });
-
-  test("disconnectedCallback does not throw", () => {
-    expect(() => new CsnRenderer().disconnectedCallback()).not.toThrow();
-  });
-
-  test("adoptedCallback does not throw", () => {
-    expect(() => new CsnRenderer().adoptedCallback()).not.toThrow();
   });
 });

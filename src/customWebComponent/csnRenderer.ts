@@ -1,39 +1,20 @@
 import { generateHtml } from "../index.js";
-
-export interface CsnRendererProps {
-  /** @param source A valid text (containing JSON CSNInteropEffectiveDocument object).*/
-  source: string;
-}
+import type { CsnRendererProps } from "../types/index.js";
 
 type CsnRendererPropName = keyof CsnRendererProps;
 
 export class CsnRenderer extends HTMLElement {
-  private _htmlContent: string = "";
-  private _source: string = "";
-
-  public constructor() {
-    super();
-  }
-
   public static observedAttributes: CsnRendererPropName[] = ["source"];
 
   private async _renderHtml(value: string | null | undefined): Promise<void> {
-    if (value) {
-      this._htmlContent = await generateHtml(JSON.parse(value));
-      this.innerHTML = this._htmlContent;
-    }
+    if (!value) return;
+
+    this.innerHTML = await generateHtml(JSON.parse(value));
   }
 
-  public connectedCallback(): void {}
-
-  public disconnectedCallback(): void {}
-
-  public adoptedCallback(): void {}
-
-  public attributeChangedCallback(name: CsnRendererPropName, _oldValue: unknown, newValue: unknown): void {
+  public attributeChangedCallback(name: CsnRendererPropName, _oldValue: string | null, newValue: string | null): void {
     if (name === "source" && !!newValue && typeof newValue === "string") {
-      this._source = newValue;
-      void this._renderHtml(this._source);
+      void this._renderHtml(newValue);
     }
   }
 }
