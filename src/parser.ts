@@ -3,6 +3,13 @@ import { compileSchema } from "json-schema-library";
 import type { CsnRendererConfig } from "./types/index.js";
 import { renderer } from "./renderer.js";
 
+/**
+ * Validates and renders a CSN Interoperability document.
+ *
+ * @param text Document to validate and render.
+ * @param config Optional renderer configuration.
+ * @param generateAsHtml Converts the generated Markdown to HTML when `true`.
+ */
 export const parser = async (
   text: CSNInteropEffectiveDocument,
   config?: CsnRendererConfig,

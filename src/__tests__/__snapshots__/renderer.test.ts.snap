@@ -53,7 +53,7 @@ Elements:
 
 <table>
 <tr><th>Element</th><th>Type</th><th>Description</th></tr><tr><td><strong id="airlineservicecountries-code">code</strong><br /><br /></td><td>cds.String(3)</td><td>key: <code>true</code><br />@EndUserText.label: <code>"Country Code"</code><br />@ObjectModel.text.association: <code>&lbrace;"=":"texts"&rbrace;</code></td></tr>
-<tr><td><strong id="airlineservicecountries-texts">texts</strong><br /><br /></td><td>cds.Composition</td><td></td></tr>
+<tr><td><strong id="airlineservicecountries-texts">texts</strong><br /><br /></td><td>cds.Composition</td><td>Composition to many <a href="#airlineservicecountries_texts">AirlineService.Countries_texts</a> (path: <a href="#airlineservicecountries_texts">AirlineService.Countries_texts</a>.<a href="#airlineservicecountries_texts-code">code</a>) via <a href="#airlineservicecountries-code">code</a></td></tr>
 </table>
 
 ### AirlineService.Countries_texts

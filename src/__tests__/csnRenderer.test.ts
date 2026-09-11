@@ -73,6 +73,20 @@ describe("CsnRenderer — render guards", () => {
 // CsnRenderer — attributeChangedCallback guards
 // ---------------------------------------------------------------------------
 describe("CsnRenderer — attribute changes", () => {
+  test("emits a render error instead of leaving invalid JSON as an unhandled rejection", async () => {
+    const component = new CsnRenderer();
+    let renderError: unknown;
+    component.addEventListener("csn-renderer-error", (event) => {
+      renderError = (event as CustomEvent<unknown>).detail;
+    });
+
+    component.setAttribute("source", "not-valid-json{{{");
+    await waitForRender();
+
+    expect(renderError).toBeInstanceOf(SyntaxError);
+    expect(component.innerHTML).toBe("");
+  });
+
   test("does not render an empty source attribute", () => {
     const component = new CsnRenderer();
     component.setAttribute("source", "");

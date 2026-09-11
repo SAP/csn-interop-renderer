@@ -7,7 +7,7 @@ import type { CsnRendererConfig } from "./types/index.js";
  * Converts JSON CSNInteropEffectiveDocument object into a Markdown string.
  *
  * @param inputText A valid JSON CSNInteropEffectiveDocument object.
- * @param config
+ * @param config Optional renderer configuration.
  */
 export async function generateMarkdown(
   inputText: CSNInteropEffectiveDocument,
@@ -20,7 +20,7 @@ export async function generateMarkdown(
  * Converts JSON CSNInteropEffectiveDocument object into an HTML string.
  *
  * @param inputText A valid JSON CSNInteropEffectiveDocument object.
- * @param config
+ * @param config Optional renderer configuration.
  */
 export async function generateHtml(
   inputText: CSNInteropEffectiveDocument,
