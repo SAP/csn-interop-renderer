@@ -138,6 +138,19 @@ describe("generateMarkdown — output format", () => {
     expect(result).not.toContain("Entity exposed via");
   });
 
+  test("entity under a namespaced service links to that service", async () => {
+    const result = await generateMarkdown(
+      makeDoc({
+        definitions: {
+          "com.example.Service": { kind: "service" },
+          "com.example.Service.Entity": { kind: "entity", elements: { ID: { type: "cds.String" } } },
+        },
+      }),
+    );
+
+    expect(result).toContain("[com.example.Service](#comexampleservice)");
+  });
+
   test("entity doc field is parsed as markdown and rendered as HTML in output", async () => {
     const result = await generateMarkdown(
       makeDoc({
@@ -365,6 +378,47 @@ describe("renderer — associations", () => {
     ) as CSNInteropEffectiveDocument;
     const result = await renderer(doc);
     expect(result).toContain("Association to one");
+    expect(result).not.toContain("() via");
+  });
+
+  test("association extracts references from a compound on clause", async () => {
+    const doc = JSON.parse(
+      JSON.stringify({
+        csnInteropEffective: "1.0",
+        $version: "2.0",
+        definitions: {
+          Target: { kind: "entity", elements: { ID: { type: "cds.String" } } },
+          Source: {
+            kind: "entity",
+            elements: {
+              foreignKeyId: { type: "cds.String" },
+              otherForeignKeyId: { type: "cds.String" },
+              toTarget: {
+                type: "cds.Association",
+                target: "Target",
+                on: [
+                  "(",
+                  { ref: ["Target", "ID"] },
+                  "=",
+                  { ref: ["foreignKeyId"] },
+                  "and",
+                  { ref: ["Target", "OtherID"] },
+                  "=",
+                  { ref: ["otherForeignKeyId"] },
+                  ")",
+                ],
+              },
+            },
+          },
+        },
+      }),
+    ) as CSNInteropEffectiveDocument;
+
+    const result = await renderer(doc);
+    expect(result).toContain("foreignKeyId");
+    expect(result).toContain("#target-id");
+    expect(result).toContain("#source-foreignkeyid");
+    expect(result).not.toContain("#target-otherid");
   });
 });
 
@@ -409,6 +463,33 @@ describe("renderer — type definitions", () => {
       ) as CSNInteropEffectiveDocument,
     );
     expect(result).toContain("cds.String(20)");
+  });
+
+  test("renders types after a type with no annotations", async () => {
+    const result = await renderer(
+      makeDoc({
+        definitions: {
+          PlainType: { kind: "type", type: "cds.String" },
+          AnnotatedType: { "kind": "type", "type": "cds.String", "@EndUserText.label": "Annotated" },
+        },
+      }),
+    );
+
+    expect(result).toContain("### AnnotatedType");
+    expect(result).toContain("@EndUserText.label");
+  });
+
+  test("custom types with dots link to their generated heading ID", async () => {
+    const result = await renderer(
+      makeDoc({
+        definitions: {
+          "My.Namespace.Type": { kind: "type", type: "cds.String" },
+          "MyEntity": { kind: "entity", elements: { custom: { type: "My.Namespace.Type" } } },
+        },
+      }),
+    );
+
+    expect(result).toContain('href="#mynamespacetype"');
   });
 });
 
@@ -459,6 +540,39 @@ describe("renderer — service definitions", () => {
     expect(result).toContain("Exposed Entities:");
     expect(result).toContain("[MySvc.Foo]");
     expect(result).toContain("[MySvc.Bar]");
+  });
+
+  test("namespaced services list their exposed entities", async () => {
+    const result = await renderer(
+      makeDoc({
+        definitions: {
+          "com.example.Service": { kind: "service" },
+          "com.example.Service.Entity": { kind: "entity", elements: { ID: { type: "cds.String" } } },
+        },
+      }),
+    );
+
+    expect(result).toContain("[com.example.Service.Entity]");
+  });
+
+  test("does not render an empty exposed-entities section", async () => {
+    const result = await renderer(makeDoc({ definitions: { MySvc: { kind: "service" } } }));
+
+    expect(result).not.toContain("Exposed Entities:");
+  });
+
+  test("renders services after a service with no annotations", async () => {
+    const result = await renderer(
+      makeDoc({
+        definitions: {
+          FirstSvc: { kind: "service" },
+          SecondSvc: { "kind": "service", "@EndUserText.label": "Second" },
+        },
+      }),
+    );
+
+    expect(result).toContain("### SecondSvc");
+    expect(result).toContain("@EndUserText.label");
   });
 });
 
@@ -511,6 +625,29 @@ describe("renderContentWithI18n", () => {
 // rendererUtil.ts — getDescriptionData
 // ---------------------------------------------------------------------------
 describe("getDescriptionData", () => {
+  test("promise-returning callback is invoked once", async () => {
+    let calls = 0;
+    const callback = async (): Promise<string> => {
+      calls++;
+      return Promise.resolve("https://example.test");
+    };
+
+    const result = await getDescriptionData([["@MyAnnotation", "value"]], { "@MyAnnotation": callback }, undefined);
+
+    expect(calls).toBe(1);
+    expect(result).toContain('href="https://example.test"');
+  });
+
+  test("callback returning undefined renders the annotation without a link", async () => {
+    const result = await getDescriptionData(
+      [["@MyAnnotation", "value"]],
+      { "@MyAnnotation": () => undefined as unknown as string },
+      undefined,
+    );
+
+    expect(result).not.toContain("<a ");
+    expect(result).toContain("@MyAnnotation:");
+  });
   test("customDescriptionCellDataText is returned verbatim", async () => {
     const custom = "custom <b>text</b>";
     expect(await getDescriptionData([], undefined, undefined, custom)).toBe(custom);
@@ -542,7 +679,7 @@ describe("getDescriptionData", () => {
   test("annotation with sync callback returning plain string renders anchor link", async () => {
     const result = await getDescriptionData(
       [["@MyAnnotation", "myValue"]],
-      { "@MyAnnotation": ((_v: unknown) => "https://sync-result.com") as () => string },
+      { "@MyAnnotation": (_v: unknown) => "https://sync-result.com" },
       undefined,
     );
     expect(result).toContain('<a href="https://sync-result.com"');
@@ -563,7 +700,7 @@ describe("getDescriptionData", () => {
   });
 
   test("annotation with a promise-returning callback renders an anchor link", async () => {
-    const callback: () => Promise<string> = Promise.resolve.bind(Promise, "https://promise-result.com");
+    const callback = async (): Promise<string> => Promise.resolve("https://promise-result.com");
     const result = await getDescriptionData([["@MyAnnotation", "myValue"]], { "@MyAnnotation": callback }, undefined);
 
     expect(result).toContain('<a href="https://promise-result.com"');

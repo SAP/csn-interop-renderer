@@ -1,27 +1,34 @@
 import { parser } from "./parser.js";
 import * as customWebComponent from "./customWebComponent/csnRenderer.js";
-import { CSNInteropEffectiveDocument } from "@sap/csn-interop-specification";
-import { CsnRendererConfig } from "./types/index.js";
+import type { CSNInteropEffectiveDocument } from "@sap/csn-interop-specification";
+import type { CsnRendererConfig } from "./types/index.js";
 
 /**
- * Converts JSON CSNInteropEffectiveDocument object into an markdown string.
+ * Converts JSON CSNInteropEffectiveDocument object into a Markdown string.
  *
  * @param inputText A valid JSON CSNInteropEffectiveDocument object.
+ * @param config
  */
-async function generateMarkdown(inputText: CSNInteropEffectiveDocument, config?: CsnRendererConfig): Promise<string> {
-  const result = await parser(inputText, config);
-  return result;
+export async function generateMarkdown(
+  inputText: CSNInteropEffectiveDocument,
+  config?: CsnRendererConfig,
+): Promise<string> {
+  return parser(inputText, config);
 }
 
 /**
- * Converts JSON CSNInteropEffectiveDocument object into an html string.
+ * Converts JSON CSNInteropEffectiveDocument object into an HTML string.
  *
  * @param inputText A valid JSON CSNInteropEffectiveDocument object.
+ * @param config
  */
-async function generateHtml(inputText: CSNInteropEffectiveDocument, config?: CsnRendererConfig): Promise<string> {
-  const result = await parser(inputText, config, true);
-  return result;
+export async function generateHtml(
+  inputText: CSNInteropEffectiveDocument,
+  config?: CsnRendererConfig,
+): Promise<string> {
+  return parser(inputText, config, true);
 }
 
-export { generateHtml, generateMarkdown, customWebComponent };
+export { customWebComponent };
+
 export * from "./types/index.js";

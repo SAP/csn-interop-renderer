@@ -1,24 +1,23 @@
-type LinkCallbackFunction = ((annotationValue: unknown) => Promise<string>) | ((annotationValue: unknown) => string);
-interface AnnotationLinkCallbacks<T = LinkCallbackFunction> {
-  /** Callback function to offer the possibility to provide a custom link transformer for a specific annotation key
-      Usage e.g. :
+export type LinkCallbackFunction = (annotationValue: unknown) => string | Promise<string>;
 
-      {
-        annotationLinkCallbacks: {
-          {
-            "@EndUserText.label": (_annotationValue: unknown): string => {
-              return "https://example.com/";
-            },
-          },
-        },
-      }
-
+export interface AnnotationLinkCallbacks {
+  /**
+   * Maps an annotation key to a callback that supplies a custom link.
+   *
+   * ```ts
+   * annotationLinkCallbacks: {
+   *   "@EndUserText.label": (_annotationValue: unknown): string => "https://example.com/",
+   * }
+   * ```
    */
-  [annotationKey: string]: T;
+  [annotationKey: string]: LinkCallbackFunction;
 }
 
-interface CsnRendererConfig {
+export interface CsnRendererConfig {
   annotationLinkCallbacks?: AnnotationLinkCallbacks;
 }
 
-export { type CsnRendererConfig, type AnnotationLinkCallbacks, type LinkCallbackFunction };
+export interface CsnRendererProps {
+  /** @param source A valid text (containing JSON CSNInteropEffectiveDocument object).*/
+  source: string;
+}
