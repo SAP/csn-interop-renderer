@@ -14,7 +14,9 @@ export class CsnRenderer extends HTMLElement {
 
   public attributeChangedCallback(name: CsnRendererPropName, _oldValue: string | null, newValue: string | null): void {
     if (name === "source" && !!newValue && typeof newValue === "string") {
-      void this._renderHtml(newValue);
+      void this._renderHtml(newValue).catch((error: unknown) => {
+        this.dispatchEvent(new CustomEvent("csn-renderer-error", { detail: error, bubbles: true, composed: true }));
+      });
     }
   }
 }

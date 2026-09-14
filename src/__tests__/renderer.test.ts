@@ -276,9 +276,71 @@ describe("generateHtml — output format", () => {
 });
 
 // ---------------------------------------------------------------------------
-// renderer.ts — processEntities branch coverage
+// renderer.ts — relationship rendering
 // ---------------------------------------------------------------------------
-describe("renderer — associations", () => {
+describe("renderer — relationships", () => {
+  test("composition with an on clause renders target, path, and local key links", async () => {
+    const doc = JSON.parse(
+      JSON.stringify({
+        csnInteropEffective: "1.0",
+        $version: "2.0",
+        definitions: {
+          Target: { kind: "entity", elements: { ID: { type: "cds.String" } } },
+          Source: {
+            kind: "entity",
+            elements: {
+              foreignKeyId: { type: "cds.String" },
+              children: {
+                "type": "cds.Composition",
+                "target": "Target",
+                "cardinality": { max: "*" },
+                "on": [{ ref: ["children", "ID"] }, "=", { ref: ["foreignKeyId"] }],
+                "doc": "Child documentation",
+                "@EndUserText.label": "Child records",
+              },
+            },
+          },
+        },
+      }),
+    ) as CSNInteropEffectiveDocument;
+
+    const result = await renderer(doc);
+
+    expect(result).toContain("Composition to many");
+    expect(result).toContain('href="#target">Target</a>');
+    expect(result).toContain('href="#target-id">ID</a>');
+    expect(result).toContain('href="#source-foreignkeyid">foreignKeyId</a>');
+    expect(result).toContain("Child documentation");
+    expect(result).toContain('@EndUserText.label: <code>"Child records"</code>');
+  });
+
+  test("composition without cardinality renders to one", async () => {
+    const doc = JSON.parse(
+      JSON.stringify({
+        csnInteropEffective: "1.0",
+        $version: "2.0",
+        definitions: {
+          Target: { kind: "entity", elements: { ID: { type: "cds.String" } } },
+          Source: {
+            kind: "entity",
+            elements: {
+              child: {
+                type: "cds.Composition",
+                target: "Target",
+                on: [{ ref: ["child", "ID"] }, "=", { ref: ["ID"] }],
+              },
+              ID: { type: "cds.String" },
+            },
+          },
+        },
+      }),
+    ) as CSNInteropEffectiveDocument;
+
+    const result = await renderer(doc);
+
+    expect(result).toContain("Composition to one");
+  });
+
   test("association with cardinality max=* renders 'Association to many'", async () => {
     const doc = JSON.parse(
       JSON.stringify({
@@ -419,6 +481,73 @@ describe("renderer — associations", () => {
     expect(result).toContain("#target-id");
     expect(result).toContain("#source-foreignkeyid");
     expect(result).not.toContain("#target-otherid");
+  });
+
+  test("association on clause with two depth-1 refs skips the duplicate via key", async () => {
+    // Covers the else-if false branch in extractRefsFromOnClause (line 165):
+    // viaKey is set by the first depth-1 ref; the second depth-1 ref hits
+    // `else if (!viaKey && ...)` with !viaKey === false → branch not taken.
+    const doc = JSON.parse(
+      JSON.stringify({
+        csnInteropEffective: "1.0",
+        $version: "2.0",
+        definitions: {
+          Target: { kind: "entity", elements: { ID: { type: "cds.String" } } },
+          Source: {
+            kind: "entity",
+            elements: {
+              firstKey: { type: "cds.String" },
+              toTarget: {
+                type: "cds.Association",
+                target: "Target",
+                on: [{ ref: ["firstKey"] }, "=", { ref: ["secondKey"] }],
+              },
+            },
+          },
+        },
+      }),
+    ) as CSNInteropEffectiveDocument;
+
+    const result = await renderer(doc);
+
+    expect(result).toContain("Association to one");
+    expect(result).toContain('href="#target">Target</a>');
+    expect(result).toContain('via <a href="#source-firstkey">firstKey</a>');
+    expect(result).not.toContain('via <a href="#source-secondkey">secondKey</a>');
+    // no path clause — targetElementName was never set
+    expect(result).not.toContain("path:");
+  });
+
+  test("association on clause with only a depth-2 ref renders without a via key", async () => {
+    // Covers the fallback return in extractRefsFromOnClause (line 172):
+    // the loop ends with targetElementName set but viaKey still "", so the
+    // early-return (both found) is never triggered.
+    const doc = JSON.parse(
+      JSON.stringify({
+        csnInteropEffective: "1.0",
+        $version: "2.0",
+        definitions: {
+          Target: { kind: "entity", elements: { ID: { type: "cds.String" } } },
+          Source: {
+            kind: "entity",
+            elements: {
+              toTarget: {
+                type: "cds.Association",
+                target: "Target",
+                on: [{ ref: ["Target", "ID"] }],
+              },
+            },
+          },
+        },
+      }),
+    ) as CSNInteropEffectiveDocument;
+
+    const result = await renderer(doc);
+
+    expect(result).toContain("Association to one");
+    expect(result).toContain('href="#target">Target</a>');
+    // no via key — the "via <a>" fragment must be absent
+    expect(result).not.toMatch(/via <a/);
   });
 });
 
@@ -625,6 +754,34 @@ describe("renderContentWithI18n", () => {
 // rendererUtil.ts — getDescriptionData
 // ---------------------------------------------------------------------------
 describe("getDescriptionData", () => {
+  test("uses HTML line endings by default", async () => {
+    const result = await getDescriptionData(
+      [
+        ["first", "one"],
+        ["@Second", "two"],
+      ],
+      undefined,
+      undefined,
+    );
+
+    expect(result).toBe('first: <code>"one"</code><br />@Second: <code>"two"</code>');
+  });
+
+  test("supports Markdown line endings for plain Markdown callers", async () => {
+    const result = await getDescriptionData(
+      [
+        ["first", "one"],
+        ["@Second", "two"],
+      ],
+      undefined,
+      undefined,
+      undefined,
+      "\n",
+    );
+
+    expect(result).toBe('first: <code>"one"</code>\n@Second: <code>"two"</code>');
+  });
+
   test("promise-returning callback is invoked once", async () => {
     let calls = 0;
     const callback = async (): Promise<string> => {
