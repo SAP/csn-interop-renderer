@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import type { ReactNode } from "react";
 
-const Loader: FC = () => {
+export default function Loader(): ReactNode {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,6 +45,4 @@ const Loader: FC = () => {
       </g>
     </svg>
   );
-};
-
-export default Loader;
+}

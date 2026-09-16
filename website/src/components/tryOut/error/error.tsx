@@ -1,4 +1,4 @@
-import React from "react";
+import type { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./error.module.css";
 import noData from "./img/no-data.svg";
@@ -14,12 +14,12 @@ const images = {
 interface Props {
   name: keyof typeof images;
   title?: string;
-  description?: string | JSX.Element;
+  description?: ReactNode;
   className?: string;
-  children?: JSX.Element;
+  children?: ReactNode;
 }
 
-const Error = ({ name, title, description, className = "", children }: Props): JSX.Element => {
+export default function Error({ name, title, description, className = "", children }: Props): ReactNode {
   const Icon = images[name];
   return (
     <div className={classnames(styles.IllustratedMessage, ...className.split(","))}>
@@ -29,6 +29,4 @@ const Error = ({ name, title, description, className = "", children }: Props): J
       {children ? <div className={styles.Content}>{children}</div> : null}
     </div>
   );
-};
-
-export default Error;
+}

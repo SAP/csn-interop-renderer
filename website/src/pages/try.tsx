@@ -1,8 +1,8 @@
 import Layout from "@theme/Layout";
-import React from "react";
+import type { ReactNode } from "react";
 import Renderer from "../components/tryOut/renderer/renderer";
 
-export default function TryPage(): React.JSX.Element {
+export default function TryPage(): ReactNode {
   return (
     <Layout noFooter>
       <Renderer />
