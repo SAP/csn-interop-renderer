@@ -16,7 +16,11 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenAnchors: "warn",
   onDuplicateRoutes: "throw",
-  onBrokenMarkdownLinks: "throw",
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "throw",
+    },
+  },
   staticDirectories: ["static"],
   favicon: "img/favicon.ico",
   customFields: {
@@ -97,7 +101,7 @@ const config: Config = {
       // this enables debugging with breakpoints in the browser
       return {
         name: "my-devtool-plugin",
-        configureWebpack(): unknown {
+        configureWebpack(): { devtool: "eval-source-map" } {
           return {
             devtool: "eval-source-map",
           };

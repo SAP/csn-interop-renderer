@@ -1,4 +1,7 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
-  "extends": "@tsconfig/docusaurus/tsconfig.json"
+  // Not used by the Docusaurus build; used by website typecheck and editor tooling.
+  "extends": "@tsconfig/docusaurus/tsconfig.json",
+  "compilerOptions": {
+    "ignoreDeprecations": "6.0"
+  }
 }

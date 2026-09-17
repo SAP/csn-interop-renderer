@@ -1,198 +1,127 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import type * as monaco from "monaco-editor/esm/vs/editor/editor.api";
-import { Button, CheckBox, Label, Title, Select, Option } from "@ui5/webcomponents-react";
-import Editor, { Monaco } from "@monaco-editor/react";
-import FileIcon from "./img/file.svg";
+import { type ComponentProps, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { Button, CheckBox, Select, Option } from "@ui5/webcomponents-react";
+import Editor, { type OnChange, useMonaco } from "@monaco-editor/react";
 import styles from "./renderer.module.css";
-import Error from "../error/error";
-import Loader from "../loader/loader";
 import exampleData from "./example.json";
-import Markdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
-import { generateHtml, generateMarkdown } from "@sap/csn-interop-renderer";
+import { generateHtml, generateMarkdown, type AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
+import RenderedOutput from "./renderedOutput";
+import SidebarContent from "./sidebarContent";
+import type { OutputFormat } from "./types";
 
-type OutputFormat = "markdown" | "html" | "web-component";
+const exampleAnnotationLinkCallbacks: AnnotationLinkCallbacks = {
+  "@EntityRelationship.entityType": () => "https://example.com/",
+  "@ODM.entityName": () => "https://example.com/",
+  "@ODM.oidReference.entityName": () => "https://example.com/",
+};
 
-export default function Renderer(): React.JSX.Element {
+export default function Renderer(): ReactNode {
   const [csnStringValue, setCsnStringValue] = useState<string>("");
   const [outputFormat, setOutputFormat] = useState<OutputFormat>("html");
   const [renderedContent, setRenderedContent] = useState<string>("");
   const [autoRun, setAutoRun] = useState(false);
   const [isRendering, setIsRendering] = useState<boolean>(false);
-  const [error, setError] = useState<unknown | undefined>(undefined);
-  const monacoRef = useRef<Monaco>(undefined);
-  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor>(undefined);
+  const [error, setError] = useState<unknown>(null);
+  const renderRequestRef = useRef(0);
+  const monaco = useMonaco();
 
-  const generateContent = async (input: string, format: OutputFormat): Promise<void> => {
+  const generateContent = useCallback(async (input: string, format: OutputFormat): Promise<void> => {
     if (!input) return;
 
+    const requestId = ++renderRequestRef.current;
     setIsRendering(true);
-    setError(undefined);
+    setError(null);
 
     try {
-      const trimmedInput = JSON.parse(input.trim().replace(/[\n\r\t]/gm, ""));
+      const parsedInput = JSON.parse(input);
       let content: string;
-
-      // const delay = (ms): Promise<unknown> => new Promise((res) => setTimeout(res, ms));
 
       switch (format) {
         case "markdown":
-          content = await generateMarkdown(trimmedInput);
+          content = await generateMarkdown(parsedInput);
           break;
         case "html":
-          content = await generateHtml(trimmedInput, {
-            annotationLinkCallbacks: {
-              "@EntityRelationship.entityType": (_annotationValue: unknown): string => {
-                return "https://example.com/";
-              },
-              "@ODM.entityName": (_annotationValue: unknown): string => {
-                return "https://example.com/";
-              },
-              "@ODM.oidReference.entityName": (_annotationValue: unknown): string => {
-                return "https://example.com/";
-              },
-            },
+          content = await generateHtml(parsedInput, {
+            annotationLinkCallbacks: exampleAnnotationLinkCallbacks,
           });
           break;
         case "web-component":
-          content = JSON.stringify(trimmedInput, null, 2);
+          content = JSON.stringify(parsedInput, null, 2);
           break;
-        default:
-          content = "";
       }
 
-      setRenderedContent(content);
+      if (renderRequestRef.current === requestId) {
+        setRenderedContent(content);
+      }
     } catch (error) {
-      setError(error);
+      if (renderRequestRef.current === requestId) {
+        setError(error);
+      }
     } finally {
-      setIsRendering(false);
+      if (renderRequestRef.current === requestId) {
+        setIsRendering(false);
+      }
     }
-  };
-
-  const handleEditorDidMount = useCallback((editor, monaco) => {
-    editorRef.current = editor;
-    monacoRef.current = monaco;
   }, []);
 
-  const onChange = (value, e): void => {
-    const change = e.changes[0];
-    if (
-      change.range.startLineNumber === 1 &&
-      change.range.startColumn === 1 &&
-      change.text.length === value.length &&
-      value.length > 0
-    ) {
-      setRenderedContent("");
-    } else if (value.length === 0) {
-      setRenderedContent("");
-    }
-    setCsnStringValue(value);
-  };
+  useEffect(() => {
+    if (!monaco) return;
 
-  const onFormatChange = async (e): Promise<void> => {
-    const newFormat = e.detail.selectedOption.value as OutputFormat;
-    setOutputFormat(newFormat);
-    if (csnStringValue) {
-      await generateContent(csnStringValue, newFormat);
-    }
-  };
-
-  const onAutoRunChange = (e): void => {
-    setAutoRun(e.target.checked);
-  };
-
-  const onTryExampleClick = (): void => {
-    if (editorRef.current) {
-      editorRef.current.getModel()?.setValue(JSON.stringify(exampleData, null, "\t"));
-    }
-  };
-
-  const onRunClick = useCallback(() => {
-    if (csnStringValue) {
-      generateContent(csnStringValue, outputFormat);
-    }
-  }, [csnStringValue, outputFormat]);
+    monaco.json.jsonDefaults.setDiagnosticsOptions({
+      validate: true,
+      allowComments: true,
+      schemas: [{ uri: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json" }],
+      enableSchemaRequest: true,
+      schemaRequest: "warning",
+    });
+  }, [monaco]);
 
   useEffect(() => {
     if (autoRun && csnStringValue) {
-      generateContent(csnStringValue, outputFormat);
+      void generateContent(csnStringValue, outputFormat);
     }
-  }, [csnStringValue, autoRun, outputFormat]);
+  }, [autoRun, csnStringValue, generateContent, outputFormat]);
 
-  useEffect(() => {
-    if (editorRef.current && monacoRef.current) {
-      const model = editorRef.current.getModel();
-      monacoRef.current.editor.setModelLanguage(model, "json");
-      monacoRef.current.languages.json.jsonDefaults.setDiagnosticsOptions({
-        validate: true,
-        allowComments: true,
-        schemas: [{ uri: "https://sap.github.io/csn-interop-specification/spec-v1/csn-interop-effective.schema.json" }],
-        enableSchemaRequest: true,
-        schemaRequest: "warning",
-      });
-      editorRef.current.getAction("editor.action.formatDocument").run();
-    }
-  }, [editorRef, monacoRef]);
+  const onChange = useCallback<OnChange>((value, e): void => {
+    const nextValue = value ?? "";
+    const change = e.changes[0];
+    const replacesEntireDocument =
+      change !== undefined &&
+      change.range.startLineNumber === 1 &&
+      change.range.startColumn === 1 &&
+      change.text.length === nextValue.length &&
+      nextValue.length > 0;
 
-  const getSideBarContent = (): React.JSX.Element => {
-    if (error) {
-      return (
-        <div style={{ textAlign: "center", marginTop: "150px" }}>
-          <Error name="unableToLoad" title="Error while rendering" description={String(error)} />
-        </div>
-      );
+    if (replacesEntireDocument || nextValue.length === 0) {
+      setRenderedContent("");
     }
-    if (isRendering) {
-      return (
-        <div style={{ textAlign: "center", marginTop: "150px" }}>
-          <Loader />
-          <Title style={{ marginTop: "20px" }} size="H3">
-            Rendering
-          </Title>
-        </div>
-      );
-    }
-    return (
-      <div style={{ textAlign: "center", marginTop: "150px" }}>
-        <FileIcon />
-        <Title style={{ marginTop: "20px" }} size="H3">
-          Paste some CSN JSON content input in the editor!
-        </Title>
-        <Label style={{ marginTop: "5px" }}>or</Label>
-        <div style={{ marginTop: "5px" }}>
-          <Button design="Emphasized" onClick={onTryExampleClick}>
-            Try out Example
-          </Button>
-        </div>
-      </div>
-    );
-  };
+    setCsnStringValue(nextValue);
+  }, []);
 
-  const renderOutput = (): React.JSX.Element => {
-    switch (outputFormat) {
-      case "markdown":
-        return (
-          <div className={styles.RenderWrapper}>
-            <Markdown rehypePlugins={[rehypeRaw, rehypeSlug]}>{renderedContent}</Markdown>
-          </div>
-        );
-      case "html":
-        return (
-          <div className={styles.RenderWrapper}>
-            <div dangerouslySetInnerHTML={{ __html: renderedContent }} />
-          </div>
-        );
-      case "web-component":
-        return (
-          <div className={styles.RenderWrapper}>
-            <csn-renderer source={renderedContent} />
-          </div>
-        );
-      default:
-        return null;
+  const onFormatChange = useCallback<NonNullable<ComponentProps<typeof Select>["onChange"]>>(
+    async (e): Promise<void> => {
+      const newFormat = e.detail.selectedOption.value as OutputFormat;
+      setOutputFormat(newFormat);
+      if (csnStringValue) {
+        await generateContent(csnStringValue, newFormat);
+      }
+    },
+    [csnStringValue, generateContent],
+  );
+
+  const onAutoRunChange = useCallback<NonNullable<ComponentProps<typeof CheckBox>["onChange"]>>((e): void => {
+    setAutoRun(e.target.checked);
+  }, []);
+
+  const onTryExampleClick = useCallback((): void => {
+    setRenderedContent("");
+    setCsnStringValue(JSON.stringify(exampleData, null, "\t"));
+  }, []);
+
+  const onRunClick = useCallback(() => {
+    if (csnStringValue) {
+      void generateContent(csnStringValue, outputFormat);
     }
-  };
+  }, [csnStringValue, generateContent, outputFormat]);
 
   return (
     <div className={styles.ColumnContainer} data-ui5-compact-size>
@@ -215,7 +144,7 @@ export default function Renderer(): React.JSX.Element {
         <div className={styles.Editor}>
           <Editor
             defaultLanguage="json"
-            onMount={handleEditorDidMount}
+            value={csnStringValue}
             options={{
               automaticLayout: true,
               lineNumbers: "on",
@@ -233,11 +162,15 @@ export default function Renderer(): React.JSX.Element {
           />
         </div>
       </div>
-      {error === undefined && renderedContent !== "" && !isRendering ? (
-        <div className={styles.Column}>{renderOutput()}</div>
+      {error === null && renderedContent !== "" && !isRendering ? (
+        <div className={styles.Column}>
+          <RenderedOutput format={outputFormat} content={renderedContent} />
+        </div>
       ) : (
         <div className={styles.Sidebar}>
-          <div className={styles.SideBar}>{getSideBarContent()}</div>
+          <div className={styles.SideBar}>
+            <SidebarContent error={error} isRendering={isRendering} onTryExampleClick={onTryExampleClick} />
+          </div>
         </div>
       )}
     </div>
