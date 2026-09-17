@@ -34,6 +34,6 @@ export default function RenderedOutput({ format, content }: Props): ReactNode {
         </div>
       );
     default:
-      return null;
+      throw new Error(`Unsupported output format: ${format}`);
   }
 }
