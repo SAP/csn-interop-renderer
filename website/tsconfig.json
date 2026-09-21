@@ -2,6 +2,9 @@
   // Not used by the Docusaurus build; used by website typecheck and editor tooling.
   "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
+    // Override base "jsx": "react" (old transform, deprecated in TS6, requires explicit React import)
+    // with "react-jsx" (automatic transform, React 17+, no React import needed in every file).
+    "jsx": "react-jsx",
     "ignoreDeprecations": "6.0"
   }
 }
