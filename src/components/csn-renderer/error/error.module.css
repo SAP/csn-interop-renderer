@@ -12,7 +12,7 @@
 }
 
 .Description {
-  color: #6a6d70;
+  color: var(--ord-muted-foreground);
   margin-top: 1rem;
   text-align: center;
   line-height: 1.5;

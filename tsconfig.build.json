@@ -1,5 +1,6 @@
 {
   "declaration": true,
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "dist", "**/__tests__/**"]
+  "include": ["src/**/*", "examples/**/*"],
+  "exclude": ["node_modules", "dist", "src/components/csn-renderer", "**/__tests__/**"]
 }
