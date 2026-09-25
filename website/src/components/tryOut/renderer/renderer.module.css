@@ -1,63 +1,185 @@
-.ColumnContainer {
+.Workspace {
+  --pane-height: calc(100vh - 6rem);
+
+  position: relative;
   display: flex;
   width: 100%;
+  box-sizing: border-box;
   flex-grow: 1;
+  min-height: calc(100vh - 64px);
+  padding: 1rem;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #f7f8fa 0%, #f2f6fa 100%);
 }
 
-.Column {
-  padding: 20px;
-  flex-grow: 1;
-  max-width: 50%;
+.Workspace[data-drag-active="true"] {
+  outline: 0.1875rem dashed #0a6ed1;
+  outline-offset: -0.5rem;
+}
+
+.Workspace[data-explorer-visible="true"] {
+  gap: 0;
+}
+
+.DropOverlay {
+  position: absolute;
+  z-index: 10;
+  inset: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a6ed1;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+  background: rgb(234 243 252 / 94%);
+  border: 0.1875rem dashed #0a6ed1;
+  border-radius: 0.5rem;
+}
+
+.EditorPane {
+  width: 46%;
+  height: var(--pane-height);
+  min-width: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+
+.Workspace[data-explorer-visible="true"] .EditorPane {
+  flex: 0 0 var(--editor-pane-width);
+  width: var(--editor-pane-width);
+}
+
+.Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] {
+  flex-basis: 0;
+  width: 0;
+}
+
+.Workspace[data-explorer-collapsed="true"] .EditorPane {
+  flex: 1 1 0;
+  width: auto;
 }
 
 .Bar {
-  box-shadow: 0 0.3125rem 1.25rem 0 #d9d9d9;
+  height: 2.5rem;
   background-color: #fff;
-  height: 40px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  gap: 0.75rem;
+  padding: 0 0.875rem;
   width: 100%;
+  border: 1px solid #d9d9d9;
+  border-bottom: 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+  box-shadow: 0 0.125rem 0.5rem rgb(0 0 0 / 4%);
 }
 
 .BarItem {
-  height: 40px;
-  margin-right: 15px;
+  height: 2.5rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.BarItem > :first-child {
-  margin-right: 5px;
+.InputLabel {
+  color: #32363a;
+  font-size: 0.8125rem;
+  font-weight: 700;
 }
 
-.BarItem:last-child {
-  margin-right: 0;
+.ResetEditorButton {
+  margin-left: 0.25rem;
 }
 
 .Sidebar {
-  padding: 20px 40px 20px 20px;
-  width: 50%;
-  min-width: 50%;
+  width: 54%;
+  min-width: 0;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.SideBar > :first-child {
-  position: relative;
-  top: -3vh;
+.Status {
+  text-align: center;
+}
+
+.StatusTitle {
+  margin-top: 20px;
+}
+
+.EmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 38rem);
+  padding: 2rem;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #d5dadd;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.3125rem 1.25rem 0 rgb(0 0 0 / 8%);
+}
+
+.EmptyStateIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.EmptyStateAction {
+  margin: 0;
+  color: #1d2d3e;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.EmptyStateIcon + .EmptyStateAction {
+  margin-top: 1rem;
+}
+
+.ExampleDivider {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  gap: 0.75rem;
+  margin: 1.5rem 0 1rem;
+  color: #6a6d70;
+}
+
+.ExampleDivider::before,
+.ExampleDivider::after {
+  height: 1px;
+  background: #d9d9d9;
+  content: "";
+}
+
+.ExampleLabel {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.ExampleList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.ExampleButton {
+  width: 100%;
 }
 
 .Editor {
-  margin-top: 15px;
-  box-shadow: 0 0.3125rem 1.25rem 0 #d9d9d9;
+  flex: 1;
   width: 100%;
-  height: calc(100vh - 80px);
+  min-height: 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 0 0 0.5rem 0.5rem;
+  overflow: hidden;
 }
 
 .BarSpacer {
@@ -66,8 +188,674 @@
 
 .RenderWrapper {
   width: 100%;
-  height: calc(100vh - 30px);
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
   overflow-y: scroll;
-  padding: 20px 20px;
-  box-shadow: 0 0.3125rem 1.25rem 0 #d9d9d9;
+  padding: 1.25rem;
+}
+
+.Explorer {
+  display: grid;
+  grid-template-columns: minmax(13rem, var(--definition-nav-width)) 1.75rem minmax(0, 1fr);
+  width: 54%;
+  height: var(--pane-height);
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #d5dadd;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.375rem 1.25rem rgb(0 0 0 / 7%);
+}
+
+.Explorer[data-definition-nav-collapsed="true"] {
+  grid-template-columns: 0 1.75rem minmax(0, 1fr);
+}
+
+.Workspace[data-explorer-visible="true"] .Explorer {
+  flex: 1 1 0;
+  width: auto;
+}
+
+.Workspace[data-explorer-collapsed="true"] .Explorer {
+  flex: 0 0 0;
+  width: 0;
+  border-width: 0;
+}
+
+.ResizeHandle {
+  position: relative;
+  display: flex;
+  flex: 0 0 1.75rem;
+  align-items: center;
+  justify-content: center;
+  height: var(--pane-height);
+  cursor: col-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.ResizeHandle::before {
+  width: 1px;
+  align-self: stretch;
+  background: #d5dadd;
+  content: "";
+}
+
+.ResizeHandle:hover::before {
+  width: 0.1875rem;
+  background: #0a6ed1;
+}
+
+.ResizeControls {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.DefinitionNav {
+  min-width: 0;
+  overflow-y: auto;
+  padding: 1rem;
+  border-right: 1px solid #d9d9d9;
+  background: linear-gradient(180deg, #fbfcfd 0%, #f6f8fa 100%);
+}
+
+.Explorer[data-definition-nav-collapsed="true"] .DefinitionNav {
+  padding: 0;
+  overflow: hidden;
+  border-right: 0;
+}
+
+.DefinitionResizeHandle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: col-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.DefinitionResizeHandle::before {
+  width: 1px;
+  align-self: stretch;
+  background: #d5dadd;
+  content: "";
+}
+
+.DefinitionResizeHandle:hover::before {
+  width: 0.1875rem;
+  background: #0a6ed1;
+}
+
+.DefinitionResizeToggle {
+  position: absolute;
+  z-index: 1;
+}
+
+.NavHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.NavHeading strong {
+  color: #32363a;
+  font-size: 1.125rem;
+}
+
+.DefinitionSearch,
+.ElementFilters input,
+.ElementFilters select {
+  min-width: 0;
+  height: 2rem;
+  box-sizing: border-box;
+  color: #32363a;
+  font: inherit;
+  background: #fff;
+  border: 1px solid #89919a;
+  border-radius: 0.25rem;
+}
+
+.DefinitionSearch {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0 0.625rem;
+}
+
+.DefinitionSearch:focus,
+.ElementFilters input:focus,
+.ElementFilters select:focus {
+  border-color: #0a6ed1;
+  outline: 0.125rem solid rgb(10 110 209 / 20%);
+  outline-offset: -1px;
+}
+
+.PaneTitle {
+  color: #5b738b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.DefinitionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 1.5rem;
+}
+
+.DefinitionGroupToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  color: #5b738b;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.DefinitionGroupToggle:hover {
+  color: #0a6ed1;
+}
+
+.DefinitionButton,
+.DefinitionButtonActive,
+.DetailTab,
+.DetailTabActive {
+  font: inherit;
+  cursor: pointer;
+}
+
+.DefinitionButton,
+.DefinitionButtonActive {
+  padding: 0.55rem 0.625rem;
+  overflow: hidden;
+  color: #32363a;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.DefinitionButton:hover {
+  color: #0a6ed1;
+  background: #eef6fc;
+}
+
+.DefinitionButtonActive {
+  color: #0a6ed1;
+  font-weight: 700;
+  background: #eaf3fc;
+  border-color: #8bc5f2;
+  box-shadow: inset 0.1875rem 0 #0a6ed1;
+}
+
+.DefinitionDetail {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.DetailHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem 0;
+  background: #fff;
+  border-bottom: 1px solid #e1e7eb;
+}
+
+.DetailHeader h2 {
+  max-width: 22rem;
+  margin: 0.25rem 0 0;
+  overflow: hidden;
+  color: #1d2d3e;
+  font-size: 1.375rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.DetailTabs {
+  display: flex;
+  align-self: stretch;
+  gap: 1rem;
+}
+
+.DetailTab,
+.DetailTabActive {
+  padding: 0 0.125rem 0.75rem;
+  color: #32363a;
+  background: transparent;
+  border: 0;
+  border-bottom: 0.1875rem solid transparent;
+}
+
+.DetailTabActive {
+  color: #0a6ed1;
+  font-weight: 700;
+  border-bottom-color: #0a6ed1;
+}
+
+.DetailContent {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background: #fcfdfe;
+}
+
+.DefinitionDetail > .RenderWrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+.DetailContent h3 {
+  margin: 1.25rem 0 0.75rem;
+  color: #32363a;
+  font-size: 1rem;
+}
+
+.DetailContent h3:first-child {
+  margin-top: 0;
+}
+
+.DefinitionDescription {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  color: #3f5f7d;
+  line-height: 1.5;
+  background: #eef6fc;
+  border-left: 0.25rem solid #0a6ed1;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.AnnotationList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.875rem;
+}
+
+.AnnotationCard,
+.AnnotationCardActive {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f5faff 0%, #fff 100%);
+  border: 1px solid #cfe7fa;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.0625rem 0.25rem rgb(10 110 209 / 7%);
+}
+
+.AnnotationCard:hover {
+  border-color: #8bc5f2;
+}
+
+.AnnotationCardActive {
+  border-color: #0a6ed1;
+  box-shadow: inset 0.1875rem 0 #0a6ed1;
+}
+
+.AnnotationKey {
+  overflow-wrap: anywhere;
+  color: #0a6ed1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.AnnotationValue {
+  max-height: 8rem;
+  overflow: auto;
+  color: #334a60;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.EmptySection {
+  margin: 0.875rem 0 0;
+  color: #5b738b;
+}
+
+.PropertyCard,
+.PropertyCardActive {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.8fr) minmax(0, 1.2fr);
+  gap: 0.75rem;
+  padding: 0.75rem;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #e1e7eb;
+  border-radius: 0.25rem;
+}
+
+.PropertyList {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+}
+
+.PropertyCard > :first-child,
+.PropertyCardActive > :first-child {
+  color: #0a6ed1;
+  font-weight: 600;
+}
+
+.PropertyCard > :last-child,
+.PropertyCardActive > :last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.PropertyCard:hover {
+  border-color: #8bc5f2;
+  background: #f5faff;
+}
+
+.PropertyCardActive {
+  border-color: #0a6ed1;
+  background: #eaf3fc;
+  box-shadow: inset 0.1875rem 0 #0a6ed1;
+}
+
+.CollapsibleSection,
+.PrivateProperties {
+  margin-top: 1.25rem;
+}
+
+.CollapsibleSection summary,
+.PrivateProperties summary {
+  color: #1d2d3e;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ElementList {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.ElementFilters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ElementFilters input {
+  width: 100%;
+  padding: 0 0.625rem;
+}
+
+.ElementFilters select {
+  padding: 0 0.5rem;
+}
+
+.ElementCard,
+.ElementCardActive {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.25rem 1rem;
+  padding: 0.75rem;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid #d5dadd;
+  border-radius: 0.25rem;
+  background: #fff;
+  box-shadow: 0 0.0625rem 0.25rem rgb(0 0 0 / 4%);
+}
+
+.ElementCard:hover {
+  border-color: #8bc5f2;
+  background: #f5faff;
+}
+
+.ElementCardActive {
+  border-color: #0a6ed1;
+  background: #eaf3fc;
+  box-shadow: inset 0.1875rem 0 #0a6ed1;
+}
+
+.ElementCard strong {
+  color: #32363a;
+}
+
+.ElementCard > span {
+  color: #5b738b;
+}
+
+.ElementCard small,
+.ElementCard p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #5b738b;
+}
+
+.EmptyDetail {
+  margin: 1.25rem;
+  color: #5b738b;
+}
+
+@media (max-width: 1200px) {
+  .Workspace {
+    flex-direction: column;
+  }
+
+  .DropOverlay {
+    inset: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .EditorPane,
+  .Sidebar,
+  .Explorer,
+  .Workspace[data-explorer-visible="true"] .EditorPane,
+  .Workspace[data-explorer-visible="true"] .Explorer,
+  .Workspace[data-explorer-collapsed="true"] .EditorPane,
+  .Workspace[data-explorer-collapsed="true"] .Explorer {
+    flex: none;
+    width: 100%;
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .EditorPane,
+  .Explorer,
+  .ResizeHandle {
+    height: auto;
+  }
+
+  .ResizeHandle {
+    display: none;
+  }
+
+  .Editor {
+    flex: none;
+    height: 32rem;
+  }
+
+  .Explorer {
+    min-height: 40rem;
+  }
+
+  .Explorer,
+  .Explorer[data-definition-nav-collapsed="true"] {
+    grid-template-columns: 1fr;
+  }
+
+  .DefinitionResizeHandle {
+    display: none;
+  }
+
+  .Explorer[data-definition-nav-collapsed="true"] .DefinitionNav {
+    padding: 0.75rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom: 1px solid #d9d9d9;
+  }
+}
+
+@media (max-width: 600px) {
+  .Workspace {
+    min-height: auto;
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .Bar {
+    height: auto;
+    min-height: 2.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .InputLabel {
+    display: none;
+  }
+
+  .BarSpacer {
+    flex: 1 1 100%;
+    min-width: 0;
+    order: 1;
+  }
+
+  .BarItem {
+    justify-content: flex-end;
+    width: 100%;
+    height: 2.5rem;
+    gap: 0.25rem;
+    order: 2;
+  }
+
+  .Editor {
+    height: 28rem;
+  }
+
+  .Sidebar {
+    padding: 1rem 0;
+  }
+
+  .EmptyState {
+    padding: 1.5rem 1rem;
+  }
+
+  .ExampleList {
+    grid-template-columns: 1fr;
+  }
+
+  .Explorer {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .DefinitionNav {
+    display: block;
+    max-height: 15rem;
+    padding: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 0;
+    border-bottom: 1px solid #d9d9d9;
+  }
+
+  .NavHeading {
+    display: flex;
+  }
+
+  .DefinitionGroup {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 1.25rem;
+  }
+
+  .DefinitionGroupToggle {
+    width: 100%;
+  }
+
+  .DefinitionSearch {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .DefinitionDetail {
+    min-height: 30rem;
+  }
+
+  .DetailHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1rem 0;
+  }
+
+  .DetailHeader h2 {
+    max-width: calc(100vw - 3rem);
+  }
+
+  .DetailTabs {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .DetailTab,
+  .DetailTabActive {
+    flex: 1;
+  }
+
+  .DetailContent {
+    padding: 1.25rem 1rem;
+  }
+
+  .PropertyCard,
+  .PropertyCardActive {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .ElementCard {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .ElementCard > span {
+    grid-row: 2;
+  }
+
+  .ElementFilters {
+    grid-template-columns: 1fr;
+  }
 }

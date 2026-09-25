@@ -1,0 +1,36 @@
+.Item {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.Item > a {
+  flex: 1;
+  min-width: 0;
+}
+
+.Toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  justify-content: center;
+  line-height: 1;
+  min-height: 1.75rem;
+  min-width: 1.75rem;
+  padding: 0.1rem;
+}
+
+.CollapsedIcon,
+.ExpandedIcon {
+  display: inline-block;
+  font-size: 1.35rem;
+  transition: transform var(--ifm-transition-fast, 200ms);
+}
+
+.CollapsedIcon {
+  transform: rotate(-90deg);
+}
