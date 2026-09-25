@@ -27,7 +27,6 @@
     "cli": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning ./cli/cli.js -i ./examples/Airline.json -o ./examples/out.md -r md",
     "prebuild": "rimraf ./dist",
     "build": "tsc -p tsconfig.build.json",
-    "postbuild": "npm run render-examples",
     "prepublishOnly": "npm run build",
     "test": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --ci --collectCoverage",
     "test:watch": "node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --watchAll",
@@ -36,8 +35,7 @@
     "eslint:ci": "eslint .",
     "prettier": "prettier --write \"**/*.{json,yml,yaml,md}\"",
     "prettier:ci": "prettier --check \"**/*.{json,yml,yaml,md}\"",
-    "prepare": "is-ci || husky",
-    "render-examples": "node ./scripts/renderExamples.cjs"
+    "prepare": "is-ci || husky"
   },
   "dependencies": {
     "@sap/csn-interop-specification": "1.2.4",
