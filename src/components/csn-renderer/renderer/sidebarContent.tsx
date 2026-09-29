@@ -1,8 +1,8 @@
 import { Button, Spinner } from "@open-resource-discovery/ui-components";
 import type { ReactNode } from "react";
-import type { ExampleDocument } from "./examples";
+import type { ExampleDocument } from "./types";
 import styles from "./renderer.module.css";
-import FileIcon from "./img/file.svg";
+import fileIcon from "./img/file.svg";
 import Error from "../error/error";
 
 interface Props {
@@ -32,7 +32,7 @@ export default function SidebarContent({ error, isRendering, examples, onTryExam
 
   return (
     <section className={styles.EmptyState}>
-      <FileIcon className={styles.EmptyStateIcon} />
+      <img className={styles.EmptyStateIcon} src={fileIcon} alt="" />
       <h3 className={styles.EmptyStateAction}>Paste CSN JSON content into the editor</h3>
       <div className={styles.ExampleDivider}>
         <span>or</span>

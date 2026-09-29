@@ -12,11 +12,17 @@ import {
 import { Button, SimpleSelect, ThemeRoot } from "@open-resource-discovery/ui-components";
 import Editor, { type OnChange, useMonaco } from "@monaco-editor/react";
 import styles from "./renderer.module.css";
-import { exampleDocuments, type ExampleDocument } from "./examples";
 import { generateHtml, generateMarkdown, type AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
 import DefinitionExplorer, { type ExplorerState } from "./definitionExplorer";
+import { clearSharedExampleState, readSharedExampleState, writeSharedExampleState } from "./shareState";
 import SidebarContent from "./sidebarContent";
-import type { CsnDocument, OutputFormat } from "./types";
+import type { CsnDocument, ExampleDocument, OutputFormat } from "./types";
+
+const emptyExamples: readonly ExampleDocument[] = [];
+
+interface Props {
+  examples?: readonly ExampleDocument[];
+}
 
 const exampleAnnotationLinkCallbacks: AnnotationLinkCallbacks = {
   "@EntityRelationship.entityType": () => "https://example.com/",
@@ -24,41 +30,9 @@ const exampleAnnotationLinkCallbacks: AnnotationLinkCallbacks = {
   "@ODM.oidReference.entityName": () => "https://example.com/",
 };
 
-interface SharedExampleState {
-  exampleId: string;
-  format: OutputFormat;
-  explorer: Partial<ExplorerState>;
-}
-
 type ShareStatus = "idle" | "copied" | "failed";
 
-const getSharedExampleState = (): SharedExampleState | null => {
-  if (typeof window === "undefined") return null;
-
-  const searchParams = new URLSearchParams(window.location.search);
-  const exampleId = searchParams.get("example");
-  if (exampleId === null) return null;
-
-  const view = searchParams.get("tab");
-  const section = searchParams.get("section");
-  const format = searchParams.get("format");
-  const previewRow = searchParams.get("previewRow");
-  return {
-    exampleId,
-    format: format === "html" || format === "markdown" || format === "web-component" ? format : "html",
-    explorer: {
-      definition: searchParams.get("definition") ?? undefined,
-      view: view === "overview" || view === "elements" || view === "rendered" ? view : undefined,
-      section:
-        section === "annotations" || section === "properties" || section === "private-properties" ? section : undefined,
-      item: searchParams.get("item") ?? undefined,
-      element: searchParams.get("element") ?? undefined,
-      previewRow: previewRow !== null && /^table-\d+-row-\d+$/.test(previewRow) ? previewRow : undefined,
-    },
-  };
-};
-
-export default function Renderer(): ReactNode {
+export default function Renderer({ examples = emptyExamples }: Props): ReactNode {
   const [csnStringValue, setCsnStringValue] = useState<string>("");
   const [outputFormat, setOutputFormat] = useState<OutputFormat>("html");
   const [renderedContent, setRenderedContent] = useState<string>("");
@@ -66,7 +40,9 @@ export default function Renderer(): ReactNode {
   const [error, setError] = useState<unknown>(null);
   const [renderedDocument, setRenderedDocument] = useState<CsnDocument | null>(null);
   const [activeExample, setActiveExample] = useState<ExampleDocument | null>(null);
-  const [sharedExampleState] = useState(getSharedExampleState);
+  const [sharedExampleState] = useState(() =>
+    typeof window === "undefined" ? null : readSharedExampleState(window.location.search),
+  );
   const [shareStatus, setShareStatus] = useState<ShareStatus>("idle");
   const [isDraggingFile, setIsDraggingFile] = useState(false);
   const [editorWidth, setEditorWidth] = useState(46);
@@ -77,46 +53,49 @@ export default function Renderer(): ReactNode {
   const workspaceRef = useRef<HTMLDivElement>(null);
   const monaco = useMonaco();
 
-  const generateContent = useCallback(async (input: string, format: OutputFormat): Promise<void> => {
-    if (!input) return;
+  const generateContent = useCallback(
+    async (input: string, format: OutputFormat): Promise<void> => {
+      if (!input) return;
 
-    const requestId = ++renderRequestRef.current;
-    setIsRendering(true);
-    setError(null);
+      const requestId = ++renderRequestRef.current;
+      setIsRendering(true);
+      setError(null);
 
-    try {
-      const parsedInput = JSON.parse(input);
-      let content: string;
+      try {
+        const parsedInput = JSON.parse(input);
+        let content: string;
 
-      switch (format) {
-        case "markdown":
-          content = await generateMarkdown(parsedInput);
-          break;
-        case "html":
-          content = await generateHtml(parsedInput, {
-            annotationLinkCallbacks: exampleAnnotationLinkCallbacks,
-          });
-          break;
-        case "web-component":
-          content = JSON.stringify(parsedInput, null, 2);
-          break;
-      }
+        switch (format) {
+          case "markdown":
+            content = await generateMarkdown(parsedInput);
+            break;
+          case "html":
+            content = await generateHtml(parsedInput, {
+              annotationLinkCallbacks: exampleAnnotationLinkCallbacks,
+            });
+            break;
+          case "web-component":
+            content = JSON.stringify(parsedInput, null, 2);
+            break;
+        }
 
-      if (renderRequestRef.current === requestId) {
-        setRenderedDocument(parsedInput);
-        setRenderedContent(content);
-        setActiveExample(exampleDocuments.find(({ data }) => JSON.stringify(data, null, "\t") === input) ?? null);
+        if (renderRequestRef.current === requestId) {
+          setRenderedDocument(parsedInput);
+          setRenderedContent(content);
+          setActiveExample(examples.find(({ data }) => JSON.stringify(data, null, "\t") === input) ?? null);
+        }
+      } catch (error) {
+        if (renderRequestRef.current === requestId) {
+          setError(error);
+        }
+      } finally {
+        if (renderRequestRef.current === requestId) {
+          setIsRendering(false);
+        }
       }
-    } catch (error) {
-      if (renderRequestRef.current === requestId) {
-        setError(error);
-      }
-    } finally {
-      if (renderRequestRef.current === requestId) {
-        setIsRendering(false);
-      }
-    }
-  }, []);
+    },
+    [examples],
+  );
 
   useEffect(() => {
     if (!monaco) return;
@@ -142,38 +121,14 @@ export default function Renderer(): ReactNode {
   const writeShareUrl = useCallback((exampleId: string, state: Partial<ExplorerState>): void => {
     if (typeof window === "undefined") return;
 
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set("example", exampleId);
-    for (const [key, value] of Object.entries({
-      definition: state.definition,
-      format: state.format,
-      tab: state.view,
-      section: state.section,
-      item: state.item,
-      element: state.element,
-      previewRow: state.previewRow,
-    })) {
-      if (value) {
-        searchParams.set(key, value);
-      } else {
-        searchParams.delete(key);
-      }
-    }
-    window.history.replaceState(
-      null,
-      "",
-      `${window.location.pathname}?${searchParams.toString()}${window.location.hash}`,
-    );
+    const query = writeSharedExampleState(window.location.search, exampleId, state);
+    window.history.replaceState(null, "", `${window.location.pathname}?${query}${window.location.hash}`);
   }, []);
 
   const clearShareUrl = useCallback((): void => {
     if (typeof window === "undefined") return;
 
-    const searchParams = new URLSearchParams(window.location.search);
-    ["example", "definition", "format", "tab", "section", "item", "element", "previewRow"].forEach((key) =>
-      searchParams.delete(key),
-    );
-    const query = searchParams.toString();
+    const query = clearSharedExampleState(window.location.search);
     window.history.replaceState(
       null,
       "",
@@ -386,14 +341,14 @@ export default function Renderer(): ReactNode {
   useEffect(() => {
     if (sharedExampleState === null) return;
 
-    const example = exampleDocuments.find(({ id }) => id === sharedExampleState.exampleId);
+    const example = examples.find(({ id }) => id === sharedExampleState.exampleId);
     if (example === undefined) return;
 
     const input = JSON.stringify(example.data, null, "\t");
     setActiveExample(example);
     setOutputFormat(sharedExampleState.format);
     setCsnStringValue(input);
-  }, [sharedExampleState]);
+  }, [examples, sharedExampleState]);
 
   const canResetEditor = csnStringValue !== "" || renderedContent !== "" || renderedDocument !== null || error !== null;
   const hasRenderedResult = error === null && renderedDocument !== null && renderedContent !== "" && !isRendering;
@@ -529,7 +484,7 @@ export default function Renderer(): ReactNode {
             <SidebarContent
               error={error}
               isRendering={isRendering}
-              examples={exampleDocuments}
+              examples={examples}
               onTryExampleClick={onTryExampleClick}
             />
           </div>

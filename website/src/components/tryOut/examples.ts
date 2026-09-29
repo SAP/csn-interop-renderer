@@ -1,15 +1,10 @@
-import airline from "../../../../../examples/Airline.json";
-import billingDocument from "../../../../../examples/BillingDocument.json";
-import businessPartner from "../../../../../examples/BusinessPartner.json";
-import costCenter from "../../../../../examples/CostCenter.json";
-import costCenterCombined from "../../../../../examples/CostCenterCombined.json";
-import generalLedgerAccountLineItem from "../../../../../examples/GeneralLedgerAccountLineItem.json";
-
-export interface ExampleDocument {
-  id: string;
-  name: string;
-  data: object;
-}
+import airline from "../../../../examples/Airline.json";
+import billingDocument from "../../../../examples/BillingDocument.json";
+import businessPartner from "../../../../examples/BusinessPartner.json";
+import costCenter from "../../../../examples/CostCenter.json";
+import costCenterCombined from "../../../../examples/CostCenterCombined.json";
+import generalLedgerAccountLineItem from "../../../../examples/GeneralLedgerAccountLineItem.json";
+import type { ExampleDocument } from "@sap/csn-interop-renderer/react";
 
 export const exampleDocuments: readonly ExampleDocument[] = [
   { id: "airline", name: "Airline", data: airline },

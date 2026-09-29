@@ -6,6 +6,21 @@ Converts documents defined using [CSN Interoperability Specification](https://sa
 
 🌎 DOCUMENTATION: <https://sap.github.io/csn-interop-renderer/>
 
+## React component
+
+The interactive renderer is published as a React component and can be embedded in any React application. Import its stylesheet once, then render the component:
+
+```tsx
+import { CsnInteropRenderer } from "@sap/csn-interop-renderer/react";
+import "@sap/csn-interop-renderer/react/styles";
+
+export function CsnDocumentation(): React.ReactNode {
+  return <CsnInteropRenderer />;
+}
+```
+
+`CsnInteropRenderer` accepts an optional `examples` property for callers that want to offer their own sample CSN documents. The Docusaurus website is a demo consumer and supplies its sample documents through that property.
+
 ## Support, Feedback, Contributing
 
 This project is open to feature requests/suggestions, bug reports etc. via [GitHub issues](https://github.com/SAP/csn-interop-renderer/issues). Contribution and feedback are encouraged and always welcome. For more information about how to contribute, the project structure, as well as additional contribution information, see our [Contribution Guidelines](CONTRIBUTING.md).

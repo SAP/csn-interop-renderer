@@ -21,6 +21,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true
   },
-  "include": ["src/**/*", "examples/**/*"],
+  "include": ["src/**/*", "examples/**/*", "vite.config.react.ts"],
   "exclude": ["node_modules", "dist"]
 }

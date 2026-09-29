@@ -10,3 +10,9 @@ export interface CsnDefinition {
 export interface CsnDocument {
   definitions?: Record<string, CsnDefinition>;
 }
+
+export interface ExampleDocument {
+  id: string;
+  name: string;
+  data: object;
+}

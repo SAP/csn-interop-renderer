@@ -1,8 +1,10 @@
 import Layout from "@theme/Layout";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import "@sap/csn-interop-renderer/react/styles";
 import { lazy, Suspense, type ReactNode } from "react";
+import { exampleDocuments } from "../components/tryOut/examples";
 
-const Renderer = lazy(() => import("../components/tryOut/renderer/renderer"));
+const CsnInteropRenderer = lazy(() => import("@sap/csn-interop-renderer/react"));
 
 export default function TryPage(): ReactNode {
   return (
@@ -10,7 +12,7 @@ export default function TryPage(): ReactNode {
       <BrowserOnly fallback={<div>Loading renderer…</div>}>
         {() => (
           <Suspense fallback={<div>Loading renderer…</div>}>
-            <Renderer />
+            <CsnInteropRenderer examples={exampleDocuments} />
           </Suspense>
         )}
       </BrowserOnly>

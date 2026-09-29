@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.react.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationMap": false,
+    "outDir": "./dist/react",
+    "rootDir": "./src/components/csn-renderer"
+  }
+}
