@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "outDir": "./dist/react",
+    "outDir": "./dist/csn-renderer",
     "exactOptionalPropertyTypes": false,
     "noEmit": true
   },

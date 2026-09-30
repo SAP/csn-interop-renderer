@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Button } from "@open-resource-discovery/ui-components";
+import { Button, Input, Select, Tabs } from "@open-resource-discovery/ui-components";
 import RenderedOutput from "./renderedOutput";
 import styles from "./renderer.module.css";
 import type { CsnDocument, OutputFormat } from "./types";
@@ -42,6 +42,13 @@ const definitionGroups = [
   ["service", "Service definitions"],
   ["type", "Type definitions"],
 ] as const;
+
+const elementFilterItems = {
+  all: "All elements",
+  keys: "Keys",
+  associations: "Associations",
+  annotated: "Annotated",
+};
 
 const formatValue = (value: unknown): string => {
   if (typeof value === "string") return value;
@@ -279,7 +286,7 @@ export default function DefinitionExplorer({
           <span className={styles.PaneTitle}>CSN model</span>
           <strong>Definitions</strong>
         </div>
-        <input
+        <Input
           className={styles.DefinitionSearch}
           type="search"
           value={definitionQuery}
@@ -345,22 +352,20 @@ export default function DefinitionExplorer({
       </div>
       <section className={styles.DefinitionDetail}>
         <div className={styles.DetailHeader}>
-          <div>
+          <div className={styles.DetailTitle}>
             <span className={styles.PaneTitle}>{formatDefinitionKind(selectedDefinition?.kind)}</span>
             <h2>{selectedName}</h2>
           </div>
-          <div className={styles.DetailTabs} role="tablist" aria-label="Definition details">
-            {(["overview", "elements", "rendered"] as const).map((tab) => (
-              <button
-                key={tab}
-                className={view === tab ? styles.DetailTabActive : styles.DetailTab}
-                type="button"
-                role="tab"
-                aria-selected={view === tab}
-                onClick={() => setView(tab)}>
-                {tab === "rendered" ? "Preview" : tab[0].toUpperCase() + tab.slice(1)}
-              </button>
-            ))}
+          <div className={styles.DetailTabsContainer}>
+            <Tabs.Root value={view} onValueChange={(value) => setView(value as DetailView)}>
+              <Tabs.List className={styles.DetailTabs} aria-label="Definition details">
+                {(["overview", "elements", "rendered"] as const).map((tab) => (
+                  <Tabs.Tab key={tab} className={view === tab ? styles.DetailTabActive : styles.DetailTab} value={tab}>
+                    {tab === "rendered" ? "Preview" : tab[0].toUpperCase() + tab.slice(1)}
+                  </Tabs.Tab>
+                ))}
+              </Tabs.List>
+            </Tabs.Root>
           </div>
         </div>
         {view === "rendered" ? (
@@ -380,22 +385,42 @@ export default function DefinitionExplorer({
             {elements.length > 0 ? (
               <>
                 <div className={styles.ElementFilters}>
-                  <input
+                  <Input
+                    className={styles.ElementFilterInput}
                     type="search"
                     value={elementQuery}
                     placeholder="Filter elements"
                     aria-label="Filter elements"
                     onChange={(event) => setElementQuery(event.target.value)}
                   />
-                  <select
-                    value={elementFilter}
-                    aria-label="Filter elements by type"
-                    onChange={(event) => setElementFilter(event.target.value as ElementFilter)}>
-                    <option value="all">All elements</option>
-                    <option value="keys">Keys</option>
-                    <option value="associations">Associations</option>
-                    <option value="annotated">Annotated</option>
-                  </select>
+                  <div className={styles.ElementFilterSelect}>
+                    <Select.Root
+                      value={elementFilter}
+                      items={elementFilterItems}
+                      onValueChange={(value) => setElementFilter(value as ElementFilter)}>
+                      <Select.Trigger aria-label="Filter elements by type">
+                        <Select.Value />
+                        <Select.Icon />
+                      </Select.Trigger>
+                      <Select.Portal>
+                        <Select.Positioner
+                          side="bottom"
+                          align="start"
+                          sideOffset={4}
+                          alignItemWithTrigger={false}
+                          collisionAvoidance={{ side: "shift", align: "shift", fallbackAxisSide: "none" }}>
+                          <Select.Popup>
+                            {Object.entries(elementFilterItems).map(([itemValue, label]) => (
+                              <Select.Item key={itemValue} value={itemValue}>
+                                <Select.ItemIndicator />
+                                <Select.ItemText>{label}</Select.ItemText>
+                              </Select.Item>
+                            ))}
+                          </Select.Popup>
+                        </Select.Positioner>
+                      </Select.Portal>
+                    </Select.Root>
+                  </div>
                 </div>
                 {visibleElements.length > 0 ? (
                   <div className={styles.ElementList}>

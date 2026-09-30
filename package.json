@@ -20,14 +20,14 @@
       "import": "./dist/src/index.js",
       "default": "./dist/src/index.js"
     },
-    "./react": {
-      "types": "./dist/react/index.d.ts",
-      "import": "./dist/react/index.js",
-      "default": "./dist/react/index.js"
+    "./csn-renderer": {
+      "types": "./dist/csn-renderer/index.d.ts",
+      "import": "./dist/csn-renderer/index.js",
+      "default": "./dist/csn-renderer/index.js"
     },
-    "./react/styles": {
-      "types": "./dist/react/styles.d.ts",
-      "default": "./dist/react/csn-interop-renderer.css"
+    "./csn-renderer/styles": {
+      "types": "./dist/csn-renderer/styles.d.ts",
+      "default": "./dist/csn-renderer/csn-interop-renderer.css"
     },
     "./package.json": "./package.json"
   },
@@ -43,9 +43,9 @@
   "scripts": {
     "cli": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning ./cli/cli.js -i ./examples/Airline.json -o ./examples/out.md -r md",
     "prebuild": "rimraf ./dist",
-    "build": "npm run build:core && npm run build:react",
+    "build": "npm run build:core && npm run build:csn-renderer",
     "build:core": "tsc -p tsconfig.build.json",
-    "build:react": "vite build --config vite.config.react.ts && tsc -p tsconfig.react.build.json",
+    "build:csn-renderer": "vite build --config vite.config.csn-renderer.ts && tsc -p tsconfig.csn-renderer.build.json",
     "prepublishOnly": "npm run build",
     "test": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --ci --collectCoverage",
     "test:watch": "node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --watchAll",

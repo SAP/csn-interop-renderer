@@ -4,7 +4,7 @@ import businessPartner from "../../../../examples/BusinessPartner.json";
 import costCenter from "../../../../examples/CostCenter.json";
 import costCenterCombined from "../../../../examples/CostCenterCombined.json";
 import generalLedgerAccountLineItem from "../../../../examples/GeneralLedgerAccountLineItem.json";
-import type { ExampleDocument } from "@sap/csn-interop-renderer/react";
+import type { ExampleDocument } from "@sap/csn-interop-renderer/csn-renderer";
 
 export const exampleDocuments: readonly ExampleDocument[] = [
   { id: "airline", name: "Airline", data: airline },

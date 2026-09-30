@@ -12,7 +12,7 @@ export default defineConfig({
     lib: {
       entry: resolve(import.meta.dirname, "src/components/csn-renderer/index.ts"),
       formats: ["es"],
-      fileName: () => "react/index.js",
+      fileName: () => "csn-renderer/index.js",
     },
     rollupOptions: {
       external: [
@@ -31,7 +31,7 @@ export default defineConfig({
         "rehype-slug",
       ],
       output: {
-        assetFileNames: "react/[name][extname]",
+        assetFileNames: "csn-renderer/[name][extname]",
       },
     },
   },

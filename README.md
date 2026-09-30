@@ -6,13 +6,13 @@ Converts documents defined using [CSN Interoperability Specification](https://sa
 
 🌎 DOCUMENTATION: <https://sap.github.io/csn-interop-renderer/>
 
-## React component
+## CSN renderer component
 
-The interactive renderer is published as a React component and can be embedded in any React application. Import its stylesheet once, then render the component:
+The interactive renderer is published as a reusable component that can be embedded in any React application. Import its stylesheet once, then render the component:
 
 ```tsx
-import { CsnInteropRenderer } from "@sap/csn-interop-renderer/react";
-import "@sap/csn-interop-renderer/react/styles";
+import { CsnInteropRenderer } from "@sap/csn-interop-renderer/csn-renderer";
+import "@sap/csn-interop-renderer/csn-renderer/styles";
 
 export function CsnDocumentation(): React.ReactNode {
   return <CsnInteropRenderer />;
@@ -20,6 +20,48 @@ export function CsnDocumentation(): React.ReactNode {
 ```
 
 `CsnInteropRenderer` accepts an optional `examples` property for callers that want to offer their own sample CSN documents. The Docusaurus website is a demo consumer and supplies its sample documents through that property.
+
+### Theming
+
+The renderer uses `@open-resource-discovery/ui-components` and its public ORD CSS tokens. It does not set a brand palette itself. To apply an application theme, load your CSS after `@sap/csn-interop-renderer/csn-renderer/styles` and override the tokens on the renderer's `.ord-ui` root:
+
+```tsx
+export function ThemedCsnDocumentation(): React.ReactNode {
+  return (
+    <section className="csn-documentation">
+      <CsnInteropRenderer />
+    </section>
+  );
+}
+```
+
+```css
+.csn-documentation .ord-ui {
+  --ord-primary: #6750a4;
+  --ord-primary-foreground: #ffffff;
+  --ord-accent: #f3edf7;
+  --ord-border: #79747e;
+  --ord-radius: 0.5rem;
+}
+```
+
+See the `@open-resource-discovery/ui-components` documentation for the complete list of supported ORD tokens.
+
+For renderers that build themes at runtime, pass the same tokens through the `theme` property. They are applied directly to this renderer's `ThemeRoot` and therefore also reach portaled UI components:
+
+```tsx
+import type { CsnRendererTheme } from "@sap/csn-interop-renderer/csn-renderer";
+
+const theme: CsnRendererTheme = {
+  "--ord-primary": "#6750a4",
+  "--ord-primary-foreground": "#ffffff",
+  "--ord-radius": "0.5rem",
+};
+
+<CsnInteropRenderer theme={theme} />;
+```
+
+The renderer defaults to the light ORD theme. Pass `defaultTheme="dark"` or `defaultTheme="system"` when the host controls color mode.
 
 ## Support, Feedback, Contributing
 

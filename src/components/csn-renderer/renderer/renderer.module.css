@@ -1,22 +1,3 @@
-.OrdTheme {
-  /* Match the existing SAP-styled renderer while exposing ORD's public theme contract. */
-  --ord-background: #fff;
-  --ord-foreground: #32363a;
-  --ord-primary: #0a6ed1;
-  --ord-primary-foreground: #fff;
-  --ord-secondary: #f2f6fa;
-  --ord-secondary-foreground: #32363a;
-  --ord-muted: #f7f8fa;
-  --ord-muted-foreground: #6a6d70;
-  --ord-accent: #eef6fc;
-  --ord-accent-foreground: #32363a;
-  --ord-border: #89919a;
-  --ord-ring: #0a6ed1;
-  --ord-card: #fff;
-  --ord-card-foreground: #32363a;
-  --ord-radius: 0.25rem;
-}
-
 .Workspace {
   --pane-height: calc(100vh - 6rem);
   --editor-pane-width: 46%;
@@ -29,11 +10,11 @@
   min-height: calc(100vh - 64px);
   padding: 1rem;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #f7f8fa 0%, #f2f6fa 100%);
+  background: var(--ord-muted);
 }
 
 .Workspace[data-drag-active="true"] {
-  outline: 0.1875rem dashed #0a6ed1;
+  outline: 0.1875rem dashed var(--ord-ring);
   outline-offset: -0.5rem;
 }
 
@@ -48,23 +29,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0a6ed1;
+  color: var(--ord-primary);
   font-size: 1.125rem;
   font-weight: 700;
   text-align: center;
   pointer-events: none;
-  background: rgb(234 243 252 / 94%);
-  border: 0.1875rem dashed #0a6ed1;
-  border-radius: 0.5rem;
+  background: color-mix(in oklab, var(--ord-accent) 94%, transparent);
+  border: 0.1875rem dashed var(--ord-ring);
+  border-radius: var(--ord-radius);
 }
 
 .EditorPane {
   width: 46%;
   height: var(--pane-height);
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
+}
+
+.EditorPane[data-collapsed="true"] {
+  overflow: hidden;
 }
 
 .Workspace[data-explorer-visible="true"] .EditorPane {
@@ -84,16 +69,16 @@
 
 .Bar {
   height: 3rem;
-  background-color: #fff;
+  background-color: var(--ord-card);
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.375rem 0.875rem;
   width: 100%;
-  border: 1px solid #d9d9d9;
+  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
   border-bottom: 0;
-  border-radius: 0.5rem 0.5rem 0 0;
-  box-shadow: 0 0.125rem 0.5rem rgb(0 0 0 / 4%);
+  border-radius: var(--ord-radius) var(--ord-radius) 0 0;
+  box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 3%);
 }
 
 .BarItem {
@@ -104,7 +89,7 @@
 }
 
 .InputLabel {
-  color: #32363a;
+  color: var(--ord-foreground);
   font-size: 0.8125rem;
   font-weight: 700;
 }
@@ -115,8 +100,9 @@
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
+  text-align: center;
   border-color: var(--ord-border);
-  border-radius: 0.25rem;
+  border-radius: var(--ord-radius);
   box-shadow: none;
 }
 
@@ -127,7 +113,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   border-color: var(--ord-border);
-  border-radius: 0.25rem;
+  border-radius: var(--ord-radius);
   box-shadow: none;
 }
 
@@ -161,10 +147,10 @@
   width: min(100%, 38rem);
   padding: 2rem;
   text-align: center;
-  background: #fff;
-  border: 1px solid #d5dadd;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.3125rem 1.25rem 0 rgb(0 0 0 / 8%);
+  background: var(--ord-card);
+  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
+  border-radius: var(--ord-radius);
+  box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 6%);
 }
 
 .EmptyStateIcon {
@@ -174,7 +160,7 @@
 
 .EmptyStateAction {
   margin: 0;
-  color: #1d2d3e;
+  color: var(--ord-foreground);
   font-size: clamp(1rem, 2vw, 1.125rem);
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -192,13 +178,13 @@
   width: 100%;
   gap: 0.75rem;
   margin: 1.5rem 0 1rem;
-  color: #6a6d70;
+  color: var(--ord-muted-foreground);
 }
 
 .ExampleDivider::before,
 .ExampleDivider::after {
   height: 1px;
-  background: #d9d9d9;
+  background: var(--ord-border);
   content: "";
 }
 
@@ -222,8 +208,8 @@
   flex: 1;
   width: 100%;
   min-height: 0;
-  border: 1px solid #d9d9d9;
-  border-radius: 0 0 0.5rem 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
+  border-radius: 0 0 var(--ord-radius) var(--ord-radius);
   overflow: hidden;
 }
 
@@ -237,11 +223,11 @@
 
 .FormatSelect button {
   min-height: 2rem;
-  color: #32363a;
+  color: var(--ord-foreground);
   font-size: 0.8125rem;
-  background: #fff;
-  border-color: #89919a;
-  border-radius: 0.25rem;
+  background: var(--ord-background);
+  border-color: var(--ord-input);
+  border-radius: var(--ord-radius);
 }
 
 .RenderWrapper {
@@ -252,7 +238,7 @@
   overflow-y: scroll;
   padding: 1.25rem;
   color: var(--ord-foreground);
-  font-family: system-ui, sans-serif;
+  font-family: var(--ord-font-sans, inherit);
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -335,7 +321,7 @@
   color: var(--ord-foreground);
   font-size: 0.875em;
   background: var(--ord-muted);
-  border: 1px solid var(--ord-border);
+  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
   border-radius: calc(var(--ord-radius) / 2);
 }
 
@@ -443,19 +429,19 @@
 .Explorer {
   --definition-nav-width: 35%;
   display: grid;
-  grid-template-columns: minmax(13rem, var(--definition-nav-width)) 1.75rem minmax(0, 1fr);
+  grid-template-columns: minmax(13rem, var(--definition-nav-width)) 2.25rem minmax(0, 1fr);
   width: 54%;
   height: var(--pane-height);
   min-width: 0;
   overflow: hidden;
-  background: #fff;
-  border: 1px solid #d5dadd;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.375rem 1.25rem rgb(0 0 0 / 7%);
+  background: var(--ord-card);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+  box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 5%);
 }
 
 .Explorer[data-definition-nav-collapsed="true"] {
-  grid-template-columns: 0 1.75rem minmax(0, 1fr);
+  grid-template-columns: 0 2.25rem minmax(0, 1fr);
 }
 
 .Workspace[data-explorer-visible="true"] .Explorer {
@@ -472,7 +458,7 @@
 .ResizeHandle {
   position: relative;
   display: flex;
-  flex: 0 0 1.75rem;
+  flex: 0 0 2.25rem;
   align-items: center;
   justify-content: center;
   height: var(--pane-height);
@@ -484,13 +470,13 @@
 .ResizeHandle::before {
   width: 1px;
   align-self: stretch;
-  background: #d5dadd;
+  background: var(--ord-border);
   content: "";
 }
 
 .ResizeHandle:hover::before {
   width: 0.1875rem;
-  background: #0a6ed1;
+  background: var(--ord-primary);
 }
 
 .ResizeControls {
@@ -498,15 +484,40 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.375rem;
+}
+
+.ResizeToggle,
+.DefinitionResizeToggle {
+  width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  padding: 0;
+  color: var(--ord-muted-foreground);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1;
+  background: var(--ord-card);
+  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
+  border-radius: var(--ord-radius);
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 6%);
+}
+
+.ResizeToggle:hover,
+.DefinitionResizeToggle:hover {
+  color: var(--ord-primary);
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
 }
 
 .DefinitionNav {
+  --definition-item-inline-padding: 0.625rem;
+
   min-width: 0;
   overflow-y: auto;
   padding: 1rem;
-  border-right: 1px solid #d9d9d9;
-  background: linear-gradient(180deg, #fbfcfd 0%, #f6f8fa 100%);
+  background: var(--ord-card);
 }
 
 .Explorer[data-definition-nav-collapsed="true"] .DefinitionNav {
@@ -528,13 +539,13 @@
 .DefinitionResizeHandle::before {
   width: 1px;
   align-self: stretch;
-  background: #d5dadd;
+  background: var(--ord-border);
   content: "";
 }
 
 .DefinitionResizeHandle:hover::before {
   width: 0.1875rem;
-  background: #0a6ed1;
+  background: var(--ord-primary);
 }
 
 .DefinitionResizeToggle {
@@ -547,25 +558,25 @@
   flex-direction: column;
   gap: 0.15rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid var(--ord-border);
 }
 
 .NavHeading strong {
-  color: #32363a;
+  color: var(--ord-foreground);
   font-size: 1.125rem;
 }
 
 .DefinitionSearch,
-.ElementFilters input,
-.ElementFilters select {
+.ElementFilterInput,
+.ElementFilterSelect button {
   min-width: 0;
   height: 2rem;
   box-sizing: border-box;
-  color: #32363a;
+  color: var(--ord-foreground);
   font: inherit;
-  background: #fff;
-  border: 1px solid #89919a;
-  border-radius: 0.25rem;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-input);
+  border-radius: var(--ord-radius);
 }
 
 .DefinitionSearch {
@@ -574,16 +585,8 @@
   padding: 0 0.625rem;
 }
 
-.DefinitionSearch:focus,
-.ElementFilters input:focus,
-.ElementFilters select:focus {
-  border-color: #0a6ed1;
-  outline: 0.125rem solid rgb(10 110 209 / 20%);
-  outline-offset: -1px;
-}
-
 .PaneTitle {
-  color: #5b738b;
+  color: var(--ord-muted-foreground);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -602,19 +605,22 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0;
-  color: #5b738b;
+  padding: 0.5rem var(--definition-item-inline-padding);
+  color: var(--ord-foreground);
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
   text-align: left;
   cursor: pointer;
-  background: transparent;
+  background: var(--ord-muted);
   border: 0;
+  border-radius: calc(var(--ord-radius) / 1.5);
 }
 
 .DefinitionGroupToggle:hover {
-  color: #0a6ed1;
+  color: var(--ord-primary);
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-muted));
 }
 
 .DefinitionButton,
@@ -627,28 +633,28 @@
 
 .DefinitionButton,
 .DefinitionButtonActive {
-  padding: 0.55rem 0.625rem;
+  padding: 0.55rem var(--definition-item-inline-padding);
   overflow: hidden;
-  color: #32363a;
+  color: var(--ord-foreground);
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: var(--ord-radius);
 }
 
 .DefinitionButton:hover {
-  color: #0a6ed1;
-  background: #eef6fc;
+  color: var(--ord-primary);
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
 }
 
 .DefinitionButtonActive {
-  color: #0a6ed1;
+  color: var(--ord-primary);
   font-weight: 700;
-  background: #eaf3fc;
-  border-color: #8bc5f2;
-  box-shadow: inset 0.1875rem 0 #0a6ed1;
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+  border-color: transparent;
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
 }
 
 .DefinitionDetail {
@@ -657,6 +663,7 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  container-type: inline-size;
 }
 
 .DetailHeader {
@@ -665,39 +672,95 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 1.25rem 0;
-  background: #fff;
-  border-bottom: 1px solid #e1e7eb;
+  background: var(--ord-card);
+  border-bottom: 1px solid var(--ord-border);
+}
+
+.DetailTitle {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.DetailTitle .PaneTitle {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .DetailHeader h2 {
+  min-width: 0;
   max-width: 22rem;
-  margin: 0.25rem 0 0;
+  margin: 0;
   overflow: hidden;
-  color: #1d2d3e;
+  color: var(--ord-foreground);
   font-size: 1.375rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.DetailTabsContainer {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-bottom: 0.5rem;
+}
+
 .DetailTabs {
   display: flex;
-  align-self: stretch;
-  gap: 1rem;
+  gap: 0.35rem;
+}
+
+@container (max-width: 30rem) {
+  .DetailHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .DetailTabsContainer {
+    width: auto;
+    align-self: flex-end;
+    margin-left: auto;
+  }
+
+  .DetailTab,
+  .DetailTabActive {
+    flex: none;
+  }
 }
 
 .DetailTab,
 .DetailTabActive {
-  padding: 0 0.125rem 0.75rem;
-  color: #32363a;
+  min-height: 2rem;
+  padding: 0.375rem 0.625rem;
+  color: var(--ord-foreground);
+  font-size: 0.75rem;
+  font-weight: 600;
   background: transparent;
-  border: 0;
-  border-bottom: 0.1875rem solid transparent;
+  border: 1px solid transparent;
+  border-radius: var(--ord-radius);
+  box-shadow: none;
+}
+
+.DetailTab:hover {
+  color: var(--ord-primary);
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
 }
 
 .DetailTabActive {
-  color: #0a6ed1;
+  color: var(--ord-primary);
   font-weight: 700;
-  border-bottom-color: #0a6ed1;
+  background: color-mix(in oklab, var(--ord-primary) 18%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 60%, var(--ord-border));
+  box-shadow: inset 0 -0.1875rem var(--ord-primary);
+}
+
+.DetailTab:focus-visible,
+.DetailTabActive:focus-visible {
+  outline: 0.125rem solid var(--ord-ring);
+  outline-offset: 0.0625rem;
 }
 
 .DetailContent {
@@ -705,7 +768,7 @@
   min-height: 0;
   overflow-y: auto;
   padding: 1.5rem;
-  background: #fcfdfe;
+  background: var(--ord-background);
 }
 
 .DefinitionDetail > .RenderWrapper {
@@ -715,7 +778,7 @@
 
 .DetailContent h3 {
   margin: 1.25rem 0 0.75rem;
-  color: #32363a;
+  color: var(--ord-foreground);
   font-size: 1rem;
 }
 
@@ -726,11 +789,11 @@
 .DefinitionDescription {
   margin: 0;
   padding: 0.875rem 1rem;
-  color: #3f5f7d;
+  color: var(--ord-muted-foreground);
   line-height: 1.5;
-  background: #eef6fc;
-  border-left: 0.25rem solid #0a6ed1;
-  border-radius: 0 0.25rem 0.25rem 0;
+  background: var(--ord-accent);
+  border-left: 0.25rem solid var(--ord-primary);
+  border-radius: 0 var(--ord-radius) var(--ord-radius) 0;
 }
 
 .AnnotationList {
@@ -749,26 +812,26 @@
   padding: 0.875rem;
   text-align: left;
   cursor: pointer;
-  background: linear-gradient(135deg, #f5faff 0%, #fff 100%);
-  border: 1px solid #cfe7fa;
-  border-radius: 0.375rem;
-  box-shadow: 0 0.0625rem 0.25rem rgb(10 110 209 / 7%);
+  background: linear-gradient(135deg, var(--ord-accent) 0%, var(--ord-card) 100%);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+  box-shadow: 0 0.0625rem 0.25rem color-mix(in oklab, var(--ord-primary) 7%, transparent);
 }
 
 .AnnotationCard:hover {
-  border-color: #8bc5f2;
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
 }
 
 .AnnotationCardActive {
-  border-color: #0a6ed1;
-  box-shadow: inset 0.1875rem 0 #0a6ed1;
+  border-color: transparent;
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
 }
 
 .AnnotationKey {
   display: block;
   overflow-wrap: anywhere;
   color: var(--ord-primary);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -782,7 +845,7 @@
   padding: 0.5rem 0.625rem;
   overflow: auto;
   color: var(--ord-foreground);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
   font-size: 0.8125rem;
   line-height: 1.45;
   overflow-wrap: anywhere;
@@ -815,7 +878,7 @@
 
 .EmptySection {
   margin: 0.875rem 0 0;
-  color: #5b738b;
+  color: var(--ord-muted-foreground);
 }
 
 .PropertyCard,
@@ -828,9 +891,9 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
-  background: #fff;
-  border: 1px solid #e1e7eb;
-  border-radius: 0.25rem;
+  background: var(--ord-card);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
 }
 
 .PropertyList {
@@ -841,7 +904,7 @@
 
 .PropertyKey {
   color: var(--ord-primary);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
   font-size: 0.8125rem;
   font-weight: 600;
   overflow-wrap: anywhere;
@@ -851,7 +914,7 @@
   min-width: 0;
   padding: 0.375rem 0.5rem;
   color: var(--ord-foreground);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
   font-size: 0.8125rem;
   line-height: 1.4;
   overflow-wrap: anywhere;
@@ -880,14 +943,14 @@
 }
 
 .PropertyCard:hover {
-  border-color: #8bc5f2;
-  background: #f5faff;
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
 }
 
 .PropertyCardActive {
-  border-color: #0a6ed1;
-  background: #eaf3fc;
-  box-shadow: inset 0.1875rem 0 #0a6ed1;
+  border-color: transparent;
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
 }
 
 .CollapsibleSection,
@@ -897,7 +960,7 @@
 
 .CollapsibleSection summary,
 .PrivateProperties summary {
-  color: #1d2d3e;
+  color: var(--ord-foreground);
   font-weight: 700;
   cursor: pointer;
 }
@@ -914,12 +977,12 @@
   margin-bottom: 1rem;
 }
 
-.ElementFilters input {
+.ElementFilterInput {
   width: 100%;
   padding: 0 0.625rem;
 }
 
-.ElementFilters select {
+.ElementFilterSelect button {
   padding: 0 0.5rem;
 }
 
@@ -933,41 +996,45 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
-  border: 1px solid #d5dadd;
-  border-radius: 0.25rem;
-  background: #fff;
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+  background: var(--ord-card);
   box-shadow: 0 0.0625rem 0.25rem rgb(0 0 0 / 4%);
 }
 
 .ElementCard:hover {
-  border-color: #8bc5f2;
-  background: #f5faff;
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
 }
 
 .ElementCardActive {
-  border-color: #0a6ed1;
-  background: #eaf3fc;
-  box-shadow: inset 0.1875rem 0 #0a6ed1;
+  border-color: transparent;
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
 }
 
-.ElementCard strong {
-  color: #32363a;
+.ElementCard strong,
+.ElementCardActive strong {
+  color: var(--ord-foreground);
 }
 
-.ElementCard > span {
-  color: #5b738b;
+.ElementCard > span,
+.ElementCardActive > span {
+  color: var(--ord-muted-foreground);
 }
 
 .ElementCard small,
-.ElementCard p {
+.ElementCard p,
+.ElementCardActive small,
+.ElementCardActive p {
   grid-column: 1 / -1;
   margin: 0;
-  color: #5b738b;
+  color: var(--ord-muted-foreground);
 }
 
 .EmptyDetail {
   margin: 1.25rem;
-  color: #5b738b;
+  color: var(--ord-muted-foreground);
 }
 
 @media (max-width: 1200px) {
@@ -1029,7 +1096,7 @@
     padding: 0.75rem;
     overflow-x: auto;
     overflow-y: hidden;
-    border-bottom: 1px solid #d9d9d9;
+    border-bottom: 1px solid var(--ord-border);
   }
 }
 
@@ -1100,7 +1167,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     border-right: 0;
-    border-bottom: 1px solid #d9d9d9;
+    border-bottom: 1px solid var(--ord-border);
   }
 
   .NavHeading {
@@ -1137,9 +1204,14 @@
     max-width: calc(100vw - 3rem);
   }
 
+  .DetailTabsContainer {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
   .DetailTabs {
     width: 100%;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .DetailTab,
@@ -1157,12 +1229,14 @@
     gap: 0.25rem;
   }
 
-  .ElementCard {
+  .ElementCard,
+  .ElementCardActive {
     grid-template-columns: 1fr;
     gap: 0.25rem;
   }
 
-  .ElementCard > span {
+  .ElementCard > span,
+  .ElementCardActive > span {
     grid-row: 2;
   }
 

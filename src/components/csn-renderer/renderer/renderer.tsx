@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Button, SimpleSelect, ThemeRoot } from "@open-resource-discovery/ui-components";
+import { Button, Select, ThemeRoot, useTheme } from "@open-resource-discovery/ui-components";
 import Editor, { type OnChange, useMonaco } from "@monaco-editor/react";
 import styles from "./renderer.module.css";
 import { generateHtml, generateMarkdown, type AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
@@ -20,8 +20,22 @@ import type { CsnDocument, ExampleDocument, OutputFormat } from "./types";
 
 const emptyExamples: readonly ExampleDocument[] = [];
 
-interface Props {
+const outputFormatItems = {
+  "html": "HTML",
+  "markdown": "Markdown",
+  "web-component": "Web-Component",
+};
+
+export type CsnRendererTheme = Partial<Record<`--ord-${string}`, string>>;
+
+export interface CsnInteropRendererProps {
   examples?: readonly ExampleDocument[];
+  /** ORD token values applied to this renderer instance. */
+  theme?: CsnRendererTheme;
+  /** Class applied to the renderer's ThemeRoot. */
+  className?: string;
+  /** Initial ui-components color mode. */
+  defaultTheme?: "light" | "dark" | "system";
 }
 
 const exampleAnnotationLinkCallbacks: AnnotationLinkCallbacks = {
@@ -32,7 +46,84 @@ const exampleAnnotationLinkCallbacks: AnnotationLinkCallbacks = {
 
 type ShareStatus = "idle" | "copied" | "failed";
 
-export default function Renderer({ examples = emptyExamples }: Props): ReactNode {
+interface CsnEditorProps {
+  value: string;
+  onChange: OnChange;
+  defaultTheme: CsnInteropRendererProps["defaultTheme"];
+}
+
+function CsnEditor({ value, onChange, defaultTheme }: CsnEditorProps): ReactNode {
+  const { resolvedTheme, setTheme } = useTheme(defaultTheme);
+
+  // useTheme is not context-based, so mirror ThemeRoot's controlled theme here.
+  useEffect(() => {
+    setTheme(defaultTheme ?? "light");
+  }, [defaultTheme, setTheme]);
+
+  return (
+    <Editor
+      defaultLanguage="json"
+      theme={resolvedTheme === "dark" ? "vs-dark" : "vs"}
+      value={value}
+      options={{
+        automaticLayout: true,
+        lineNumbers: "on",
+        lineNumbersMinChars: 6,
+        minimap: {
+          enabled: false,
+        },
+        hover: {
+          delay: 500,
+          sticky: false,
+        },
+        tabSize: 2,
+      }}
+      onChange={onChange}
+    />
+  );
+}
+
+interface OutputFormatSelectProps {
+  value: OutputFormat;
+  onChange: (value: string) => void;
+}
+
+function OutputFormatSelect({ value, onChange }: OutputFormatSelectProps): ReactNode {
+  return (
+    <div className={styles.FormatSelect}>
+      <Select.Root value={value} items={outputFormatItems} onValueChange={(nextValue) => onChange(String(nextValue))}>
+        <Select.Trigger aria-label="Output format">
+          <Select.Value />
+          <Select.Icon />
+        </Select.Trigger>
+        <Select.Portal>
+          <Select.Positioner
+            side="bottom"
+            align="start"
+            sideOffset={4}
+            alignItemWithTrigger={false}
+            collisionAvoidance={{ side: "shift", align: "shift", fallbackAxisSide: "none" }}>
+            <Select.Popup>
+              {Object.entries(outputFormatItems).map(([itemValue, label]) => (
+                <Select.Item key={itemValue} value={itemValue}>
+                  <Select.ItemIndicator />
+                  <Select.ItemText>{label}</Select.ItemText>
+                </Select.Item>
+              ))}
+            </Select.Popup>
+          </Select.Positioner>
+        </Select.Portal>
+      </Select.Root>
+    </div>
+  );
+}
+
+export default function Renderer({
+  examples = emptyExamples,
+  theme,
+  className,
+  defaultTheme = "light",
+}: CsnInteropRendererProps): ReactNode {
   const [csnStringValue, setCsnStringValue] = useState<string>("");
   const [outputFormat, setOutputFormat] = useState<OutputFormat>("html");
   const [renderedContent, setRenderedContent] = useState<string>("");
@@ -357,7 +448,7 @@ export default function Renderer({ examples = emptyExamples }: Props): ReactNode
   };
 
   return (
-    <ThemeRoot className={styles.OrdTheme}>
+    <ThemeRoot className={className} style={theme as CSSProperties | undefined} defaultTheme={defaultTheme}>
       <div
         ref={workspaceRef}
         className={styles.Workspace}
@@ -372,17 +463,7 @@ export default function Renderer({ examples = emptyExamples }: Props): ReactNode
           <div className={styles.Bar}>
             <span className={styles.InputLabel}>CSN JSON</span>
             <div className={styles.BarSpacer}>
-              <SimpleSelect
-                className={styles.FormatSelect}
-                aria-label="Output format"
-                items={[
-                  { value: "html", label: "HTML" },
-                  { value: "markdown", label: "Markdown" },
-                  { value: "web-component", label: "Web-Component" },
-                ]}
-                value={outputFormat}
-                onChange={onFormatChange}
-              />
+              <OutputFormatSelect value={outputFormat} onChange={onFormatChange} />
             </div>
             <div className={styles.BarItem}>
               <Button
@@ -410,24 +491,7 @@ export default function Renderer({ examples = emptyExamples }: Props): ReactNode
             </div>
           </div>
           <div className={styles.Editor}>
-            <Editor
-              defaultLanguage="json"
-              value={csnStringValue}
-              options={{
-                automaticLayout: true,
-                lineNumbers: "on",
-                lineNumbersMinChars: 6,
-                minimap: {
-                  enabled: false,
-                },
-                hover: {
-                  delay: 500,
-                  sticky: false,
-                },
-                tabSize: 2,
-              }}
-              onChange={onChange}
-            />
+            <CsnEditor value={csnStringValue} onChange={onChange} defaultTheme={defaultTheme} />
           </div>
         </div>
         {hasRenderedResult ? (
@@ -447,6 +511,7 @@ export default function Renderer({ examples = emptyExamples }: Props): ReactNode
               <div className={styles.ResizeControls}>
                 {!isExplorerCollapsed && (
                   <Button
+                    className={styles.ResizeToggle}
                     variant="ghost"
                     size="icon"
                     aria-label={isEditorCollapsed ? "Show CSN JSON editor" : "Hide CSN JSON editor"}
@@ -457,6 +522,7 @@ export default function Renderer({ examples = emptyExamples }: Props): ReactNode
                 )}
                 {!isEditorCollapsed && (
                   <Button
+                    className={styles.ResizeToggle}
                     variant="ghost"
                     size="icon"
                     aria-label={isExplorerCollapsed ? "Show Explorer" : "Hide Explorer"}

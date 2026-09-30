@@ -22,6 +22,27 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
+/* The demo intentionally uses SAP colors. The published renderer does not
+ * define ORD tokens, so embedding applications remain free to theme it. */
+.csn-interop-renderer-demo .ord-ui {
+  --ord-background: #fff;
+  --ord-foreground: #32363a;
+  --ord-primary: #0a6ed1;
+  --ord-primary-foreground: #fff;
+  --ord-secondary: #f7f8f9;
+  --ord-secondary-foreground: #32363a;
+  --ord-muted: #f5f6f7;
+  --ord-muted-foreground: #6a6d70;
+  --ord-accent: #eef6fc;
+  --ord-accent-foreground: #32363a;
+  --ord-border: #d5dadd;
+  --ord-input: #c5ccd3;
+  --ord-ring: #0a6ed1;
+  --ord-card: #fff;
+  --ord-card-foreground: #32363a;
+  --ord-radius: 0.5rem;
+}
+
 [data-theme="dark"] {
   --ifm-color-primary: #4d9fff;
   --ifm-color-primary-dark: #3391ff;
@@ -34,6 +55,25 @@
   --ifm-color-primary-contrast-foreground: #e5f1ff;
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Keep the demo renderer in step with Docusaurus color-mode changes. */
+[data-theme="dark"] .csn-interop-renderer-demo .ord-ui {
+  --ord-background: #1d232a;
+  --ord-foreground: #eaecee;
+  --ord-primary: #4db1ff;
+  --ord-primary-foreground: #001b2e;
+  --ord-secondary: #29313a;
+  --ord-secondary-foreground: #eaecee;
+  --ord-muted: #29313a;
+  --ord-muted-foreground: #a9b4be;
+  --ord-accent: #223548;
+  --ord-accent-foreground: #eaecee;
+  --ord-border: #4b5966;
+  --ord-input: #5b6976;
+  --ord-ring: #4db1ff;
+  --ord-card: #242b33;
+  --ord-card-foreground: #eaecee;
 }
 
 .section-collapse-toggle {
