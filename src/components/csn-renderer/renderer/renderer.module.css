@@ -117,6 +117,10 @@
   box-shadow: none;
 }
 
+.MobileEditorToggle {
+  display: none;
+}
+
 .ResetEditorButton:hover,
 .ShareButton:hover {
   color: var(--ord-primary);
@@ -215,19 +219,6 @@
 
 .BarSpacer {
   flex-grow: 1;
-}
-
-.FormatSelect {
-  width: 8rem;
-}
-
-.FormatSelect button {
-  min-height: 2rem;
-  color: var(--ord-foreground);
-  font-size: 0.8125rem;
-  background: var(--ord-background);
-  border-color: var(--ord-input);
-  border-radius: var(--ord-radius);
 }
 
 .RenderWrapper {
@@ -713,21 +704,59 @@
   gap: 0.35rem;
 }
 
-@container (max-width: 30rem) {
-  .DetailHeader {
-    align-items: flex-start;
-    flex-direction: column;
+.DetailViewMenu {
+  display: none;
+  flex: 0 0 auto;
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.DetailViewMenu button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0;
+  color: var(--ord-foreground);
+  font: inherit;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-input);
+  border-radius: var(--ord-radius);
+}
+
+.DetailViewMenu button:hover {
+  color: var(--ord-primary);
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+}
+
+.DetailViewMenu button:focus-visible {
+  outline: 0.125rem solid var(--ord-ring);
+  outline-offset: 0.125rem;
+}
+
+.DetailViewMenu svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: currentColor;
+}
+
+@container (max-width: 42rem) {
+  .DetailTabsContainer {
+    display: none;
   }
 
-  .DetailTabsContainer {
-    width: auto;
-    align-self: flex-end;
+  .DetailViewMenu {
+    display: block;
     margin-left: auto;
   }
+}
 
-  .DetailTab,
-  .DetailTabActive {
-    flex: none;
+@container (max-width: 30rem) {
+  .DetailHeader h2 {
+    font-size: clamp(0.875rem, 6cqi, 1.125rem);
+    letter-spacing: -0.01em;
   }
 }
 
@@ -1119,6 +1148,23 @@
     display: none;
   }
 
+  .MobileEditorToggle {
+    display: inline-flex;
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] {
+    height: auto;
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] .Bar {
+    border-bottom: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
+    border-radius: var(--ord-radius);
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] .Editor {
+    display: none;
+  }
+
   .BarSpacer {
     flex: 1 1 auto;
     min-width: 0;
@@ -1129,10 +1175,6 @@
     width: auto;
     height: auto;
     gap: 0.25rem;
-  }
-
-  .FormatSelect {
-    width: clamp(5.5rem, 32vw, 8rem);
   }
 
   .Editor {
@@ -1194,29 +1236,12 @@
   }
 
   .DetailHeader {
-    align-items: flex-start;
-    flex-direction: column;
     gap: 0.75rem;
     padding: 1rem 1rem 0;
   }
 
   .DetailHeader h2 {
     max-width: calc(100vw - 3rem);
-  }
-
-  .DetailTabsContainer {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .DetailTabs {
-    width: 100%;
-    gap: 0.5rem;
-  }
-
-  .DetailTab,
-  .DetailTabActive {
-    flex: 1;
   }
 
   .DetailContent {

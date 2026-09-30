@@ -1,9 +1,7 @@
 import type { ExplorerState } from "./definitionExplorer.js";
-import type { OutputFormat } from "./types.js";
 
 export interface SharedExampleState {
   exampleId: string;
-  format: OutputFormat;
   explorer: Partial<ExplorerState>;
 }
 
@@ -16,12 +14,10 @@ export const readSharedExampleState = (search: string): SharedExampleState | nul
 
   const view = searchParams.get("tab");
   const section = searchParams.get("section");
-  const format = searchParams.get("format");
   const previewRow = searchParams.get("previewRow");
 
   return {
     exampleId,
-    format: format === "html" || format === "markdown" || format === "web-component" ? format : "html",
     explorer: {
       definition: searchParams.get("definition") ?? undefined,
       view: view === "overview" || view === "elements" || view === "rendered" ? view : undefined,
@@ -37,10 +33,10 @@ export const readSharedExampleState = (search: string): SharedExampleState | nul
 export const writeSharedExampleState = (search: string, exampleId: string, state: Partial<ExplorerState>): string => {
   const searchParams = new URLSearchParams(search);
   searchParams.set("example", exampleId);
+  searchParams.delete("format");
 
   for (const [key, value] of Object.entries({
     definition: state.definition,
-    format: state.format,
     tab: state.view,
     section: state.section,
     item: state.item,

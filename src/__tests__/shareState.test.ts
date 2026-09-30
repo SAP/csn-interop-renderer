@@ -6,17 +6,16 @@ import {
 
 describe("shared example state", () => {
   test("returns null when no example is selected", () => {
-    expect(readSharedExampleState("format=markdown")).toBeNull();
+    expect(readSharedExampleState("tab=rendered")).toBeNull();
   });
 
   test("reads valid URL state and ignores invalid values", () => {
     expect(
       readSharedExampleState(
-        "example=airline&format=markdown&definition=Service&tab=elements&section=properties&item=title&element=ID&previewRow=table-2-row-4",
+        "example=airline&definition=Service&tab=elements&section=properties&item=title&element=ID&previewRow=table-2-row-4",
       ),
     ).toEqual({
       exampleId: "airline",
-      format: "markdown",
       explorer: {
         definition: "Service",
         view: "elements",
@@ -27,9 +26,8 @@ describe("shared example state", () => {
       },
     });
 
-    expect(readSharedExampleState("example=airline&format=pdf&tab=unknown&previewRow=row-1")).toEqual({
+    expect(readSharedExampleState("example=airline&tab=unknown&previewRow=row-1")).toEqual({
       exampleId: "airline",
-      format: "html",
       explorer: {
         definition: undefined,
         view: undefined,

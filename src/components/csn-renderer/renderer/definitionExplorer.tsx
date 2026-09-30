@@ -28,7 +28,6 @@ type ElementFilter = "all" | "keys" | "associations" | "annotated";
 
 export interface ExplorerState {
   definition: string;
-  format: OutputFormat;
   view: DetailView;
   section: DetailSection;
   item: string;
@@ -37,10 +36,10 @@ export interface ExplorerState {
 }
 
 const definitionGroups = [
-  ["context", "Context definitions"],
-  ["entity", "Entity definitions"],
   ["service", "Service definitions"],
   ["type", "Type definitions"],
+  ["entity", "Entity definitions"],
+  ["context", "Context definitions"],
 ] as const;
 
 const elementFilterItems = {
@@ -48,6 +47,12 @@ const elementFilterItems = {
   keys: "Keys",
   associations: "Associations",
   annotated: "Annotated",
+};
+
+const detailViewItems = {
+  overview: "Overview",
+  elements: "Elements",
+  rendered: "Preview",
 };
 
 const formatValue = (value: unknown): string => {
@@ -136,14 +141,13 @@ export default function DefinitionExplorer({
   useEffect(() => {
     onStateChange?.({
       definition: selectedName,
-      format,
       view,
       section: activeSection,
       item: selectedItem,
       element: selectedElement,
       previewRow: selectedPreviewRow,
     });
-  }, [activeSection, format, onStateChange, selectedElement, selectedItem, selectedName, selectedPreviewRow, view]);
+  }, [activeSection, onStateChange, selectedElement, selectedItem, selectedName, selectedPreviewRow, view]);
 
   useEffect(() => {
     const targetId =
@@ -165,11 +169,18 @@ export default function DefinitionExplorer({
     : [];
   const properties = selectedDefinition
     ? Object.entries(selectedDefinition).filter(
-        ([key]) => !key.startsWith("@") && !key.startsWith("__") && !["elements", "doc"].includes(key),
+        ([key]) => !key.startsWith("@") && !key.startsWith("__") && !["kind", "elements", "doc"].includes(key),
       )
     : [];
   const privateProperties = selectedDefinition
     ? Object.entries(selectedDefinition).filter(([key]) => key.startsWith("__"))
+    : [];
+  const isServiceDefinition = selectedDefinition?.kind === "service";
+  const serviceDetailViewItems = isServiceDefinition
+    ? { ...detailViewItems, elements: "Exposed entities" }
+    : detailViewItems;
+  const exposedEntities = isServiceDefinition
+    ? definitions.filter(([name, definition]) => definition.kind === "entity" && name.startsWith(`${selectedName}.`))
     : [];
   const elements = selectedDefinition?.elements ? Object.entries(selectedDefinition.elements) : [];
   const visibleElements = elements.filter(([name, element]) => {
@@ -361,11 +372,46 @@ export default function DefinitionExplorer({
               <Tabs.List className={styles.DetailTabs} aria-label="Definition details">
                 {(["overview", "elements", "rendered"] as const).map((tab) => (
                   <Tabs.Tab key={tab} className={view === tab ? styles.DetailTabActive : styles.DetailTab} value={tab}>
-                    {tab === "rendered" ? "Preview" : tab[0].toUpperCase() + tab.slice(1)}
+                    {tab === "rendered"
+                      ? "Preview"
+                      : tab === "elements" && isServiceDefinition
+                        ? "Exposed entities"
+                        : tab[0].toUpperCase() + tab.slice(1)}
                   </Tabs.Tab>
                 ))}
               </Tabs.List>
             </Tabs.Root>
+          </div>
+          <div className={styles.DetailViewMenu}>
+            <Select.Root
+              value={view}
+              items={serviceDetailViewItems}
+              onValueChange={(value) => setView(value as DetailView)}>
+              <Select.Trigger aria-label="Definition details">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <circle cx="5" cy="12" r="1.5" />
+                  <circle cx="12" cy="12" r="1.5" />
+                  <circle cx="19" cy="12" r="1.5" />
+                </svg>
+              </Select.Trigger>
+              <Select.Portal>
+                <Select.Positioner
+                  side="bottom"
+                  align="end"
+                  sideOffset={4}
+                  alignItemWithTrigger={false}
+                  collisionAvoidance={{ side: "shift", align: "shift", fallbackAxisSide: "none" }}>
+                  <Select.Popup>
+                    {Object.entries(serviceDetailViewItems).map(([itemValue, label]) => (
+                      <Select.Item key={itemValue} value={itemValue}>
+                        <Select.ItemIndicator />
+                        <Select.ItemText>{label}</Select.ItemText>
+                      </Select.Item>
+                    ))}
+                  </Select.Popup>
+                </Select.Positioner>
+              </Select.Portal>
+            </Select.Root>
           </div>
         </div>
         {view === "rendered" ? (
@@ -381,8 +427,32 @@ export default function DefinitionExplorer({
           )
         ) : view === "elements" ? (
           <div className={styles.DetailContent}>
-            <h3>Elements</h3>
-            {elements.length > 0 ? (
+            <h3>{isServiceDefinition ? "Exposed entities" : "Elements"}</h3>
+            {isServiceDefinition ? (
+              exposedEntities.length > 0 ? (
+                <div className={styles.ElementList}>
+                  {exposedEntities.map(([name, definition]) => {
+                    const label = definition["@EndUserText.label"];
+                    return (
+                      <button
+                        key={name}
+                        className={styles.ElementCard}
+                        type="button"
+                        onClick={() => {
+                          selectDefinition(name);
+                          setView("overview");
+                        }}>
+                        <strong>{name}</strong>
+                        <span>Entity</span>
+                        {typeof label === "string" && <small>{label}</small>}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className={styles.EmptyDetail}>This service exposes no entities.</p>
+              )
+            ) : elements.length > 0 ? (
               <>
                 <div className={styles.ElementFilters}>
                   <Input

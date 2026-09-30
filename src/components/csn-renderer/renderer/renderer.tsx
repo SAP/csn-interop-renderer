@@ -9,22 +9,16 @@ import {
   useRef,
   useState,
 } from "react";
-import { Button, Select, ThemeRoot, useTheme } from "@open-resource-discovery/ui-components";
+import { Button, ThemeRoot, useTheme } from "@open-resource-discovery/ui-components";
 import Editor, { type OnChange, useMonaco } from "@monaco-editor/react";
 import styles from "./renderer.module.css";
-import { generateHtml, generateMarkdown, type AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
+import { generateHtml, type AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
 import DefinitionExplorer, { type ExplorerState } from "./definitionExplorer";
 import { clearSharedExampleState, readSharedExampleState, writeSharedExampleState } from "./shareState";
 import SidebarContent from "./sidebarContent";
 import type { CsnDocument, ExampleDocument, OutputFormat } from "./types";
 
 const emptyExamples: readonly ExampleDocument[] = [];
-
-const outputFormatItems = {
-  "html": "HTML",
-  "markdown": "Markdown",
-  "web-component": "Web-Component",
-};
 
 export type CsnRendererTheme = Partial<Record<`--ord-${string}`, string>>;
 
@@ -83,41 +77,6 @@ function CsnEditor({ value, onChange, defaultTheme }: CsnEditorProps): ReactNode
   );
 }
 
-interface OutputFormatSelectProps {
-  value: OutputFormat;
-  onChange: (value: string) => void;
-}
-
-function OutputFormatSelect({ value, onChange }: OutputFormatSelectProps): ReactNode {
-  return (
-    <div className={styles.FormatSelect}>
-      <Select.Root value={value} items={outputFormatItems} onValueChange={(nextValue) => onChange(String(nextValue))}>
-        <Select.Trigger aria-label="Output format">
-          <Select.Value />
-          <Select.Icon />
-        </Select.Trigger>
-        <Select.Portal>
-          <Select.Positioner
-            side="bottom"
-            align="start"
-            sideOffset={4}
-            alignItemWithTrigger={false}
-            collisionAvoidance={{ side: "shift", align: "shift", fallbackAxisSide: "none" }}>
-            <Select.Popup>
-              {Object.entries(outputFormatItems).map(([itemValue, label]) => (
-                <Select.Item key={itemValue} value={itemValue}>
-                  <Select.ItemIndicator />
-                  <Select.ItemText>{label}</Select.ItemText>
-                </Select.Item>
-              ))}
-            </Select.Popup>
-          </Select.Positioner>
-        </Select.Portal>
-      </Select.Root>
-    </div>
-  );
-}
-
 export default function Renderer({
   examples = emptyExamples,
   theme,
@@ -125,7 +84,7 @@ export default function Renderer({
   defaultTheme = "light",
 }: CsnInteropRendererProps): ReactNode {
   const [csnStringValue, setCsnStringValue] = useState<string>("");
-  const [outputFormat, setOutputFormat] = useState<OutputFormat>("html");
+  const outputFormat: OutputFormat = "html";
   const [renderedContent, setRenderedContent] = useState<string>("");
   const [isRendering, setIsRendering] = useState<boolean>(false);
   const [error, setError] = useState<unknown>(null);
@@ -145,7 +104,7 @@ export default function Renderer({
   const monaco = useMonaco();
 
   const generateContent = useCallback(
-    async (input: string, format: OutputFormat): Promise<void> => {
+    async (input: string): Promise<void> => {
       if (!input) return;
 
       const requestId = ++renderRequestRef.current;
@@ -154,21 +113,9 @@ export default function Renderer({
 
       try {
         const parsedInput = JSON.parse(input);
-        let content: string;
-
-        switch (format) {
-          case "markdown":
-            content = await generateMarkdown(parsedInput);
-            break;
-          case "html":
-            content = await generateHtml(parsedInput, {
-              annotationLinkCallbacks: exampleAnnotationLinkCallbacks,
-            });
-            break;
-          case "web-component":
-            content = JSON.stringify(parsedInput, null, 2);
-            break;
-        }
+        const content = await generateHtml(parsedInput, {
+          annotationLinkCallbacks: exampleAnnotationLinkCallbacks,
+        });
 
         if (renderRequestRef.current === requestId) {
           setRenderedDocument(parsedInput);
@@ -201,13 +148,19 @@ export default function Renderer({
   }, [monaco]);
 
   useEffect(() => {
+    if (window.matchMedia("(max-width: 600px)").matches) {
+      setIsEditorCollapsed(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (!csnStringValue) return;
 
-    const timeout = window.setTimeout(() => void generateContent(csnStringValue, outputFormat), 350);
+    const timeout = window.setTimeout(() => void generateContent(csnStringValue), 350);
     return (): void => {
       window.clearTimeout(timeout);
     };
-  }, [csnStringValue, generateContent, outputFormat]);
+  }, [csnStringValue, generateContent]);
 
   const writeShareUrl = useCallback((exampleId: string, state: Partial<ExplorerState>): void => {
     if (typeof window === "undefined") return;
@@ -250,20 +203,16 @@ export default function Renderer({
     [clearShareUrl],
   );
 
-  const onFormatChange = useCallback((value: string): void => {
-    setOutputFormat(value as OutputFormat);
-  }, []);
-
   const onTryExampleClick = useCallback(
     (example: ExampleDocument): void => {
       setRenderedContent("");
       setRenderedDocument(null);
       setError(null);
       setActiveExample(example);
-      writeShareUrl(example.id, { format: outputFormat });
+      writeShareUrl(example.id, {});
       setCsnStringValue(JSON.stringify(example.data, null, "\t"));
     },
-    [outputFormat, writeShareUrl],
+    [writeShareUrl],
   );
 
   const onStartOverClick = useCallback((): void => {
@@ -437,7 +386,6 @@ export default function Renderer({
 
     const input = JSON.stringify(example.data, null, "\t");
     setActiveExample(example);
-    setOutputFormat(sharedExampleState.format);
     setCsnStringValue(input);
   }, [examples, sharedExampleState]);
 
@@ -462,9 +410,12 @@ export default function Renderer({
         <div className={styles.EditorPane} data-collapsed={isEditorCollapsed} style={editorPaneStyle}>
           <div className={styles.Bar}>
             <span className={styles.InputLabel}>CSN JSON</span>
-            <div className={styles.BarSpacer}>
-              <OutputFormatSelect value={outputFormat} onChange={onFormatChange} />
-            </div>
+            <div className={styles.BarSpacer} />
+            {hasRenderedResult && (
+              <Button className={styles.MobileEditorToggle} variant="outline" size="sm" onClick={toggleEditorPane}>
+                {isEditorCollapsed ? "Show JSON" : "Hide JSON"}
+              </Button>
+            )}
             <div className={styles.BarItem}>
               <Button
                 className={styles.ResetEditorButton}
