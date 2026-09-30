@@ -177,7 +177,7 @@ export default function DefinitionExplorer({
     : [];
   const isServiceDefinition = selectedDefinition?.kind === "service";
   const serviceDetailViewItems = isServiceDefinition
-    ? { ...detailViewItems, elements: "Exposed entities" }
+    ? { ...detailViewItems, elements: "Exposed Entities" }
     : detailViewItems;
   const exposedEntities = isServiceDefinition
     ? definitions.filter(([name, definition]) => definition.kind === "entity" && name.startsWith(`${selectedName}.`))
@@ -375,7 +375,7 @@ export default function DefinitionExplorer({
                     {tab === "rendered"
                       ? "Preview"
                       : tab === "elements" && isServiceDefinition
-                        ? "Exposed entities"
+                        ? "Exposed Entities"
                         : tab[0].toUpperCase() + tab.slice(1)}
                   </Tabs.Tab>
                 ))}
@@ -427,7 +427,7 @@ export default function DefinitionExplorer({
           )
         ) : view === "elements" ? (
           <div className={styles.DetailContent}>
-            <h3>{isServiceDefinition ? "Exposed entities" : "Elements"}</h3>
+            <h3>{isServiceDefinition ? "Exposed Entities" : "Elements"}</h3>
             {isServiceDefinition ? (
               exposedEntities.length > 0 ? (
                 <div className={styles.ElementList}>
@@ -565,22 +565,26 @@ export default function DefinitionExplorer({
                 Properties
               </summary>
               <div className={styles.PropertyList}>
-                {properties.map(([key, value]) => (
-                  <button
-                    key={key}
-                    id={`csn-item-properties-${encodeURIComponent(key)}`}
-                    className={selectedItem === key ? styles.PropertyCardActive : styles.PropertyCard}
-                    type="button"
-                    onClick={() => selectInspectorItem("properties", key)}>
-                    <span className={styles.PropertyKey}>{key}</span>
-                    <span
-                      className={styles.PropertyValue}
-                      data-value-type={getValueType(value)}
-                      title={formatValue(value)}>
-                      {formatValue(value)}
-                    </span>
-                  </button>
-                ))}
+                {properties.length > 0 ? (
+                  properties.map(([key, value]) => (
+                    <button
+                      key={key}
+                      id={`csn-item-properties-${encodeURIComponent(key)}`}
+                      className={selectedItem === key ? styles.PropertyCardActive : styles.PropertyCard}
+                      type="button"
+                      onClick={() => selectInspectorItem("properties", key)}>
+                      <span className={styles.PropertyKey}>{key}</span>
+                      <span
+                        className={styles.PropertyValue}
+                        data-value-type={getValueType(value)}
+                        title={formatValue(value)}>
+                        {formatValue(value)}
+                      </span>
+                    </button>
+                  ))
+                ) : (
+                  <p className={styles.EmptySection}>No properties</p>
+                )}
               </div>
             </details>
             {privateProperties.length > 0 && (
