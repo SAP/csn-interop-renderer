@@ -68,7 +68,7 @@ const config: Config = {
         },
         {
           label: "Try Out",
-          to: "/try",
+          to: "/try?reset",
         },
         {
           href: "https://github.com/SAP/csn-interop-renderer",

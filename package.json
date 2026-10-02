@@ -66,10 +66,7 @@
     "dompurify": "3.4.15",
     "marked": "18.0.6",
     "marked-gfm-heading-id": "4.1.4",
-    "monaco-editor": "0.56.0",
-    "react-markdown": "10.1.0",
-    "rehype-raw": "7.0.0",
-    "rehype-slug": "6.0.0"
+    "monaco-editor": "0.56.0"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

@@ -16,7 +16,7 @@ import { generateHtml, type AnnotationLinkCallbacks } from "@sap/csn-interop-ren
 import DefinitionExplorer, { type ExplorerState } from "./definitionExplorer";
 import { clearSharedExampleState, readSharedExampleState, writeSharedExampleState } from "./shareState";
 import SidebarContent from "./sidebarContent";
-import type { CsnDocument, ExampleDocument, OutputFormat } from "./types";
+import type { CsnDocument, ExampleDocument } from "./types";
 
 const emptyExamples: readonly ExampleDocument[] = [];
 
@@ -24,6 +24,8 @@ export type CsnRendererTheme = Partial<Record<`--ord-${string}`, string>>;
 
 export interface CsnInteropRendererProps {
   examples?: readonly ExampleDocument[];
+  /** Custom links for annotation values in the generated preview. */
+  annotationLinkCallbacks?: AnnotationLinkCallbacks;
   /** ORD token values applied to this renderer instance. */
   theme?: CsnRendererTheme;
   /** Class applied to the renderer's ThemeRoot. */
@@ -31,12 +33,6 @@ export interface CsnInteropRendererProps {
   /** Initial ui-components color mode. */
   defaultTheme?: "light" | "dark" | "system";
 }
-
-const exampleAnnotationLinkCallbacks: AnnotationLinkCallbacks = {
-  "@EntityRelationship.entityType": () => "https://example.com/",
-  "@ODM.entityName": () => "https://example.com/",
-  "@ODM.oidReference.entityName": () => "https://example.com/",
-};
 
 type ShareStatus = "idle" | "copied" | "failed";
 
@@ -79,12 +75,12 @@ function CsnEditor({ value, onChange, defaultTheme }: CsnEditorProps): ReactNode
 
 export default function Renderer({
   examples = emptyExamples,
+  annotationLinkCallbacks,
   theme,
   className,
   defaultTheme = "light",
 }: CsnInteropRendererProps): ReactNode {
   const [csnStringValue, setCsnStringValue] = useState<string>("");
-  const outputFormat: OutputFormat = "html";
   const [renderedContent, setRenderedContent] = useState<string>("");
   const [isRendering, setIsRendering] = useState<boolean>(false);
   const [error, setError] = useState<unknown>(null);
@@ -114,7 +110,7 @@ export default function Renderer({
       try {
         const parsedInput = JSON.parse(input);
         const content = await generateHtml(parsedInput, {
-          annotationLinkCallbacks: exampleAnnotationLinkCallbacks,
+          annotationLinkCallbacks,
         });
 
         if (renderRequestRef.current === requestId) {
@@ -132,7 +128,7 @@ export default function Renderer({
         }
       }
     },
-    [examples],
+    [annotationLinkCallbacks, examples],
   );
 
   useEffect(() => {
@@ -486,7 +482,6 @@ export default function Renderer({
             </div>
             <DefinitionExplorer
               document={renderedDocument}
-              format={outputFormat}
               renderedContent={renderedContent}
               initialState={
                 sharedExampleState !== null && sharedExampleState.exampleId === activeExample?.id

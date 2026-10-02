@@ -1,5 +1,3 @@
-export type OutputFormat = "markdown" | "html" | "web-component";
-
 export interface CsnDefinition {
   kind?: string;
   doc?: string;

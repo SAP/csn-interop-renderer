@@ -12,11 +12,10 @@ import {
 import { Button, Input, Select, Tabs } from "@open-resource-discovery/ui-components";
 import RenderedOutput from "./renderedOutput";
 import styles from "./renderer.module.css";
-import type { CsnDocument, OutputFormat } from "./types";
+import type { CsnDocument } from "./types";
 
 interface Props {
   document: CsnDocument;
-  format: OutputFormat;
   renderedContent: string;
   initialState?: Partial<ExplorerState>;
   onStateChange?: (state: ExplorerState) => void;
@@ -99,16 +98,21 @@ const formatDefinitionKind = (kind: string | undefined): string => {
   return `${kind[0].toUpperCase()}${kind.slice(1)} definition`;
 };
 
+const resolveDetailView = (kind: string | undefined, requestedView: DetailView | undefined): DetailView =>
+  kind === "type" && requestedView === "elements" ? "overview" : (requestedView ?? "overview");
+
 export default function DefinitionExplorer({
   document,
-  format,
   renderedContent,
   initialState,
   onStateChange,
 }: Props): ReactNode {
   const definitions = useMemo(() => Object.entries(document.definitions ?? {}), [document]);
-  const [selectedName, setSelectedName] = useState(initialState?.definition ?? definitions[0]?.[0] ?? "");
-  const [view, setView] = useState<DetailView>(initialState?.view ?? "overview");
+  const initialDefinitionName = initialState?.definition ?? "";
+  const [selectedName, setSelectedName] = useState(initialDefinitionName);
+  const [view, setView] = useState<DetailView>(() =>
+    resolveDetailView(document.definitions?.[initialDefinitionName]?.kind, initialState?.view),
+  );
   const [activeSection, setActiveSection] = useState<DetailSection>(initialState?.section ?? "annotations");
   const [selectedItem, setSelectedItem] = useState(initialState?.item ?? "");
   const [selectedElement, setSelectedElement] = useState(initialState?.element ?? "");
@@ -126,12 +130,9 @@ export default function DefinitionExplorer({
   useEffect(() => {
     const definitionExists =
       initialState?.definition !== undefined && document.definitions?.[initialState.definition] !== undefined;
-    setSelectedName(
-      definitionExists && initialState?.definition !== undefined
-        ? initialState.definition
-        : (definitions[0]?.[0] ?? ""),
-    );
-    setView(initialState?.view ?? "overview");
+    const nextSelectedName = definitionExists && initialState?.definition !== undefined ? initialState.definition : "";
+    setSelectedName(nextSelectedName);
+    setView(resolveDetailView(document.definitions?.[nextSelectedName]?.kind, initialState?.view));
     setActiveSection(initialState?.section ?? "annotations");
     setSelectedItem(initialState?.item ?? "");
     setSelectedElement(initialState?.element ?? "");
@@ -176,9 +177,17 @@ export default function DefinitionExplorer({
     ? Object.entries(selectedDefinition).filter(([key]) => key.startsWith("__"))
     : [];
   const isServiceDefinition = selectedDefinition?.kind === "service";
-  const serviceDetailViewItems = isServiceDefinition
-    ? { ...detailViewItems, elements: "Exposed Entities" }
-    : detailViewItems;
+  const isTypeDefinition = selectedDefinition?.kind === "type";
+  const availableDetailViews = isTypeDefinition
+    ? (["overview", "rendered"] as const)
+    : (["overview", "elements", "rendered"] as const);
+  const availableDetailViewItems = isTypeDefinition
+    ? { overview: detailViewItems.overview, rendered: detailViewItems.rendered }
+    : isServiceDefinition
+      ? { ...detailViewItems, elements: "Exposed Entities" }
+      : detailViewItems;
+  const currentDetailViewLabel =
+    view === "elements" && isServiceDefinition ? "Exposed Entities" : detailViewItems[view];
   const exposedEntities = isServiceDefinition
     ? definitions.filter(([name, definition]) => definition.kind === "entity" && name.startsWith(`${selectedName}.`))
     : [];
@@ -213,8 +222,13 @@ export default function DefinitionExplorer({
 
   const selectDefinition = (name: string): void => {
     setSelectedName(name);
+    setView("overview");
+    setActiveSection("annotations");
     setSelectedItem("");
     setSelectedElement("");
+    setSelectedPreviewRow("");
+    setElementQuery("");
+    setElementFilter("all");
   };
 
   const selectInspectorItem = (section: DetailSection, item: string): void => {
@@ -364,60 +378,72 @@ export default function DefinitionExplorer({
       <section className={styles.DefinitionDetail}>
         <div className={styles.DetailHeader}>
           <div className={styles.DetailTitle}>
-            <span className={styles.PaneTitle}>{formatDefinitionKind(selectedDefinition?.kind)}</span>
-            <h2>{selectedName}</h2>
+            <span className={styles.PaneTitle}>
+              {selectedDefinition ? formatDefinitionKind(selectedDefinition.kind) : "CSN model"}
+            </span>
+            <h2>{selectedName || "Select a definition"}</h2>
           </div>
-          <div className={styles.DetailTabsContainer}>
-            <Tabs.Root value={view} onValueChange={(value) => setView(value as DetailView)}>
-              <Tabs.List className={styles.DetailTabs} aria-label="Definition details">
-                {(["overview", "elements", "rendered"] as const).map((tab) => (
-                  <Tabs.Tab key={tab} className={view === tab ? styles.DetailTabActive : styles.DetailTab} value={tab}>
-                    {tab === "rendered"
-                      ? "Preview"
-                      : tab === "elements" && isServiceDefinition
-                        ? "Exposed Entities"
-                        : tab[0].toUpperCase() + tab.slice(1)}
-                  </Tabs.Tab>
-                ))}
-              </Tabs.List>
-            </Tabs.Root>
-          </div>
-          <div className={styles.DetailViewMenu}>
-            <Select.Root
-              value={view}
-              items={serviceDetailViewItems}
-              onValueChange={(value) => setView(value as DetailView)}>
-              <Select.Trigger aria-label="Definition details">
-                <svg aria-hidden="true" viewBox="0 0 24 24">
-                  <circle cx="5" cy="12" r="1.5" />
-                  <circle cx="12" cy="12" r="1.5" />
-                  <circle cx="19" cy="12" r="1.5" />
-                </svg>
-              </Select.Trigger>
-              <Select.Portal>
-                <Select.Positioner
-                  side="bottom"
-                  align="end"
-                  sideOffset={4}
-                  alignItemWithTrigger={false}
-                  collisionAvoidance={{ side: "shift", align: "shift", fallbackAxisSide: "none" }}>
-                  <Select.Popup>
-                    {Object.entries(serviceDetailViewItems).map(([itemValue, label]) => (
-                      <Select.Item key={itemValue} value={itemValue}>
-                        <Select.ItemIndicator />
-                        <Select.ItemText>{label}</Select.ItemText>
-                      </Select.Item>
+          {selectedDefinition !== undefined && (
+            <>
+              <div className={styles.DetailTabsContainer}>
+                <Tabs.Root value={view} onValueChange={(value) => setView(value as DetailView)}>
+                  <Tabs.List className={styles.DetailTabs} aria-label="Definition details">
+                    {availableDetailViews.map((tab) => (
+                      <Tabs.Tab
+                        key={tab}
+                        className={view === tab ? styles.DetailTabActive : styles.DetailTab}
+                        value={tab}>
+                        {tab === "rendered"
+                          ? "Preview"
+                          : tab === "elements" && isServiceDefinition
+                            ? "Exposed Entities"
+                            : tab[0].toUpperCase() + tab.slice(1)}
+                      </Tabs.Tab>
                     ))}
-                  </Select.Popup>
-                </Select.Positioner>
-              </Select.Portal>
-            </Select.Root>
-          </div>
+                  </Tabs.List>
+                </Tabs.Root>
+              </div>
+              <div className={styles.DetailViewMenu}>
+                <Select.Root
+                  value={view}
+                  items={availableDetailViewItems}
+                  onValueChange={(value) => setView(value as DetailView)}>
+                  <Select.Trigger aria-label={`Select definition view; current: ${currentDetailViewLabel}`}>
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <circle cx="5" cy="12" r="1.5" />
+                      <circle cx="12" cy="12" r="1.5" />
+                      <circle cx="19" cy="12" r="1.5" />
+                    </svg>
+                  </Select.Trigger>
+                  <Select.Portal>
+                    <Select.Positioner
+                      side="bottom"
+                      align="end"
+                      sideOffset={4}
+                      alignItemWithTrigger={false}
+                      collisionAvoidance={{ side: "shift", align: "shift", fallbackAxisSide: "none" }}>
+                      <Select.Popup>
+                        {Object.entries(availableDetailViewItems).map(([itemValue, label]) => (
+                          <Select.Item key={itemValue} value={itemValue}>
+                            <Select.ItemIndicator />
+                            <Select.ItemText>{label}</Select.ItemText>
+                          </Select.Item>
+                        ))}
+                      </Select.Popup>
+                    </Select.Positioner>
+                  </Select.Portal>
+                </Select.Root>
+              </div>
+            </>
+          )}
         </div>
-        {view === "rendered" ? (
+        {selectedDefinition === undefined ? (
+          <div className={styles.DetailContent}>
+            <p className={styles.EmptyDetail}>Select a definition to inspect its details.</p>
+          </div>
+        ) : view === "rendered" ? (
           renderedContent ? (
             <RenderedOutput
-              format={format}
               content={renderedContent}
               selectedRowId={selectedPreviewRow}
               onRowSelect={setSelectedPreviewRow}
@@ -440,7 +466,6 @@ export default function DefinitionExplorer({
                         type="button"
                         onClick={() => {
                           selectDefinition(name);
-                          setView("overview");
                         }}>
                         <strong>{name}</strong>
                         <span>Entity</span>

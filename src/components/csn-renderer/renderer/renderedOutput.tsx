@@ -1,19 +1,14 @@
 import DOMPurify from "dompurify";
 import { type KeyboardEvent, type MouseEvent, type ReactNode, useEffect, useRef } from "react";
-import Markdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
 import styles from "./renderer.module.css";
-import type { OutputFormat } from "./types";
 
 interface Props {
-  format: OutputFormat;
   content: string;
   selectedRowId?: string;
   onRowSelect?: (rowId: string) => void;
 }
 
-export default function RenderedOutput({ format, content, selectedRowId, onRowSelect }: Props): ReactNode {
+export default function RenderedOutput({ content, selectedRowId, onRowSelect }: Props): ReactNode {
   const sanitizedContent = DOMPurify.sanitize(content);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -50,7 +45,7 @@ export default function RenderedOutput({ format, content, selectedRowId, onRowSe
       });
     });
     return (): void => window.cancelAnimationFrame(frame);
-  }, [content, format, selectedRowId]);
+  }, [content, selectedRowId]);
 
   const selectRow = (target: EventTarget | null): void => {
     if (!(target instanceof Element)) return;
@@ -72,28 +67,10 @@ export default function RenderedOutput({ format, content, selectedRowId, onRowSe
     onKeyDown,
   };
 
-  switch (format) {
-    case "markdown":
-      return (
-        <div {...wrapperProps}>
-          <p className={styles.PreviewHint}>Select a table row, then use Share to copy a link to that row.</p>
-          <Markdown rehypePlugins={[rehypeRaw, rehypeSlug]}>{sanitizedContent}</Markdown>
-        </div>
-      );
-    case "html":
-      return (
-        <div {...wrapperProps}>
-          <p className={styles.PreviewHint}>Select a table row, then use Share to copy a link to that row.</p>
-          <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
-        </div>
-      );
-    case "web-component":
-      return (
-        <div {...wrapperProps}>
-          <csn-renderer source={content} />
-        </div>
-      );
-    default:
-      throw new Error(`Unsupported output format: ${format}`);
-  }
+  return (
+    <div {...wrapperProps}>
+      <p className={styles.PreviewHint}>Select a table row, then use Share to copy a link to that row.</p>
+      <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+    </div>
+  );
 }

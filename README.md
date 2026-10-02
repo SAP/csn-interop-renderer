@@ -19,7 +19,7 @@ export function CsnDocumentation(): React.ReactNode {
 }
 ```
 
-`CsnInteropRenderer` accepts an optional `examples` property for callers that want to offer their own sample CSN documents. The Docusaurus website is a demo consumer and supplies its sample documents through that property.
+`CsnInteropRenderer` accepts optional `examples` and `annotationLinkCallbacks` properties. The latter uses the same callback contract as `generateHtml`, allowing the host application to supply its own annotation links. The Docusaurus website is a demo consumer and supplies its sample documents and demo links through these properties.
 
 ### Theming
 
