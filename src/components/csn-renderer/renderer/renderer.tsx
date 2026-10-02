@@ -10,10 +10,11 @@ import {
   useState,
 } from "react";
 import { Button, ThemeRoot, useTheme } from "@open-resource-discovery/ui-components";
-import Editor, { type OnChange, useMonaco } from "@monaco-editor/react";
+import Editor, { type OnChange, type OnMount, useMonaco } from "@monaco-editor/react";
 import styles from "./renderer.module.css";
 import { generateHtml, type AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
 import DefinitionExplorer, { type ExplorerState } from "./definitionExplorer";
+import { findDefinitionLine } from "./definitionNavigation";
 import { clearSharedExampleState, readSharedExampleState, writeSharedExampleState } from "./shareState";
 import SidebarContent from "./sidebarContent";
 import type { CsnDocument, ExampleDocument } from "./types";
@@ -39,10 +40,11 @@ type ShareStatus = "idle" | "copied" | "failed";
 interface CsnEditorProps {
   value: string;
   onChange: OnChange;
+  onMount: OnMount;
   defaultTheme: CsnInteropRendererProps["defaultTheme"];
 }
 
-function CsnEditor({ value, onChange, defaultTheme }: CsnEditorProps): ReactNode {
+function CsnEditor({ value, onChange, onMount, defaultTheme }: CsnEditorProps): ReactNode {
   const { resolvedTheme, setTheme } = useTheme(defaultTheme);
 
   // useTheme is not context-based, so mirror ThemeRoot's controlled theme here.
@@ -69,6 +71,7 @@ function CsnEditor({ value, onChange, defaultTheme }: CsnEditorProps): ReactNode
         tabSize: 2,
       }}
       onChange={onChange}
+      onMount={onMount}
     />
   );
 }
@@ -97,7 +100,12 @@ export default function Renderer({
   const renderRequestRef = useRef(0);
   const dragDepthRef = useRef(0);
   const workspaceRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<Parameters<OnMount>[0] | null>(null);
   const monaco = useMonaco();
+
+  const onEditorMount = useCallback<OnMount>((editor) => {
+    editorRef.current = editor;
+  }, []);
 
   const generateContent = useCallback(
     async (input: string): Promise<void> => {
@@ -290,10 +298,17 @@ export default function Renderer({
     const nextWidth = ((clientX - left) / width) * 100;
     if (nextWidth < 14) {
       setIsEditorCollapsed(true);
+      setIsExplorerCollapsed(false);
+      return;
+    }
+    if (nextWidth > 86) {
+      setIsEditorCollapsed(false);
+      setIsExplorerCollapsed(true);
       return;
     }
 
     setIsEditorCollapsed(false);
+    setIsExplorerCollapsed(false);
     setEditorWidth(Math.min(Math.max(nextWidth, 22), 72));
   }, []);
 
@@ -320,11 +335,13 @@ export default function Renderer({
     if (event.key === "Home") {
       event.preventDefault();
       setIsEditorCollapsed(true);
+      setIsExplorerCollapsed(false);
       return;
     }
     if (event.key === "End") {
       event.preventDefault();
       setIsEditorCollapsed(false);
+      setIsExplorerCollapsed(false);
       setEditorWidth(72);
       return;
     }
@@ -332,6 +349,7 @@ export default function Renderer({
 
     event.preventDefault();
     setIsEditorCollapsed(false);
+    setIsExplorerCollapsed(false);
     setEditorWidth((currentWidth) =>
       Math.min(Math.max(currentWidth + (event.key === "ArrowLeft" ? -widthStep : widthStep), 22), 72),
     );
@@ -340,13 +358,6 @@ export default function Renderer({
   const toggleEditorPane = useCallback((): void => {
     setIsEditorCollapsed((collapsed) => {
       if (!collapsed) setIsExplorerCollapsed(false);
-      return !collapsed;
-    });
-  }, []);
-
-  const toggleExplorerPane = useCallback((): void => {
-    setIsExplorerCollapsed((collapsed) => {
-      if (!collapsed) setIsEditorCollapsed(false);
       return !collapsed;
     });
   }, []);
@@ -367,11 +378,18 @@ export default function Renderer({
 
   const onExplorerStateChange = useCallback(
     (state: ExplorerState): void => {
+      if (state.definition) {
+        const definitionLine = findDefinitionLine(csnStringValue, state.definition);
+        if (definitionLine !== undefined) {
+          editorRef.current?.revealLineInCenter(definitionLine);
+        }
+      }
+
       if (activeExample !== null) {
         writeShareUrl(activeExample.id, state);
       }
     },
-    [activeExample, writeShareUrl],
+    [activeExample, csnStringValue, writeShareUrl],
   );
 
   useEffect(() => {
@@ -438,7 +456,7 @@ export default function Renderer({
             </div>
           </div>
           <div className={styles.Editor}>
-            <CsnEditor value={csnStringValue} onChange={onChange} defaultTheme={defaultTheme} />
+            <CsnEditor value={csnStringValue} onChange={onChange} onMount={onEditorMount} defaultTheme={defaultTheme} />
           </div>
         </div>
         {hasRenderedResult ? (
@@ -454,35 +472,10 @@ export default function Renderer({
               tabIndex={0}
               onPointerDown={onResizeStart}
               onPointerMove={onResizeMove}
-              onKeyDown={onResizeKeyDown}>
-              <div className={styles.ResizeControls}>
-                {!isExplorerCollapsed && (
-                  <Button
-                    className={styles.ResizeToggle}
-                    variant="ghost"
-                    size="icon"
-                    aria-label={isEditorCollapsed ? "Show CSN JSON editor" : "Hide CSN JSON editor"}
-                    onPointerDown={(event) => event.stopPropagation()}
-                    onClick={toggleEditorPane}>
-                    {isEditorCollapsed ? "›" : "‹"}
-                  </Button>
-                )}
-                {!isEditorCollapsed && (
-                  <Button
-                    className={styles.ResizeToggle}
-                    variant="ghost"
-                    size="icon"
-                    aria-label={isExplorerCollapsed ? "Show Explorer" : "Hide Explorer"}
-                    onPointerDown={(event) => event.stopPropagation()}
-                    onClick={toggleExplorerPane}>
-                    {isExplorerCollapsed ? "‹" : "›"}
-                  </Button>
-                )}
-              </div>
-            </div>
+              onKeyDown={onResizeKeyDown}
+            />
             <DefinitionExplorer
               document={renderedDocument}
-              renderedContent={renderedContent}
               initialState={
                 sharedExampleState !== null && sharedExampleState.exampleId === activeExample?.id
                   ? sharedExampleState.explorer

@@ -12,20 +12,10 @@ export const readSharedExampleState = (search: string): SharedExampleState | nul
   const exampleId = searchParams.get("example");
   if (exampleId === null) return null;
 
-  const view = searchParams.get("tab");
-  const section = searchParams.get("section");
-  const previewRow = searchParams.get("previewRow");
-
   return {
     exampleId,
     explorer: {
       definition: searchParams.get("definition") ?? undefined,
-      view: view === "overview" || view === "elements" || view === "rendered" ? view : undefined,
-      section:
-        section === "annotations" || section === "properties" || section === "private-properties" ? section : undefined,
-      item: searchParams.get("item") ?? undefined,
-      element: searchParams.get("element") ?? undefined,
-      previewRow: previewRow !== null && /^table-\d+-row-\d+$/.test(previewRow) ? previewRow : undefined,
     },
   };
 };
@@ -33,21 +23,14 @@ export const readSharedExampleState = (search: string): SharedExampleState | nul
 export const writeSharedExampleState = (search: string, exampleId: string, state: Partial<ExplorerState>): string => {
   const searchParams = new URLSearchParams(search);
   searchParams.set("example", exampleId);
-  searchParams.delete("format");
+  for (const key of ["format", "tab", "section", "item", "element", "previewRow"]) {
+    searchParams.delete(key);
+  }
 
-  for (const [key, value] of Object.entries({
-    definition: state.definition,
-    tab: state.view,
-    section: state.section,
-    item: state.item,
-    element: state.element,
-    previewRow: state.previewRow,
-  })) {
-    if (value) {
-      searchParams.set(key, value);
-    } else {
-      searchParams.delete(key);
-    }
+  if (state.definition) {
+    searchParams.set("definition", state.definition);
+  } else {
+    searchParams.delete("definition");
   }
 
   return searchParams.toString();

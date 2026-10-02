@@ -12,29 +12,19 @@ describe("shared example state", () => {
   test("reads valid URL state and ignores invalid values", () => {
     expect(
       readSharedExampleState(
-        "example=airline&definition=Service&tab=elements&section=properties&item=title&element=ID&previewRow=table-2-row-4",
+        "example=airline&definition=Service&tab=elements&section=properties&item=title&element=ID",
       ),
     ).toEqual({
       exampleId: "airline",
       explorer: {
         definition: "Service",
-        view: "elements",
-        section: "properties",
-        item: "title",
-        element: "ID",
-        previewRow: "table-2-row-4",
       },
     });
 
-    expect(readSharedExampleState("example=airline&tab=unknown&previewRow=row-1")).toEqual({
+    expect(readSharedExampleState("example=airline&tab=unknown")).toEqual({
       exampleId: "airline",
       explorer: {
         definition: undefined,
-        view: undefined,
-        section: undefined,
-        item: undefined,
-        element: undefined,
-        previewRow: undefined,
       },
     });
   });
@@ -43,9 +33,8 @@ describe("shared example state", () => {
     expect(
       writeSharedExampleState("theme=dark&format=markdown", "airline", {
         definition: "Service",
-        view: "rendered",
       }),
-    ).toBe("theme=dark&example=airline&definition=Service&tab=rendered");
+    ).toBe("theme=dark&example=airline&definition=Service");
   });
 
   test("clears only shared state parameters", () => {

@@ -221,206 +221,10 @@
   flex-grow: 1;
 }
 
-.RenderWrapper {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  overflow-x: auto;
-  overflow-y: scroll;
-  padding: 1.25rem;
-  color: var(--ord-foreground);
-  font-family: var(--ord-font-sans, inherit);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.RenderWrapper > :first-child {
-  margin-top: 0;
-}
-
-.PreviewHint {
-  margin: 0 0 1rem;
-  padding: 0.625rem 0.75rem;
-  color: var(--ord-muted-foreground);
-  font-size: 0.8125rem;
-  line-height: 1.45;
-  background: var(--ord-muted);
-  border-left: 0.1875rem solid var(--ord-primary);
-  border-radius: 0 var(--ord-radius) var(--ord-radius) 0;
-}
-
-.RenderWrapper :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--ord-foreground);
-  font-family: inherit;
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.RenderWrapper h1 {
-  margin: 0 0 1.5rem;
-  padding-bottom: 0.75rem;
-  font-size: 2rem;
-  border-bottom: 1px solid var(--ord-border);
-}
-
-.RenderWrapper h2 {
-  margin: 2.25rem 0 1rem;
-  padding-bottom: 0.5rem;
-  font-size: 1.5rem;
-  border-bottom: 1px solid var(--ord-border);
-}
-
-.RenderWrapper h3 {
-  margin: 1.75rem 0 0.75rem;
-  font-size: 1.25rem;
-}
-
-.RenderWrapper h4 {
-  margin: 1.5rem 0 0.5rem;
-  font-size: 1.0625rem;
-}
-
-.RenderWrapper :is(p, ul, ol, blockquote, pre, table) {
-  margin: 1rem 0;
-}
-
-.RenderWrapper :is(ul, ol) {
-  padding-left: 1.5rem;
-}
-
-.RenderWrapper ul {
-  list-style: disc;
-}
-
-.RenderWrapper ol {
-  list-style: decimal;
-}
-
-.RenderWrapper li + li {
-  margin-top: 0.375rem;
-}
-
-.RenderWrapper a {
-  color: var(--ord-primary);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.RenderWrapper :not(pre) > code {
-  padding: 0.125rem 0.3125rem;
-  color: var(--ord-foreground);
-  font-size: 0.875em;
-  background: var(--ord-muted);
-  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
-  border-radius: calc(var(--ord-radius) / 2);
-}
-
-.RenderWrapper pre {
-  padding: 1rem;
-  overflow: auto;
-  color: var(--ord-foreground);
-  background: var(--ord-muted);
-  border: 1px solid var(--ord-border);
-  border-radius: var(--ord-radius);
-}
-
-.RenderWrapper blockquote {
-  padding: 0.75rem 1rem;
-  color: var(--ord-muted-foreground);
-  background: var(--ord-muted);
-  border-left: 0.25rem solid var(--ord-primary);
-}
-
-.RenderWrapper hr {
-  margin: 2rem 0;
-  border: 0;
-  border-top: 1px solid var(--ord-border);
-}
-
-/* Rendered documentation is external HTML/Markdown; keep its tabular data readable
- * without relying on the host documentation theme. */
-.RenderWrapper table {
-  width: 100%;
-  min-width: 42rem;
-  margin: 1.25rem 0;
-  overflow: hidden;
-  color: var(--ord-foreground);
-  border: 1px solid var(--ord-border);
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: var(--ord-radius);
-  background: var(--ord-card);
-  box-shadow: 0 0.125rem 0.5rem rgb(0 0 0 / 4%);
-}
-
-.RenderWrapper th,
-.RenderWrapper td {
-  padding: 0.75rem 0.875rem;
-  vertical-align: top;
-  text-align: left;
-  border-right: 1px solid var(--ord-border);
-  border-bottom: 1px solid var(--ord-border);
-}
-
-.RenderWrapper th:last-child,
-.RenderWrapper td:last-child {
-  border-right: 0;
-}
-
-.RenderWrapper tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-.RenderWrapper th {
-  position: sticky;
-  top: -1.25rem;
-  z-index: 1;
-  color: var(--ord-foreground);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  background: var(--ord-secondary);
-}
-
-.RenderWrapper tbody tr:nth-child(even) {
-  background: var(--ord-muted);
-}
-
-.RenderWrapper tbody tr:hover {
-  background: var(--ord-accent);
-}
-
-.RenderWrapper tbody tr[data-preview-row-id] {
-  cursor: pointer;
-}
-
-.RenderWrapper tbody tr[data-preview-row-id]:focus-visible {
-  outline: 0.125rem solid var(--ord-ring);
-  outline-offset: -0.125rem;
-}
-
-.RenderWrapper tbody tr[data-preview-row-selected] {
-  background: var(--ord-accent);
-  box-shadow: inset 0.25rem 0 var(--ord-primary);
-}
-
-.RenderWrapper td {
-  min-width: 9rem;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-.RenderWrapper td :is(code, pre) {
-  max-width: 100%;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
 .Explorer {
   --definition-nav-width: 35%;
   display: grid;
-  grid-template-columns: minmax(13rem, var(--definition-nav-width)) 2.25rem minmax(0, 1fr);
+  grid-template-columns: minmax(13rem, var(--definition-nav-width)) 0.75rem minmax(0, 1fr);
   width: 54%;
   height: var(--pane-height);
   min-width: 0;
@@ -432,7 +236,7 @@
 }
 
 .Explorer[data-definition-nav-collapsed="true"] {
-  grid-template-columns: 0 2.25rem minmax(0, 1fr);
+  grid-template-columns: 0 0.75rem minmax(0, 1fr);
 }
 
 .Workspace[data-explorer-visible="true"] .Explorer {
@@ -447,11 +251,8 @@
 }
 
 .ResizeHandle {
-  position: relative;
   display: flex;
-  flex: 0 0 2.25rem;
-  align-items: center;
-  justify-content: center;
+  flex: 0 0 0.75rem;
   height: var(--pane-height);
   cursor: col-resize;
   touch-action: none;
@@ -470,38 +271,6 @@
   background: var(--ord-primary);
 }
 
-.ResizeControls {
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-}
-
-.ResizeToggle,
-.DefinitionResizeToggle {
-  width: 2rem;
-  min-width: 2rem;
-  height: 2rem;
-  min-height: 2rem;
-  padding: 0;
-  color: var(--ord-muted-foreground);
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 1;
-  background: var(--ord-card);
-  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
-  border-radius: var(--ord-radius);
-  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 6%);
-}
-
-.ResizeToggle:hover,
-.DefinitionResizeToggle:hover {
-  color: var(--ord-primary);
-  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
-  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
-}
-
 .DefinitionNav {
   --definition-item-inline-padding: 0.625rem;
 
@@ -518,10 +287,7 @@
 }
 
 .DefinitionResizeHandle {
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: col-resize;
   touch-action: none;
   user-select: none;
@@ -539,11 +305,6 @@
   background: var(--ord-primary);
 }
 
-.DefinitionResizeToggle {
-  position: absolute;
-  z-index: 1;
-}
-
 .NavHeading {
   display: flex;
   flex-direction: column;
@@ -557,9 +318,7 @@
   font-size: 1.125rem;
 }
 
-.DefinitionSearch,
-.ElementFilterInput,
-.ElementFilterSelect button {
+.DefinitionSearch {
   min-width: 0;
   height: 2rem;
   box-sizing: border-box;
@@ -615,9 +374,7 @@
 }
 
 .DefinitionButton,
-.DefinitionButtonActive,
-.DetailTab,
-.DetailTabActive {
+.DefinitionButtonActive {
   font: inherit;
   cursor: pointer;
 }
@@ -631,7 +388,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   background: transparent;
-  border: 1px solid transparent;
+  border: 1px solid var(--ord-border);
   border-radius: var(--ord-radius);
 }
 
@@ -644,7 +401,7 @@
   color: var(--ord-primary);
   font-weight: 700;
   background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
-  border-color: transparent;
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
   box-shadow: inset 0.1875rem 0 var(--ord-primary);
 }
 
@@ -692,104 +449,11 @@
   white-space: nowrap;
 }
 
-.DetailTabsContainer {
-  flex: 0 0 auto;
-  align-self: flex-end;
-  margin-left: auto;
-  margin-bottom: 0.5rem;
-}
-
-.DetailTabs {
-  display: flex;
-  gap: 0.35rem;
-}
-
-.DetailViewMenu {
-  display: none;
-  flex: 0 0 auto;
-  align-self: flex-end;
-  margin-bottom: 0.5rem;
-}
-
-.DetailViewMenu button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2rem;
-  min-height: 2rem;
-  padding: 0;
-  color: var(--ord-foreground);
-  font: inherit;
-  background: var(--ord-background);
-  border: 1px solid var(--ord-input);
-  border-radius: var(--ord-radius);
-}
-
-.DetailViewMenu button:hover {
-  color: var(--ord-primary);
-  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
-  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
-}
-
-.DetailViewMenu button:focus-visible {
-  outline: 0.125rem solid var(--ord-ring);
-  outline-offset: 0.125rem;
-}
-
-.DetailViewMenu svg {
-  width: 1.125rem;
-  height: 1.125rem;
-  fill: currentColor;
-}
-
-@container (max-width: 42rem) {
-  .DetailTabsContainer {
-    display: none;
-  }
-
-  .DetailViewMenu {
-    display: block;
-    margin-left: auto;
-  }
-}
-
 @container (max-width: 30rem) {
   .DetailHeader h2 {
     font-size: clamp(0.875rem, 6cqi, 1.125rem);
     letter-spacing: -0.01em;
   }
-}
-
-.DetailTab,
-.DetailTabActive {
-  min-height: 2rem;
-  padding: 0.375rem 0.625rem;
-  color: var(--ord-foreground);
-  font-size: 0.75rem;
-  font-weight: 600;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--ord-radius);
-  box-shadow: none;
-}
-
-.DetailTab:hover {
-  color: var(--ord-primary);
-  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
-}
-
-.DetailTabActive {
-  color: var(--ord-primary);
-  font-weight: 700;
-  background: color-mix(in oklab, var(--ord-primary) 18%, var(--ord-card));
-  border-color: color-mix(in oklab, var(--ord-primary) 60%, var(--ord-border));
-  box-shadow: inset 0 -0.1875rem var(--ord-primary);
-}
-
-.DetailTab:focus-visible,
-.DetailTabActive:focus-visible {
-  outline: 0.125rem solid var(--ord-ring);
-  outline-offset: 0.0625rem;
 }
 
 .DetailContent {
@@ -800,11 +464,6 @@
   background: var(--ord-background);
 }
 
-.DefinitionDetail > .RenderWrapper {
-  flex: 1;
-  min-height: 0;
-}
-
 .DetailContent h3 {
   margin: 1.25rem 0 0.75rem;
   color: var(--ord-foreground);
@@ -813,6 +472,27 @@
 
 .DetailContent h3:first-child {
   margin-top: 0;
+}
+
+.DefinitionDetails + .DefinitionDetails {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--ord-border);
+}
+
+.DefinitionDetailsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.DefinitionDetailsHeader h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ord-foreground);
+  font-size: 1.25rem;
+  line-height: 1.3;
 }
 
 .DefinitionDescription {
@@ -832,8 +512,7 @@
   margin-top: 0.875rem;
 }
 
-.AnnotationCard,
-.AnnotationCardActive {
+.AnnotationCard {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -847,13 +526,25 @@
   box-shadow: 0 0.0625rem 0.25rem color-mix(in oklab, var(--ord-primary) 7%, transparent);
 }
 
-.AnnotationCard:hover {
-  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+.AnnotationCardActive {
+  composes: AnnotationCard;
+  border-color: color-mix(in oklab, var(--ord-primary) 60%, var(--ord-border));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
 }
 
-.AnnotationCardActive {
-  border-color: transparent;
-  box-shadow: inset 0.1875rem 0 var(--ord-primary);
+.AnnotationCard summary,
+.PropertyCard summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+.AnnotationCard summary::marker,
+.PropertyCard summary::marker {
+  color: var(--ord-primary);
+}
+
+.AnnotationCard:hover {
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
 }
 
 .AnnotationKey {
@@ -870,9 +561,7 @@
 .AnnotationValue {
   display: block;
   min-width: 0;
-  max-height: 9rem;
   padding: 0.5rem 0.625rem;
-  overflow: auto;
   color: var(--ord-foreground);
   font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
   font-size: 0.8125rem;
@@ -905,15 +594,9 @@
   border-color: var(--ord-primary);
 }
 
-.EmptySection {
-  margin: 0.875rem 0 0;
-  color: var(--ord-muted-foreground);
-}
-
-.PropertyCard,
-.PropertyCardActive {
+.PropertyCard {
   display: grid;
-  grid-template-columns: minmax(9rem, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
   padding: 0.75rem;
   color: inherit;
@@ -923,6 +606,13 @@
   background: var(--ord-card);
   border: 1px solid var(--ord-border);
   border-radius: var(--ord-radius);
+}
+
+.PropertyCardActive {
+  composes: PropertyCard;
+  border-color: color-mix(in oklab, var(--ord-primary) 60%, var(--ord-border));
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
 }
 
 .PropertyList {
@@ -976,89 +666,14 @@
   background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
 }
 
-.PropertyCardActive {
-  border-color: transparent;
-  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
-  box-shadow: inset 0.1875rem 0 var(--ord-primary);
-}
-
-.CollapsibleSection,
-.PrivateProperties {
+.DetailSection {
   margin-top: 1.25rem;
 }
 
-.CollapsibleSection summary,
-.PrivateProperties summary {
+.DetailSection h3 {
+  margin-top: 0;
   color: var(--ord-foreground);
   font-weight: 700;
-  cursor: pointer;
-}
-
-.ElementList {
-  display: grid;
-  gap: 0.625rem;
-}
-
-.ElementFilters {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.ElementFilterInput {
-  width: 100%;
-  padding: 0 0.625rem;
-}
-
-.ElementFilterSelect button {
-  padding: 0 0.5rem;
-}
-
-.ElementCard,
-.ElementCardActive {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.25rem 1rem;
-  padding: 0.75rem;
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  border: 1px solid var(--ord-border);
-  border-radius: var(--ord-radius);
-  background: var(--ord-card);
-  box-shadow: 0 0.0625rem 0.25rem rgb(0 0 0 / 4%);
-}
-
-.ElementCard:hover {
-  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
-  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
-}
-
-.ElementCardActive {
-  border-color: transparent;
-  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
-  box-shadow: inset 0.1875rem 0 var(--ord-primary);
-}
-
-.ElementCard strong,
-.ElementCardActive strong {
-  color: var(--ord-foreground);
-}
-
-.ElementCard > span,
-.ElementCardActive > span {
-  color: var(--ord-muted-foreground);
-}
-
-.ElementCard small,
-.ElementCard p,
-.ElementCardActive small,
-.ElementCardActive p {
-  grid-column: 1 / -1;
-  margin: 0;
-  color: var(--ord-muted-foreground);
 }
 
 .EmptyDetail {
@@ -1254,18 +869,4 @@
     gap: 0.25rem;
   }
 
-  .ElementCard,
-  .ElementCardActive {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
-  }
-
-  .ElementCard > span,
-  .ElementCardActive > span {
-    grid-row: 2;
-  }
-
-  .ElementFilters {
-    grid-template-columns: 1fr;
-  }
 }
