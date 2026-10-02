@@ -1,7 +1,4 @@
-import {
-  findActiveDefinitionName,
-  findDefinitionLine,
-} from "../components/csn-renderer/renderer/definitionNavigation.js";
+import { findDefinitionLine } from "../components/csn-renderer/renderer/definitionNavigation.js";
 
 describe("definition navigation", () => {
   test("finds the editor line for a selected definition", () => {
@@ -30,18 +27,5 @@ describe("definition navigation", () => {
     ].join("\n");
 
     expect(findDefinitionLine(csn, "kind")).toBe(6);
-  });
-
-  test("uses the definition heading currently reached by the detail scroll", () => {
-    const definitions = [
-      { name: "Pet", top: 100 },
-      { name: "Pets", top: 360 },
-      { name: "Error", top: 620 },
-    ];
-
-    expect(findActiveDefinitionName(definitions, 50)).toBe("Pet");
-    expect(findActiveDefinitionName(definitions, 400)).toBe("Pets");
-    expect(findActiveDefinitionName(definitions, 700)).toBe("Error");
-    expect(findActiveDefinitionName([], 100)).toBeUndefined();
   });
 });

@@ -474,12 +474,6 @@
   margin-top: 0;
 }
 
-.DefinitionDetails + .DefinitionDetails {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--ord-border);
-}
-
 .DefinitionDetailsHeader {
   display: flex;
   flex-direction: column;

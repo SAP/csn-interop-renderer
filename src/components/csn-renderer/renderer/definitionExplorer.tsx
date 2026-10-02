@@ -1,5 +1,4 @@
 import {
-  type UIEvent as ReactUIEvent,
   type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
   type PointerEvent as ReactPointerEvent,
@@ -12,7 +11,6 @@ import {
 } from "react";
 import { Input } from "@open-resource-discovery/ui-components";
 import styles from "./renderer.module.css";
-import { findActiveDefinitionName } from "./definitionNavigation";
 import type { CsnDefinition, CsnDocument } from "./types";
 
 interface Props {
@@ -65,10 +63,7 @@ function DefinitionDetails({ name, definition, selectedItem, onItemToggle }: Def
   const privateProperties = Object.entries(definition).filter(([key]) => key.startsWith("__"));
 
   return (
-    <article
-      id={`csn-definition-${encodeURIComponent(name)}`}
-      className={styles.DefinitionDetails}
-      data-definition-name={name}>
+    <article className={styles.DefinitionDetails}>
       <header className={styles.DefinitionDetailsHeader}>
         <span className={styles.PaneTitle}>{formatDefinitionKind(definition.kind)}</span>
         <h2>{name}</h2>
@@ -146,7 +141,6 @@ export default function DefinitionExplorer({ document, initialState, onStateChan
   const initialDefinitionName = initialState?.definition ?? "";
   const [selectedName, setSelectedName] = useState(initialDefinitionName);
   const [selectedItem, setSelectedItem] = useState("");
-  const [scrollTargetName, setScrollTargetName] = useState("");
   const [definitionQuery, setDefinitionQuery] = useState("");
   const [expandedGroups, setExpandedGroups] = useState<ReadonlySet<string>>(
     () => new Set(definitionGroups.map(([kind]) => kind)),
@@ -160,24 +154,11 @@ export default function DefinitionExplorer({ document, initialState, onStateChan
       initialState?.definition !== undefined && document.definitions?.[initialState.definition] !== undefined;
     const nextSelectedName = definitionExists && initialState?.definition !== undefined ? initialState.definition : "";
     setSelectedName(nextSelectedName);
-    setScrollTargetName(nextSelectedName);
   }, [definitions, document.definitions, initialState]);
 
   useEffect(() => {
     onStateChange?.({ definition: selectedName });
   }, [onStateChange, selectedName]);
-
-  useEffect(() => {
-    if (scrollTargetName === "") return;
-
-    window.requestAnimationFrame(() =>
-      globalThis.document.getElementById(`csn-definition-${encodeURIComponent(scrollTargetName)}`)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      }),
-    );
-    setScrollTargetName("");
-  }, [scrollTargetName]);
 
   const toggleDefinitionGroup = (kind: string): void => {
     setExpandedGroups((currentGroups) => {
@@ -193,28 +174,10 @@ export default function DefinitionExplorer({ document, initialState, onStateChan
 
   const selectDefinition = (name: string): void => {
     setSelectedName(name);
-    setScrollTargetName(name);
   };
 
   const selectInspectorItem = (item: string, isOpen: boolean): void => {
     setSelectedItem((currentItem) => (isOpen ? item : currentItem === item ? "" : currentItem));
-  };
-
-  const onDetailScroll = (event: ReactUIEvent<HTMLDivElement>): void => {
-    const { currentTarget } = event;
-    const scrollBoundary = currentTarget.getBoundingClientRect().top + 1;
-    const headings = Array.from(currentTarget.querySelectorAll<HTMLElement>("[data-definition-name]"));
-    const activeName = findActiveDefinitionName(
-      headings.flatMap((heading) => {
-        const name = heading.dataset.definitionName;
-        return name === undefined ? [] : [{ name, top: heading.getBoundingClientRect().top }];
-      }),
-      scrollBoundary,
-    );
-
-    if (activeName !== undefined && activeName !== selectedName) {
-      setSelectedName(activeName);
-    }
   };
 
   const resizeDefinitionNav = useCallback((clientX: number): void => {
@@ -349,17 +312,16 @@ export default function DefinitionExplorer({ document, initialState, onStateChan
             <h2>Definitions</h2>
           </div>
         </div>
-        <div className={styles.DetailContent} onScroll={onDetailScroll}>
-          {definitions.length > 0 ? (
-            definitions.map(([name, definition]) => (
-              <DefinitionDetails
-                key={name}
-                name={name}
-                definition={definition}
-                selectedItem={selectedItem}
-                onItemToggle={selectInspectorItem}
-              />
-            ))
+        <div className={styles.DetailContent}>
+          {selectedName && document.definitions?.[selectedName] !== undefined ? (
+            <DefinitionDetails
+              name={selectedName}
+              definition={document.definitions[selectedName]}
+              selectedItem={selectedItem}
+              onItemToggle={selectInspectorItem}
+            />
+          ) : definitions.length > 0 ? (
+            <p className={styles.EmptyDetail}>Select a definition to inspect its details.</p>
           ) : (
             <p className={styles.EmptyDetail}>This CSN model has no definitions.</p>
           )}

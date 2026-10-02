@@ -1,8 +1,3 @@
-export interface DefinitionPosition {
-  name: string;
-  top: number;
-}
-
 /** Returns the one-based editor line containing a top-level CSN definition. */
 export const findDefinitionLine = (csn: string, definitionName: string): number | undefined => {
   const lines = csn.split("\n");
@@ -23,19 +18,4 @@ export const findDefinitionLine = (csn: string, definitionName: string): number 
       line.slice(definitionIndentationLength).startsWith(definitionKey),
   );
   return lineIndex === -1 ? undefined : lineIndex + 1;
-};
-
-/** Returns the last definition heading at or above the visible-detail boundary. */
-export const findActiveDefinitionName = (
-  definitions: readonly DefinitionPosition[],
-  scrollBoundary: number,
-): string | undefined => {
-  let activeName = definitions[0]?.name;
-
-  for (const definition of definitions) {
-    if (definition.top > scrollBoundary) break;
-    activeName = definition.name;
-  }
-
-  return activeName;
 };
