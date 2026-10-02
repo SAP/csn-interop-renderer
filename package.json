@@ -14,6 +14,23 @@
   "type": "module",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
+    },
+    "./csn-renderer": {
+      "types": "./dist/csn-renderer/index.d.ts",
+      "import": "./dist/csn-renderer/index.js",
+      "default": "./dist/csn-renderer/index.js"
+    },
+    "./csn-renderer/styles": {
+      "types": "./dist/csn-renderer/styles.d.ts",
+      "default": "./dist/csn-renderer/csn-interop-renderer.css"
+    },
+    "./package.json": "./package.json"
+  },
   "bin": "./cli/cli.js",
   "files": [
     "dist/",
@@ -26,8 +43,9 @@
   "scripts": {
     "cli": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning ./cli/cli.js -i ./examples/Airline.json -o ./examples/out.md -r md",
     "prebuild": "rimraf ./dist",
-    "build": "tsc -p tsconfig.build.json",
-    "postbuild": "npm run render-examples",
+    "build": "npm run build:core && npm run build:csn-renderer",
+    "build:core": "tsc -p tsconfig.build.json",
+    "build:csn-renderer": "vite build --config vite.config.csn-renderer.ts && tsc -p tsconfig.csn-renderer.build.json",
     "prepublishOnly": "npm run build",
     "test": "npm run build && node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --ci --collectCoverage",
     "test:watch": "node --experimental-vm-modules --no-warnings=ExperimentalWarning node_modules/jest/bin/jest.js --watchAll",
@@ -36,18 +54,28 @@
     "eslint:ci": "eslint .",
     "prettier": "prettier --write \"**/*.{json,yml,yaml,md}\"",
     "prettier:ci": "prettier --check \"**/*.{json,yml,yaml,md}\"",
-    "prepare": "is-ci || husky",
-    "render-examples": "node ./scripts/renderExamples.cjs"
+    "prepare": "is-ci || husky"
   },
   "dependencies": {
+    "@monaco-editor/react": "4.7.0",
+    "@open-resource-discovery/ui-components": "0.2.0",
     "@sap/csn-interop-specification": "1.2.4",
+    "classnames": "2.5.1",
     "commander": "15.0.0",
     "json-schema-library": "11.6.1",
+    "dompurify": "3.4.15",
     "marked": "18.0.6",
-    "marked-gfm-heading-id": "4.1.4"
+    "marked-gfm-heading-id": "4.1.4",
+    "monaco-editor": "0.56.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@expo/spawn-async": "1.8.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
     "@sap/eslint-config": "0.5.2",
     "@tsconfig/node22": "22.0.5",
     "@types/jest": "30.0.0",
@@ -66,7 +94,8 @@
     "tmp": "0.2.7",
     "ts-jest": "29.4.11",
     "tsx": "4.23.1",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vite": "8.2.2"
   },
   "lint-staged": {
     "./**/*.{js,ts}": [

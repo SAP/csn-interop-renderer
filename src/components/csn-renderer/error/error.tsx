@@ -20,10 +20,10 @@ interface Props {
 }
 
 export default function Error({ name, title, description, className = "", children }: Props): ReactNode {
-  const Icon = images[name];
+  const icon = images[name];
   return (
-    <div className={classnames(styles.IllustratedMessage, ...className.split(","))}>
-      <Icon />
+    <div className={classnames(styles.IllustratedMessage, className)}>
+      <img src={icon} alt="" />
       {title ? <div className={styles.Title}>{title}</div> : null}
       {description ? <div className={styles.Description}>{description}</div> : null}
       {children ? <div className={styles.Content}>{children}</div> : null}

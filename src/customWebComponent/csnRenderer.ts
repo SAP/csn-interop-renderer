@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { generateHtml } from "../index.js";
 import type { CsnRendererProps } from "../types/index.js";
 
@@ -9,7 +10,7 @@ export class CsnRenderer extends HTMLElement {
   private async _renderHtml(value: string | null | undefined): Promise<void> {
     if (!value) return;
 
-    this.innerHTML = await generateHtml(JSON.parse(value));
+    this.innerHTML = DOMPurify.sanitize(await generateHtml(JSON.parse(value)));
   }
 
   public attributeChangedCallback(name: CsnRendererPropName, _oldValue: string | null, newValue: string | null): void {
