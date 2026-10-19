@@ -728,7 +728,7 @@
 
 .AnnotationList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   gap: 0.75rem;
   margin-top: 0.875rem;
 }
@@ -838,6 +838,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
+  min-width: 0;
   padding: 0.75rem;
   color: inherit;
   font: inherit;
@@ -857,13 +858,72 @@
 
 .PropertyList {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 0.5rem;
   margin-top: 0.875rem;
+}
+
+.ElementList {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
 }
 
 .ElementPropertyList {
   display: grid;
   gap: 0.5rem;
+}
+
+.ElementPropertyGroup {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.ElementPropertyGroupLabel {
+  color: var(--ord-muted-foreground);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ElementCard {
+  gap: 0.5rem;
+  padding: 0.625rem;
+  container-type: inline-size;
+}
+
+.ElementCard > .PropertyKey {
+  font-size: 0.875rem;
+}
+
+.ElementCard .ElementPropertyList {
+  gap: 0.375rem;
+}
+
+.ElementCard .ElementProperty {
+  grid-template-columns: minmax(6rem, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.ElementCard .PropertyKey {
+  padding-top: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.ElementCard .PropertyValue {
+  padding: 0.25rem 0.375rem;
+  font-size: 0.75rem;
+}
+
+@container (max-width: 20rem) {
+  .ElementCard .ElementProperty {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+
+  .ElementCard .PropertyKey {
+    padding-top: 0;
+  }
 }
 
 .ElementProperty {
@@ -920,10 +980,87 @@
   margin-top: 1.25rem;
 }
 
+.DetailSection summary {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.DetailSection summary:hover h3 {
+  color: var(--ord-primary);
+}
+
+.DetailSection summary:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 0.25rem;
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.DetailSection summary::-webkit-details-marker {
+  display: none;
+}
+
+.DetailSection summary::before {
+  color: var(--ord-primary);
+  font-size: 0.875rem;
+  content: "▶";
+  transition: transform 150ms ease;
+}
+
+.DetailSection[open] summary::before {
+  transform: rotate(90deg);
+}
+
 .DetailSection h3 {
-  margin-top: 0;
+  margin: 0;
   color: var(--ord-foreground);
   font-weight: 700;
+}
+
+.DetailSectionContent {
+  padding-top: 0.75rem;
+}
+
+.RelatedDefinitionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.RelatedDefinitionButton {
+  flex: 0 1 auto;
+  max-width: 100%;
+  padding: 0.625rem 0.75rem;
+  overflow: hidden;
+  color: var(--ord-primary);
+  font: inherit;
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.8125rem;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--ord-card);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+}
+
+.RelatedDefinitionButton:hover {
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+}
+
+.RelatedDefinitionButton:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .DetailSection summary::before {
+    transition: none;
+  }
 }
 
 .EmptyDetail {

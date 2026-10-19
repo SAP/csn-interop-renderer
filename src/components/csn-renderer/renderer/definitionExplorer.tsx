@@ -79,7 +79,25 @@ const formatDefinitionKind = (kind: string | undefined): string => {
 interface DefinitionDetailsProps {
   name: string;
   definition: CsnDefinition;
+  definitions: readonly [string, CsnDefinition][];
+  onDefinitionSelect: (name: string) => void;
   annotationLinkCallbacks?: AnnotationLinkCallbacks;
+}
+
+interface CollapsibleDetailSectionProps {
+  title: string;
+  children: ReactNode;
+}
+
+function CollapsibleDetailSection({ title, children }: CollapsibleDetailSectionProps): ReactNode {
+  return (
+    <details className={styles.DetailSection} open>
+      <summary>
+        <h3>{title}</h3>
+      </summary>
+      <div className={styles.DetailSectionContent}>{children}</div>
+    </details>
+  );
 }
 
 const detailFilterOptions = [
@@ -93,7 +111,13 @@ type DetailFilter = (typeof detailFilterOptions)[number][0];
 
 const createAllDetailFilters = (): Set<DetailFilter> => new Set(detailFilterOptions.map(([filter]) => filter));
 
-function DefinitionDetails({ name, definition, annotationLinkCallbacks }: DefinitionDetailsProps): ReactNode {
+function DefinitionDetails({
+  name,
+  definition,
+  definitions,
+  onDefinitionSelect,
+  annotationLinkCallbacks,
+}: DefinitionDetailsProps): ReactNode {
   const annotations = Object.entries(definition).filter(([key]) => key.startsWith("@"));
   const [annotationLinks, setAnnotationLinks] = useState<Record<string, string>>({});
   const [activeFilters, setActiveFilters] = useState<ReadonlySet<DetailFilter>>(createAllDetailFilters);
@@ -106,18 +130,29 @@ function DefinitionDetails({ name, definition, annotationLinkCallbacks }: Defini
     ([key]) => !key.startsWith("@") && !key.startsWith("__") && !["kind", "elements", "doc"].includes(key),
   );
   const privateProperties = Object.entries(definition).filter(([key]) => key.startsWith("__"));
+  const availableDetailFilters = detailFilterOptions.filter(([filter]) => {
+    if (filter === "annotations") return annotations.length > 0;
+    if (filter === "elements") return elements.length > 0;
+    if (filter === "properties") return properties.length > 0;
+    return privateProperties.length > 0;
+  });
+  const showDetailFilter = availableDetailFilters.length > 1;
+  const serviceEntities =
+    definition.kind === "service"
+      ? definitions.filter(([entityName, entity]) => entity.kind === "entity" && entityName.startsWith(`${name}.`))
+      : [];
   const normalizedDetailQuery = detailQuery.trim().toLowerCase();
   const matchesDetailQuery = (key: string): boolean => key.toLowerCase().includes(normalizedDetailQuery);
-  const filteredAnnotations = activeFilters.has("annotations")
-    ? annotations.filter(([key]) => matchesDetailQuery(key))
-    : [];
-  const filteredElements = activeFilters.has("elements") ? elements.filter(([key]) => matchesDetailQuery(key)) : [];
-  const filteredPrivateProperties = activeFilters.has("private")
-    ? privateProperties.filter(([key]) => matchesDetailQuery(key))
-    : [];
-  const filteredProperties = activeFilters.has("properties")
-    ? properties.filter(([key]) => matchesDetailQuery(key))
-    : [];
+  const filteredAnnotations =
+    !showDetailFilter || activeFilters.has("annotations") ? annotations.filter(([key]) => matchesDetailQuery(key)) : [];
+  const filteredElements =
+    !showDetailFilter || activeFilters.has("elements") ? elements.filter(([key]) => matchesDetailQuery(key)) : [];
+  const filteredPrivateProperties =
+    !showDetailFilter || activeFilters.has("private")
+      ? privateProperties.filter(([key]) => matchesDetailQuery(key))
+      : [];
+  const filteredProperties =
+    !showDetailFilter || activeFilters.has("properties") ? properties.filter(([key]) => matchesDetailQuery(key)) : [];
   const hasFilteredDetails =
     filteredAnnotations.length +
       filteredElements.length +
@@ -148,7 +183,7 @@ function DefinitionDetails({ name, definition, annotationLinkCallbacks }: Defini
     setIsFilterMenuOpen(false);
   };
 
-  const visibleFilterOptions = detailFilterOptions.filter(([, label]) =>
+  const visibleFilterOptions = availableDetailFilters.filter(([, label]) =>
     label.toLowerCase().includes(filterMenuQuery.trim().toLowerCase()),
   );
 
@@ -190,66 +225,89 @@ function DefinitionDetails({ name, definition, annotationLinkCallbacks }: Defini
       <header className={styles.DefinitionDetailsHeader}>
         <span className={styles.PaneTitle}>{formatDefinitionKind(definition.kind)}</span>
         <h2>{name}</h2>
-        <div className={styles.DetailSearch}>
-          <div className={styles.DetailSearchBox}>
-            <input
-              className={styles.DetailSearchInput}
-              type="search"
-              value={detailQuery}
-              placeholder="Search annotations and properties"
-              aria-label="Search annotations and properties"
-              onChange={(event) => setDetailQuery(event.target.value)}
-            />
-            <details className={styles.DetailFilterMenu} open={isFilterMenuOpen} onToggle={handleFilterMenuToggle}>
-              <summary>
-                Filter{activeFilters.size < detailFilterOptions.length ? ` (${activeFilters.size})` : ""}
-              </summary>
-              <div className={styles.DetailFilterPopover}>
-                <input
-                  className={styles.DetailFilterMenuSearch}
-                  type="search"
-                  value={filterMenuQuery}
-                  placeholder="Filter sections"
-                  aria-label="Filter sections"
-                  onChange={(event) => setFilterMenuQuery(event.target.value)}
-                />
-                <div className={styles.DetailFilterQuickActions}>
-                  <button type="button" onClick={() => setDraftFilters(createAllDetailFilters())}>
-                    Select all
-                  </button>
-                  <button type="button" onClick={() => setDraftFilters(new Set())}>
-                    Clear
-                  </button>
-                </div>
-                <div className={styles.DetailFilterOptions}>
-                  {visibleFilterOptions.map(([filter, label]) => (
-                    <label key={filter}>
-                      <input
-                        type="checkbox"
-                        checked={draftFilters.has(filter)}
-                        onChange={() => toggleDraftFilter(filter)}
-                      />
-                      {label}
-                    </label>
-                  ))}
-                </div>
-                <div className={styles.DetailFilterFooter}>
-                  <Button variant="outline" size="sm" onClick={() => setIsFilterMenuOpen(false)}>
-                    Cancel
-                  </Button>
-                  <Button size="sm" onClick={applyFilters}>
-                    Apply
-                  </Button>
-                </div>
-              </div>
-            </details>
+        {showDetailFilter && (
+          <div className={styles.DetailSearch}>
+            <div className={styles.DetailSearchBox}>
+              <input
+                className={styles.DetailSearchInput}
+                type="search"
+                value={detailQuery}
+                placeholder="Search annotations and properties"
+                aria-label="Search annotations and properties"
+                onChange={(event) => setDetailQuery(event.target.value)}
+              />
+              {showDetailFilter && (
+                <details className={styles.DetailFilterMenu} open={isFilterMenuOpen} onToggle={handleFilterMenuToggle}>
+                  <summary>
+                    Filter
+                    {availableDetailFilters.some(([filter]) => !activeFilters.has(filter))
+                      ? ` (${availableDetailFilters.filter(([filter]) => activeFilters.has(filter)).length})`
+                      : ""}
+                  </summary>
+                  <div className={styles.DetailFilterPopover}>
+                    <input
+                      className={styles.DetailFilterMenuSearch}
+                      type="search"
+                      value={filterMenuQuery}
+                      placeholder="Filter sections"
+                      aria-label="Filter sections"
+                      onChange={(event) => setFilterMenuQuery(event.target.value)}
+                    />
+                    <div className={styles.DetailFilterQuickActions}>
+                      <button
+                        type="button"
+                        onClick={() => setDraftFilters(new Set(availableDetailFilters.map(([filter]) => filter)))}>
+                        Select all
+                      </button>
+                      <button type="button" onClick={() => setDraftFilters(new Set())}>
+                        Clear
+                      </button>
+                    </div>
+                    <div className={styles.DetailFilterOptions}>
+                      {visibleFilterOptions.map(([filter, label]) => (
+                        <label key={filter}>
+                          <input
+                            type="checkbox"
+                            checked={draftFilters.has(filter)}
+                            onChange={() => toggleDraftFilter(filter)}
+                          />
+                          {label}
+                        </label>
+                      ))}
+                    </div>
+                    <div className={styles.DetailFilterFooter}>
+                      <Button variant="outline" size="sm" onClick={() => setIsFilterMenuOpen(false)}>
+                        Cancel
+                      </Button>
+                      <Button size="sm" onClick={applyFilters}>
+                        Apply
+                      </Button>
+                    </div>
+                  </div>
+                </details>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </header>
       {definition.doc && <p className={styles.DefinitionDescription}>{definition.doc}</p>}
+      {serviceEntities.length > 0 && (
+        <CollapsibleDetailSection title={`Service Entities (${serviceEntities.length})`}>
+          <div className={styles.RelatedDefinitionList}>
+            {serviceEntities.map(([entityName]) => (
+              <button
+                key={entityName}
+                className={styles.RelatedDefinitionButton}
+                type="button"
+                onClick={() => onDefinitionSelect(entityName)}>
+                {entityName}
+              </button>
+            ))}
+          </div>
+        </CollapsibleDetailSection>
+      )}
       {filteredAnnotations.length > 0 && (
-        <section className={styles.DetailSection}>
-          <h3>Annotations ({filteredAnnotations.length})</h3>
+        <CollapsibleDetailSection title={`Annotations (${filteredAnnotations.length})`}>
           <div className={styles.AnnotationList}>
             {filteredAnnotations.map(([key, value]) => (
               <div key={key} className={styles.AnnotationCard}>
@@ -279,45 +337,74 @@ function DefinitionDetails({ name, definition, annotationLinkCallbacks }: Defini
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleDetailSection>
       )}
       {filteredElements.length > 0 && (
-        <section className={styles.DetailSection}>
-          <h3>Elements ({filteredElements.length})</h3>
-          <div className={styles.PropertyList}>
-            {filteredElements.map(([elementName, element]) => (
-              <div key={elementName} className={styles.PropertyCard}>
-                <span className={styles.PropertyKey}>{elementName}</span>
-                {isRecord(element) ? (
-                  <div className={styles.ElementPropertyList}>
-                    {Object.entries(element).map(([key, value]) => (
-                      <div key={key} className={styles.ElementProperty}>
-                        <span className={styles.PropertyKey}>{key}</span>
-                        <span
-                          className={styles.PropertyValue}
-                          data-value-type={getValueType(value)}
-                          title={formatValue(value)}>
-                          {formatValue(value)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <span
-                    className={styles.PropertyValue}
-                    data-value-type={getValueType(element)}
-                    title={formatValue(element)}>
-                    {formatValue(element)}
-                  </span>
-                )}
-              </div>
-            ))}
+        <CollapsibleDetailSection title={`Elements (${filteredElements.length})`}>
+          <div className={`${styles.PropertyList} ${styles.ElementList}`}>
+            {filteredElements.map(([elementName, element]) => {
+              const elementProperties = isRecord(element) ? Object.entries(element) : [];
+              const elementAnnotations = elementProperties.filter(([key]) => key.startsWith("@"));
+              const elementDefinition = elementProperties.filter(([key]) => !key.startsWith("@"));
+
+              return (
+                <div key={elementName} className={`${styles.PropertyCard} ${styles.ElementCard}`}>
+                  <span className={styles.PropertyKey}>{elementName}</span>
+                  {isRecord(element) ? (
+                    <>
+                      {elementDefinition.length > 0 && (
+                        <div className={styles.ElementPropertyGroup}>
+                          <span className={styles.ElementPropertyGroupLabel}>Definition</span>
+                          <div className={styles.ElementPropertyList}>
+                            {elementDefinition.map(([key, value]) => (
+                              <div key={key} className={styles.ElementProperty}>
+                                <span className={styles.PropertyKey}>{key}</span>
+                                <span
+                                  className={styles.PropertyValue}
+                                  data-value-type={getValueType(value)}
+                                  title={formatValue(value)}>
+                                  {formatValue(value)}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {elementAnnotations.length > 0 && (
+                        <div className={styles.ElementPropertyGroup}>
+                          <span className={styles.ElementPropertyGroupLabel}>Annotations</span>
+                          <div className={styles.ElementPropertyList}>
+                            {elementAnnotations.map(([key, value]) => (
+                              <div key={key} className={styles.ElementProperty}>
+                                <span className={styles.PropertyKey}>{key}</span>
+                                <span
+                                  className={styles.PropertyValue}
+                                  data-value-type={getValueType(value)}
+                                  title={formatValue(value)}>
+                                  {formatValue(value)}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <span
+                      className={styles.PropertyValue}
+                      data-value-type={getValueType(element)}
+                      title={formatValue(element)}>
+                      {formatValue(element)}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </div>
-        </section>
+        </CollapsibleDetailSection>
       )}
       {filteredPrivateProperties.length > 0 && (
-        <section className={styles.DetailSection}>
-          <h3>Private Properties ({filteredPrivateProperties.length})</h3>
+        <CollapsibleDetailSection title={`Private Properties (${filteredPrivateProperties.length})`}>
           <div className={styles.PropertyList}>
             {filteredPrivateProperties.map(([key, value]) => (
               <div key={key} className={styles.PropertyCard}>
@@ -328,11 +415,10 @@ function DefinitionDetails({ name, definition, annotationLinkCallbacks }: Defini
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleDetailSection>
       )}
       {filteredProperties.length > 0 && (
-        <section className={styles.DetailSection}>
-          <h3>Exposed Properties ({filteredProperties.length})</h3>
+        <CollapsibleDetailSection title={`Exposed Properties (${filteredProperties.length})`}>
           <div className={styles.PropertyList}>
             {filteredProperties.map(([key, value]) => (
               <div key={key} className={styles.PropertyCard}>
@@ -343,7 +429,7 @@ function DefinitionDetails({ name, definition, annotationLinkCallbacks }: Defini
               </div>
             ))}
           </div>
-        </section>
+        </CollapsibleDetailSection>
       )}
       {(normalizedDetailQuery !== "" || activeFilters.size > 0) && !hasFilteredDetails && (
         <p className={styles.EmptyDetail}>No detail names match the current search and filters.</p>
@@ -533,6 +619,8 @@ export default function DefinitionExplorer({
             <DefinitionDetails
               name={selectedName}
               definition={document.definitions[selectedName]}
+              definitions={definitions}
+              onDefinitionSelect={selectDefinition}
               annotationLinkCallbacks={annotationLinkCallbacks}
             />
           ) : definitions.length > 0 ? (
