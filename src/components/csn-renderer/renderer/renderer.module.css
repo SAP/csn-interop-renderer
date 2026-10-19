@@ -1,15 +1,16 @@
 .Workspace {
-  --pane-height: calc(100vh - 6rem);
-  --editor-pane-width: 46%;
-
+  --pane-height: calc(100vh - 4rem);
+  --file-pane-width: 18%;
+  --editor-pane-width: 45%;
+  --pane-gap: 0.5rem;
   position: relative;
   display: flex;
   width: 100%;
   box-sizing: border-box;
   flex-grow: 1;
   min-height: calc(100vh - 64px);
-  padding: 1rem;
-  gap: 0.75rem;
+  padding: 0;
+  gap: 0;
   background: var(--ord-muted);
 }
 
@@ -18,14 +19,10 @@
   outline-offset: -0.5rem;
 }
 
-.Workspace[data-explorer-visible="true"] {
-  gap: 0;
-}
-
 .DropOverlay {
   position: absolute;
   z-index: 10;
-  inset: 1rem;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,23 +33,25 @@
   pointer-events: none;
   background: color-mix(in oklab, var(--ord-accent) 94%, transparent);
   border: 0.1875rem dashed var(--ord-ring);
-  border-radius: var(--ord-radius);
+  border-radius: 0;
 }
 
 .EditorPane {
-  width: 46%;
+  flex: 1 1 0;
+  width: auto;
   height: var(--pane-height);
   min-width: 0;
   overflow: visible;
   display: flex;
   flex-direction: column;
+  container-type: inline-size;
 }
 
 .EditorPane[data-collapsed="true"] {
   overflow: hidden;
 }
 
-.Workspace[data-explorer-visible="true"] .EditorPane {
+.Workspace[data-editor-resized="true"] .EditorPane {
   flex: 0 0 var(--editor-pane-width);
   width: var(--editor-pane-width);
 }
@@ -68,17 +67,17 @@
 }
 
 .Bar {
-  height: 3rem;
+  height: 2.5rem;
   background-color: var(--ord-card);
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.375rem 0.875rem;
   width: 100%;
-  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
-  border-bottom: 0;
-  border-radius: var(--ord-radius) var(--ord-radius) 0 0;
-  box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 3%);
+  border: 0;
+  border-bottom: 1px solid var(--ord-border);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .BarItem {
@@ -88,132 +87,257 @@
   gap: 0.5rem;
 }
 
-.InputLabel {
-  color: var(--ord-foreground);
+.ToolbarButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--ord-muted-foreground);
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--ord-radius) / 2);
+  box-shadow: none;
+}
+
+.ToolbarIcon {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
+}
+
+@container (max-width: 28rem) {
+  .ToolbarLabel {
+    display: none;
+  }
 }
 
 .ResetEditorButton {
-  margin-left: 0.25rem;
-  min-height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2rem;
   padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-align: center;
-  border-color: var(--ord-border);
-  border-radius: var(--ord-radius);
+  color: var(--ord-muted-foreground);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--ord-radius) / 2);
   box-shadow: none;
 }
 
+.ResetEditorIcon {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
+}
+
 .ShareButton {
-  min-height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2rem;
   padding: 0.25rem 0.5rem;
-  color: var(--ord-primary);
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-color: var(--ord-border);
-  border-radius: var(--ord-radius);
+  color: var(--ord-muted-foreground);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--ord-radius) / 2);
   box-shadow: none;
+}
+
+.ShareIcon {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
 }
 
 .MobileEditorToggle {
   display: none;
 }
 
-.ResetEditorButton:hover,
-.ShareButton:hover {
-  color: var(--ord-primary);
-  background: var(--ord-accent);
-  border-color: var(--ord-primary);
+.ResetEditorButton:hover {
+  color: var(--ord-foreground);
+  background: var(--ord-muted);
+  border-color: transparent;
 }
 
-.Sidebar {
-  width: 54%;
+.ToolbarButton:hover {
+  color: var(--ord-foreground);
+  background: var(--ord-muted);
+  border-color: transparent;
+}
+
+.ShareButton:hover {
+  color: var(--ord-foreground);
+  background: var(--ord-muted);
+  border-color: transparent;
+}
+
+.FileSidebar {
+  flex: 0 0 var(--file-pane-width);
+  width: var(--file-pane-width);
   min-width: 0;
+  height: var(--pane-height);
+  overflow: visible;
+  background: var(--ord-muted);
+}
+
+.Workspace[data-file-collapsed="true"] .FileSidebar {
+  flex-basis: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.FileSidebarHeader {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--ord-border);
 }
 
-.Status {
-  text-align: center;
+.FileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.StatusTitle {
-  margin-top: 20px;
+.FileList {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
-.EmptyState {
+.FileListLabel {
+  margin-bottom: 0.25rem;
+  color: var(--ord-muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.FileButton,
+.FileButtonActive {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 2.25rem;
+  padding-inline: 0.625rem;
+  text-align: left;
+}
+
+.FileButtonActive {
+  color: var(--ord-primary);
+  font-weight: 700;
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
+}
+
+.EmptyFileList {
+  margin: 0;
+  color: var(--ord-muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.EmptyExplorer {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
   align-items: center;
-  width: min(100%, 38rem);
-  padding: 2rem;
-  text-align: center;
-  background: var(--ord-card);
-  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
-  border-radius: var(--ord-radius);
-  box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 6%);
-}
-
-.EmptyStateIcon {
-  width: 3.5rem;
-  height: 3.5rem;
-}
-
-.EmptyStateAction {
-  margin: 0;
-  color: var(--ord-foreground);
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.35;
-}
-
-.EmptyStateIcon + .EmptyStateAction {
-  margin-top: 1rem;
-}
-
-.ExampleDivider {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  width: 100%;
-  gap: 0.75rem;
-  margin: 1.5rem 0 1rem;
+  justify-content: center;
+  min-width: 0;
+  height: var(--pane-height);
+  /*padding: 2rem;*/
   color: var(--ord-muted-foreground);
+  text-align: center;
+  background: var(--ord-background);
+  /*border: 1px solid var(--ord-border);*/
+  /*border-left: 0;*/
+  /*border-radius: 0 var(--ord-radius) var(--ord-radius) 0;*/
 }
 
-.ExampleDivider::before,
-.ExampleDivider::after {
-  height: 1px;
+.ResizeHandle {
+  position: relative;
+  display: flex;
+  flex: 0 0 var(--pane-gap);
+  height: var(--pane-height);
+  cursor: col-resize;
+  touch-action: none;
+  user-select: none;
+  background: color-mix(in oklab, var(--ord-border) 50%, transparent);
+  transition: background-color 150ms ease;
+}
+
+.ResizeHandle:hover,
+.ResizeHandle:focus-visible {
   background: var(--ord-border);
+  outline: 0;
+}
+
+.ResizeHandle::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 2rem;
+  color: var(--ord-muted-foreground);
+  pointer-events: none;
   content: "";
+  background:
+    radial-gradient(circle at 5px 8px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 11px 8px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 5px 16px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 11px 16px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 5px 24px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 11px 24px, currentcolor 1px, transparent 1.5px),
+    var(--ord-border);
+  border-radius: calc(var(--ord-radius) / 2);
+  opacity: 0;
+  transition: opacity 150ms ease;
+  transform: translate(-50%, -50%);
 }
 
-.ExampleLabel {
-  margin-bottom: 0.75rem;
-  font-weight: 600;
+.ResizeHandle:hover::after,
+.ResizeHandle:focus-visible::after {
+  opacity: 1;
 }
 
-.ExampleList {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: 100%;
-  gap: 0.5rem;
-}
-
-.ExampleButton {
-  width: 100%;
+.EmptyExplorer p {
+  max-width: 28rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
 }
 
 .Editor {
   flex: 1;
   width: 100%;
   min-height: 0;
-  border: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
-  border-radius: 0 0 var(--ord-radius) var(--ord-radius);
+  border: 0;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -230,13 +354,9 @@
   min-width: 0;
   overflow: hidden;
   background: var(--ord-card);
-  border: 1px solid var(--ord-border);
-  border-radius: var(--ord-radius);
-  box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 5%);
-}
-
-.Explorer[data-definition-nav-collapsed="true"] {
-  grid-template-columns: 0 0.75rem minmax(0, 1fr);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .Workspace[data-explorer-visible="true"] .Explorer {
@@ -250,26 +370,10 @@
   border-width: 0;
 }
 
-.ResizeHandle {
-  display: flex;
-  flex: 0 0 0.75rem;
-  height: var(--pane-height);
-  cursor: col-resize;
-  touch-action: none;
-  user-select: none;
+.Explorer[data-definition-nav-collapsed="true"] {
+  grid-template-columns: 0 0.75rem minmax(0, 1fr);
 }
 
-.ResizeHandle::before {
-  width: 1px;
-  align-self: stretch;
-  background: var(--ord-border);
-  content: "";
-}
-
-.ResizeHandle:hover::before {
-  width: 0.1875rem;
-  background: var(--ord-primary);
-}
 
 .DefinitionNav {
   --definition-item-inline-padding: 0.625rem;
@@ -321,12 +425,12 @@
 .DefinitionSearch {
   min-width: 0;
   height: 2rem;
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
   color: var(--ord-foreground);
   font: inherit;
   background: var(--ord-background);
-  border: 1px solid var(--ord-input);
-  border-radius: var(--ord-radius);
+  /*border: 1px solid var(--ord-input);*/
+  /*border-radius: var(--ord-radius);*/
 }
 
 .DefinitionSearch {
@@ -489,6 +593,129 @@
   line-height: 1.3;
 }
 
+.DetailSearch {
+  width: 100%;
+  margin: 0.75rem 0 0;
+}
+
+.DetailSearchBox {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  min-height: 2.25rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+}
+
+.DetailSearchBox:focus-within {
+  border-color: var(--ord-ring);
+  outline: 2px solid color-mix(in oklab, var(--ord-ring) 35%, transparent);
+  outline-offset: 1px;
+}
+
+.DetailSearchInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--ord-foreground);
+  font: inherit;
+  font-size: 0.8125rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.DetailFilterMenu {
+  position: relative;
+  flex: 0 0 auto;
+  color: var(--ord-muted-foreground);
+  font-size: 0.8125rem;
+}
+
+.DetailFilterMenu summary {
+  min-height: 1.75rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.DetailFilterMenu[open] summary,
+.DetailFilterMenu summary:hover {
+  color: var(--ord-foreground);
+  background: var(--ord-muted);
+}
+
+.DetailFilterPopover {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  display: grid;
+  gap: 0.5rem;
+  min-width: 11rem;
+  padding: 0.75rem;
+  background: var(--ord-card);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+  box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 12%);
+}
+
+.DetailFilterMenu label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.DetailFilterMenu input {
+  accent-color: var(--ord-primary);
+}
+
+.DetailFilterMenuSearch {
+  width: 100%;
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--ord-foreground);
+  font: inherit;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-border);
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.DetailFilterQuickActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.DetailFilterQuickActions button {
+  padding: 0;
+  color: var(--ord-primary);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.DetailFilterOptions {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.DetailFilterFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ord-border);
+}
+
 .DefinitionDescription {
   margin: 0;
   padding: 0.875rem 1rem;
@@ -513,7 +740,7 @@
   min-width: 0;
   padding: 0.875rem;
   text-align: left;
-  cursor: pointer;
+  cursor: default;
   background: linear-gradient(135deg, var(--ord-accent) 0%, var(--ord-card) 100%);
   border: 1px solid var(--ord-border);
   border-radius: var(--ord-radius);
@@ -538,7 +765,7 @@
 }
 
 .AnnotationCard:hover {
-  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+  border-color: var(--ord-border);
 }
 
 .AnnotationKey {
@@ -550,6 +777,19 @@
   font-weight: 700;
   letter-spacing: 0.01em;
   line-height: 1.45;
+}
+
+.AnnotationDocumentationLink {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--ord-primary);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  text-decoration: underline;
+  text-underline-offset: 0.125em;
 }
 
 .AnnotationValue {
@@ -588,6 +828,12 @@
   border-color: var(--ord-primary);
 }
 
+.AnnotationLink {
+  color: var(--ord-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.125em;
+}
+
 .PropertyCard {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -596,7 +842,7 @@
   color: inherit;
   font: inherit;
   text-align: left;
-  cursor: pointer;
+  cursor: default;
   background: var(--ord-card);
   border: 1px solid var(--ord-border);
   border-radius: var(--ord-radius);
@@ -613,6 +859,16 @@
   display: grid;
   gap: 0.5rem;
   margin-top: 0.875rem;
+}
+
+.ElementPropertyList {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.ElementProperty {
+  display: grid;
+  gap: 0.25rem;
 }
 
 .PropertyKey {
@@ -656,8 +912,8 @@
 }
 
 .PropertyCard:hover {
-  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
-  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+  border-color: var(--ord-border);
+  background: var(--ord-card);
 }
 
 .DetailSection {
@@ -687,7 +943,8 @@
   }
 
   .EditorPane,
-  .Sidebar,
+  .FileSidebar,
+  .EmptyExplorer,
   .Explorer,
   .Workspace[data-explorer-visible="true"] .EditorPane,
   .Workspace[data-explorer-visible="true"] .Explorer,
@@ -703,6 +960,8 @@
   }
 
   .EditorPane,
+  .FileSidebar,
+  .EmptyExplorer,
   .Explorer,
   .ResizeHandle {
     height: auto;
@@ -741,8 +1000,8 @@
 @media (max-width: 600px) {
   .Workspace {
     min-height: auto;
-    padding: 0.5rem;
-    gap: 0.5rem;
+    padding: 0;
+    gap: 0;
   }
 
   .Bar {
@@ -788,18 +1047,6 @@
 
   .Editor {
     height: 28rem;
-  }
-
-  .Sidebar {
-    padding: 1rem 0;
-  }
-
-  .EmptyState {
-    padding: 1.5rem 1rem;
-  }
-
-  .ExampleList {
-    grid-template-columns: 1fr;
   }
 
   .AnnotationList {

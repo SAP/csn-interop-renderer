@@ -1,58 +1,53 @@
-import { Button, Spinner } from "@open-resource-discovery/ui-components";
-import type { ReactNode } from "react";
+import { Button } from "@open-resource-discovery/ui-components";
+import { type ChangeEvent, type ReactNode, useRef } from "react";
 import type { ExampleDocument } from "./types";
 import styles from "./renderer.module.css";
-import fileIcon from "./img/file.svg";
-import Error from "../error/error";
 
 interface Props {
-  error: unknown;
-  isRendering: boolean;
   examples: readonly ExampleDocument[];
+  activeExample: ExampleDocument | null;
   onTryExampleClick: (example: ExampleDocument) => void;
+  onFileSelect: (file: File) => void;
 }
 
-export default function SidebarContent({ error, isRendering, examples, onTryExampleClick }: Props): ReactNode {
-  if (error !== null) {
-    return (
-      <div className={styles.Status}>
-        <Error name="unableToLoad" title="Error while rendering" description={String(error)} />
-      </div>
-    );
-  }
+export default function SidebarContent({ examples, activeExample, onTryExampleClick, onFileSelect }: Props): ReactNode {
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  if (isRendering) {
-    return (
-      <div className={styles.Status}>
-        <Spinner size="lg" aria-label="Rendering" />
-        <h3 className={styles.StatusTitle}>Rendering</h3>
-      </div>
-    );
-  }
+  const onInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const [file] = event.target.files ?? [];
+    if (file !== undefined) onFileSelect(file);
+    event.target.value = "";
+  };
 
   return (
-    <section className={styles.EmptyState}>
-      <img className={styles.EmptyStateIcon} src={fileIcon} alt="" />
-      <h3 className={styles.EmptyStateAction}>Paste CSN JSON content into the editor</h3>
-      <div className={styles.ExampleDivider}>
-        <span>or</span>
+    <aside className={styles.FileSidebar} aria-label="CSN files">
+      <div className={styles.FileSidebarHeader}>
+        <span className={styles.PaneTitle}>Files</span>
+        <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()}>
+          Open file
+        </Button>
+        <input
+          ref={fileInputRef}
+          className={styles.FileInput}
+          type="file"
+          accept="application/json,.json"
+          aria-label="Open CSN JSON file"
+          onChange={onInputChange}
+        />
       </div>
-      <h3 className={styles.EmptyStateAction}>Drag and drop a CSN JSON file</h3>
-      <div className={styles.ExampleDivider}>
-        <span>or</span>
-      </div>
-      <p className={styles.ExampleLabel}>Try out an example</p>
-      <div className={styles.ExampleList}>
+      <div className={styles.FileList}>
+        <span className={styles.FileListLabel}>Examples</span>
         {examples.map((example) => (
           <Button
-            key={example.name}
-            className={styles.ExampleButton}
+            key={example.id}
+            className={activeExample?.id === example.id ? styles.FileButtonActive : styles.FileButton}
             variant="outline"
             onClick={() => onTryExampleClick(example)}>
             {example.name}
           </Button>
         ))}
+        {examples.length === 0 && <p className={styles.EmptyFileList}>No example files available.</p>}
       </div>
-    </section>
+    </aside>
   );
 }

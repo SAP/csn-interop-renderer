@@ -3,17 +3,10 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useHistory, useLocation } from "@docusaurus/router";
 import "@sap/csn-interop-renderer/csn-renderer/styles";
-import type { AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
 import { lazy, Suspense, type ReactNode, useEffect } from "react";
 import { exampleDocuments } from "../components/tryOut/examples";
 
 const CsnInteropRenderer = lazy(() => import("@sap/csn-interop-renderer/csn-renderer"));
-
-const exampleAnnotationLinkCallbacks: AnnotationLinkCallbacks = {
-  "@EntityRelationship.entityType": () => "https://example.com/",
-  "@ODM.entityName": () => "https://example.com/",
-  "@ODM.oidReference.entityName": () => "https://example.com/",
-};
 
 function CsnRendererDemo({ sessionId }: { sessionId: string }): ReactNode {
   const { colorMode } = useColorMode();
@@ -21,12 +14,7 @@ function CsnRendererDemo({ sessionId }: { sessionId: string }): ReactNode {
   return (
     <Suspense fallback={<div>Loading renderer…</div>}>
       <div className="csn-interop-renderer-demo">
-        <CsnInteropRenderer
-          key={sessionId}
-          examples={exampleDocuments}
-          annotationLinkCallbacks={exampleAnnotationLinkCallbacks}
-          defaultTheme={colorMode}
-        />
+        <CsnInteropRenderer key={sessionId} examples={exampleDocuments} defaultTheme={colorMode} />
       </div>
     </Suspense>
   );

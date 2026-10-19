@@ -18,6 +18,7 @@ import { findDefinitionLine } from "./definitionNavigation";
 import { clearSharedExampleState, readSharedExampleState, writeSharedExampleState } from "./shareState";
 import SidebarContent from "./sidebarContent";
 import type { CsnDocument, ExampleDocument } from "./types";
+import ErrorState from "../error/error";
 
 const emptyExamples: readonly ExampleDocument[] = [];
 
@@ -93,8 +94,11 @@ export default function Renderer({
     typeof window === "undefined" ? null : readSharedExampleState(window.location.search),
   );
   const [shareStatus, setShareStatus] = useState<ShareStatus>("idle");
+  const [copyStatus, setCopyStatus] = useState<ShareStatus>("idle");
   const [isDraggingFile, setIsDraggingFile] = useState(false);
-  const [editorWidth, setEditorWidth] = useState(46);
+  const [fileWidth, setFileWidth] = useState(18);
+  const [isFileCollapsed, setIsFileCollapsed] = useState(false);
+  const [editorWidth, setEditorWidth] = useState<number | null>(null);
   const [isEditorCollapsed, setIsEditorCollapsed] = useState(false);
   const [isExplorerCollapsed, setIsExplorerCollapsed] = useState(false);
   const renderRequestRef = useRef(0);
@@ -290,27 +294,64 @@ export default function Renderer({
     [loadLocalFile],
   );
 
-  const resizeEditor = useCallback((clientX: number): void => {
+  const resizeFiles = useCallback((clientX: number): void => {
     const workspace = workspaceRef.current;
     if (workspace === null) return;
 
     const { left, width } = workspace.getBoundingClientRect();
     const nextWidth = ((clientX - left) / width) * 100;
-    if (nextWidth < 14) {
-      setIsEditorCollapsed(true);
-      setIsExplorerCollapsed(false);
-      return;
-    }
-    if (nextWidth > 86) {
-      setIsEditorCollapsed(false);
-      setIsExplorerCollapsed(true);
-      return;
-    }
-
-    setIsEditorCollapsed(false);
-    setIsExplorerCollapsed(false);
-    setEditorWidth(Math.min(Math.max(nextWidth, 22), 72));
+    setIsFileCollapsed(nextWidth < 7);
+    if (nextWidth >= 7) setFileWidth(Math.min(Math.max(nextWidth, 15), 35));
   }, []);
+
+  const onFileResizeStart = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>): void => {
+      event.preventDefault();
+      event.currentTarget.setPointerCapture(event.pointerId);
+      resizeFiles(event.clientX);
+    },
+    [resizeFiles],
+  );
+
+  const onFileResizeMove = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>): void => {
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) resizeFiles(event.clientX);
+    },
+    [resizeFiles],
+  );
+
+  const onFileResizeKeyDown = useCallback(
+    (event: ReactKeyboardEvent<HTMLDivElement>): void => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+
+      event.preventDefault();
+      if (event.key === "ArrowRight" && isFileCollapsed) {
+        setIsFileCollapsed(false);
+        return;
+      }
+      if (event.key === "ArrowLeft" && fileWidth <= 15) {
+        setIsFileCollapsed(true);
+        return;
+      }
+      setIsFileCollapsed(false);
+      setFileWidth((width) => Math.min(Math.max(width + (event.key === "ArrowLeft" ? -2 : 2), 15), 35));
+    },
+    [fileWidth, isFileCollapsed],
+  );
+
+  const resizeEditor = useCallback(
+    (clientX: number): void => {
+      const workspace = workspaceRef.current;
+      if (workspace === null) return;
+
+      const { left, width } = workspace.getBoundingClientRect();
+      const nextWidth = ((clientX - left) / width) * 100 - (isFileCollapsed ? 0 : fileWidth);
+      setIsEditorCollapsed(nextWidth < 14);
+      setIsExplorerCollapsed(nextWidth > 86);
+      if (nextWidth >= 14 && nextWidth <= 86) setEditorWidth(Math.min(Math.max(nextWidth, 22), 72));
+    },
+    [fileWidth, isFileCollapsed],
+  );
 
   const onResizeStart = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>): void => {
@@ -323,44 +364,41 @@ export default function Renderer({
 
   const onResizeMove = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>): void => {
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-        resizeEditor(event.clientX);
-      }
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) resizeEditor(event.clientX);
     },
     [resizeEditor],
   );
 
   const onResizeKeyDown = useCallback((event: ReactKeyboardEvent<HTMLDivElement>): void => {
-    const widthStep = 4;
-    if (event.key === "Home") {
-      event.preventDefault();
-      setIsEditorCollapsed(true);
-      setIsExplorerCollapsed(false);
-      return;
-    }
-    if (event.key === "End") {
-      event.preventDefault();
-      setIsEditorCollapsed(false);
-      setIsExplorerCollapsed(false);
-      setEditorWidth(72);
-      return;
-    }
     if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
 
     event.preventDefault();
     setIsEditorCollapsed(false);
     setIsExplorerCollapsed(false);
-    setEditorWidth((currentWidth) =>
-      Math.min(Math.max(currentWidth + (event.key === "ArrowLeft" ? -widthStep : widthStep), 22), 72),
-    );
+    setEditorWidth((width) => Math.min(Math.max((width ?? 40) + (event.key === "ArrowLeft" ? -4 : 4), 22), 72));
   }, []);
 
   const toggleEditorPane = useCallback((): void => {
-    setIsEditorCollapsed((collapsed) => {
-      if (!collapsed) setIsExplorerCollapsed(false);
-      return !collapsed;
-    });
+    setIsEditorCollapsed((collapsed) => !collapsed);
   }, []);
+
+  const onFormatClick = useCallback((): void => {
+    void editorRef.current?.getAction("editor.action.formatDocument")?.run();
+  }, []);
+
+  const onCopyClick = useCallback(async (): Promise<void> => {
+    if (!csnStringValue || typeof window === "undefined") return;
+
+    try {
+      if (!navigator.clipboard) throw new Error("Clipboard access is unavailable.");
+
+      await navigator.clipboard.writeText(editorRef.current?.getValue() ?? csnStringValue);
+      setCopyStatus("copied");
+    } catch {
+      setCopyStatus("failed");
+    }
+    window.setTimeout(() => setCopyStatus("idle"), 2000);
+  }, [csnStringValue]);
 
   const onShareClick = useCallback(async (): Promise<void> => {
     if (activeExample === null || typeof window === "undefined") return;
@@ -405,38 +443,99 @@ export default function Renderer({
 
   const canResetEditor = csnStringValue !== "" || renderedContent !== "" || renderedDocument !== null || error !== null;
   const hasRenderedResult = error === null && renderedDocument !== null && renderedContent !== "" && !isRendering;
-  const editorPaneStyle: CSSProperties & Record<"--editor-pane-width", string> = {
-    "--editor-pane-width": `${editorWidth}%`,
+  const workspaceStyle: CSSProperties &
+    Record<"--file-pane-width", string> &
+    Partial<Record<"--editor-pane-width", string>> = {
+    "--file-pane-width": `${fileWidth}%`,
+    ...(editorWidth === null ? {} : { "--editor-pane-width": `${editorWidth}%` }),
   };
-
   return (
     <ThemeRoot className={className} style={theme as CSSProperties | undefined} defaultTheme={defaultTheme}>
       <div
         ref={workspaceRef}
         className={styles.Workspace}
+        style={workspaceStyle}
         data-drag-active={isDraggingFile}
+        data-file-collapsed={isFileCollapsed}
+        data-editor-resized={editorWidth !== null}
         data-explorer-visible={hasRenderedResult}
         data-explorer-collapsed={isExplorerCollapsed}
         onDragEnter={onDragEnter}
         onDragLeave={onDragLeave}
         onDragOver={onDragOver}
         onDrop={onDrop}>
-        <div className={styles.EditorPane} data-collapsed={isEditorCollapsed} style={editorPaneStyle}>
+        <SidebarContent
+          examples={examples}
+          activeExample={activeExample}
+          onTryExampleClick={onTryExampleClick}
+          onFileSelect={(file) => void loadLocalFile(file)}
+        />
+        <div
+          className={styles.ResizeHandle}
+          role="separator"
+          aria-label="Resize CSN file list"
+          aria-orientation="vertical"
+          aria-valuemin={0}
+          aria-valuemax={35}
+          aria-valuenow={isFileCollapsed ? 0 : fileWidth}
+          aria-valuetext={isFileCollapsed ? "Collapsed" : `${Math.round(fileWidth)} percent`}
+          tabIndex={0}
+          onPointerDown={onFileResizeStart}
+          onPointerMove={onFileResizeMove}
+          onKeyDown={onFileResizeKeyDown}
+        />
+
+        <div className={styles.EditorPane} data-collapsed={isEditorCollapsed}>
           <div className={styles.Bar}>
-            <span className={styles.InputLabel}>CSN JSON</span>
+            <Button
+              className={styles.ToolbarButton}
+              disabled={!csnStringValue}
+              variant="outline"
+              aria-label="Format JSON"
+              title="Format JSON"
+              onClick={onFormatClick}>
+              <svg className={styles.ToolbarIcon} viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m4 20 9-9" />
+                <path d="m14 4 1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2Z" />
+                <path d="m18 13 .6 1.4L20 15l-1.4.6L18 17l-.6-1.4L16 15l1.4-.6L18 13Z" />
+              </svg>
+              <span className={styles.ToolbarLabel}>Format</span>
+            </Button>
+            <Button
+              className={styles.ToolbarButton}
+              disabled={!csnStringValue}
+              variant="outline"
+              aria-label={
+                copyStatus === "copied"
+                  ? "CSN JSON copied"
+                  : copyStatus === "failed"
+                    ? "Unable to copy CSN JSON"
+                    : "Copy CSN JSON"
+              }
+              title="Copy JSON to clipboard"
+              onClick={() => void onCopyClick()}>
+              <svg className={styles.ToolbarIcon} viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="1" />
+                <path d="M15 9V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h4" />
+              </svg>
+              <span className={styles.ToolbarLabel}>
+                {copyStatus === "copied" ? "Copied" : copyStatus === "failed" ? "Copy failed" : "Copy"}
+              </span>
+            </Button>
             <div className={styles.BarSpacer} />
-            {hasRenderedResult && (
-              <Button className={styles.MobileEditorToggle} variant="outline" size="sm" onClick={toggleEditorPane}>
-                {isEditorCollapsed ? "Show JSON" : "Hide JSON"}
-              </Button>
-            )}
             <div className={styles.BarItem}>
               <Button
                 className={styles.ResetEditorButton}
                 disabled={!canResetEditor}
                 variant="outline"
+                aria-label="Reset editor"
+                title="Reset editor"
                 onClick={onStartOverClick}>
-                Reset editor
+                <svg className={styles.ResetEditorIcon} viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 3-6.7" />
+                  <path d="M3 4v5h5" />
+                </svg>
+                <span className={styles.ToolbarLabel}>Reset</span>
               </Button>
               <Button
                 className={styles.ShareButton}
@@ -450,8 +549,18 @@ export default function Renderer({
                       ? "Unable to copy link"
                       : "Share link"
                 }
+                title="Copy share link"
                 onClick={() => void onShareClick()}>
-                {shareStatus === "copied" ? "Copied" : shareStatus === "failed" ? "Copy failed" : "Share"}
+                <svg className={styles.ShareIcon} viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <path d="m8.6 10.5 6.8-4" />
+                  <path d="m8.6 13.5 6.8 4" />
+                </svg>
+                <span className={styles.ToolbarLabel}>
+                  {shareStatus === "copied" ? "Copied" : shareStatus === "failed" ? "Copy failed" : "Share"}
+                </span>
               </Button>
             </div>
           </div>
@@ -459,40 +568,51 @@ export default function Renderer({
             <CsnEditor value={csnStringValue} onChange={onChange} onMount={onEditorMount} defaultTheme={defaultTheme} />
           </div>
         </div>
+
+        <div
+          className={styles.ResizeHandle}
+          role="separator"
+          aria-label="Resize CSN JSON editor"
+          aria-orientation="vertical"
+          aria-valuemin={0}
+          aria-valuemax={72}
+          aria-valuenow={isEditorCollapsed ? 0 : (editorWidth ?? 40)}
+          tabIndex={0}
+          onPointerDown={onResizeStart}
+          onPointerMove={onResizeMove}
+          onKeyDown={onResizeKeyDown}
+        />
+
         {hasRenderedResult ? (
-          <>
-            <div
-              className={styles.ResizeHandle}
-              role="separator"
-              aria-label="Resize CSN JSON editor"
-              aria-orientation="vertical"
-              aria-valuemin={0}
-              aria-valuemax={72}
-              aria-valuenow={isEditorCollapsed ? 0 : editorWidth}
-              tabIndex={0}
-              onPointerDown={onResizeStart}
-              onPointerMove={onResizeMove}
-              onKeyDown={onResizeKeyDown}
-            />
-            <DefinitionExplorer
-              document={renderedDocument}
-              initialState={
-                sharedExampleState !== null && sharedExampleState.exampleId === activeExample?.id
-                  ? sharedExampleState.explorer
-                  : undefined
-              }
-              onStateChange={onExplorerStateChange}
-            />
-          </>
+          <DefinitionExplorer
+            document={renderedDocument}
+            annotationLinkCallbacks={annotationLinkCallbacks}
+            initialState={
+              sharedExampleState !== null && sharedExampleState.exampleId === activeExample?.id
+                ? sharedExampleState.explorer
+                : undefined
+            }
+            onStateChange={onExplorerStateChange}
+          />
         ) : (
-          <div className={styles.Sidebar}>
-            <SidebarContent
-              error={error}
-              isRendering={isRendering}
-              examples={examples}
-              onTryExampleClick={onTryExampleClick}
-            />
+          <div className={styles.EmptyExplorer} aria-live="polite">
+            {error !== null ? (
+              <ErrorState name="unableToLoad" title="Error while rendering" description={String(error)} />
+            ) : isRendering ? (
+              <p>Rendering CSN document…</p>
+            ) : (
+              <>
+                <span className={styles.PaneTitle}>Overview</span>
+                <p>Open a CSN JSON file or select an example to see its definitions and details.</p>
+              </>
+            )}
           </div>
+        )}
+
+        {hasRenderedResult && (
+          <Button className={styles.MobileEditorToggle} variant="outline" onClick={toggleEditorPane}>
+            {isEditorCollapsed ? "Show JSON" : "Hide JSON"}
+          </Button>
         )}
         {isDraggingFile && <div className={styles.DropOverlay}>Drop CSN JSON to load it</div>}
       </div>

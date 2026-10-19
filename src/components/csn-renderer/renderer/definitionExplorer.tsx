@@ -3,18 +3,21 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
+  type SyntheticEvent,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-import { Input } from "@open-resource-discovery/ui-components";
+import { Button, Input } from "@open-resource-discovery/ui-components";
+import type { AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
 import styles from "./renderer.module.css";
 import type { CsnDefinition, CsnDocument } from "./types";
 
 interface Props {
   document: CsnDocument;
+  annotationLinkCallbacks?: AnnotationLinkCallbacks;
   initialState?: Partial<ExplorerState>;
   onStateChange?: (state: ExplorerState) => void;
 }
@@ -30,6 +33,28 @@ const definitionGroups = [
   ["context", "Context definitions"],
 ] as const;
 
+const extensionDocumentationBaseUrl = "https://sap.github.io/csn-interop-specification/spec-v1/extensions";
+
+const extensionDocumentationPaths: Readonly<Record<string, string>> = {
+  Aggregation: "aggregation",
+  AnalyticsDetails: "analytics-details",
+  API: "api",
+  Consumption: "consumption",
+  DataIntegration: "dataintegration",
+  EndUserText: "end-user-text",
+  EntityRelationship: "entity-relationship",
+  ObjectModel: "object-model",
+  ODM: "odm",
+  PersonalData: "personal-data",
+  Semantics: "semantics",
+};
+
+const getExtensionDocumentationLink = (annotationKey: string): string | undefined => {
+  const namespace = annotationKey.match(/^@([^.]+)/)?.[1];
+  const path = namespace === undefined ? undefined : extensionDocumentationPaths[namespace];
+  return path === undefined ? undefined : `${extensionDocumentationBaseUrl}/${path}`;
+};
+
 const formatValue = (value: unknown): string => {
   if (typeof value === "string") return value;
   if (value === undefined) return "—";
@@ -43,6 +68,9 @@ const getValueType = (value: unknown): "boolean" | "string" | "structured" | "em
   return "structured";
 };
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+
 const formatDefinitionKind = (kind: string | undefined): string => {
   if (kind === undefined) return "Definition";
   return `${kind[0].toUpperCase()}${kind.slice(1)} definition`;
@@ -51,96 +79,288 @@ const formatDefinitionKind = (kind: string | undefined): string => {
 interface DefinitionDetailsProps {
   name: string;
   definition: CsnDefinition;
-  selectedItem: string;
-  onItemToggle: (item: string, isOpen: boolean) => void;
+  annotationLinkCallbacks?: AnnotationLinkCallbacks;
 }
 
-function DefinitionDetails({ name, definition, selectedItem, onItemToggle }: DefinitionDetailsProps): ReactNode {
+const detailFilterOptions = [
+  ["annotations", "Annotations"],
+  ["elements", "Elements"],
+  ["properties", "Properties"],
+  ["private", "Private"],
+] as const;
+
+type DetailFilter = (typeof detailFilterOptions)[number][0];
+
+const createAllDetailFilters = (): Set<DetailFilter> => new Set(detailFilterOptions.map(([filter]) => filter));
+
+function DefinitionDetails({ name, definition, annotationLinkCallbacks }: DefinitionDetailsProps): ReactNode {
   const annotations = Object.entries(definition).filter(([key]) => key.startsWith("@"));
+  const [annotationLinks, setAnnotationLinks] = useState<Record<string, string>>({});
+  const [activeFilters, setActiveFilters] = useState<ReadonlySet<DetailFilter>>(createAllDetailFilters);
+  const [draftFilters, setDraftFilters] = useState<ReadonlySet<DetailFilter>>(createAllDetailFilters);
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [filterMenuQuery, setFilterMenuQuery] = useState("");
+  const [detailQuery, setDetailQuery] = useState("");
+  const elements = Object.entries(definition.elements ?? {});
   const properties = Object.entries(definition).filter(
     ([key]) => !key.startsWith("@") && !key.startsWith("__") && !["kind", "elements", "doc"].includes(key),
   );
   const privateProperties = Object.entries(definition).filter(([key]) => key.startsWith("__"));
+  const normalizedDetailQuery = detailQuery.trim().toLowerCase();
+  const matchesDetailQuery = (key: string): boolean => key.toLowerCase().includes(normalizedDetailQuery);
+  const filteredAnnotations = activeFilters.has("annotations")
+    ? annotations.filter(([key]) => matchesDetailQuery(key))
+    : [];
+  const filteredElements = activeFilters.has("elements") ? elements.filter(([key]) => matchesDetailQuery(key)) : [];
+  const filteredPrivateProperties = activeFilters.has("private")
+    ? privateProperties.filter(([key]) => matchesDetailQuery(key))
+    : [];
+  const filteredProperties = activeFilters.has("properties")
+    ? properties.filter(([key]) => matchesDetailQuery(key))
+    : [];
+  const hasFilteredDetails =
+    filteredAnnotations.length +
+      filteredElements.length +
+      filteredPrivateProperties.length +
+      filteredProperties.length >
+    0;
+
+  const toggleDraftFilter = (filter: DetailFilter): void => {
+    setDraftFilters((currentFilters) => {
+      const nextFilters = new Set(currentFilters);
+      if (nextFilters.has(filter)) nextFilters.delete(filter);
+      else nextFilters.add(filter);
+      return nextFilters;
+    });
+  };
+
+  const handleFilterMenuToggle = (event: SyntheticEvent<HTMLDetailsElement>): void => {
+    const isOpen = event.currentTarget.open;
+    setIsFilterMenuOpen(isOpen);
+    if (isOpen) {
+      setDraftFilters(new Set(activeFilters));
+      setFilterMenuQuery("");
+    }
+  };
+
+  const applyFilters = (): void => {
+    setActiveFilters(new Set(draftFilters));
+    setIsFilterMenuOpen(false);
+  };
+
+  const visibleFilterOptions = detailFilterOptions.filter(([, label]) =>
+    label.toLowerCase().includes(filterMenuQuery.trim().toLowerCase()),
+  );
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    const resolveLinks = async (): Promise<void> => {
+      const links = await Promise.all(
+        Object.entries(definition)
+          .filter(([key]) => key.startsWith("@"))
+          .map(async ([key, value]) => {
+            const callback = annotationLinkCallbacks?.[key];
+            if (callback === undefined) return [key, undefined] as const;
+
+            try {
+              return [key, await callback(value)] as const;
+            } catch {
+              return [key, undefined] as const;
+            }
+          }),
+      );
+
+      if (!isCurrent) return;
+      const nextLinks: Record<string, string> = {};
+      for (const [key, link] of links) {
+        if (link) nextLinks[key] = link;
+      }
+      setAnnotationLinks(nextLinks);
+    };
+
+    void resolveLinks();
+    return (): void => {
+      isCurrent = false;
+    };
+  }, [annotationLinkCallbacks, definition]);
 
   return (
     <article className={styles.DefinitionDetails}>
       <header className={styles.DefinitionDetailsHeader}>
         <span className={styles.PaneTitle}>{formatDefinitionKind(definition.kind)}</span>
         <h2>{name}</h2>
+        <div className={styles.DetailSearch}>
+          <div className={styles.DetailSearchBox}>
+            <input
+              className={styles.DetailSearchInput}
+              type="search"
+              value={detailQuery}
+              placeholder="Search annotations and properties"
+              aria-label="Search annotations and properties"
+              onChange={(event) => setDetailQuery(event.target.value)}
+            />
+            <details className={styles.DetailFilterMenu} open={isFilterMenuOpen} onToggle={handleFilterMenuToggle}>
+              <summary>
+                Filter{activeFilters.size < detailFilterOptions.length ? ` (${activeFilters.size})` : ""}
+              </summary>
+              <div className={styles.DetailFilterPopover}>
+                <input
+                  className={styles.DetailFilterMenuSearch}
+                  type="search"
+                  value={filterMenuQuery}
+                  placeholder="Filter sections"
+                  aria-label="Filter sections"
+                  onChange={(event) => setFilterMenuQuery(event.target.value)}
+                />
+                <div className={styles.DetailFilterQuickActions}>
+                  <button type="button" onClick={() => setDraftFilters(createAllDetailFilters())}>
+                    Select all
+                  </button>
+                  <button type="button" onClick={() => setDraftFilters(new Set())}>
+                    Clear
+                  </button>
+                </div>
+                <div className={styles.DetailFilterOptions}>
+                  {visibleFilterOptions.map(([filter, label]) => (
+                    <label key={filter}>
+                      <input
+                        type="checkbox"
+                        checked={draftFilters.has(filter)}
+                        onChange={() => toggleDraftFilter(filter)}
+                      />
+                      {label}
+                    </label>
+                  ))}
+                </div>
+                <div className={styles.DetailFilterFooter}>
+                  <Button variant="outline" size="sm" onClick={() => setIsFilterMenuOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button size="sm" onClick={applyFilters}>
+                    Apply
+                  </Button>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
       </header>
       {definition.doc && <p className={styles.DefinitionDescription}>{definition.doc}</p>}
-      {annotations.length > 0 && (
+      {filteredAnnotations.length > 0 && (
         <section className={styles.DetailSection}>
-          <h3>Annotations ({annotations.length})</h3>
+          <h3>Annotations ({filteredAnnotations.length})</h3>
           <div className={styles.AnnotationList}>
-            {annotations.map(([key, value]) => (
-              <details
-                key={key}
-                className={
-                  selectedItem === `${name}:annotations:${key}` ? styles.AnnotationCardActive : styles.AnnotationCard
-                }
-                onToggle={(event) => onItemToggle(`${name}:annotations:${key}`, event.currentTarget.open)}>
-                <summary className={styles.AnnotationKey}>{key}</summary>
+            {filteredAnnotations.map(([key, value]) => (
+              <div key={key} className={styles.AnnotationCard}>
+                {getExtensionDocumentationLink(key) !== undefined ? (
+                  <a
+                    className={styles.AnnotationDocumentationLink}
+                    href={getExtensionDocumentationLink(key)}
+                    target="_blank"
+                    rel="noreferrer">
+                    {key}
+                  </a>
+                ) : (
+                  <span className={styles.AnnotationKey}>{key}</span>
+                )}
                 <span
                   className={styles.AnnotationValue}
                   data-value-type={getValueType(value)}
                   title={formatValue(value)}>
-                  {formatValue(value)}
+                  {annotationLinks[key] !== undefined ? (
+                    <a className={styles.AnnotationLink} href={annotationLinks[key]} target="_blank" rel="noreferrer">
+                      {formatValue(value)}
+                    </a>
+                  ) : (
+                    formatValue(value)
+                  )}
                 </span>
-              </details>
+              </div>
             ))}
           </div>
         </section>
       )}
-      {privateProperties.length > 0 && (
+      {filteredElements.length > 0 && (
         <section className={styles.DetailSection}>
-          <h3>Private Properties ({privateProperties.length})</h3>
+          <h3>Elements ({filteredElements.length})</h3>
           <div className={styles.PropertyList}>
-            {privateProperties.map(([key, value]) => (
-              <details
-                key={key}
-                className={
-                  selectedItem === `${name}:private-properties:${key}` ? styles.PropertyCardActive : styles.PropertyCard
-                }
-                onToggle={(event) => onItemToggle(`${name}:private-properties:${key}`, event.currentTarget.open)}>
-                <summary className={styles.PropertyKey}>{key}</summary>
-                <span className={styles.PropertyValue} data-value-type={getValueType(value)} title={formatValue(value)}>
-                  {formatValue(value)}
-                </span>
-              </details>
+            {filteredElements.map(([elementName, element]) => (
+              <div key={elementName} className={styles.PropertyCard}>
+                <span className={styles.PropertyKey}>{elementName}</span>
+                {isRecord(element) ? (
+                  <div className={styles.ElementPropertyList}>
+                    {Object.entries(element).map(([key, value]) => (
+                      <div key={key} className={styles.ElementProperty}>
+                        <span className={styles.PropertyKey}>{key}</span>
+                        <span
+                          className={styles.PropertyValue}
+                          data-value-type={getValueType(value)}
+                          title={formatValue(value)}>
+                          {formatValue(value)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <span
+                    className={styles.PropertyValue}
+                    data-value-type={getValueType(element)}
+                    title={formatValue(element)}>
+                    {formatValue(element)}
+                  </span>
+                )}
+              </div>
             ))}
           </div>
         </section>
       )}
-      {properties.length > 0 && (
+      {filteredPrivateProperties.length > 0 && (
         <section className={styles.DetailSection}>
-          <h3>Exposed Properties ({properties.length})</h3>
+          <h3>Private Properties ({filteredPrivateProperties.length})</h3>
           <div className={styles.PropertyList}>
-            {properties.map(([key, value]) => (
-              <details
-                key={key}
-                className={
-                  selectedItem === `${name}:properties:${key}` ? styles.PropertyCardActive : styles.PropertyCard
-                }
-                onToggle={(event) => onItemToggle(`${name}:properties:${key}`, event.currentTarget.open)}>
-                <summary className={styles.PropertyKey}>{key}</summary>
+            {filteredPrivateProperties.map(([key, value]) => (
+              <div key={key} className={styles.PropertyCard}>
+                <span className={styles.PropertyKey}>{key}</span>
                 <span className={styles.PropertyValue} data-value-type={getValueType(value)} title={formatValue(value)}>
                   {formatValue(value)}
                 </span>
-              </details>
+              </div>
             ))}
           </div>
         </section>
+      )}
+      {filteredProperties.length > 0 && (
+        <section className={styles.DetailSection}>
+          <h3>Exposed Properties ({filteredProperties.length})</h3>
+          <div className={styles.PropertyList}>
+            {filteredProperties.map(([key, value]) => (
+              <div key={key} className={styles.PropertyCard}>
+                <span className={styles.PropertyKey}>{key}</span>
+                <span className={styles.PropertyValue} data-value-type={getValueType(value)} title={formatValue(value)}>
+                  {formatValue(value)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+      {(normalizedDetailQuery !== "" || activeFilters.size > 0) && !hasFilteredDetails && (
+        <p className={styles.EmptyDetail}>No detail names match the current search and filters.</p>
       )}
     </article>
   );
 }
 
-export default function DefinitionExplorer({ document, initialState, onStateChange }: Props): ReactNode {
+export default function DefinitionExplorer({
+  document,
+  annotationLinkCallbacks,
+  initialState,
+  onStateChange,
+}: Props): ReactNode {
   const definitions = useMemo(() => Object.entries(document.definitions ?? {}), [document]);
   const initialDefinitionName = initialState?.definition ?? "";
   const [selectedName, setSelectedName] = useState(initialDefinitionName);
-  const [selectedItem, setSelectedItem] = useState("");
   const [definitionQuery, setDefinitionQuery] = useState("");
   const [expandedGroups, setExpandedGroups] = useState<ReadonlySet<string>>(
     () => new Set(definitionGroups.map(([kind]) => kind)),
@@ -174,10 +394,6 @@ export default function DefinitionExplorer({ document, initialState, onStateChan
 
   const selectDefinition = (name: string): void => {
     setSelectedName(name);
-  };
-
-  const selectInspectorItem = (item: string, isOpen: boolean): void => {
-    setSelectedItem((currentItem) => (isOpen ? item : currentItem === item ? "" : currentItem));
   };
 
   const resizeDefinitionNav = useCallback((clientX: number): void => {
@@ -317,8 +533,7 @@ export default function DefinitionExplorer({ document, initialState, onStateChan
             <DefinitionDetails
               name={selectedName}
               definition={document.definitions[selectedName]}
-              selectedItem={selectedItem}
-              onItemToggle={selectInspectorItem}
+              annotationLinkCallbacks={annotationLinkCallbacks}
             />
           ) : definitions.length > 0 ? (
             <p className={styles.EmptyDetail}>Select a definition to inspect its details.</p>
