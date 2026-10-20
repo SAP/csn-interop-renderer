@@ -21,6 +21,9 @@ interface Props {
   annotationLinkCallbacks?: AnnotationLinkCallbacks;
   initialState?: Partial<ExplorerState>;
   onStateChange?: (state: ExplorerState) => void;
+  canShare: boolean;
+  shareStatus: "idle" | "copied" | "failed";
+  onShareClick: () => void;
 }
 
 export interface ExplorerState {
@@ -544,6 +547,9 @@ export default function DefinitionExplorer({
   annotationLinkCallbacks,
   initialState,
   onStateChange,
+  canShare,
+  shareStatus,
+  onShareClick,
 }: Props): ReactNode {
   const definitions = useMemo(() => Object.entries(document.definitions ?? {}), [document]);
   const initialDefinitionName = initialState?.definition ?? "";
@@ -660,11 +666,32 @@ export default function DefinitionExplorer({
 
   return (
     <div ref={explorerRef} className={styles.Explorer} style={explorerStyle}>
+      <header className={styles.ExplorerHeader}>
+        <span className={styles.PaneTitle}>CSN model</span>
+        <h2>Definitions</h2>
+        <Button
+          className={styles.ExplorerShareButton}
+          disabled={!canShare}
+          variant="outline"
+          size="sm"
+          aria-label={
+            shareStatus === "copied" ? "Link copied" : shareStatus === "failed" ? "Unable to copy link" : "Share link"
+          }
+          title="Copy share link"
+          onClick={onShareClick}>
+          <svg className={styles.ExplorerShareIcon} viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <path d="m8.6 10.5 6.8-4" />
+            <path d="m8.6 13.5 6.8 4" />
+          </svg>
+          <span className={styles.ExplorerShareLabel}>
+            {shareStatus === "copied" ? "Copied" : shareStatus === "failed" ? "Copy failed" : "Share"}
+          </span>
+        </Button>
+      </header>
       <nav className={styles.DefinitionNav} aria-label="CSN definitions">
-        <div className={styles.NavHeading}>
-          <span className={styles.PaneTitle}>CSN model</span>
-          <strong>Definitions</strong>
-        </div>
         <Input
           className={styles.DefinitionSearch}
           type="search"
@@ -717,12 +744,6 @@ export default function DefinitionExplorer({
         onValueChange={(nextWidth) => setDefinitionWidth(Math.min(Math.max(nextWidth, 0), 100))}
       />
       <section className={styles.DefinitionDetail}>
-        <div className={styles.DetailHeader}>
-          <div className={styles.DetailTitle}>
-            <span className={styles.PaneTitle}>CSN model</span>
-            <h2>Definitions</h2>
-          </div>
-        </div>
         <div ref={detailContentRef} className={styles.DetailContent}>
           {selectedName && document.definitions?.[selectedName] !== undefined ? (
             <DefinitionDetails

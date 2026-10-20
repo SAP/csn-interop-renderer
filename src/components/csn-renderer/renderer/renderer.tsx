@@ -478,31 +478,6 @@ export default function Renderer({
                 </svg>
                 <span className={styles.ToolbarLabel}>Reset</span>
               </Button>
-              <Button
-                className={styles.ShareButton}
-                disabled={activeExample === null}
-                variant="outline"
-                size="sm"
-                aria-label={
-                  shareStatus === "copied"
-                    ? "Link copied"
-                    : shareStatus === "failed"
-                      ? "Unable to copy link"
-                      : "Share link"
-                }
-                title="Copy share link"
-                onClick={() => void onShareClick()}>
-                <svg className={styles.ShareIcon} viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="18" cy="5" r="3" />
-                  <circle cx="6" cy="12" r="3" />
-                  <circle cx="18" cy="19" r="3" />
-                  <path d="m8.6 10.5 6.8-4" />
-                  <path d="m8.6 13.5 6.8 4" />
-                </svg>
-                <span className={styles.ToolbarLabel}>
-                  {shareStatus === "copied" ? "Copied" : shareStatus === "failed" ? "Copy failed" : "Share"}
-                </span>
-              </Button>
             </div>
           </div>
           <div className={styles.Editor}>
@@ -530,6 +505,9 @@ export default function Renderer({
                 : undefined
             }
             onStateChange={onExplorerStateChange}
+            canShare={activeExample !== null}
+            shareStatus={shareStatus}
+            onShareClick={onShareClick}
           />
         ) : (
           <div className={styles.EmptyExplorer} aria-live="polite">

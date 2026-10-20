@@ -5,6 +5,11 @@ export default defineConfig({
   esbuild: {
     jsx: "automatic",
   },
+  css: {
+    modules: {
+      generateScopedName: "[name]__[local]",
+    },
+  },
   build: {
     outDir: "dist",
     emptyOutDir: false,

@@ -40,7 +40,7 @@ const config: Config = {
       {
         docs: {
           sidebarCollapsible: true,
-          routeBasePath: "/",
+          routeBasePath: "/docs",
           rehypePlugins: [rehypeCollapsibleTables],
           // Remove this to remove the "edit this page" links.
           editUrl: "https://github.com/SAP/csn-interop-renderer/tree/main/",
@@ -63,8 +63,14 @@ const config: Config = {
       },
       items: [
         {
-          label: "CSN Interop Document Renderer",
+          label: "CSN Interop Renderer",
           to: "/",
+          exact: true,
+        },
+        {
+          label: "Documentation",
+          to: "/docs",
+          activeBasePath: "/docs",
         },
         {
           label: "Try Out",
