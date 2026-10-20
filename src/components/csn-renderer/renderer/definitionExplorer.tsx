@@ -33,7 +33,6 @@ export interface ExplorerState {
 type DetailItemSection = "annotations" | "private" | "properties";
 
 const nonExposedDefinitionProperties: readonly string[] = ["kind", "elements", "doc"];
-const elementPropertiesOnSeparateLines = new Set(["doc", "key", "type", "default"]);
 
 const definitionGroups = [
   ["service", "Service definitions"],
@@ -286,8 +285,8 @@ function DefinitionDetails({
                 className={styles.DetailSearchInput}
                 type="search"
                 value={detailQuery}
-                placeholder="Search annotations and properties"
-                aria-label="Search annotations and properties"
+                placeholder="Search definition details"
+                aria-label="Search definition details"
                 onChange={(event) => setDetailQuery(event.target.value)}
               />
               <details className={styles.DetailFilterMenu} open={isFilterMenuOpen} onToggle={handleFilterMenuToggle}>
@@ -439,13 +438,7 @@ function DefinitionDetails({
                           <h4 className={styles.ElementPropertyGroupLabel}>Definition</h4>
                           <div className={styles.ElementPropertyList}>
                             {elementDefinition.map(([key, value]) => (
-                              <div
-                                key={key}
-                                className={
-                                  elementPropertiesOnSeparateLines.has(key)
-                                    ? `${styles.ElementProperty} ${styles.ElementPropertyPrimary}`
-                                    : styles.ElementProperty
-                                }>
+                              <div key={key} className={styles.ElementProperty}>
                                 <span className={styles.PropertyKey}>{key}</span>
                                 <span
                                   className={styles.PropertyValue}

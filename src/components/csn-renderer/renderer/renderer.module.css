@@ -792,21 +792,6 @@
   content: '"';
 }
 
-.AnnotationValue[data-value-type="boolean"] {
-  display: inline-flex;
-  align-self: flex-start;
-  max-height: none;
-  padding: 0.25rem 0.5rem;
-  color: var(--ord-primary);
-  font-family: inherit;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  background: var(--ord-accent);
-  border-color: var(--ord-primary);
-}
-
 .AnnotationLink {
   color: var(--ord-primary);
   text-decoration: underline;
@@ -820,7 +805,6 @@
   color: inherit;
   font: inherit;
   text-align: left;
-  cursor: default;
   background: var(--ord-card);
   border: 1px solid var(--ord-border);
   border-radius: var(--ord-radius);
@@ -952,13 +936,9 @@
 
 .ElementCard .ElementProperty {
   display: block;
-  flex: 0 1 auto;
+  flex: 0 0 100%;
   min-width: 0;
   line-height: 1.45;
-}
-
-.ElementCard .ElementPropertyPrimary {
-  flex-basis: 100%;
 }
 
 .ElementCard .PropertyKey {
@@ -1020,19 +1000,6 @@
 .PropertyValue[data-value-type="string"]::after {
   color: var(--ord-muted-foreground);
   content: '"';
-}
-
-.PropertyValue[data-value-type="boolean"] {
-  justify-self: start;
-  padding: 0.25rem 0.5rem;
-  color: var(--ord-primary);
-  font-family: inherit;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  background: var(--ord-accent);
-  border-color: var(--ord-primary);
 }
 
 .DetailSection {
