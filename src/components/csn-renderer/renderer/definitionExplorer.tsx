@@ -33,6 +33,7 @@ export interface ExplorerState {
 type DetailItemSection = "annotations" | "private" | "properties";
 
 const nonExposedDefinitionProperties: readonly string[] = ["kind", "elements", "doc"];
+const elementPropertiesOnSeparateLines = new Set(["doc", "key", "type", "default"]);
 
 const definitionGroups = [
   ["service", "Service definitions"],
@@ -97,6 +98,18 @@ const isSelectedDetailItem = (
 const formatDefinitionKind = (kind: string | undefined): string => {
   if (kind === undefined) return "Definition";
   return `${kind[0].toUpperCase()}${kind.slice(1)} definition`;
+};
+
+const getDefinitionHref = (name: string): string => {
+  const fragment = `#definition-${encodeURIComponent(name)}`;
+  if (typeof window === "undefined") return fragment;
+
+  const searchParams = new URLSearchParams(window.location.search);
+  searchParams.set("definition", name);
+  searchParams.delete("element");
+  searchParams.delete("section");
+  searchParams.delete("item");
+  return `${window.location.pathname}?${searchParams.toString()}${window.location.hash}`;
 };
 
 interface DefinitionDetailsProps {
@@ -334,13 +347,16 @@ function DefinitionDetails({
         <CollapsibleDetailSection title={`${relatedEntitiesTitle} (${relatedEntities.length})`}>
           <div className={styles.RelatedDefinitionList}>
             {relatedEntities.map(([entityName]) => (
-              <button
+              <a
                 key={entityName}
-                className={styles.RelatedDefinitionButton}
-                type="button"
-                onClick={() => onDefinitionSelect(entityName)}>
+                className={styles.RelatedDefinitionLink}
+                href={getDefinitionHref(entityName)}
+                onClick={(event) => {
+                  event.preventDefault();
+                  onDefinitionSelect(entityName);
+                }}>
                 {entityName}
-              </button>
+              </a>
             ))}
           </div>
         </CollapsibleDetailSection>
@@ -423,7 +439,13 @@ function DefinitionDetails({
                           <h4 className={styles.ElementPropertyGroupLabel}>Definition</h4>
                           <div className={styles.ElementPropertyList}>
                             {elementDefinition.map(([key, value]) => (
-                              <div key={key} className={styles.ElementProperty}>
+                              <div
+                                key={key}
+                                className={
+                                  elementPropertiesOnSeparateLines.has(key)
+                                    ? `${styles.ElementProperty} ${styles.ElementPropertyPrimary}`
+                                    : styles.ElementProperty
+                                }>
                                 <span className={styles.PropertyKey}>{key}</span>
                                 <span
                                   className={styles.PropertyValue}
@@ -492,7 +514,7 @@ function DefinitionDetails({
         </CollapsibleDetailSection>
       )}
       {filteredProperties.length > 0 && (
-        <CollapsibleDetailSection title={`Exposed Properties (${filteredProperties.length})`}>
+        <CollapsibleDetailSection title={`Properties (${filteredProperties.length})`}>
           <div className={`${styles.PropertyList} ${styles.CompactPropertyList}`}>
             {filteredProperties.map(([key, value]) => (
               <div

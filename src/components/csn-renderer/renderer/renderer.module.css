@@ -957,6 +957,10 @@
   line-height: 1.45;
 }
 
+.ElementCard .ElementPropertyPrimary {
+  flex-basis: 100%;
+}
+
 .ElementCard .PropertyKey {
   display: inline;
   padding: 0;
@@ -1079,35 +1083,34 @@
 }
 
 .RelatedDefinitionList {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.375rem;
 }
 
-.RelatedDefinitionButton {
-  flex: 0 1 auto;
-  max-width: 100%;
-  padding: 0.375rem 0.5rem;
-  overflow: hidden;
+.RelatedDefinitionLink {
+  display: block;
+  min-width: 0;
+  padding: 0.25rem 0;
   color: var(--ord-primary);
   font: inherit;
   font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
   font-size: 0.75rem;
-  text-align: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
-  background: var(--ord-card);
-  border: 1px solid var(--ord-border);
-  border-radius: var(--ord-radius);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--ord-primary) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.125em;
 }
 
-.RelatedDefinitionButton:hover {
-  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
-  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+.RelatedDefinitionLink:hover {
+  color: color-mix(in oklab, var(--ord-primary) 75%, var(--ord-foreground));
+  text-decoration-color: currentcolor;
+  text-decoration-thickness: 2px;
 }
 
-.RelatedDefinitionButton:focus-visible {
+.RelatedDefinitionLink:focus-visible {
   outline: 2px solid var(--ord-ring);
   outline-offset: 2px;
 }
