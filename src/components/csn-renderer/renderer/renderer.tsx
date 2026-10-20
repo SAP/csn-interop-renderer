@@ -1,14 +1,4 @@
-import {
-  type CSSProperties,
-  type DragEvent,
-  type KeyboardEvent as ReactKeyboardEvent,
-  type PointerEvent as ReactPointerEvent,
-  type ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type CSSProperties, type DragEvent, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { Button, ThemeRoot, useTheme } from "@open-resource-discovery/ui-components";
 import Editor, { type OnChange, type OnMount, useMonaco } from "@monaco-editor/react";
 import styles from "./renderer.module.css";
@@ -17,6 +7,7 @@ import DefinitionExplorer, { type ExplorerState } from "./definitionExplorer";
 import { findDefinitionLine } from "./definitionNavigation";
 import { clearSharedExampleState, readSharedExampleState, writeSharedExampleState } from "./shareState";
 import SidebarContent from "./sidebarContent";
+import ResizableSeparator from "./resizableSeparator";
 import type { CsnDocument, ExampleDocument } from "./types";
 import ErrorState from "../error/error";
 
@@ -97,10 +88,8 @@ export default function Renderer({
   const [copyStatus, setCopyStatus] = useState<ShareStatus>("idle");
   const [isDraggingFile, setIsDraggingFile] = useState(false);
   const [fileWidth, setFileWidth] = useState(18);
-  const [isFileCollapsed, setIsFileCollapsed] = useState(false);
   const [editorWidth, setEditorWidth] = useState<number | null>(null);
   const [isEditorCollapsed, setIsEditorCollapsed] = useState(false);
-  const [isExplorerCollapsed, setIsExplorerCollapsed] = useState(false);
   const renderRequestRef = useRef(0);
   const dragDepthRef = useRef(0);
   const workspaceRef = useRef<HTMLDivElement>(null);
@@ -294,49 +283,23 @@ export default function Renderer({
     [loadLocalFile],
   );
 
-  const resizeFiles = useCallback((clientX: number): void => {
-    const workspace = workspaceRef.current;
-    if (workspace === null) return;
-
-    const { left, width } = workspace.getBoundingClientRect();
-    const nextWidth = ((clientX - left) / width) * 100;
-    setIsFileCollapsed(nextWidth < 7);
-    if (nextWidth >= 7) setFileWidth(Math.min(Math.max(nextWidth, 15), 35));
+  const setFilePaneWidth = useCallback((nextWidth: number): void => {
+    const clampedWidth = Math.min(Math.max(nextWidth, 0), 35);
+    setFileWidth(clampedWidth);
+    setEditorWidth((currentWidth) =>
+      currentWidth === null ? null : Math.min(Math.max(currentWidth, 0), 100 - clampedWidth),
+    );
   }, []);
 
-  const onFileResizeStart = useCallback(
-    (event: ReactPointerEvent<HTMLDivElement>): void => {
-      event.preventDefault();
-      event.currentTarget.setPointerCapture(event.pointerId);
-      resizeFiles(event.clientX);
-    },
-    [resizeFiles],
-  );
+  const resizeFiles = useCallback(
+    (clientX: number): void => {
+      const workspace = workspaceRef.current;
+      if (workspace === null) return;
 
-  const onFileResizeMove = useCallback(
-    (event: ReactPointerEvent<HTMLDivElement>): void => {
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) resizeFiles(event.clientX);
+      const { left, width } = workspace.getBoundingClientRect();
+      setFilePaneWidth(((clientX - left) / width) * 100);
     },
-    [resizeFiles],
-  );
-
-  const onFileResizeKeyDown = useCallback(
-    (event: ReactKeyboardEvent<HTMLDivElement>): void => {
-      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-
-      event.preventDefault();
-      if (event.key === "ArrowRight" && isFileCollapsed) {
-        setIsFileCollapsed(false);
-        return;
-      }
-      if (event.key === "ArrowLeft" && fileWidth <= 15) {
-        setIsFileCollapsed(true);
-        return;
-      }
-      setIsFileCollapsed(false);
-      setFileWidth((width) => Math.min(Math.max(width + (event.key === "ArrowLeft" ? -2 : 2), 15), 35));
-    },
-    [fileWidth, isFileCollapsed],
+    [setFilePaneWidth],
   );
 
   const resizeEditor = useCallback(
@@ -345,38 +308,20 @@ export default function Renderer({
       if (workspace === null) return;
 
       const { left, width } = workspace.getBoundingClientRect();
-      const nextWidth = ((clientX - left) / width) * 100 - (isFileCollapsed ? 0 : fileWidth);
-      setIsEditorCollapsed(nextWidth < 14);
-      setIsExplorerCollapsed(nextWidth > 86);
-      if (nextWidth >= 14 && nextWidth <= 86) setEditorWidth(Math.min(Math.max(nextWidth, 22), 72));
+      const nextWidth = ((clientX - left) / width) * 100 - fileWidth;
+      const maxWidth = 100 - fileWidth;
+      setEditorWidth(Math.min(Math.max(nextWidth, 0), maxWidth));
     },
-    [fileWidth, isFileCollapsed],
+    [fileWidth],
   );
 
-  const onResizeStart = useCallback(
-    (event: ReactPointerEvent<HTMLDivElement>): void => {
-      event.preventDefault();
-      event.currentTarget.setPointerCapture(event.pointerId);
-      resizeEditor(event.clientX);
+  const setEditorPaneWidth = useCallback(
+    (nextWidth: number): void => {
+      const maxWidth = 100 - fileWidth;
+      setEditorWidth(Math.min(Math.max(nextWidth, 0), maxWidth));
     },
-    [resizeEditor],
+    [fileWidth],
   );
-
-  const onResizeMove = useCallback(
-    (event: ReactPointerEvent<HTMLDivElement>): void => {
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) resizeEditor(event.clientX);
-    },
-    [resizeEditor],
-  );
-
-  const onResizeKeyDown = useCallback((event: ReactKeyboardEvent<HTMLDivElement>): void => {
-    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-
-    event.preventDefault();
-    setIsEditorCollapsed(false);
-    setIsExplorerCollapsed(false);
-    setEditorWidth((width) => Math.min(Math.max((width ?? 40) + (event.key === "ArrowLeft" ? -4 : 4), 22), 72));
-  }, []);
 
   const toggleEditorPane = useCallback((): void => {
     setIsEditorCollapsed((collapsed) => !collapsed);
@@ -443,6 +388,9 @@ export default function Renderer({
 
   const canResetEditor = csnStringValue !== "" || renderedContent !== "" || renderedDocument !== null || error !== null;
   const hasRenderedResult = error === null && renderedDocument !== null && renderedContent !== "" && !isRendering;
+  const editorPaneMinWidth = 0;
+  const editorPaneMaxWidth = Math.max(editorPaneMinWidth, 100 - fileWidth - 20);
+  const defaultEditorWidth = Math.min(Math.max((100 - fileWidth) / 2, editorPaneMinWidth), editorPaneMaxWidth);
   const workspaceStyle: CSSProperties &
     Record<"--file-pane-width", string> &
     Partial<Record<"--editor-pane-width", string>> = {
@@ -456,10 +404,8 @@ export default function Renderer({
         className={styles.Workspace}
         style={workspaceStyle}
         data-drag-active={isDraggingFile}
-        data-file-collapsed={isFileCollapsed}
         data-editor-resized={editorWidth !== null}
         data-explorer-visible={hasRenderedResult}
-        data-explorer-collapsed={isExplorerCollapsed}
         onDragEnter={onDragEnter}
         onDragLeave={onDragLeave}
         onDragOver={onDragOver}
@@ -470,19 +416,14 @@ export default function Renderer({
           onTryExampleClick={onTryExampleClick}
           onFileSelect={(file) => void loadLocalFile(file)}
         />
-        <div
+        <ResizableSeparator
           className={styles.ResizeHandle}
-          role="separator"
-          aria-label="Resize CSN file list"
-          aria-orientation="vertical"
-          aria-valuemin={0}
-          aria-valuemax={35}
-          aria-valuenow={isFileCollapsed ? 0 : fileWidth}
-          aria-valuetext={isFileCollapsed ? "Collapsed" : `${Math.round(fileWidth)} percent`}
-          tabIndex={0}
-          onPointerDown={onFileResizeStart}
-          onPointerMove={onFileResizeMove}
-          onKeyDown={onFileResizeKeyDown}
+          label="Resize CSN file list"
+          value={fileWidth}
+          min={0}
+          max={35}
+          onPointerPositionChange={resizeFiles}
+          onValueChange={setFilePaneWidth}
         />
 
         <div className={styles.EditorPane} data-collapsed={isEditorCollapsed}>
@@ -569,18 +510,14 @@ export default function Renderer({
           </div>
         </div>
 
-        <div
+        <ResizableSeparator
           className={styles.ResizeHandle}
-          role="separator"
-          aria-label="Resize CSN JSON editor"
-          aria-orientation="vertical"
-          aria-valuemin={0}
-          aria-valuemax={72}
-          aria-valuenow={isEditorCollapsed ? 0 : (editorWidth ?? 40)}
-          tabIndex={0}
-          onPointerDown={onResizeStart}
-          onPointerMove={onResizeMove}
-          onKeyDown={onResizeKeyDown}
+          label="Resize CSN JSON editor"
+          value={editorWidth ?? defaultEditorWidth}
+          min={editorPaneMinWidth}
+          max={editorPaneMaxWidth}
+          onPointerPositionChange={resizeEditor}
+          onValueChange={setEditorPaneWidth}
         />
 
         {hasRenderedResult ? (

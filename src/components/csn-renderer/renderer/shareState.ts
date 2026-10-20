@@ -16,6 +16,9 @@ export const readSharedExampleState = (search: string): SharedExampleState | nul
     exampleId,
     explorer: {
       definition: searchParams.get("definition") ?? undefined,
+      element: searchParams.get("element") ?? undefined,
+      section: searchParams.get("section") ?? undefined,
+      item: searchParams.get("item") ?? undefined,
     },
   };
 };
@@ -23,7 +26,7 @@ export const readSharedExampleState = (search: string): SharedExampleState | nul
 export const writeSharedExampleState = (search: string, exampleId: string, state: Partial<ExplorerState>): string => {
   const searchParams = new URLSearchParams(search);
   searchParams.set("example", exampleId);
-  for (const key of ["format", "tab", "section", "item", "element", "previewRow"]) {
+  for (const key of ["format", "tab", "previewRow"]) {
     searchParams.delete(key);
   }
 
@@ -31,6 +34,20 @@ export const writeSharedExampleState = (search: string, exampleId: string, state
     searchParams.set("definition", state.definition);
   } else {
     searchParams.delete("definition");
+  }
+
+  if (state.element) {
+    searchParams.set("element", state.element);
+  } else {
+    searchParams.delete("element");
+  }
+
+  if (state.section && state.item) {
+    searchParams.set("section", state.section);
+    searchParams.set("item", state.item);
+  } else {
+    searchParams.delete("section");
+    searchParams.delete("item");
   }
 
   return searchParams.toString();

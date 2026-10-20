@@ -8,6 +8,7 @@
   width: 100%;
   box-sizing: border-box;
   flex-grow: 1;
+  height: var(--pane-height);
   min-height: calc(100vh - 64px);
   padding: 0;
   gap: 0;
@@ -39,9 +40,9 @@
 .EditorPane {
   flex: 1 1 0;
   width: auto;
-  height: var(--pane-height);
+  height: 100%;
   min-width: 0;
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   container-type: inline-size;
@@ -59,11 +60,6 @@
 .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] {
   flex-basis: 0;
   width: 0;
-}
-
-.Workspace[data-explorer-collapsed="true"] .EditorPane {
-  flex: 1 1 0;
-  width: auto;
 }
 
 .Bar {
@@ -194,16 +190,9 @@
   flex: 0 0 var(--file-pane-width);
   width: var(--file-pane-width);
   min-width: 0;
-  height: var(--pane-height);
-  overflow: visible;
-  background: var(--ord-muted);
-}
-
-.Workspace[data-file-collapsed="true"] .FileSidebar {
-  flex-basis: 0;
-  width: 0;
+  height: 100%;
   overflow: hidden;
-  visibility: hidden;
+  background: var(--ord-muted);
 }
 
 .FileSidebarHeader {
@@ -270,7 +259,7 @@
   align-items: center;
   justify-content: center;
   min-width: 0;
-  height: var(--pane-height);
+  height: 100%;
   /*padding: 2rem;*/
   color: var(--ord-muted-foreground);
   text-align: center;
@@ -284,7 +273,7 @@
   position: relative;
   display: flex;
   flex: 0 0 var(--pane-gap);
-  height: var(--pane-height);
+  height: 100%;
   cursor: col-resize;
   touch-action: none;
   user-select: none;
@@ -348,9 +337,9 @@
 .Explorer {
   --definition-nav-width: 35%;
   display: grid;
-  grid-template-columns: minmax(13rem, var(--definition-nav-width)) 0.75rem minmax(0, 1fr);
+  grid-template-columns: minmax(0, var(--definition-nav-width)) var(--pane-gap) minmax(0, 1fr);
   width: 54%;
-  height: var(--pane-height);
+  height: 100%;
   min-width: 0;
   overflow: hidden;
   background: var(--ord-card);
@@ -364,49 +353,16 @@
   width: auto;
 }
 
-.Workspace[data-explorer-collapsed="true"] .Explorer {
-  flex: 0 0 0;
-  width: 0;
-  border-width: 0;
-}
-
-.Explorer[data-definition-nav-collapsed="true"] {
-  grid-template-columns: 0 0.75rem minmax(0, 1fr);
-}
-
-
 .DefinitionNav {
   --definition-item-inline-padding: 0.625rem;
 
   min-width: 0;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   padding: 1rem;
   background: var(--ord-card);
-}
-
-.Explorer[data-definition-nav-collapsed="true"] .DefinitionNav {
-  padding: 0;
-  overflow: hidden;
-  border-right: 0;
-}
-
-.DefinitionResizeHandle {
-  display: flex;
-  cursor: col-resize;
-  touch-action: none;
-  user-select: none;
-}
-
-.DefinitionResizeHandle::before {
-  width: 1px;
-  align-self: stretch;
-  background: var(--ord-border);
-  content: "";
-}
-
-.DefinitionResizeHandle:hover::before {
-  width: 0.1875rem;
-  background: var(--ord-primary);
 }
 
 .NavHeading {
@@ -718,7 +674,7 @@
 
 .DefinitionDescription {
   margin: 0;
-  padding: 0.875rem 1rem;
+  padding: 0.625rem 0.75rem;
   color: var(--ord-muted-foreground);
   line-height: 1.5;
   background: var(--ord-accent);
@@ -728,48 +684,42 @@
 
 .AnnotationList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 0.75rem;
-  margin-top: 0.875rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.375rem;
+  margin-top: 0.625rem;
 }
 
 .AnnotationCard {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   min-width: 0;
-  padding: 0.875rem;
+  padding: 0.375rem 0.5rem;
   text-align: left;
-  cursor: default;
-  background: linear-gradient(135deg, var(--ord-accent) 0%, var(--ord-card) 100%);
-  border: 1px solid var(--ord-border);
-  border-radius: var(--ord-radius);
-  box-shadow: 0 0.0625rem 0.25rem color-mix(in oklab, var(--ord-primary) 7%, transparent);
-}
-
-.AnnotationCardActive {
-  composes: AnnotationCard;
-  border-color: color-mix(in oklab, var(--ord-primary) 60%, var(--ord-border));
-  box-shadow: inset 0.1875rem 0 var(--ord-primary);
-}
-
-.AnnotationCard summary,
-.PropertyCard summary {
-  display: list-item;
   cursor: pointer;
-}
-
-.AnnotationCard summary::marker,
-.PropertyCard summary::marker {
-  color: var(--ord-primary);
+  line-height: 1.45;
+  background: color-mix(in oklab, var(--ord-primary) 6%, var(--ord-card));
+  border: 1px solid color-mix(in oklab, var(--ord-primary) 20%, var(--ord-border));
+  border-radius: var(--ord-radius);
 }
 
 .AnnotationCard:hover {
-  border-color: var(--ord-border);
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 35%, var(--ord-border));
+}
+
+.AnnotationCard[aria-pressed="true"],
+.CompactPropertyList .PropertyCard[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--ord-primary) 12%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 55%, var(--ord-border));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
+}
+
+.AnnotationCard:focus-visible,
+.CompactPropertyList .PropertyCard:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 2px;
 }
 
 .AnnotationKey {
-  display: block;
+  display: inline;
   overflow-wrap: anywhere;
   color: var(--ord-primary);
   font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
@@ -780,7 +730,7 @@
 }
 
 .AnnotationDocumentationLink {
-  display: block;
+  display: inline;
   overflow-wrap: anywhere;
   color: var(--ord-primary);
   font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
@@ -790,6 +740,13 @@
   line-height: 1.45;
   text-decoration: underline;
   text-underline-offset: 0.125em;
+}
+
+.AnnotationSeparator {
+  margin: 0 0.25rem 0 0.125rem;
+  color: var(--ord-muted-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
 }
 
 .AnnotationValue {
@@ -805,6 +762,28 @@
   background: var(--ord-background);
   border: 1px solid var(--ord-border);
   border-radius: calc(var(--ord-radius) / 2);
+}
+
+.AnnotationCard .AnnotationValue {
+  display: inline;
+  padding: 0;
+  font-size: 0.75rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.AnnotationCard .AnnotationValue[data-value-type="boolean"] {
+  display: inline;
+  padding: 0;
+  color: var(--ord-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  background: transparent;
+  border: 0;
 }
 
 .AnnotationValue[data-value-type="string"]::before,
@@ -835,11 +814,9 @@
 }
 
 .PropertyCard {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.75rem;
+  display: block;
   min-width: 0;
-  padding: 0.75rem;
+  padding: 0.5rem;
   color: inherit;
   font: inherit;
   text-align: left;
@@ -849,18 +826,62 @@
   border-radius: var(--ord-radius);
 }
 
-.PropertyCardActive {
-  composes: PropertyCard;
-  border-color: color-mix(in oklab, var(--ord-primary) 60%, var(--ord-border));
-  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
-  box-shadow: inset 0.1875rem 0 var(--ord-primary);
-}
-
 .PropertyList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 0.5rem;
-  margin-top: 0.875rem;
+  gap: 0.375rem;
+  margin-top: 0.625rem;
+}
+
+.CompactPropertyList {
+  gap: 0.375rem;
+  margin-top: 0.625rem;
+}
+
+.CompactPropertyList .PropertyCard {
+  display: block;
+  min-width: 0;
+  padding: 0.375rem 0.5rem;
+  cursor: pointer;
+  line-height: 1.45;
+}
+
+.CompactPropertyList .PropertyCard:hover {
+  background: color-mix(in oklab, var(--ord-primary) 5%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 30%, var(--ord-border));
+}
+
+.CompactPropertyList .PropertyKey {
+  display: inline;
+  font-size: 0.75rem;
+}
+
+.CompactPropertyList .PropertyKey::after {
+  margin-right: 0.25rem;
+  color: var(--ord-muted-foreground);
+  content: ":";
+}
+
+.CompactPropertyList .PropertyValue {
+  display: inline;
+  padding: 0;
+  font-size: 0.75rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.CompactPropertyList .PropertyValue[data-value-type="boolean"] {
+  display: inline;
+  padding: 0;
+  color: var(--ord-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  background: transparent;
+  border: 0;
 }
 
 .ElementList {
@@ -868,27 +889,57 @@
 }
 
 .ElementPropertyList {
-  display: grid;
-  gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  min-width: 0;
+  gap: 0.25rem 0.625rem;
 }
 
 .ElementPropertyGroup {
-  display: grid;
-  gap: 0.375rem;
+  display: block;
 }
 
 .ElementPropertyGroupLabel {
-  color: var(--ord-muted-foreground);
-  font-size: 0.6875rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 0 0.375rem;
+  padding: 0.1875rem 0.375rem;
+  color: var(--ord-foreground);
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+  border-left: 0.1875rem solid color-mix(in oklab, var(--ord-primary) 55%, var(--ord-border));
+  border-radius: calc(var(--ord-radius) / 2);
 }
 
 .ElementCard {
-  gap: 0.5rem;
-  padding: 0.625rem;
+  padding: 0.5rem;
+  cursor: pointer;
   container-type: inline-size;
+}
+
+.ElementCard:hover {
+  background: color-mix(in oklab, var(--ord-primary) 5%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 30%, var(--ord-border));
+}
+
+.ElementCard[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--ord-primary) 9%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 55%, var(--ord-border));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
+}
+
+.ElementCard:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 2px;
+}
+
+.ElementCard > * + * {
+  margin-top: 0.375rem;
 }
 
 .ElementCard > .PropertyKey {
@@ -896,39 +947,48 @@
 }
 
 .ElementCard .ElementPropertyList {
-  gap: 0.375rem;
+  gap: 0.25rem 0.625rem;
 }
 
 .ElementCard .ElementProperty {
-  grid-template-columns: minmax(6rem, 0.9fr) minmax(0, 1.1fr);
-  align-items: start;
-  gap: 0.5rem;
+  display: block;
+  flex: 0 1 auto;
+  min-width: 0;
+  line-height: 1.45;
 }
 
 .ElementCard .PropertyKey {
-  padding-top: 0.25rem;
+  display: inline;
+  padding: 0;
   font-size: 0.75rem;
+}
+
+.ElementCard .ElementProperty .PropertyKey::after {
+  margin-right: 0.25rem;
+  color: var(--ord-muted-foreground);
+  content: ":";
 }
 
 .ElementCard .PropertyValue {
-  padding: 0.25rem 0.375rem;
+  display: inline;
+  padding: 0;
   font-size: 0.75rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 }
 
-@container (max-width: 20rem) {
-  .ElementCard .ElementProperty {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.25rem;
-  }
-
-  .ElementCard .PropertyKey {
-    padding-top: 0;
-  }
-}
-
-.ElementProperty {
-  display: grid;
-  gap: 0.25rem;
+.ElementCard .PropertyValue[data-value-type="boolean"] {
+  display: inline;
+  padding: 0;
+  color: var(--ord-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  background: transparent;
+  border: 0;
 }
 
 .PropertyKey {
@@ -971,13 +1031,8 @@
   border-color: var(--ord-primary);
 }
 
-.PropertyCard:hover {
-  border-color: var(--ord-border);
-  background: var(--ord-card);
-}
-
 .DetailSection {
-  margin-top: 1.25rem;
+  margin-top: 0.875rem;
 }
 
 .DetailSection summary {
@@ -1020,24 +1075,24 @@
 }
 
 .DetailSectionContent {
-  padding-top: 0.75rem;
+  padding-top: 0.5rem;
 }
 
 .RelatedDefinitionList {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.375rem;
 }
 
 .RelatedDefinitionButton {
   flex: 0 1 auto;
   max-width: 100%;
-  padding: 0.625rem 0.75rem;
+  padding: 0.375rem 0.5rem;
   overflow: hidden;
   color: var(--ord-primary);
   font: inherit;
   font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1084,9 +1139,7 @@
   .EmptyExplorer,
   .Explorer,
   .Workspace[data-explorer-visible="true"] .EditorPane,
-  .Workspace[data-explorer-visible="true"] .Explorer,
-  .Workspace[data-explorer-collapsed="true"] .EditorPane,
-  .Workspace[data-explorer-collapsed="true"] .Explorer {
+  .Workspace[data-explorer-visible="true"] .Explorer {
     flex: none;
     width: 100%;
   }
@@ -1117,20 +1170,8 @@
     min-height: 40rem;
   }
 
-  .Explorer,
-  .Explorer[data-definition-nav-collapsed="true"] {
+  .Explorer {
     grid-template-columns: 1fr;
-  }
-
-  .DefinitionResizeHandle {
-    display: none;
-  }
-
-  .Explorer[data-definition-nav-collapsed="true"] .DefinitionNav {
-    padding: 0.75rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    border-bottom: 1px solid var(--ord-border);
   }
 }
 
@@ -1147,10 +1188,6 @@
     flex-wrap: nowrap;
     gap: 0.25rem;
     padding: 0.375rem 0.5rem;
-  }
-
-  .InputLabel {
-    display: none;
   }
 
   .MobileEditorToggle {
@@ -1239,12 +1276,6 @@
 
   .DetailContent {
     padding: 1.25rem 1rem;
-  }
-
-  .PropertyCard,
-  .PropertyCardActive {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
   }
 
 }

@@ -18,6 +18,9 @@ describe("shared example state", () => {
       exampleId: "airline",
       explorer: {
         definition: "Service",
+        element: "ID",
+        section: "properties",
+        item: "title",
       },
     });
 
@@ -25,6 +28,9 @@ describe("shared example state", () => {
       exampleId: "airline",
       explorer: {
         definition: undefined,
+        element: undefined,
+        section: undefined,
+        item: undefined,
       },
     });
   });
@@ -35,6 +41,21 @@ describe("shared example state", () => {
         definition: "Service",
       }),
     ).toBe("theme=dark&example=airline&definition=Service");
+
+    expect(
+      writeSharedExampleState("theme=dark", "airline", {
+        definition: "Service",
+        element: "ID",
+      }),
+    ).toBe("theme=dark&example=airline&definition=Service&element=ID");
+
+    expect(
+      writeSharedExampleState("theme=dark", "airline", {
+        definition: "Service",
+        section: "annotations",
+        item: "@EndUserText.label",
+      }),
+    ).toBe("theme=dark&example=airline&definition=Service&section=annotations&item=%40EndUserText.label");
   });
 
   test("clears only shared state parameters", () => {
