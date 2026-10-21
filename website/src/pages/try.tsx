@@ -20,7 +20,7 @@ function CsnRendererDemo({ sessionId }: { sessionId: string }): ReactNode {
   );
 }
 
-export default function TryPage(): ReactNode {
+export default function PlaygroundPage(): ReactNode {
   const history = useHistory();
   const location = useLocation();
   const shouldReset = new URLSearchParams(location.search).has("reset");
@@ -30,7 +30,7 @@ export default function TryPage(): ReactNode {
   }, [history, location.pathname, shouldReset]);
 
   return (
-    <Layout noFooter>
+    <Layout noFooter title="Playground">
       <BrowserOnly fallback={<div>Loading renderer…</div>}>
         {() => <CsnRendererDemo sessionId={location.key ?? `${location.pathname}${location.search}`} />}
       </BrowserOnly>

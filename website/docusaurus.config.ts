@@ -73,7 +73,7 @@ const config: Config = {
           activeBasePath: "/docs",
         },
         {
-          label: "Try Out",
+          label: "Playground",
           to: "/try?reset",
         },
         {
