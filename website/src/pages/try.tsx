@@ -1,11 +1,39 @@
 import Layout from "@theme/Layout";
-import type { ReactNode } from "react";
-import Renderer from "../components/tryOut/renderer/renderer";
+import BrowserOnly from "@docusaurus/BrowserOnly";
+import { useColorMode } from "@docusaurus/theme-common";
+import { useHistory, useLocation } from "@docusaurus/router";
+import "@sap/csn-interop-renderer/csn-renderer/styles";
+import { lazy, Suspense, type ReactNode, useEffect } from "react";
+import { exampleDocuments } from "../components/tryOut/examples";
 
-export default function TryPage(): ReactNode {
+const CsnInteropRenderer = lazy(() => import("@sap/csn-interop-renderer/csn-renderer"));
+
+function CsnRendererDemo({ sessionId }: { sessionId: string }): ReactNode {
+  const { colorMode } = useColorMode();
+
   return (
-    <Layout noFooter>
-      <Renderer />
+    <Suspense fallback={<div>Loading renderer…</div>}>
+      <div className="csn-interop-renderer-demo">
+        <CsnInteropRenderer key={sessionId} examples={exampleDocuments} defaultTheme={colorMode} />
+      </div>
+    </Suspense>
+  );
+}
+
+export default function PlaygroundPage(): ReactNode {
+  const history = useHistory();
+  const location = useLocation();
+  const shouldReset = new URLSearchParams(location.search).has("reset");
+
+  useEffect(() => {
+    if (shouldReset) history.replace(location.pathname);
+  }, [history, location.pathname, shouldReset]);
+
+  return (
+    <Layout noFooter title="Playground">
+      <BrowserOnly fallback={<div>Loading renderer…</div>}>
+        {() => <CsnRendererDemo sessionId={location.key ?? `${location.pathname}${location.search}`} />}
+      </BrowserOnly>
     </Layout>
   );
 }
