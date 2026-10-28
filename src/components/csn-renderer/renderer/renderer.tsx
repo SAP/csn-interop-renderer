@@ -5,7 +5,13 @@ import styles from "./renderer.module.css";
 import { generateHtml, type AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
 import DefinitionExplorer, { type ExplorerState } from "./definitionExplorer";
 import { findDefinitionLine } from "./definitionNavigation";
-import { clearSharedExampleState, readSharedExampleState, writeSharedExampleState } from "./shareState";
+import {
+  clearSharedExampleState,
+  normalizeExplorerState,
+  readSharedExampleState,
+  writeSharedExampleState,
+  type SharedExampleState,
+} from "./shareState";
 import SidebarContent from "./sidebarContent";
 import ResizableSeparator from "./resizableSeparator";
 import type { CsnDocument, ExampleDocument } from "./types";
@@ -25,9 +31,11 @@ export interface CsnInteropRendererProps {
   className?: string;
   /** Initial ui-components color mode. */
   defaultTheme?: "light" | "dark" | "system";
+  /** Enable example links and browser history in the page fragment. Leave disabled when the host owns the URL. */
+  syncUrl?: boolean;
 }
 
-type ShareStatus = "idle" | "copied" | "failed";
+type CopyStatus = "idle" | "copied" | "failed";
 
 interface CsnEditorProps {
   value: string;
@@ -74,6 +82,7 @@ export default function Renderer({
   theme,
   className,
   defaultTheme = "light",
+  syncUrl = false,
 }: CsnInteropRendererProps): ReactNode {
   const [csnStringValue, setCsnStringValue] = useState<string>("");
   const [renderedContent, setRenderedContent] = useState<string>("");
@@ -81,11 +90,11 @@ export default function Renderer({
   const [error, setError] = useState<unknown>(null);
   const [renderedDocument, setRenderedDocument] = useState<CsnDocument | null>(null);
   const [activeExample, setActiveExample] = useState<ExampleDocument | null>(null);
-  const [sharedExampleState] = useState(() =>
-    typeof window === "undefined" ? null : readSharedExampleState(window.location.search),
-  );
-  const [shareStatus, setShareStatus] = useState<ShareStatus>("idle");
-  const [copyStatus, setCopyStatus] = useState<ShareStatus>("idle");
+  const [sharedExampleState, setSharedExampleState] = useState<SharedExampleState | null>(null);
+  const inputRef = useRef(csnStringValue);
+  inputRef.current = csnStringValue;
+  const handledHashRef = useRef<string | null>(null);
+  const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
   const [isDraggingFile, setIsDraggingFile] = useState(false);
   const [fileWidth, setFileWidth] = useState(18);
   const [editorWidth, setEditorWidth] = useState<number | null>(null);
@@ -159,27 +168,89 @@ export default function Renderer({
     };
   }, [csnStringValue, generateContent]);
 
-  const writeShareUrl = useCallback((exampleId: string, state: Partial<ExplorerState>): void => {
-    if (typeof window === "undefined") return;
+  const writeShareUrl = useCallback(
+    (exampleId: string, state: Partial<ExplorerState>, replace = false): void => {
+      if (!syncUrl || typeof window === "undefined") return;
 
-    const query = writeSharedExampleState(window.location.search, exampleId, state);
-    window.history.replaceState(null, "", `${window.location.pathname}?${query}${window.location.hash}`);
-  }, []);
+      const definitionKind =
+        state.definition && Object.hasOwn(renderedDocument?.definitions ?? {}, state.definition)
+          ? renderedDocument?.definitions?.[state.definition]?.kind
+          : undefined;
+      const hash = writeSharedExampleState(window.location.hash, exampleId, state, definitionKind);
+      handledHashRef.current = hash;
+      if (hash === window.location.hash) return;
+      window.history[replace ? "replaceState" : "pushState"](
+        window.history.state,
+        "",
+        `${window.location.pathname}${window.location.search}${hash}`,
+      );
+    },
+    [renderedDocument, syncUrl],
+  );
 
-  const clearShareUrl = useCallback((): void => {
-    if (typeof window === "undefined") return;
+  const clearShareUrl = useCallback(
+    (push = false): void => {
+      setSharedExampleState(null);
+      if (!syncUrl || typeof window === "undefined") return;
 
-    const query = clearSharedExampleState(window.location.search);
-    window.history.replaceState(
-      null,
-      "",
-      `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`,
-    );
-  }, []);
+      const hash = clearSharedExampleState(window.location.hash);
+      handledHashRef.current = hash;
+      if (hash === window.location.hash) return;
+      window.history[push ? "pushState" : "replaceState"](
+        window.history.state,
+        "",
+        `${window.location.pathname}${window.location.search}${hash}`,
+      );
+    },
+    [syncUrl],
+  );
+
+  useEffect(() => {
+    if (!syncUrl) {
+      handledHashRef.current = null;
+      return;
+    }
+
+    const restore = (): void => {
+      const hash = window.location.hash;
+      if (handledHashRef.current === hash) return;
+
+      const state = readSharedExampleState(hash);
+      const example = examples.find(({ id }) => id === state?.exampleId);
+      // Retry unresolved example links when the host supplies examples later.
+      if (state === null || example !== undefined) handledHashRef.current = hash;
+      const input = example ? JSON.stringify(example.data, null, "\t") : "";
+      setSharedExampleState(example ? state : null);
+      setActiveExample(example ?? null);
+      if (inputRef.current !== input) {
+        renderRequestRef.current += 1;
+        inputRef.current = input;
+        setRenderedDocument(null);
+        setRenderedContent("");
+        setError(null);
+        setIsRendering(false);
+        setCsnStringValue(input);
+      }
+    };
+    restore();
+    window.addEventListener("hashchange", restore);
+    window.addEventListener("popstate", restore);
+    return (): void => {
+      window.removeEventListener("hashchange", restore);
+      window.removeEventListener("popstate", restore);
+    };
+  }, [examples, syncUrl]);
+
+  useEffect(() => {
+    if (!renderedDocument || !activeExample || sharedExampleState?.exampleId !== activeExample.id) return;
+    const state = normalizeExplorerState(renderedDocument, sharedExampleState.explorer);
+    writeShareUrl(activeExample.id, state, true);
+  }, [activeExample, renderedDocument, sharedExampleState, writeShareUrl]);
 
   const onChange = useCallback<OnChange>(
     (value, e): void => {
       const nextValue = value ?? "";
+      if (nextValue === inputRef.current) return;
       renderRequestRef.current += 1;
       const change = e.changes[0];
       const replacesEntireDocument =
@@ -202,12 +273,17 @@ export default function Renderer({
 
   const onTryExampleClick = useCallback(
     (example: ExampleDocument): void => {
-      setRenderedContent("");
-      setRenderedDocument(null);
+      const input = JSON.stringify(example.data, null, "\t");
+      if (inputRef.current !== input) {
+        renderRequestRef.current += 1;
+        setRenderedContent("");
+        setRenderedDocument(null);
+      }
       setError(null);
       setActiveExample(example);
+      setSharedExampleState({ exampleId: example.id, explorer: {} });
       writeShareUrl(example.id, {});
-      setCsnStringValue(JSON.stringify(example.data, null, "\t"));
+      setCsnStringValue(input);
     },
     [writeShareUrl],
   );
@@ -218,7 +294,7 @@ export default function Renderer({
     setRenderedContent("");
     setRenderedDocument(null);
     setActiveExample(null);
-    clearShareUrl();
+    clearShareUrl(true);
     setError(null);
     setIsRendering(false);
   }, [clearShareUrl]);
@@ -345,20 +421,6 @@ export default function Renderer({
     window.setTimeout(() => setCopyStatus("idle"), 2000);
   }, [csnStringValue]);
 
-  const onShareClick = useCallback(async (): Promise<void> => {
-    if (activeExample === null || typeof window === "undefined") return;
-
-    try {
-      if (!navigator.clipboard) throw new Error("Clipboard access is unavailable.");
-
-      await navigator.clipboard.writeText(window.location.href);
-      setShareStatus("copied");
-    } catch {
-      setShareStatus("failed");
-    }
-    window.setTimeout(() => setShareStatus("idle"), 2000);
-  }, [activeExample]);
-
   const onExplorerStateChange = useCallback(
     (state: ExplorerState): void => {
       if (state.definition) {
@@ -371,20 +433,10 @@ export default function Renderer({
       if (activeExample !== null) {
         writeShareUrl(activeExample.id, state);
       }
+      setSharedExampleState({ exampleId: activeExample?.id ?? "", explorer: state });
     },
     [activeExample, csnStringValue, writeShareUrl],
   );
-
-  useEffect(() => {
-    if (sharedExampleState === null) return;
-
-    const example = examples.find(({ id }) => id === sharedExampleState.exampleId);
-    if (example === undefined) return;
-
-    const input = JSON.stringify(example.data, null, "\t");
-    setActiveExample(example);
-    setCsnStringValue(input);
-  }, [examples, sharedExampleState]);
 
   const canResetEditor = csnStringValue !== "" || renderedContent !== "" || renderedDocument !== null || error !== null;
   const hasRenderedResult = error === null && renderedDocument !== null && renderedContent !== "" && !isRendering;
@@ -410,12 +462,7 @@ export default function Renderer({
         onDragLeave={onDragLeave}
         onDragOver={onDragOver}
         onDrop={onDrop}>
-        <SidebarContent
-          examples={examples}
-          activeExample={activeExample}
-          onTryExampleClick={onTryExampleClick}
-          onFileSelect={(file) => void loadLocalFile(file)}
-        />
+        <SidebarContent examples={examples} activeExample={activeExample} onTryExampleClick={onTryExampleClick} />
         <ResizableSeparator
           className={styles.ResizeHandle}
           label="Resize CSN file list"
@@ -500,14 +547,12 @@ export default function Renderer({
             document={renderedDocument}
             annotationLinkCallbacks={annotationLinkCallbacks}
             initialState={
-              sharedExampleState !== null && sharedExampleState.exampleId === activeExample?.id
+              sharedExampleState !== null && sharedExampleState.exampleId === (activeExample?.id ?? "")
                 ? sharedExampleState.explorer
                 : undefined
             }
             onStateChange={onExplorerStateChange}
-            canShare={activeExample !== null}
-            shareStatus={shareStatus}
-            onShareClick={onShareClick}
+            linkedExampleId={syncUrl ? activeExample?.id : undefined}
           />
         ) : (
           <div className={styles.EmptyExplorer} aria-live="polite">

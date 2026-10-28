@@ -11,7 +11,7 @@ export default {
   preset: "ts-jest/presets/default-esm",
   testEnvironment: "jest-environment-jsdom",
   coverageDirectory: "reports/jest-coverage",
-  moduleFileExtensions: ["js", "json", "ts", "d.ts"],
+  moduleFileExtensions: ["js", "json", "ts", "tsx", "d.ts"],
   reporters: ["default"],
   modulePaths: [compilerOptions.outDir],
   moduleNameMapper: {

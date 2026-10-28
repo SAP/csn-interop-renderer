@@ -21,6 +21,8 @@ export function CsnDocumentation(): React.ReactNode {
 
 `CsnInteropRenderer` accepts optional `examples` and `annotationLinkCallbacks` properties. The latter uses the same callback contract as `generateHtml`, allowing the host application to supply its own annotation links. The Docusaurus website is a demo consumer and supplies its sample documents and demo links through these properties.
 
+Set `syncUrl` to enable links to examples and selections in the page fragment, such as `#example=airline&kind=entity&definition=AirlineService.Airline&element=AirlineID`. The `kind` comes from the CSN definition and identifies a type, entity, service, or context. Example IDs must be stable and available wherever the link is opened. Selections support browser Back/Forward and select the whole element card. Uploaded or edited documents use local navigation because their contents cannot be restored from a link. URL synchronization is disabled by default so embedded renderers leave the host application's URL alone.
+
 ### Theming
 
 The renderer uses `@open-resource-discovery/ui-components` and its public ORD CSS tokens. It does not set a brand palette itself. To apply an application theme, load your CSS after `@sap/csn-interop-renderer/csn-renderer/styles` and override the tokens on the renderer's `.ord-ui` root:

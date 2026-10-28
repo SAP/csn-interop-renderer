@@ -14,28 +14,21 @@ import { Button, Input } from "@open-resource-discovery/ui-components";
 import type { AnnotationLinkCallbacks } from "@sap/csn-interop-renderer";
 import styles from "./renderer.module.css";
 import ResizableSeparator from "./resizableSeparator";
-import type { CsnDefinition, CsnDocument } from "./types";
+import type { CsnDefinition, CsnDocument, ExplorerState } from "./types";
+import { isExposedDefinitionProperty, normalizeExplorerState, writeSharedExampleState } from "./shareState";
+import { resolveAnnotationLinks } from "./annotationLinks";
 
 interface Props {
   document: CsnDocument;
   annotationLinkCallbacks?: AnnotationLinkCallbacks;
   initialState?: Partial<ExplorerState>;
   onStateChange?: (state: ExplorerState) => void;
-  canShare: boolean;
-  shareStatus: "idle" | "copied" | "failed";
-  onShareClick: () => void;
+  linkedExampleId?: string;
 }
 
-export interface ExplorerState {
-  definition: string;
-  element: string;
-  section: string;
-  item: string;
-}
+export type { ExplorerState } from "./types";
 
 type DetailItemSection = "annotations" | "private" | "properties";
-
-const nonExposedDefinitionProperties: readonly string[] = ["kind", "elements", "doc"];
 
 const definitionGroups = [
   ["service", "Service definitions"],
@@ -82,36 +75,15 @@ const getValueType = (value: unknown): "boolean" | "string" | "structured" | "em
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
-const isExposedDefinitionProperty = (key: string): boolean =>
-  !key.startsWith("@") && !key.startsWith("__") && !nonExposedDefinitionProperties.includes(key);
-
-const isSelectedDetailItem = (
-  definition: CsnDefinition | undefined,
-  section: string | undefined,
-  item: string | undefined,
-): boolean =>
-  definition !== undefined &&
-  item !== undefined &&
-  ((section === "annotations" && item.startsWith("@")) ||
-    (section === "private" && item.startsWith("__")) ||
-    (section === "properties" && isExposedDefinitionProperty(item))) &&
-  definition[item] !== undefined;
-
 const formatDefinitionKind = (kind: string | undefined): string => {
   if (kind === undefined) return "Definition";
   return `${kind[0].toUpperCase()}${kind.slice(1)} definition`;
 };
 
-const getDefinitionHref = (name: string): string => {
-  const fragment = `#definition-${encodeURIComponent(name)}`;
-  if (typeof window === "undefined") return fragment;
-
-  const searchParams = new URLSearchParams(window.location.search);
-  searchParams.set("definition", name);
-  searchParams.delete("element");
-  searchParams.delete("section");
-  searchParams.delete("item");
-  return `${window.location.pathname}?${searchParams.toString()}${window.location.hash}`;
+const getDefinitionHref = (name: string, exampleId: string): string => {
+  const hash = writeSharedExampleState("", exampleId, { definition: name }, "entity");
+  if (typeof window === "undefined") return hash;
+  return `${window.location.pathname}${window.location.search}${hash}`;
 };
 
 interface DefinitionDetailsProps {
@@ -126,6 +98,7 @@ interface DefinitionDetailsProps {
   onDetailItemSelect: (section: DetailItemSection, name: string) => void;
   selectedDetailRef: RefObject<HTMLDivElement | null>;
   annotationLinkCallbacks?: AnnotationLinkCallbacks;
+  linkedExampleId?: string;
 }
 
 interface CollapsibleDetailSectionProps {
@@ -174,9 +147,21 @@ function DefinitionDetails({
   onDetailItemSelect,
   selectedDetailRef,
   annotationLinkCallbacks,
+  linkedExampleId,
 }: DefinitionDetailsProps): ReactNode {
   const annotations = Object.entries(definition).filter(([key]) => key.startsWith("@"));
-  const [annotationLinks, setAnnotationLinks] = useState<Record<string, string>>({});
+  const [resolvedLinks, setResolvedLinks] = useState<{
+    definition: CsnDefinition;
+    callbacks: AnnotationLinkCallbacks | undefined;
+    annotations: Record<string, string>;
+    elements: Record<string, Record<string, string>>;
+  } | null>(null);
+  const currentLinks =
+    resolvedLinks?.definition === definition && resolvedLinks.callbacks === annotationLinkCallbacks
+      ? resolvedLinks
+      : null;
+  const annotationLinks = currentLinks?.annotations ?? {};
+  const elementAnnotationLinks = currentLinks?.elements ?? {};
   const [activeFilters, setActiveFilters] = useState<ReadonlySet<DetailFilter>>(createAllDetailFilters);
   const [draftFilters, setDraftFilters] = useState<ReadonlySet<DetailFilter>>(createAllDetailFilters);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -247,27 +232,26 @@ function DefinitionDetails({
     let isCurrent = true;
 
     const resolveLinks = async (): Promise<void> => {
-      const links = await Promise.all(
-        Object.entries(definition)
-          .filter(([key]) => key.startsWith("@"))
-          .map(async ([key, value]) => {
-            const callback = annotationLinkCallbacks?.[key];
-            if (callback === undefined) return [key, undefined] as const;
-
-            try {
-              return [key, await callback(value)] as const;
-            } catch {
-              return [key, undefined] as const;
-            }
-          }),
-      );
+      const [links, elementLinks] = await Promise.all([
+        resolveAnnotationLinks(definition, annotationLinkCallbacks),
+        Promise.all(
+          Object.entries(definition.elements ?? {}).map(
+            async ([elementName, element]) =>
+              [
+                elementName,
+                isRecord(element) ? await resolveAnnotationLinks(element, annotationLinkCallbacks) : {},
+              ] as const,
+          ),
+        ),
+      ]);
 
       if (!isCurrent) return;
-      const nextLinks: Record<string, string> = {};
-      for (const [key, link] of links) {
-        if (link) nextLinks[key] = link;
-      }
-      setAnnotationLinks(nextLinks);
+      setResolvedLinks({
+        definition,
+        callbacks: annotationLinkCallbacks,
+        annotations: links,
+        elements: Object.fromEntries(elementLinks),
+      });
     };
 
     void resolveLinks();
@@ -348,18 +332,29 @@ function DefinitionDetails({
       {relatedEntities.length > 0 && (
         <CollapsibleDetailSection title={`${relatedEntitiesTitle} (${relatedEntities.length})`}>
           <div className={styles.RelatedDefinitionList}>
-            {relatedEntities.map(([entityName]) => (
-              <a
-                key={entityName}
-                className={styles.RelatedDefinitionLink}
-                href={getDefinitionHref(entityName)}
-                onClick={(event) => {
-                  event.preventDefault();
-                  onDefinitionSelect(entityName);
-                }}>
-                {entityName}
-              </a>
-            ))}
+            {relatedEntities.map(([entityName]) =>
+              linkedExampleId ? (
+                <a
+                  key={entityName}
+                  className={styles.RelatedDefinitionLink}
+                  href={getDefinitionHref(entityName, linkedExampleId)}
+                  onClick={(event) => {
+                    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                    event.preventDefault();
+                    onDefinitionSelect(entityName);
+                  }}>
+                  {entityName}
+                </a>
+              ) : (
+                <Button
+                  key={entityName}
+                  variant="ghost"
+                  className={styles.RelatedDefinitionLink}
+                  onClick={() => onDefinitionSelect(entityName)}>
+                  {entityName}
+                </Button>
+              ),
+            )}
           </div>
         </CollapsibleDetailSection>
       )}
@@ -465,7 +460,19 @@ function DefinitionDetails({
                                   className={styles.PropertyValue}
                                   data-value-type={getValueType(value)}
                                   title={formatValue(value)}>
-                                  {formatValue(value)}
+                                  {elementAnnotationLinks[elementName]?.[key] ? (
+                                    <a
+                                      className={styles.AnnotationLink}
+                                      href={elementAnnotationLinks[elementName][key]}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      onClick={(event) => event.stopPropagation()}
+                                      onKeyDown={(event) => event.stopPropagation()}>
+                                      {formatValue(value)}
+                                    </a>
+                                  ) : (
+                                    formatValue(value)
+                                  )}
                                 </span>
                               </div>
                             ))}
@@ -547,16 +554,16 @@ export default function DefinitionExplorer({
   annotationLinkCallbacks,
   initialState,
   onStateChange,
-  canShare,
-  shareStatus,
-  onShareClick,
+  linkedExampleId,
 }: Props): ReactNode {
   const definitions = useMemo(() => Object.entries(document.definitions ?? {}), [document]);
-  const initialDefinitionName = initialState?.definition ?? "";
-  const [selectedName, setSelectedName] = useState(initialDefinitionName);
-  const [selectedElement, setSelectedElement] = useState(initialState?.element ?? "");
-  const [selectedSection, setSelectedSection] = useState(initialState?.section ?? "");
-  const [selectedItem, setSelectedItem] = useState(initialState?.item ?? "");
+  const selection = useMemo(() => normalizeExplorerState(document, initialState ?? {}), [document, initialState]);
+  const {
+    definition: selectedName,
+    element: selectedElement,
+    section: selectedSection,
+    item: selectedItem,
+  } = selection;
   const [definitionQuery, setDefinitionQuery] = useState("");
   const [expandedGroups, setExpandedGroups] = useState<ReadonlySet<string>>(
     () => new Set(definitionGroups.map(([kind]) => kind)),
@@ -565,52 +572,13 @@ export default function DefinitionExplorer({
   const explorerRef = useRef<HTMLDivElement>(null);
   const detailContentRef = useRef<HTMLDivElement>(null);
   const selectedDetailRef = useRef<HTMLDivElement>(null);
-  const previousDefinitionRef = useRef<string | null>(null);
 
   useEffect(() => {
-    const definitionExists =
-      initialState?.definition !== undefined && document.definitions?.[initialState.definition] !== undefined;
-    const nextSelectedName = definitionExists && initialState?.definition !== undefined ? initialState.definition : "";
-    setSelectedName(nextSelectedName);
-    const elementExists =
-      nextSelectedName !== "" &&
-      initialState?.element !== undefined &&
-      document.definitions?.[nextSelectedName]?.elements?.[initialState.element] !== undefined;
-    setSelectedElement(elementExists && initialState?.element !== undefined ? initialState.element : "");
-    const selectedDefinition = nextSelectedName === "" ? undefined : document.definitions?.[nextSelectedName];
-    const selectedDetailSection = initialState?.section;
-    const selectedDetailItem = initialState?.item;
-    const selectedItemExists = isSelectedDetailItem(selectedDefinition, selectedDetailSection, selectedDetailItem);
-    setSelectedSection(selectedItemExists && selectedDetailSection !== undefined ? selectedDetailSection : "");
-    setSelectedItem(selectedItemExists && selectedDetailItem !== undefined ? selectedDetailItem : "");
-  }, [definitions, document.definitions, initialState]);
-
-  useEffect(() => {
-    onStateChange?.({
-      definition: selectedName,
-      element: selectedElement,
-      section: selectedSection,
-      item: selectedItem,
-    });
-  }, [onStateChange, selectedElement, selectedItem, selectedName, selectedSection]);
-
-  useEffect(() => {
-    if (previousDefinitionRef.current === selectedName) return;
-
-    previousDefinitionRef.current = selectedName;
     const detailContent = detailContentRef.current;
     if (detailContent === null) return;
 
-    const isSharedChildSelection =
-      initialState?.definition === selectedName &&
-      ((initialState.element !== undefined && initialState.element === selectedElement) ||
-        (initialState.section !== undefined &&
-          initialState.item !== undefined &&
-          initialState.section === selectedSection &&
-          initialState.item === selectedItem));
-
     const selectedDetail = selectedDetailRef.current;
-    if (isSharedChildSelection && selectedDetail !== null) {
+    if (selectedDetail !== null) {
       const contentBounds = detailContent.getBoundingClientRect();
       const detailBounds = selectedDetail.getBoundingClientRect();
       detailContent.scrollTo({ top: detailContent.scrollTop + detailBounds.top - contentBounds.top - 12 });
@@ -618,7 +586,7 @@ export default function DefinitionExplorer({
     }
 
     detailContent.scrollTo({ top: 0 });
-  }, [initialState, selectedElement, selectedItem, selectedName, selectedSection]);
+  }, [selectedElement, selectedItem, selectedName, selectedSection]);
 
   const toggleDefinitionGroup = (kind: string): void => {
     setExpandedGroups((currentGroups) => {
@@ -633,22 +601,15 @@ export default function DefinitionExplorer({
   };
 
   const selectDefinition = (name: string): void => {
-    setSelectedName(name);
-    setSelectedElement("");
-    setSelectedSection("");
-    setSelectedItem("");
+    onStateChange?.({ definition: name, element: "", section: "", item: "" });
   };
 
   const selectElement = (name: string): void => {
-    setSelectedElement(name);
-    setSelectedSection("");
-    setSelectedItem("");
+    onStateChange?.({ definition: selectedName, element: name, section: "", item: "" });
   };
 
   const selectDetailItem = (section: DetailItemSection, name: string): void => {
-    setSelectedElement("");
-    setSelectedSection(section);
-    setSelectedItem(name);
+    onStateChange?.({ definition: selectedName, element: "", section, item: name });
   };
 
   const resizeDefinitionNav = useCallback((clientX: number): void => {
@@ -669,27 +630,6 @@ export default function DefinitionExplorer({
       <header className={styles.ExplorerHeader}>
         <span className={styles.PaneTitle}>CSN model</span>
         <h2>Definitions</h2>
-        <Button
-          className={styles.ExplorerShareButton}
-          disabled={!canShare}
-          variant="outline"
-          size="sm"
-          aria-label={
-            shareStatus === "copied" ? "Link copied" : shareStatus === "failed" ? "Unable to copy link" : "Share link"
-          }
-          title="Copy share link"
-          onClick={onShareClick}>
-          <svg className={styles.ExplorerShareIcon} viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="18" cy="5" r="3" />
-            <circle cx="6" cy="12" r="3" />
-            <circle cx="18" cy="19" r="3" />
-            <path d="m8.6 10.5 6.8-4" />
-            <path d="m8.6 13.5 6.8 4" />
-          </svg>
-          <span className={styles.ExplorerShareLabel}>
-            {shareStatus === "copied" ? "Copied" : shareStatus === "failed" ? "Copy failed" : "Share"}
-          </span>
-        </Button>
       </header>
       <nav className={styles.DefinitionNav} aria-label="CSN definitions">
         <Input
@@ -758,6 +698,7 @@ export default function DefinitionExplorer({
               onDetailItemSelect={selectDetailItem}
               selectedDetailRef={selectedDetailRef}
               annotationLinkCallbacks={annotationLinkCallbacks}
+              linkedExampleId={linkedExampleId}
             />
           ) : definitions.length > 0 ? (
             <p className={styles.EmptyDetail}>Select a definition to inspect its details.</p>

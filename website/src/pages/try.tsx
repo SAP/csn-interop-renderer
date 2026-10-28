@@ -14,7 +14,7 @@ function CsnRendererDemo({ sessionId }: { sessionId: string }): ReactNode {
   return (
     <Suspense fallback={<div>Loading renderer…</div>}>
       <div className="csn-interop-renderer-demo">
-        <CsnInteropRenderer key={sessionId} examples={exampleDocuments} defaultTheme={colorMode} />
+        <CsnInteropRenderer key={sessionId} examples={exampleDocuments} defaultTheme={colorMode} syncUrl />
       </div>
     </Suspense>
   );

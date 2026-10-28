@@ -1,3 +1,10 @@
+export interface ExplorerState {
+  definition: string;
+  element: string;
+  section: string;
+  item: string;
+}
+
 export interface CsnDefinition {
   kind?: string;
   doc?: string;
