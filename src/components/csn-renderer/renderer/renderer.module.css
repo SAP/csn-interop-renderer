@@ -1,0 +1,1161 @@
+.Workspace {
+  --pane-height: calc(100vh - 4rem);
+  --file-pane-width: 18%;
+  --editor-pane-width: 45%;
+  --pane-gap: 0.5rem;
+  position: relative;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  flex-grow: 1;
+  height: var(--pane-height);
+  min-height: calc(100vh - 64px);
+  padding: 0;
+  gap: 0;
+  background: var(--ord-muted);
+}
+
+.Workspace[data-drag-active="true"] {
+  outline: 0.1875rem dashed var(--ord-ring);
+  outline-offset: -0.5rem;
+}
+
+.DropOverlay {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ord-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+  background: color-mix(in oklab, var(--ord-accent) 94%, transparent);
+  border: 0.1875rem dashed var(--ord-ring);
+  border-radius: 0;
+}
+
+.EditorPane {
+  flex: 1 1 0;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  container-type: inline-size;
+}
+
+.EditorPane[data-collapsed="true"] {
+  overflow: hidden;
+}
+
+.Workspace[data-editor-resized="true"] .EditorPane {
+  flex: 0 0 var(--editor-pane-width);
+  width: var(--editor-pane-width);
+}
+
+.Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] {
+  flex-basis: 0;
+  width: 0;
+}
+
+.Bar {
+  height: 3.75rem;
+  background-color: var(--ord-card);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.375rem 0.875rem;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--ord-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.BarItem {
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ToolbarButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--ord-muted-foreground);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--ord-radius) / 2);
+  box-shadow: none;
+}
+
+.ToolbarIcon {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
+}
+
+@container (max-width: 28rem) {
+  .ToolbarLabel {
+    display: none;
+  }
+}
+
+.ResetEditorButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--ord-muted-foreground);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--ord-radius) / 2);
+  box-shadow: none;
+}
+
+.ResetEditorIcon {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
+}
+
+.MobileEditorToggle {
+  display: none;
+}
+
+.ResetEditorButton:hover {
+  color: var(--ord-foreground);
+  background: var(--ord-muted);
+  border-color: transparent;
+}
+
+.ToolbarButton:hover {
+  color: var(--ord-foreground);
+  background: var(--ord-muted);
+  border-color: transparent;
+}
+
+.FileSidebar {
+  flex: 0 0 var(--file-pane-width);
+  width: var(--file-pane-width);
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ord-muted);
+}
+
+.FileSidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  min-height: 3.75rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--ord-border);
+}
+
+.FileList {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.FileButton,
+.FileButtonActive {
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 2.25rem;
+  padding-inline: 0.625rem;
+  text-align: left;
+}
+
+.FileButtonActive {
+  color: var(--ord-primary);
+  font-weight: 700;
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 45%, var(--ord-border));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
+}
+
+.EmptyFileList {
+  margin: 0;
+  color: var(--ord-muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.EmptyExplorer {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  /*padding: 2rem;*/
+  color: var(--ord-muted-foreground);
+  text-align: center;
+  background: var(--ord-background);
+  /*border: 1px solid var(--ord-border);*/
+  /*border-left: 0;*/
+  /*border-radius: 0 var(--ord-radius) var(--ord-radius) 0;*/
+}
+
+.ResizeHandle {
+  position: relative;
+  display: flex;
+  flex: 0 0 var(--pane-gap);
+  height: 100%;
+  cursor: col-resize;
+  touch-action: none;
+  user-select: none;
+  background: color-mix(in oklab, var(--ord-border) 50%, transparent);
+  transition: background-color 150ms ease;
+}
+
+.ResizeHandle:hover,
+.ResizeHandle:focus-visible {
+  background: var(--ord-border);
+  outline: 0;
+}
+
+.ResizeHandle::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 2rem;
+  color: var(--ord-muted-foreground);
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 5px 8px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 11px 8px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 5px 16px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 11px 16px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 5px 24px, currentcolor 1px, transparent 1.5px),
+    radial-gradient(circle at 11px 24px, currentcolor 1px, transparent 1.5px),
+    var(--ord-border);
+  border-radius: calc(var(--ord-radius) / 2);
+  opacity: 0;
+  transition: opacity 150ms ease;
+  transform: translate(-50%, -50%);
+}
+
+.ResizeHandle:hover::after,
+.ResizeHandle:focus-visible::after {
+  opacity: 1;
+}
+
+.EmptyExplorer p {
+  max-width: 28rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+
+.Editor {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.BarSpacer {
+  flex-grow: 1;
+}
+
+.Explorer {
+  --definition-nav-width: 35%;
+  display: grid;
+  grid-template-columns: minmax(0, var(--definition-nav-width)) var(--pane-gap) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 54%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--ord-card);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.Workspace[data-explorer-visible="true"] .Explorer {
+  flex: 1 1 0;
+  width: auto;
+}
+
+.ExplorerHeader {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: 0.625rem;
+  box-sizing: border-box;
+  min-height: 3.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--ord-card);
+  border-bottom: 1px solid var(--ord-border);
+  container-type: inline-size;
+}
+
+.ExplorerHeader .PaneTitle {
+  padding-right: 0.625rem;
+  border-right: 1px solid var(--ord-border);
+}
+
+.ExplorerHeader h2 {
+  margin: 0;
+  color: var(--ord-foreground);
+  font-size: 1.0625rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.DefinitionNav {
+  --definition-item-inline-padding: 0.625rem;
+
+  min-width: 0;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--ord-card);
+}
+
+.DefinitionSearch {
+  min-width: 0;
+  height: 2rem;
+  /*box-sizing: border-box;*/
+  color: var(--ord-foreground);
+  font: inherit;
+  background: var(--ord-background);
+  /*border: 1px solid var(--ord-input);*/
+  /*border-radius: var(--ord-radius);*/
+}
+
+.DefinitionSearch {
+  width: 100%;
+  margin-top: 0;
+  padding: 0 0.625rem;
+}
+
+.PaneTitle {
+  color: var(--ord-muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.DefinitionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 1.5rem;
+}
+
+.DefinitionGroupToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem var(--definition-item-inline-padding);
+  color: var(--ord-foreground);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: var(--ord-radius);
+}
+
+.DefinitionGroupToggle:hover {
+  color: var(--ord-primary);
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-muted));
+}
+
+.DefinitionButton,
+.DefinitionButtonActive {
+  font: inherit;
+  cursor: pointer;
+}
+
+.DefinitionButton,
+.DefinitionButtonActive {
+  padding: 0.55rem var(--definition-item-inline-padding);
+  overflow: hidden;
+  color: var(--ord-foreground);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  border-radius: var(--ord-radius);
+  box-shadow: none;
+}
+
+.DefinitionButton:hover {
+  color: var(--ord-primary);
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+}
+
+.DefinitionButtonActive {
+  color: var(--ord-primary);
+  font-weight: 700;
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+}
+
+.DefinitionDetail {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.DetailContent {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background: var(--ord-background);
+}
+
+.DetailContent h3 {
+  margin: 1.25rem 0 0.75rem;
+  color: var(--ord-foreground);
+  font-size: 1rem;
+}
+
+.DetailContent h3:first-child {
+  margin-top: 0;
+}
+
+.DefinitionDetailsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.DefinitionDetailsHeader h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ord-foreground);
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.DetailSearch {
+  width: 100%;
+  margin: 0.75rem 0 0;
+}
+
+.DetailSearchBox {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  min-height: 2.25rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+}
+
+.DetailSearchBox:focus-within {
+  border-color: var(--ord-ring);
+  outline: 2px solid color-mix(in oklab, var(--ord-ring) 35%, transparent);
+  outline-offset: 1px;
+}
+
+.DetailSearchInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--ord-foreground);
+  font: inherit;
+  font-size: 0.8125rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.DetailFilterMenu {
+  position: relative;
+  flex: 0 0 auto;
+  color: var(--ord-muted-foreground);
+  font-size: 0.8125rem;
+}
+
+.DetailFilterMenu summary {
+  min-height: 1.75rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.DetailFilterMenu[open] summary,
+.DetailFilterMenu summary:hover {
+  color: var(--ord-foreground);
+  background: var(--ord-muted);
+}
+
+.DetailFilterPopover {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 0.25rem);
+  right: 0;
+  display: grid;
+  gap: 0.5rem;
+  min-width: 11rem;
+  padding: 0.75rem;
+  background: var(--ord-card);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+  box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 12%);
+}
+
+.DetailFilterMenu label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.DetailFilterMenu input {
+  accent-color: var(--ord-primary);
+}
+
+.DetailFilterMenuSearch {
+  width: 100%;
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--ord-foreground);
+  font: inherit;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-border);
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.DetailFilterQuickActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.DetailFilterQuickActions button {
+  padding: 0;
+  color: var(--ord-primary);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.DetailFilterOptions {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.DetailFilterFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ord-border);
+}
+
+.DefinitionDescription {
+  margin: 0;
+  padding: 0.625rem 0.75rem;
+  color: var(--ord-muted-foreground);
+  line-height: 1.5;
+  background: var(--ord-accent);
+  border-left: 0.25rem solid var(--ord-primary);
+  border-radius: 0 var(--ord-radius) var(--ord-radius) 0;
+}
+
+.AnnotationList {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.375rem;
+  margin-top: 0.625rem;
+}
+
+.AnnotationCard {
+  min-width: 0;
+  padding: 0.375rem 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.45;
+  background: color-mix(in oklab, var(--ord-primary) 6%, var(--ord-card));
+  border: 1px solid color-mix(in oklab, var(--ord-primary) 20%, var(--ord-border));
+  border-radius: var(--ord-radius);
+}
+
+.AnnotationCard:hover {
+  background: color-mix(in oklab, var(--ord-primary) 10%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 35%, var(--ord-border));
+}
+
+.AnnotationCard[aria-pressed="true"],
+.CompactPropertyList .PropertyCard[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--ord-primary) 12%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 55%, var(--ord-border));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
+}
+
+.AnnotationCard:focus-visible,
+.CompactPropertyList .PropertyCard:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 2px;
+}
+
+.AnnotationKey {
+  display: inline;
+  overflow-wrap: anywhere;
+  color: var(--ord-primary);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+}
+
+.AnnotationDocumentationLink {
+  display: inline;
+  overflow-wrap: anywhere;
+  color: var(--ord-primary);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  text-decoration: underline;
+  text-underline-offset: 0.125em;
+}
+
+.AnnotationSeparator {
+  margin: 0 0.25rem 0 0.125rem;
+  color: var(--ord-muted-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+}
+
+.AnnotationValue {
+  display: block;
+  min-width: 0;
+  padding: 0.5rem 0.625rem;
+  color: var(--ord-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-border);
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.AnnotationCard .AnnotationValue {
+  display: inline;
+  padding: 0;
+  font-size: 0.75rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.AnnotationCard .AnnotationValue[data-value-type="boolean"] {
+  display: inline;
+  padding: 0;
+  color: var(--ord-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  background: transparent;
+  border: 0;
+}
+
+.AnnotationValue[data-value-type="string"]::before,
+.AnnotationValue[data-value-type="string"]::after {
+  color: var(--ord-muted-foreground);
+  content: '"';
+}
+
+.AnnotationLink {
+  color: var(--ord-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.125em;
+}
+
+.PropertyCard {
+  display: block;
+  min-width: 0;
+  padding: 0.5rem;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  background: var(--ord-card);
+  border: 1px solid var(--ord-border);
+  border-radius: var(--ord-radius);
+}
+
+.PropertyList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.375rem;
+  margin-top: 0.625rem;
+}
+
+.CompactPropertyList {
+  gap: 0.375rem;
+  margin-top: 0.625rem;
+}
+
+.CompactPropertyList .PropertyCard {
+  display: block;
+  min-width: 0;
+  padding: 0.375rem 0.5rem;
+  cursor: pointer;
+  line-height: 1.45;
+}
+
+.CompactPropertyList .PropertyCard:hover {
+  background: color-mix(in oklab, var(--ord-primary) 5%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 30%, var(--ord-border));
+}
+
+.CompactPropertyList .PropertyKey {
+  display: inline;
+  font-size: 0.75rem;
+}
+
+.CompactPropertyList .PropertyKey::after {
+  margin-right: 0.25rem;
+  color: var(--ord-muted-foreground);
+  content: ":";
+}
+
+.CompactPropertyList .PropertyValue {
+  display: inline;
+  padding: 0;
+  font-size: 0.75rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.CompactPropertyList .PropertyValue[data-value-type="boolean"] {
+  display: inline;
+  padding: 0;
+  color: var(--ord-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  background: transparent;
+  border: 0;
+}
+
+.ElementList {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+}
+
+.ElementPropertyList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  min-width: 0;
+  gap: 0.25rem 0.625rem;
+}
+
+.ElementPropertyGroup {
+  display: block;
+}
+
+.ElementPropertyGroupLabel {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 0 0.375rem;
+  padding: 0.1875rem 0.375rem;
+  color: var(--ord-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: color-mix(in oklab, var(--ord-primary) 7%, var(--ord-card));
+  border-left: 0.1875rem solid color-mix(in oklab, var(--ord-primary) 55%, var(--ord-border));
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.ElementCard {
+  padding: 0.5rem;
+  cursor: pointer;
+  container-type: inline-size;
+}
+
+.ElementCard:hover {
+  background: color-mix(in oklab, var(--ord-primary) 5%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 30%, var(--ord-border));
+}
+
+.ElementCard[aria-pressed="true"] {
+  background: color-mix(in oklab, var(--ord-primary) 9%, var(--ord-card));
+  border-color: color-mix(in oklab, var(--ord-primary) 55%, var(--ord-border));
+  box-shadow: inset 0.1875rem 0 var(--ord-primary);
+}
+
+.ElementCard:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 2px;
+}
+
+.ElementCard > * + * {
+  margin-top: 0.375rem;
+}
+
+.ElementCard > .PropertyKey {
+  color: var(--ord-foreground);
+  font-size: 0.875rem;
+}
+
+.ElementCard .ElementPropertyList {
+  gap: 0.25rem 0.625rem;
+}
+
+.ElementCard .ElementProperty {
+  display: block;
+  flex: 0 0 100%;
+  min-width: 0;
+  line-height: 1.45;
+}
+
+.ElementCard .PropertyKey {
+  display: inline;
+  padding: 0;
+  color: var(--ord-foreground);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ElementCard .ElementProperty .PropertyKey::after {
+  margin-right: 0.25rem;
+  color: var(--ord-muted-foreground);
+  content: ":";
+}
+
+.ElementCard .PropertyValue {
+  display: inline;
+  padding: 0;
+  color: var(--ord-muted-foreground);
+  font-size: 0.75rem;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.ElementCard .PropertyValue[data-value-type="boolean"] {
+  display: inline;
+  padding: 0;
+  color: var(--ord-muted-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  background: transparent;
+  border: 0;
+}
+
+.PropertyKey {
+  color: var(--ord-primary);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.PropertyValue {
+  min-width: 0;
+  padding: 0.375rem 0.5rem;
+  color: var(--ord-foreground);
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  background: var(--ord-background);
+  border: 1px solid var(--ord-border);
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.PropertyValue[data-value-type="string"]::before,
+.PropertyValue[data-value-type="string"]::after {
+  color: var(--ord-muted-foreground);
+  content: '"';
+}
+
+.DetailSection {
+  margin-top: 0.875rem;
+}
+
+.DetailSection summary {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.DetailSection summary:hover h3 {
+  color: var(--ord-primary);
+}
+
+.DetailSection summary:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 0.25rem;
+  border-radius: calc(var(--ord-radius) / 2);
+}
+
+.DetailSection summary::-webkit-details-marker {
+  display: none;
+}
+
+.DetailSection summary::before {
+  color: var(--ord-primary);
+  font-size: 0.875rem;
+  content: "▶";
+  transition: transform 150ms ease;
+}
+
+.DetailSection[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.DetailSection h3 {
+  margin: 0;
+  color: var(--ord-foreground);
+  font-weight: 700;
+}
+
+.DetailSectionContent {
+  padding-top: 0.5rem;
+}
+
+.RelatedDefinitionList {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.375rem;
+}
+
+.RelatedDefinitionLink {
+  display: block;
+  min-width: 0;
+  padding: 0.25rem 0;
+  color: var(--ord-primary);
+  font: inherit;
+  font-family: var(--ord-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--ord-primary) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.125em;
+}
+
+.RelatedDefinitionLink:hover {
+  color: color-mix(in oklab, var(--ord-primary) 75%, var(--ord-foreground));
+  text-decoration-color: currentcolor;
+  text-decoration-thickness: 2px;
+}
+
+.RelatedDefinitionLink:focus-visible {
+  outline: 2px solid var(--ord-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .DetailSection summary::before {
+    transition: none;
+  }
+}
+
+.EmptyDetail {
+  margin: 1.25rem;
+  color: var(--ord-muted-foreground);
+}
+
+@media (max-width: 1200px) {
+  .Workspace {
+    flex-direction: column;
+  }
+
+  .DropOverlay {
+    inset: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .EditorPane,
+  .FileSidebar,
+  .EmptyExplorer,
+  .Explorer,
+  .Workspace[data-explorer-visible="true"] .EditorPane,
+  .Workspace[data-explorer-visible="true"] .Explorer {
+    flex: none;
+    width: 100%;
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .EditorPane,
+  .FileSidebar,
+  .EmptyExplorer,
+  .Explorer,
+  .ResizeHandle {
+    height: auto;
+  }
+
+  .ResizeHandle {
+    display: none;
+  }
+
+  .Editor {
+    flex: none;
+    height: 32rem;
+  }
+
+  .Explorer {
+    min-height: 40rem;
+  }
+
+  .Explorer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .Workspace {
+    min-height: auto;
+    padding: 0;
+    gap: 0;
+  }
+
+  .Bar {
+    height: auto;
+    min-height: 2.5rem;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .MobileEditorToggle {
+    display: inline-flex;
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] {
+    height: auto;
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] .Bar {
+    border-bottom: 1px solid color-mix(in oklab, var(--ord-border) 78%, transparent);
+    border-radius: var(--ord-radius);
+  }
+
+  .Workspace[data-explorer-visible="true"] .EditorPane[data-collapsed="true"] .Editor {
+    display: none;
+  }
+
+  .BarSpacer {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .BarItem {
+    justify-content: flex-end;
+    width: auto;
+    height: auto;
+    gap: 0.25rem;
+  }
+
+  .Editor {
+    height: 28rem;
+  }
+
+  .AnnotationList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .Explorer {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .DefinitionNav {
+    display: block;
+    max-height: 15rem;
+    padding: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--ord-border);
+  }
+
+  .DefinitionGroup {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 1.25rem;
+  }
+
+  .DefinitionGroupToggle {
+    width: 100%;
+  }
+
+  .DefinitionDetail {
+    min-height: 30rem;
+  }
+
+  .DetailContent {
+    padding: 1.25rem 1rem;
+  }
+
+}
