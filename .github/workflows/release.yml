@@ -65,11 +65,7 @@ jobs:
           persist-credentials: true # Needed by the release/push step
       - name: Create GitHub Release
         uses: open-resource-discovery/github-release@2d8817b7382966b490d5c78125d97da14ee918bc # main
-    permissions:
-      contents: write
-      pull-requests: write
-      actions: write
-      checks: write
-      statuses: write
+        with:
+          ci-workflows: none
 permissions:
   contents: read

@@ -31,8 +31,6 @@ jobs:
       - name: Prettier
         run: npm run prettier:ci
 
-    permissions:
-      contents: read
   tests:
     name: Tests
     runs-on: ubuntu-latest
@@ -55,8 +53,6 @@ jobs:
           name: test-results
           path: reports/jest-coverage/junit.xml
 
-    permissions:
-      contents: read
   build:
     name: Build job
     runs-on: ubuntu-latest
@@ -73,8 +69,6 @@ jobs:
       - name: Build
         run: npm run build
 
-    permissions:
-      contents: read
   website-build:
     name: Website Build
     runs-on: ubuntu-latest
