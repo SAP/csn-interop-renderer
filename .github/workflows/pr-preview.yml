@@ -8,9 +8,6 @@ jobs:
   pr-preview:
     permissions:
       contents: read
-      actions: write
-      pull-requests: read
-
     runs-on: ubuntu-latest
 
     concurrency:
@@ -18,16 +15,15 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
 
       - name: Setup Node
         if: github.event.action != 'closed'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 24
-
+          node-version: "26.13.1"
       - name: Install NPM dependencies
         if: github.event.action != 'closed'
         run: npm ci
@@ -52,11 +48,15 @@ jobs:
           npm run build
 
       - name: PR preview
-        uses: open-resource-discovery/pr-preview-action@main
+        uses: open-resource-discovery/pr-preview-action@d4998f1ebe4699cedac6673d47c1edb0c6c73405 # main
         with:
-          fork: true
+          fork: false
           build-dir: website/build
           target-repo: SAP/csn-interop-pr-preview
           pages-base-url: https://sap.github.io/csn-interop-pr-preview
           umbrella-dir: csn-interop-renderer
           token: ${{ secrets.PR_PREVIEW_TOKEN }}
+          wait-poll-attempts: 180
+    if: github.event.pull_request.head.repo.full_name == github.repository
+permissions:
+  contents: read
